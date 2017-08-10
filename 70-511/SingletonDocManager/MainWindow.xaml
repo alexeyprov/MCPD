@@ -1,0 +1,17 @@
+﻿<Window x:Class="SingletonDocManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SingletonDocManager"
+        Title="Singleton Document Manager" Height="350" Width="525" SizeChanged="Window_SizeChanged">
+    <Window.Resources>
+        <local:SizeToThicknessConverter x:Key="ThicknessConverter" />
+    </Window.Resources>
+    <Grid>
+        <ListBox ItemsSource="{Binding LoadedDocuments}" Name="DocumentList"/>
+        <MediaElement Source=".\Sounds\tada.wav" LoadedBehavior="Play" MediaFailed="MediaElement_MediaFailed"/>
+    </Grid>
+    <Window.TaskbarItemInfo>
+        <!-- "{Binding DesiredSize, Mode=OneWay, ElementName=DocumentList, Converter={StaticResource ThicknessConverter}}" -->
+        <TaskbarItemInfo x:Name="TaskBarInfo"/>
+    </Window.TaskbarItemInfo>
+</Window>

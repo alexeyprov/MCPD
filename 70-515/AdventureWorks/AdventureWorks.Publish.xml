@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="http://192.168.1.3" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/AdventureWorks" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="VM-MSDeploy" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="ladmin" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAEvKDLjd4lUqwy5YHJvRpXQAAAAACAAAAAAAQZgAAAAEAACAAAACk/r7+CFEt++j25oJ/QrUevyiP069jQUPCyr+UxTJsRAAAAAAOgAAAAAIAACAAAABr/X54K3Dh48ieGkpBJrOACAf+znK9e3PucoBo0wKwUiAAAADEeXhEhPU1f30rs6F1QuXQ27s1HB8sHOjioroEPdVT8kAAAAC8gbrs/RL0A4+2jvQv4zoDkzrLuRqLKjIlrb2vYzOOso+wCdGUoa5r7CFipjwqVlKVPVHgL21IXelW4y505pm3" SelectedForPublish="True" />
+</publishData>

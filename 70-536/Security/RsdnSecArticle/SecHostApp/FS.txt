@@ -1,0 +1,27 @@
+1. The SecHostApp application should use reflection to call an object in the SecureModule assembly.
+1.1 The SecureModule::ChildForm object should expose the single instance method, RunTest
+1.1.1 The method should run the form modally
+1.1.2 The method should accept a MethodInvoker delegate pointing to SecHostApp::MainForm::SecureMethod
+1.1.2.1 The method should perform two actions:
+1.1.2.1.1 Demand custom permission
+1.1.2.1.2 Write the information about call into the ListView control
+1.2 The SecHostApp should call the SecureModule assembly from two locations:
+1.2.1 Untrusted folder
+1.2.1.1 This folder should be bound to a limited-permission code group created at the appdomain level
+1.2.2 FullTrust folder
+1.2.2.1 This folder should be bound to the full-trust permission code group created at the appdomain level
+2. AppDomain-level policy for the current domain should be built based on following rules
+2.1 A new permission set should be created with restricted permissions
+2.1.1 The only mandatory permission is permission to execute
+2.1.2 UI permissions should be restricted  
+2.2 Root code group should be restricted to no permissions
+2.2.1 A child group for "My Computer" zone should have unrestricted permissions
+2.2.2 A child group with limited permissions should be created
+2.2.2.1 This group should use be configured as exclusive to override "My Computer" zone group
+2.2.2.2 This group should be bound to limited permission set (see 2.1)
+2.2.2.3 This group should be bound to the "Untrusted" folder
+2.2.3 An optional child group can be created to provide full explicit permissions
+2.2.3.1 This group should be bound to the "FullTrust" folder
+3. A custom permission should be added
+3.1 The permission availability should be controlled via UI
+3.2 If enabled, callback code in the SecHostApp should demand this permission from caller

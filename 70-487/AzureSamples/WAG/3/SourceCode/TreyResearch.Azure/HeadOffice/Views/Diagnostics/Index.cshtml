@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@model IEnumerable<HeadOffice.Models.DiagnosticsLog>
+
+<h2>Diagnostics Logs</h2>
+
+<h2>This page transfers log messages from the WADLogsTable to a local on-premises store.</h2>
+
+<h2 style=" color: #034af3; ">In a real-world scenario this process shouldn't be hosted on a web application, instead you could use a Windows service or similar.</h2>
+<h2 style=" color:Red"> @Html.Encode(ViewData["message"])</h2>
+
+@using (Html.BeginForm("TransferLogs", "Diagnostics"))
+{
+    <br />
+    <input type="checkbox" name="deleteEntries" />
+    <label for="deleteEntries">Delete from WADLogsTable all transferred entries</label>
+    <br />
+    <input type="submit" value="Transfer Diagnostics Logs" />
+}
+
+<br />
+@Html.ActionLink("Refresh table", "Index")
+
+<br />
+<table>
+    <tr>
+        <th>Id</th>  
+        <th>Partition Key</th>      
+        <th>Row Key</th>      
+        <th>TimeStamp</th>      
+        <th>Data Center</th>      
+        <th>Deployment Id</th>      
+        <th>Role</th>      
+        <th>Role Instance</th>
+        <th>Message</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>       
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartitionKey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RowKey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataCenter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeploymentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleInstance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+    </tr>
+}
+</table>

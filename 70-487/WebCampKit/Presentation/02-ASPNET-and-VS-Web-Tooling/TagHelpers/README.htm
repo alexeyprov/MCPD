@@ -1,0 +1,142 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="tag-helpers">Tag Helpers</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>This demo introduces Tag Helpers and how they can be used as an alternative to HTML Helpers. Additionally, it shows how to create custom Tag Helpers.</p>
+<p>Tag Helpers are a new feature introduced in ASP.NET Core 1.0. They combine the power of the Razor view engine and the expressiveness of HTML by allowing you to write HTML tags in your views rather than inline C# - all this with IntelliSense support.</p>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li>Identify Tag Helpers</li>
+<li>Create custom Tag Helpers</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ul>
+<li><a href="http://docs.asp.net">ASP.NET Core</a></li>
+</ul>
+<p><a name="Setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>Follow these steps to set up your environment for the demo.</p>
+<ol>
+<li>Install <a href="https://www.visualstudio.com/readme.htm">Visual Studio 2015</a>.</li>
+<li>Open Visual Studio.</li>
+</ol>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#segment1">Tag Helpers in the project template</a></li>
+<li><a href="#segment2">Create a custom Tag Helper</a></li>
+</ol>
+<p><a name="segment1"></a></p>
+<h3 id="tag-helpers-in-the-project-template">Tag Helpers in the project template</h3>
+<ol>
+<li><p>In Visual Studio, go to <strong>File | New | Project</strong>.</p>
+</li>
+<li><p>In the <strong>Templates | Visual C# | Web</strong> tab, select the <strong>ASP.NET Web Application</strong> project. Name it <strong>TagHelpersDemo</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-a-web-project.png?raw=true" alt="Creating a web project" title="Creating a web project"></p>
+<p> <em>Creating a web project</em></p>
+</li>
+<li><p>From the <strong>ASP.NET 5 Templates</strong> list, select the <strong>Web Application</strong> template and click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="images/selecting-the-web-site-template.png?raw=true" alt="Selecting the Web Site template" title="Selecting the Web Site template"></p>
+<p> <em>Selecting the Web Site template</em></p>
+</li>
+<li><p>Open <strong>Views/Account/Register.cshtml</strong>.</p>
+</li>
+<li><p>Look at the Tag Helpers being used in this view (purple and bold) and play around with setting their attributes and exploring the IntelliSense offered for the different attribute types.</p>
+<p> <img class="img-responsive"src="images/register-view.png?raw=true" alt="Showing the Register view" title="Showing the register view"></p>
+<p> <em>Showing the Register view</em></p>
+</li>
+<li><p>Run the application and go to the <strong>Register</strong> page. Using the Microsoft Edge development tools, look at the HTML output of the Tag Helpers.</p>
+<p> <img class="img-responsive"src="images/register-view-html-output.png?raw=true" alt="Showing the register view" title="Showing the register view"></p>
+<p> <em>Showing the Register View&#39;s HTML output</em></p>
+</li>
+<li><p>Switch back to Visual Studio. You can take a look at the other views in the <strong>Views/Account</strong> folder to see how they use Tag Helpers.</p>
+</li>
+<li><p>Now, open the <strong>Views/Shared/_Layout.cshtml</strong> file.</p>
+</li>
+<li><p>Look at the Tag Helpers being used in the <strong><head></strong> element to render CSS stylesheets and at the end of the page to render JavaScript files.</p>
+<p> <img class="img-responsive"src="images/head-layouts-helpers.png?raw=true" alt="Showing layouts head heplers" title="Showing layouts head heplers"></p>
+<p> <em>Showing Tag Helpers in the Layout</em></p>
+</li>
+<li><p>In Microsoft Edge, look at the HTML output of the CSS files.</p>
+<p> <img class="img-responsive"src="images/head-helpers-html-output.png?raw=true" alt="Showing head helpers HTML output" title="Showing head helpers html output"></p>
+<p> <em>Showing the HTML output of the Layout</em></p>
+</li>
+</ol>
+<p><a name="segment2"></a></p>
+<h3 id="create-a-custom-tag-helper">Create a custom Tag Helper</h3>
+<ol>
+<li><p>Create a new <strong>RepeatTagHelper</strong> class in the root of the application you created in the previous segment by adding a new item to the project and selecting <strong>Razor Tag Helper</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-the-tag-helper-class.png?raw=true" alt="Creating the Tag Helper class" title="Creating the Tag Helper class"></p>
+<p> <em>Creating the Tag Helper class</em></p>
+</li>
+<li><p>Show the content of the generated file and update the <em>HtmlTargetElement</em>
+parameter to <code>repeat</code>.</p>
+<p> <img class="img-responsive"src="images/showing-the-generated-tag-helper.png?raw=true" alt="Showing the content of the generated file" title="Showing the content of the generated file"></p>
+<p> <em>Showing the content of the generated file</em></p>
+</li>
+<li><p>Replace the content of the RepeatTagHelper class with the following code snippet.</p>
+<pre><code class="lang-C#"> public int Count { get; set; }
+
+ public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+ {
+ }
+</code></pre>
+</li>
+<li><p>Add the following code to the body of the <strong>ProcessAsync</strong> method that repeats the content via the <strong>output</strong> parameter in a loop of <strong>Count</strong> iterations.</p>
+<pre><code class="lang-C#"> for (int i = 0; i &lt; Count; i++)
+ {
+     output.Content.Append(await output.GetChildContentAsync());
+ }
+</code></pre>
+</li>
+<li><p>Open the <strong>Views/_ViewImports.cshtml</strong> file and add a line at the end to register the assembly that contains your Tag Helper.</p>
+<pre><code class="lang-C#"> @addTagHelper &quot;*, TagHelpersDemo&quot;
+</code></pre>
+</li>
+<li><p>Open the <strong>Views/Home/Index.cshtml</strong> file and use your Tag Helper by adding the following code directly above the <code>&lt;div id=&quot;myCarousel&quot; ...&gt;</code> HTML element.</p>
+<pre><code class="lang-HTML"> &lt;repeat count=&quot;5&quot;&gt;
+     &lt;h3&gt;I&#39;ll be repeated!!&lt;/h3&gt;
+ &lt;/repeat&gt;
+</code></pre>
+<p> <img class="img-responsive"src="images/using-custom-tag-helper.png?raw=true" alt="Using the custom tag helper" title="Using custom tag helper"></p>
+<p> <em>Using the custom tag helper</em></p>
+</li>
+<li><p>Run the application again and ensure your Tag Helper is working.</p>
+</li>
+<li><p>Note that the Tag Helper is rendering itself as a <strong><repeat></strong> tag. We&#39;ll fix that now so that only the contents of the tag are rendered.</p>
+<p> <img class="img-responsive"src="images/custom-tag-helper.png?raw=true" alt="Showing the custom tag helper" title="Showing the custom tag helper"></p>
+<p> <em>Showing the custom tag helper</em></p>
+</li>
+<li><p>Open the <strong>RepeatTagHelper</strong> class, and at the end of the <strong>ProcessAsync</strong> method add a line to null the tag name.</p>
+<pre><code class="lang-C#"> output.TagName = null;
+</code></pre>
+</li>
+<li><p>Run the application again and notice that the outer tag is no longer being rendered.</p>
+<p> <img class="img-responsive"src="images/custom-tag-is-no-longer-rendered.png?raw=true" alt="The custom tag is no longer rendered" title="The custom tag is no longer rendered"></p>
+<p> <em>The custom tag is no longer rendered</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>In this demo you have walked through the use and creation of ASP.NET Core Tag Helpers and seen how IntelliSense provides support for them.</p>
+<hr>
+
+      </div>
+  </body>
+</html>

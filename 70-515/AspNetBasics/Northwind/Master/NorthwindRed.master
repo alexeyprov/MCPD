@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Master/DefaultRed.master" AutoEventWireup="true" CodeFile="NorthwindRed.master.cs" Inherits="Northwind.UI.RedMasterPage" %>
+<%@ MasterType VirtualPath="~/Master/DefaultRed.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadPlaceholder" Runat="Server">
+	<meta content="Data-binding;LINQ;SQL" />
+
+	<asp:ContentPlaceHolder ID="NorthwindHeadContentPlaceHolder" runat="server" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyContentPlaceHolder" Runat="Server">
+
+	<asp:SiteMapDataSource ID="srcSubMenu" runat="server" ShowStartingNode="false" SiteMapProvider="NorthwindSiteMapProvider" />
+
+	<asp:Menu ID="mnuSubMenu" runat="server" DataSourceID="srcSubMenu" 
+		Orientation="Horizontal" DynamicHorizontalOffset="2" 
+		StaticSubMenuIndent="10px" >
+		<DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+		<StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+	</asp:Menu>
+
+	<asp:ContentPlaceHolder ID="NorthwindContentPlaceHolder" runat="server" />
+
+	<br />
+	<asp:SiteMapPath ID="smpNorthwind" runat="server" SiteMapProvider="NorthwindSiteMapProvider" />
+
+</asp:Content>
+

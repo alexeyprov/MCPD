@@ -1,0 +1,13 @@
+﻿{
+	States : ["Alabama", "Alaska", "Arkansas", "Arizona", "California",
+				"Colorado", "Connecticut", "DC", "Delaware", "Florida",
+				"Georgia", "Hawaii", "Idaho", "Illinois", "Indiana",
+				"Iowa", "Kansas", "Kentucky", "Louisiana", "Maine",
+				"Maryland", "Massachusets", "Mineapolis", "Minessota", "Michigan",
+				"Missisippi", "Missuri", "New Hampshire", "New Jersey", "New Mexico",
+				"New York", "North Carolina", "North Dakota", "Ohio", "Oregon",
+				"Pennsilvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
+				"Texas", "Utah", "Vermont", "Virginia", "Washington",
+				"West Virginia", "Wisconsin", "Wyoming"
+			]
+}

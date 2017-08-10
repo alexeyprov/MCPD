@@ -1,0 +1,24 @@
+﻿<Window x:Class="HelloWpf.UiTricks.DragnDropWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DragnDropWindow" Height="300" Width="300"
+        ResizeMode="NoResize"
+        PreviewMouseDown="Window_PreviewMouseDown"
+        DragEnter="Window_DragEnter"
+        Drop="Window_Drop" >
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Canvas.Left" Value="100" />
+            <Setter Property="Width" Value="170" />
+            <Setter Property="AllowDrop" Value="True" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Black" />
+        </Style>
+    </Window.Resources>
+    <Canvas>
+        <TextBox Canvas.Left="34" Text="Take text from here" Canvas.Top="104"
+                 Width="150" SelectionStart="0" SelectionLength="100" />
+        <Label Content="Drop here" Canvas.Top="42" Background="Azure"/>
+        <Label Content="Or here" Canvas.Top="152" Background="BlanchedAlmond"/>
+    </Canvas>
+</Window>

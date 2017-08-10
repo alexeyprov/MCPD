@@ -1,0 +1,25 @@
+﻿<Window x:Class="StyleBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:StyleBinding"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style x:Key="FruitTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Text" Value="Fruits" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, Source={x:Reference FruitComboBox}}" Value="Apple">
+                    <Setter Property="Text" Value="Allergic" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <ComboBox Name="FruitComboBox">
+            <sys:String>Apple</sys:String>
+            <sys:String>Orange</sys:String>
+            <sys:String>Banana</sys:String>
+        </ComboBox>
+        <local:ChildControl />
+    </StackPanel>
+</Window>

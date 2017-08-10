@@ -1,0 +1,18 @@
+﻿<parameters>
+	<parameter name="decryptionKey"
+		description="Please provide machine-level decryption key (64 characters, 32 bytes)"
+		defaultValue="testDecryptionKey"
+		tags="">
+		<parameterEntry kind="XmlFile"
+			scope="obj\\Release\\Package\\PackageTmp\\Web\.config$"
+			match="//machineKey/@decryptionKey" />
+	</parameter>
+	<parameter name="validationKey"
+		description="Please provide machine-level validation key (128 characters, 64 bytes)"
+		defaultValue="testValidationKey"
+		tags="">
+		<parameterEntry kind="XmlFile"
+			scope="obj\\Release\\Package\\PackageTmp\\Web\.config$"
+			match="//machineKey/@validationKey" />
+	</parameter>
+</parameters> 

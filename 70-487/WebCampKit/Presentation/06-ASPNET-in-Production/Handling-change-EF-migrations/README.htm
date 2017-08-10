@@ -1,0 +1,243 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="handling-change-ef-migrations-deployment-rollback-">Handling change (EF migrations, Deployment rollback)</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>In this demo you go through the steps of enabling Entity Framework migrations to GeekQuiz database, changing the model and understanding how those changes are reflected in the database. Additionally, you will deploy to Azure using Git and perform a rollback to the previous deployment from Azure Portal.</p>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li>Update the object model and database accordingly using Entity Framework migrations</li>
+<li>Deploy to Microsoft Azure using Git</li>
+<li>Rollback to a previous deployment using the Azure Portal</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ol>
+<li><a href="http://www.asp.net/entity-framework/readme.htm">Entity Framework 7</a>.</li>
+<li><a href="http://git-scm.com/readme.htm">Git</a>.</li>
+</ol>
+<p><a name="setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>Follow these steps to setup your environment for the demo.</p>
+<ol>
+<li><p>Copy the contents of the <strong>source\begin</strong> folder to a separate directory. Both demo segments start from the same begin solution, so you will need to remember the directory to where you copied the files for the second segment.</p>
+</li>
+<li><p>Configure an Azure SQL Database following the steps provided in <a href="https://azure.microsoft.com/en-us/documentation/articles/sql-database-get-started/readme.htm">this link</a>. Copy the ADO.NET connection string value.</p>
+</li>
+<li><p>Create a new <strong>Web App</strong> in Azure Portal.</p>
+<blockquote>
+<p><strong>Note:</strong> To avoid issues with the local storage while deploying with git, use a Basic Service Plan or greater.</p>
+</blockquote>
+</li>
+<li><p>In the <strong>Application settings</strong> of your new Web App, update the connection string key for the DB to <em>DefaultConnection</em> and value copied from previous step. Save the changes.</p>
+<p> <img class="img-responsive"src="Images/default-connection.png?raw=true" alt="Default Connection" title="Default Connection"></p>
+<p> <em>Default connection</em></p>
+</li>
+<li><p>Configure the <strong>GeekQuiz</strong> web site to support <a href="https://azure.microsoft.com/documentation/articles/web-sites-publish-source-control/readme.htm">Publishing with Git</a> and push the duplicate of the begin solution to the remote repository.</p>
+</li>
+<li><p>Leave the Azure Portal in a separate browser window/tab.</p>
+</li>
+<li><p>Navigate to the created site and register an account.</p>
+</li>
+<li><p>Enable the ASP.NET Core command-line tools. Open a command-prompt and run:</p>
+<pre><code> dnvm upgrade
+</code></pre></li>
+<li><p>Open Visual Studio 2015.</p>
+</li>
+<li><p>Open the <strong>GeekQuiz.sln</strong> solution located under <strong>source\begin</strong>.</p>
+</li>
+<li><p>Run the solution and register a new user in order to generate the SQL database.</p>
+</li>
+<li><p>In Visual Studio, close all open files.</p>
+</li>
+<li><p>Make sure that you have an Internet connection, as this demo requires it to push to a remote git repository.</p>
+</li>
+<li><p>Open the <strong>SQL Server Object Explorer</strong> and dock it in the left panel.</p>
+</li>
+<li><p>Open the <strong>Solution Explorer</strong> and dock it in the right panel.</p>
+</li>
+</ol>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#segment1">Migrations</a></li>
+<li><a href="#segment2">Deployment rollback</a></li>
+</ol>
+<p><a name="segment1"></a></p>
+<h3 id="migrations">Migrations</h3>
+<ol>
+<li><p>In the <strong>Solution Explorer</strong>, select the GeekQuiz project and press <strong>Shift + Alt + ,</strong> to open a Command Prompt in the folder where the project is located.</p>
+</li>
+<li><p>In the <strong>Command Prompt</strong> you just opened, enter the following command and then press <strong>Enter</strong>. An initial migration based on the existing model will be created.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef migrations add InitialMigration --context TriviaDbContext
+</code></pre>
+<p> <img class="img-responsive"src="Images/creating-the-initial-migration.png?raw=true" alt="Creating the initial migration" title="Creating the initial migration"></p>
+<p> <em>Creating the initial migration</em></p>
+</li>
+<li><p>Back in Visual Studio, show that the new migration was created inside the <strong>TriviaDb</strong> folder located under the <strong>Migrations</strong> folder.</p>
+<p> <img class="img-responsive"src="Images/showing-the-initial-migration.png?raw=true" alt="Showing the initial migration" title="Showing the initial migration"></p>
+<p> <em>Showing the initial migration</em></p>
+</li>
+<li><p>In the <strong>Command Prompt</strong>, enter the following command and then press <strong>Enter</strong>.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef database update --context TriviaDbContext --verbose
+</code></pre>
+<p> <img class="img-responsive"src="Images/applying-the-initial-migration.png?raw=true" alt="Applying the initial migration" title="Applying the initial migration"></p>
+<p> <em>Applying the initial migration</em></p>
+</li>
+</ol>
+<ol>
+<li><p>In <strong>SQL Server Object Explorer</strong>, expand the different nodes until the columns of the <strong>dbo.TriviaQuestions</strong> table are displayed. This is shown in the following figure.</p>
+<p> <img class="img-responsive"src="Images/trivia-questions-columns.png?raw=true" alt="Trivia Questions Columns" title="Trivia Questions Columns"></p>
+<p> <em>Trivia Questions Columns</em></p>
+</li>
+</ol>
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, double-click the <strong>TriviaQuestion.cs</strong> file located inside the <strong>Models</strong> folder.</p>
+</li>
+<li><p>Add the <em>Hint</em> property, as shown in the following code snippet.</p>
+ <!-- mark:10 -->
+<pre><code class="lang-C#"> public class TriviaQuestion
+ {
+      public int Id { get; set; }
+
+      [Required]
+      public string Title { get; set; }
+
+      public virtual List&lt;TriviaOption&gt; Options { get; set; }
+
+      public string Hint { get; set; }
+ }
+</code></pre>
+</li>
+<li><p>Switch back to the <strong>Command Prompt</strong>, enter the following command and then press <strong>Enter</strong>. A new migration will be created.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef migrations add QuestionHint --context TriviaDbContext
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that the migration only accounts for the diff between the current model and the one from the previous migration. The <code>Up</code> method applies the changes to the target database and the <code>Down</code> method reverts those changes.</p>
+</blockquote>
+</li>
+<li><p>In the <strong>Command Prompt</strong>, enter the following command and then press <strong>Enter</strong>.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef database update --context TriviaDbContext --verbose
+</code></pre>
+</li>
+<li><p>In <strong>SQL Server Object Explorer</strong>, click <strong>Refresh</strong>.</p>
+<p> <img class="img-responsive"src="Images/refresh.png?raw=true" alt="Clicking the refresh button" title="Clicking the refresh button"></p>
+<p> <em>Clicking the refresh button</em></p>
+</li>
+<li><p>Expand the different nodes until the columns of the <strong>dbo.TriviaQuestions</strong> table are displayed. The new <strong>Hint</strong> column will be displayed.</p>
+<p> <img class="img-responsive"src="Images/hint-column.png?raw=true" alt="Showing the new Hint Column" title="Showing the new Hint Column"></p>
+<p> <em>Showing the new Hint Column</em></p>
+</li>
+</ol>
+<p><a name="segment2"></a></p>
+<h3 id="deployment-rollback">Deployment Rollback</h3>
+<ol>
+<li><p>Open the <strong>GeekQuiz.sln</strong> solution that you copied to a separate folder during the setup phase.</p>
+</li>
+<li><p>Double-click the <strong>AnswersService.cs</strong> file in <strong>Solution Explorer</strong>.</p>
+</li>
+<li><p>Replace the StoreAsync method implementation with the following snippet.</p>
+ <!-- mark:3-4,17-22 -->
+<pre><code class="lang-C#"> public async Task&lt;bool&gt; StoreAsync(TriviaAnswer answer)
+ {
+     var selectedOption = await this.db.TriviaOptions.FirstOrDefaultAsync(o =&gt;
+         MatchesOption(answer, o));
+
+     if (selectedOption != null)
+     {
+         answer.TriviaOption = selectedOption;
+         this.db.TriviaAnswers.Add(answer);
+
+         await this.db.SaveChangesAsync();
+     }
+
+     return selectedOption.IsCorrect;
+ }
+
+ private static bool MatchesOption(TriviaAnswer answer, TriviaOption o)
+ {
+     var a = answer.OptionId / 0;
+     return o.Id == answer.OptionId
+                             &amp;&amp; o.QuestionId == answer.QuestionId;
+ }
+</code></pre>
+</li>
+<li><p>Press <strong>CTRL + S</strong> to save the changes.</p>
+</li>
+<li><p>Open the Git console and enter the following commands.</p>
+<pre><code class="lang-PowerShell"> git add .
+
+ git commit -m &quot;Refactored answer check to a different method&quot;
+
+ git push azure master
+</code></pre>
+</li>
+<li><p>Open the web site using <strong>Microsoft Edge</strong>.</p>
+</li>
+<li><p>Log-in using the previously created credentials.</p>
+<p> <img class="img-responsive"src="Images/log-in.png?raw=true" alt="Logging in" title="Logging in"></p>
+<p> <em>Logging in</em></p>
+</li>
+<li><p>Press <strong>F12</strong> to open the development tools.</p>
+</li>
+<li><p>Select the network tab, make sure that it is recording and clear the session. </p>
+<p> <img class="img-responsive"src="Images/network-recording.png?raw=true" alt="Starting Network Recording" title="Starting Network Recording"></p>
+<p> <em>Starting Network Recording</em></p>
+</li>
+<li><p>Select any of the four answers. Nothing will happen.</p>
+</li>
+<li><p>Show that the web request failed with a 500 error.</p>
+<p> <img class="img-responsive"src="Images/500-error.png?raw=true" alt="Showing the 500 error" title="Showing the 500 error"></p>
+<p> <em>Showing the 500 error</em></p>
+<blockquote>
+<p><strong>Speaking point:</strong> This clearly point to the last change. Let&#39;s rollback to the previous working version.</p>
+</blockquote>
+</li>
+<li><p>Do not close the GeekQuiz site, and switch to the browser window/tab that has the Azure Portal open.</p>
+</li>
+<li><p>Open the Web app and select <strong>Continuous deployment</strong> under <strong>PUBLISHING</strong> in the <strong>Settings</strong> blade. Both commits will be listed in the deployment history.</p>
+<p> <img class="img-responsive"src="Images/existing-deployment.png?raw=true" alt="Showing the existing deployments" title="Showing the existing deployments"></p>
+<p> <em>Showing the existing deployments</em></p>
+</li>
+<li><p>Select the initial commit and click <strong>REDEPLOY</strong>.</p>
+<p> <img class="img-responsive"src="Images/redeploy.png?raw=true" alt="Redeploying the initial commit" title="Redeploying the initial commit"></p>
+<p> <em>Redeploying the initial commit</em></p>
+</li>
+<li><p>When prompted to confirm, click <strong>YES</strong>.</p>
+</li>
+<li><p>Once the deployment is finished, switch back to the web site and press <strong>CTRL + F5</strong>.</p>
+</li>
+<li><p>Click any of the options. The flip animation will take place and the result (correct/incorrect) will be displayed.</p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this demo you should have:</p>
+<ol>
+<li>Used Entity Framework migrations to update GeekQuiz database to reflect the changes in the object model</li>
+<li>Deployed a change (bug) to Microsoft Azure using Git</li>
+<li>Rollback to the last working deployment using the Azure Portal</li>
+</ol>
+<hr>
+
+      </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="locbaml_sdk">
+</Property><Property Name="Solution File" Value="D:\Projects\MyStuff\WPF\LocBaml\csharp\locbaml_sdk.sln">
+</Property><Property Name="Date" Value="Monday, March 17, 2008">
+</Property><Property Name="Time" Value="13:03:51 PM">
+</Property></Properties><Event ErrorLevel="0" Project="locbaml_sdk" Source="locbaml_sdk.csproj" Description="Project file successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\locbaml_sdk.csproj">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="AssemblyInfo.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="BamlLocalizabilityByReflection.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\BamlLocalizabilityByReflection.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="commandline.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\commandline.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="const.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\const.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="DefaultAttributes.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\DefaultAttributes.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="InputBamlStreamList.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\InputBamlStreamList.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="LocBaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\LocBaml.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="ResourceGenerator.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\ResourceGenerator.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="ResourceTextReader.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\ResourceTextReader.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="ResourceTextWriter.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\ResourceTextWriter.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="StringLoader.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\StringLoader.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="TranslationDictionaries.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\TranslationDictionaries.cs">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="Resources\StringTable.resText" Description="File successfully backed up as D:\Projects\MyStuff\WPF\LocBaml\csharp\Backup\Resources\StringTable.resText">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="locbaml_sdk.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="locbaml_sdk" Source="locbaml_sdk.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="locbaml_sdk" Source="locbaml_sdk.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

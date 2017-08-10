@@ -1,0 +1,9 @@
+﻿<ResourceDictionary       
+    x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Uid="LongLongAgo" x:Key="LongLongAgo">Long Long Ago</sys:String>
+    <sys:String x:Uid="Today" x:Key="Today">Today (App Resources)</sys:String>
+    <sys:String x:Uid="HelloWorld" x:Key="HelloWorld">Hello World (App Resource)</sys:String>
+    <sys:String x:Uid="Ready" x:Key="Ready">Ready (App Resource)</sys:String>
+</ResourceDictionary>

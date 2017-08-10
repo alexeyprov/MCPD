@@ -1,0 +1,23 @@
+﻿@section SPAViews {
+    <h2>Shopping Cart Sample</h2>
+    <div ng-controller="ShoppingCartController">
+        <div ng-repeat="item in Items">
+            <span>{{item.Name}}</span>
+            <input ng-model="item.Quantity" />
+            <span>{{item.Price | currency}}</span>
+            <span>{{item.Price * item.Quantity | currency}}</span>
+            <button ng-click="Remove($index)">Remove</button>
+        </div>
+        <div>
+            <div>Cart total: <span>{{GetCartTotal() | currency}}</span></div>
+
+            <div>Discount: <span>{{Discount | currency}}</span></div>
+
+            <div>Grand Total: <span>{{GetGrandTotal() | currency}}</span></div>
+        </div>
+    </div>
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/app")
+}
+

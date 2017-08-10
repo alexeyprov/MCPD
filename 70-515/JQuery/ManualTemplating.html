@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head id="Head1">
+	<title>ASP.NET AJAX Web Services: XML templating</title>
+	<link href="templating.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="scripts/jquery-1.5.js">   
+	</script>
+	<script src="scripts/jquery-jtemplates.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+
+			$.ajax({
+				type: "POST",
+				url: "CDCatalog.asmx/GetCDCatalog",
+				data: "{}",
+				dataType: "xml",
+				success: function (msg) {
+
+					var table = '<table><thead><tr><th>Artist</th><th>Company</th><th>Title</th><th>Price</th></thead><tbody>';
+
+					var artists = msg.getElementsByTagName("Artist");
+					var companies = msg.getElementsByTagName("Company");
+					var titles = msg.getElementsByTagName("Title");
+					var prices = msg.getElementsByTagName("Price");
+
+					for (var i in artists) {
+						if (!isNaN(i)) {
+							var row = '<tr>';
+
+							row += '<td>' + artists[i].textContent + '</td>';
+							row += '<td>' + companies[i].textContent + '</td>';
+							row += '<td>' + titles[i].textContent + '</td>';
+							row += '<td>' + prices[i].textContent + '</td>';
+
+							row += '</tr>';
+
+							table += row;
+						}
+					}
+
+					table += '</tbody></table>';
+
+					$('#Container').html(table);
+
+				}
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<div id="Container" />
+</body>
+</html>

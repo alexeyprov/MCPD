@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Northwind.Services.TerritoriesWcfService" CodeBehind="~/App_Code/Northwind/Services/TerritoriesWcfService.cs" %>

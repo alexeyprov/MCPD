@@ -1,0 +1,70 @@
+﻿-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[SP_ORDER_UPD]
+	-- Add the parameters for the stored procedure here
+	@PNI_ORDER_ID INT,
+	@PVI_CUSTOMER_ID NCHAR(5), 
+	@PNI_EMPLOYEE_ID INT = NULL, 
+	@PNI_SHIPPER_ID INT = NULL,
+	@PVI_ADDRESS NVARCHAR(60) = NULL,
+	@PVI_CITY NVARCHAR(15) = NULL,
+	@PVI_REGION NVARCHAR(15) = NULL,
+	@PVI_POSTAL_CODE NVARCHAR(10) = NULL,
+	@PVI_COUNTRY NVARCHAR(15) = NULL,
+	@PDI_ORDER_DATE DATETIME = NULL,
+	@PDI_REQUIRED_DATE DATETIME = NULL,
+    @PDI_SHIPPED_DATE DATETIME = NULL
+AS
+BEGIN
+	DECLARE @N_EXISTS INT;
+
+	SELECT @N_EXISTS = COUNT(*)
+	  FROM ORDERS
+     WHERE ORDERID = @PNI_ORDER_ID;
+
+	IF 1 = @N_EXISTS
+		UPDATE ORDERS
+		   SET CUSTOMERID = @PVI_CUSTOMER_ID ,
+			   EMPLOYEEID = @PNI_EMPLOYEE_ID,
+			   SHIPVIA = @PNI_SHIPPER_ID,
+			   SHIPADDRESS = @PVI_ADDRESS,
+			   SHIPCITY = @PVI_CITY,
+			   SHIPREGION = @PVI_REGION,
+			   SHIPPOSTALCODE = @PVI_POSTAL_CODE,
+			   SHIPCOUNTRY = @PVI_COUNTRY,
+			   ORDERDATE = @PDI_ORDER_DATE,
+			   REQUIREDDATE = @PDI_REQUIRED_DATE,
+               SHIPPEDDATE = @PDI_SHIPPED_DATE
+		 WHERE ORDERID = @PNI_ORDER_ID;
+	ELSE
+		INSERT INTO ORDERS (ORDERID,
+							CUSTOMERID, 
+							EMPLOYEEID, 
+							SHIPVIA,
+							SHIPADDRESS,
+							SHIPCITY,
+							SHIPREGION,
+							SHIPPOSTALCODE,
+							SHIPCOUNTRY,
+							ORDERDATE,
+							REQUIREDDATE,
+                            SHIPPEDDATE)
+    			    VALUES (@PNI_ORDER_ID,
+				            @PVI_CUSTOMER_ID, 
+				            @PNI_EMPLOYEE_ID, 
+						    @PNI_SHIPPER_ID,
+						    @PVI_ADDRESS,
+						    @PVI_CITY,
+						    @PVI_REGION,
+						    @PVI_POSTAL_CODE,
+						    @PVI_COUNTRY,
+						    @PDI_ORDER_DATE,
+						    @PDI_REQUIRED_DATE,
+                            @PDI_SHIPPED_DATE);
+	
+END
+
+GRANT EXECUTE ON SP_ORDER_UPD TO kosh

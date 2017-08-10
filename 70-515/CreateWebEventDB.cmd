@@ -1,0 +1,1 @@
+aspnet_regsql -S EPUSPRIW0081 -E -A w

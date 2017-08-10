@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>The Boot Closet</title>
+	<script type="text/javascript" src="../scripts/jquery-1.5.js">
+	</script>
+	<script type="text/javascript">
+	<!--
+		$(document).ready(
+			function ()
+			{
+				// load dropdown data
+				$("#bootChooserControl").load("BootStyles.htm option",
+					"",
+					function ()
+					{
+						$("#bootChooserControl option[value='']").attr("selected", "selected");
+					});
+
+				// load div data on dropdown selection
+				$("#bootChooserControl").change(
+					function (e)
+					{
+						$.get("BootDetails.aspx",
+							$("#bootChooserControl").serialize(),
+							function (result)
+							{
+								// cleanup target div
+								$("#productDetailPane").empty();
+
+								// insert dynamic html from server into div
+								$("#productDetailPane").append($("table", $(result).filter("form")));
+
+								// update product name
+								$("#productDetailPane table tr:eq(0) td:odd").text(
+									$("#bootChooserControl option:selected").text());
+
+								// remove default selection option
+								$("[value='']", e.target).remove();
+							});
+					});
+			});
+	//-->
+	</script>
+</head>
+	<body>
+		<div id="banner">
+			<img src="images/banner.boot.closet.png" alt="The Boot Closet" />
+		</div>
+		<div id="pageContent">
+			<h1>
+				Choose your boots
+			</h1>
+			<div>
+				<div id="selectionsPane">
+					<label for="bootChooserControl">
+						Boot style:
+					</label>
+					&nbsp;
+					<select id="bootChooserControl" name="bootStyle">
+					</select>
+				</div>
+				<div id="productDetailPane">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

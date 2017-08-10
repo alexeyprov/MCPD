@@ -1,0 +1,16 @@
+﻿<table ng-controller="ListController">
+    <thead style="font-weight: bold">
+        <tr>
+            <td>Date</td>
+            <td>From</td>
+            <td>Subject</td>
+        </tr>
+    </thead>
+    <tr ng-repeat="message in Messages">
+        <td>{{message.Date}}</td>
+        <td>{{message.Sender}}</td>
+        <td>
+            <a href="#/view/{{message.Id}}">{{message.Subject}}</a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+	<siteMapNode url="" >
+		<siteMapNode url="~/Northwind/Default.aspx" title="Northwind"  description="" />
+		<siteMapNode url="~/HtmlControlsDemo/Default.aspx" title="HTML Controls"  description="" >
+			<siteMapNode url="~/HtmlControlsDemo/ClickAndChange.aspx" title="Click vs Change" />
+			<siteMapNode url="~/HtmlControlsDemo/DynamicStyle.aspx" title="Dynamic Style" />
+			<siteMapNode url="~/HtmlControlsDemo/DynamicTable.aspx" title="Dynamic Table" />
+		</siteMapNode>
+		<siteMapNode url="~/WebControlsDemo/Default.aspx" title="Web Controls" >
+			<siteMapNode url="~/WebControlsDemo/ControlList.aspx" title="Control Tree" />
+			<siteMapNode url="~/WebControlsDemo/ListControls.aspx" title="List Controls" />
+			<siteMapNode url="~/WebControlsDemo/NormalWizard.aspx" title="Wizard Control" />
+			<siteMapNode url="~/WebControlsDemo/ValidationGroups.aspx" title="Validation" />
+		</siteMapNode>
+		<siteMapNode url="~/Default.aspx" title="Basic Concepts"  description="" >
+			<siteMapNode url="~/CrossPageWizardStart.aspx" title="Cross-Page Posting" />
+			<siteMapNode url="~/DivideByZero.aspx" title="Exception Handling" />
+			<siteMapNode url="~/HolmesQuote.aspx" title="Component-Based Development" />
+			<siteMapNode url="~/OutputCaching.aspx" title="Output Caching" />
+			<siteMapNode url="~/PageLifeCycle.aspx" title="Page Life Cycle" />
+			<siteMapNode url="~/SessionStateTest.aspx" title="Session State" />
+			<siteMapNode url="~/UserControlTest.aspx" title="User Controls" />
+		</siteMapNode>
+		<siteMapNode url="~/ClientProgrammingDemo/Default.aspx" title="JavaScript"  description="" >
+			<siteMapNode url="~/ClientProgrammingDemo/PageProcessor.aspx" title="Asynchrounous Loading" />
+			<siteMapNode url="~/ClientProgrammingDemo/IncrementalDownloadGrid.aspx" title="Background Image Loading" />
+			<siteMapNode url="~/ClientProgrammingDemo/InjectionTest.aspx" title="Script Injection Testing" />
+			<siteMapNode url="~/ClientProgrammingDemo/RolloverButtonTest.aspx" title="DHTML Custom Control" />
+			<siteMapNode url="~/ClientProgrammingDemo/AjaxSimple.aspx" title="Ajax via XMLHttpRequest" />
+			<siteMapNode url="~/ClientProgrammingDemo/DynamicPanelTest.aspx" title="Custom Control with Callbacks" />
+			<siteMapNode url="~/ClientProgrammingDemo/ThreePanels.aspx" title="UpdatePanel Control" />
+			<siteMapNode url="~/ClientProgrammingDemo/AjaxOOP.aspx" title="OOP in ASP.NET AJAX style" />
+		</siteMapNode>
+	</siteMapNode>
+</siteMap>

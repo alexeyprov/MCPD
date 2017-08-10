@@ -1,0 +1,60 @@
+﻿<Window x:Class="HelloWpf.Northwind.EmployeeListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:n="clr-namespace:HelloWpf.Northwind"
+        Title="Employees List" Height="300" Width="450"
+        MinHeight="200" MinWidth="400"
+        Style="{StaticResource RoundedWindow}"
+        Tag="Select an employee">
+    <Window.Resources>
+        <DataTemplate x:Key="EmployeeTemplate">
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{1}, {0}">
+                        <Binding Path="FirstName" />
+                        <Binding Path="LastName" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
+        <DataTemplate x:Key="ManagerTemplate">
+            <TextBlock FontWeight="Bold">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{1}, {0}">
+                        <Binding Path="FirstName" />
+                        <Binding Path="LastName" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="180" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1.5*" MinWidth="250"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Margin="5" Name="EmployeeList" MinWidth="180" ItemContainerStyle="{StaticResource FancyListBoxItem}">
+            <!--
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{1}, {0}">
+                                <Binding Path="FirstName" />
+                                <Binding Path="LastName" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            -->
+            <ListBox.ItemTemplateSelector>
+                <n:EmployeeTemplateSelector EmployeeTemplate="{StaticResource EmployeeTemplate}"
+                                            ManagerTemplate="{StaticResource ManagerTemplate}" />
+            </ListBox.ItemTemplateSelector>
+        </ListBox>
+        <GridSplitter VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="5"  Grid.Column="1" />
+        <n:EmployeeControl Grid.Column="2" DataContext="{Binding SelectedItem, ElementName=EmployeeList}" />
+    </Grid>
+</Window>

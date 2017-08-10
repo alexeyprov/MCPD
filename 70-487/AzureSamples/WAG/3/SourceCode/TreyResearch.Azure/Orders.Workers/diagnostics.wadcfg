@@ -1,0 +1,4 @@
+﻿<DiagnosticMonitorConfiguration xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">  
+  <Logs scheduledTransferLogLevelFilter="Undefined"
+        scheduledTransferPeriod="PT1M" />  
+</DiagnosticMonitorConfiguration>

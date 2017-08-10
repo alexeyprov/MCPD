@@ -1,0 +1,16 @@
+﻿body
+{
+    font-family: Arial;
+}
+
+td
+{
+    border-collapse: collapse;
+    border: .05em solid #000;
+    text-align: center;
+}
+
+.evenRow
+{
+    background-color: #8DC3E9;
+}

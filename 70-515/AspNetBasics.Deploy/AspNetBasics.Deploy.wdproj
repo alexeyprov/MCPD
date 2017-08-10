@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  Microsoft Visual Studio 2010 Web Deployment Project 
+  http://go.microsoft.com/fwlink/?LinkID=104956
+
+-->
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.30319</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{647A7673-5DD2-433C-A4CE-60FE5DD0D87C}</ProjectGuid>
+    <SourceWebPhysicalPath>..\AspNetBasics</SourceWebPhysicalPath>
+    <SourceWebProject>{42FAB986-EF58-4A95-8F21-1356750797B4}|C:\Projects\MCPD\70-515\AspNetBasics</SourceWebProject>
+    <SourceWebVirtualPath>/AspNetBasics</SourceWebVirtualPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>.\Debug</OutputPath>
+    <EnableUpdateable>false</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>AspNetBasics.Deploy</SingleAssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>.\Release</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>AspNetBasics.Deploy</SingleAssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlExtensions\ControlExtensions.csproj">
+      <Project>{C3D1DB5D-65B5-445C-B583-A2BBEABA0882}</Project>
+      <Name>ControlExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NorthwindBusinessEntities\NorthwindBusinessEntities.csproj">
+      <Project>{F21F6AA2-24CF-4E6B-A1B8-D2868AD1098B}</Project>
+      <Name>NorthwindBusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NorthwindDataAccessComponents\NorthwindDataAccessComponents.csproj">
+      <Project>{C94B203F-6F73-411D-976C-02DFA4962051}</Project>
+      <Name>NorthwindDataAccessComponents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReflectionUtilities\ReflectionUtilities.csproj">
+      <Project>{5F1370A6-FFDB-4849-BD31-10C88E71BF0E}</Project>
+      <Name>ReflectionUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SherlockLib\SherlockLib.csproj">
+      <Project>{E01D3CC8-C4FF-46CC-B834-12506543E467}</Project>
+      <Name>SherlockLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v10.0\Microsoft.WebDeployment.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.WebDeployment.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="BeforeMerge">
+  </Target>
+  <Target Name="AfterMerge">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

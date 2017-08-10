@@ -1,0 +1,7 @@
+﻿<Window xmlns="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:rgd="clr-namespace:RetainedGraphicsLib;assembly=RetainedGraphicsLib"
+        Title="Try RainbowAttempt">
+    <rgd:RainbowAttempt />
+</Window>
+        
+        

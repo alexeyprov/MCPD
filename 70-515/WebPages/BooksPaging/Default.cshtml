@@ -1,0 +1,37 @@
+﻿@{
+    
+    Page.Title = "My Book Site";
+    Page.Header = "View Books";
+    var db = Database.Open("Books");
+    var sql = "Select Title, ISBN, Description, FirstName, LastName, Category From Books " + 
+               "Inner Join Authors on Books.AuthorId = Authors.AuthorId " + 
+               "Inner Join Categories on Books.CategoryId = Categories.CategoryId";
+    var categories = db.Query("Select CategoryID, Category FROM Categories");
+    
+    if(IsPost){
+        if(Request["CategoryID"].IsInt()){
+            sql += " WHERE Books.CategoryId = @0";
+        }
+    }
+}
+
+   <form method="post" action="">
+    Select Category:    <select name="CategoryID">
+                <option value="">-- View All Books --</option>
+                @foreach(var c in categories){
+                    <option value="@c.CategoryId">@c.Category</option>
+                }
+        <select> <br />
+        <input type="submit" name="Action" value="Select" />
+     </form>   
+        @if(IsPost){
+            foreach(var row in db.Query(sql, Request["CategoryID"])){
+                <h2>@row.Title</h2>
+                <p><strong>Author:</strong> @row.FirstName @row.LastName<br />
+                <strong>ISBN:</strong> @row.ISBN <br/>
+                <strong>Description:</strong> @row.Description <br />
+                <strong>Category: </strong> @row.Category</p>
+            }
+        }
+        
+

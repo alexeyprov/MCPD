@@ -1,0 +1,38 @@
+﻿
+Running a transacted installation.
+
+Beginning the Install phase of the installation.
+See the contents of the log file for the C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.exe assembly's progress.
+The file is located at C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.InstallLog.
+
+An exception occurred during the Install phase.
+System.ArgumentException: Source APFirstService already exists on the local computer.
+
+The Rollback phase of the installation is beginning.
+See the contents of the log file for the C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.exe assembly's progress.
+The file is located at C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.InstallLog.
+
+The Rollback phase completed successfully.
+
+The transacted install has completed.
+
+Running a transacted installation.
+
+Beginning the Install phase of the installation.
+See the contents of the log file for the C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.exe assembly's progress.
+The file is located at C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.InstallLog.
+
+The Install phase completed successfully, and the Commit phase is beginning.
+See the contents of the log file for the C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.exe assembly's progress.
+The file is located at C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.InstallLog.
+
+The Commit phase completed successfully.
+
+The transacted install has completed.
+
+
+The uninstall is beginning.
+See the contents of the log file for the C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.exe assembly's progress.
+The file is located at C:\Projects\70-536\Configuration\Services\APService\apservice\bin\debug\apservice.InstallLog.
+
+The uninstall has completed.

@@ -1,0 +1,26 @@
+﻿<parameters>
+  <parameter name="IIS Web Application Name" defaultValue="Default Web Site/AdventureWorks" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="decryptionKey" description="Please provide machine-level decryption key (64 characters, 32 bytes)" defaultValue="testDecryptionKey">
+    <parameterEntry kind="XmlFile" scope="obj\\Release\\Package\\PackageTmp\\Web\.config$" match="//machineKey/@decryptionKey" />
+  </parameter>
+  <parameter name="validationKey" description="Please provide machine-level validation key (128 characters, 64 bytes)" defaultValue="testValidationKey">
+    <parameterEntry kind="XmlFile" scope="obj\\Release\\Package\\PackageTmp\\Web\.config$" match="//machineKey/@validationKey" />
+  </parameter>
+  <parameter name="ApplicationServices-Deployment Connection String" defaultValue="Data Source=EPWIN7x32\SQLEXPRESS;Initial Catalog=AdventureWorksTest;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="ProviderPath" scope="dbFullSql" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Release\\AutoScripts\\ApplicationServices-Deployment_SchemaOnly\.sql$" />
+    <parameterEntry kind="ProviderPath" scope="dbFullSql" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\DB\\AspNetProviderData\.sql$" />
+  </parameter>
+  <parameter name="AdventureWorks-Deployment Connection String" defaultValue="Data Source=EPWIN7x32\SQLEXPRESS;Initial Catalog=AdventureWorksTest;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="ProviderPath" scope="dbFullSql" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\DB\\AdventureWorksGrant\.sql$" />
+    <parameterEntry kind="ProviderPath" scope="dbFullSql" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Release\\AutoScripts\\AdventureWorks-Deployment_SchemaAndData\.sql$" />
+  </parameter>
+  <parameter name="ApplicationServices-Web.config Connection String" description="ApplicationServices Connection String used in web.config by the application to access the database." defaultValue="data source=EPWIN7x32\SQLEXPRESS;Initial Catalog=AdventureWorksTest;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ApplicationServices']/@connectionString" />
+  </parameter>
+  <parameter name="AdventureWorks-Web.config Connection String" description="AdventureWorks Connection String used in web.config by the application to access the database." defaultValue="data source=EPWIN7x32\SQLEXPRESS;Initial Catalog=AdventureWorksTest;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AdventureWorks']/@connectionString" />
+  </parameter>
+</parameters>

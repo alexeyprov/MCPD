@@ -1,0 +1,404 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="HOLTop"></a></p>
+<div class="jumbotron"><h1 id="introduction-to-asp-net-core-1-0">Introduction to ASP.NET Core 1.0</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>ASP.NET Core 1.0 is a new open-source and cross-platform framework for building modern cloud-based Web applications using .NET. It was built from the ground up to provide an optimized development framework for apps that are either deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions. You can develop and run your ASP.NET Core applications cross-platform on Windows, Mac and Linux. ASP.NET Core is fully open source on <a href="https://github.com/aspnet/home/readme.htm">GitHub</a>.</p>
+<p>ASP.NET Core is built with the needs of modern Web applications in mind, including a unified story for building Web UI and Web APIs that integrate with today�s modern client-side frameworks and development workflows. ASP.NET Core is also built to be cloud-ready by introducing environment-based configuration and by providing built-in dependency injection support.</p>
+<blockquote>
+<p><strong>Note:</strong> ASP.NET Core 1.0 was previously called ASP.NET 5. The product rename occurred on January 19, 2016; additional details explaining why this was done are in <a href="http://www.hanselman.com/blog/ASPNET5IsDeadIntroducingASPNETCore10AndNETCore10.aspx">this blog post</a> by Scott Hanselman with additional detail in <a href="https://blogs.msdn.microsoft.com/webdev/2016/02/01/an-update-on-asp-net-core-and-net-core/readme.htm">this post</a> on the Web Dev team blog.
+This change will be reflected in the Visual Studio 2015 project templates in the RC2 release. Until then, you&#39;ll still see reference to &quot;ASP.NET 5&quot; in the Visual Studio dialogs, new project readme content, and home page content.</p>
+</blockquote>
+<p><a name="Objectives"></a></p>
+<h3 id="objectives">Objectives</h3>
+<p>In this hands-on lab, you will learn how to:</p>
+<ul>
+<li>Create a Web site based on the <strong>ASP.NET 5</strong> template</li>
+<li>Build Web UI and Web APIs in the same project</li>
+<li>Identify the main components of an <strong>ASP.NET Core</strong> application</li>
+<li>Take advantage of the <strong>ASP.NET Scaffolding</strong> framework to automatically create Controllers and Views to perform CRUD operations based on your model classes</li>
+<li>Expose the same set of information in machine- and human-readable formats using the right tool for each job</li>
+</ul>
+<p><a name="Prerequisites"></a></p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>The following is required to complete this hands-on lab:</p>
+<ul>
+<li><a href="https://www.visualstudio.com/products/visual-studio-community-vs/readme.htm">Visual Studio Community 2015</a> or greater.</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> You can take advantage of the <a href="https://www.visualstudio.com/en-us/products/visual-studio-dev-essentials-vs.aspx">Visual Studio Dev Essentials</a> subscription in order to get everything you need to build and deploy your app on any platform.</p>
+</blockquote>
+<p><a name="Setup"></a></p>
+<h3 id="setup">Setup</h3>
+<p>In order to run the exercises in this hands-on lab, you will need to set up your environment first.</p>
+<ol>
+<li>Open Windows Explorer and browse to the lab&#39;s <strong>Source</strong> folder.</li>
+<li>Right-click on <strong>Setup.cmd</strong> and select <strong>Run as administrator</strong> to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.</li>
+<li>If the User Account Control dialog box is shown, confirm the action to proceed.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Make sure you have checked all the dependencies for this lab before running the setup.</p>
+</blockquote>
+<p><a name="CodeSnippets"></a></p>
+<h3 id="using-the-code-snippets">Using the Code Snippets</h3>
+<p>Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2015 to avoid having to add it manually. </p>
+<blockquote>
+<p><strong>Note</strong>: Each exercise is accompanied by a starting solution located in the <strong>Begin</strong> folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an <strong>End</strong> folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.</p>
+</blockquote>
+<hr>
+<p><a name="Exercises"></a></p>
+<h2 id="exercises">Exercises</h2>
+<p>This hands-on lab includes the following exercises:</p>
+<ol>
+<li><a href="#Exercise1">Creating a New ASP.NET Core Web Application Project</a></li>
+<li><a href="#Exercise2">Creating an MVC Controller Using Scaffolding</a></li>
+<li><a href="#Exercise3">Creating a Web API Controller Using Scaffolding</a></li>
+</ol>
+<p>Estimated time to complete this lab: <strong>60 minutes</strong></p>
+<blockquote>
+<p><strong>Note:</strong> When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the <strong>General Development Settings</strong> collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.</p>
+</blockquote>
+<p><a name="Exercise1"></a></p>
+<h3 id="exercise-1-creating-a-new-asp-net-core-web-application-project">Exercise 1: Creating a New ASP.NET Core Web Application Project</h3>
+<p>In this exercise you will create a new ASP.NET Core Web Application project in Visual Studio 2015. You will then explore the generated solution and identify its parts, and finally you will see the Web site in action.</p>
+<p><a name="Ex1Task1"></a></p>
+<h4 id="task-1-creating-a-new-site-using-the-one-asp-net-experience">Task 1 - Creating a New Site Using the One ASP.NET Experience</h4>
+<p>In this task you will start creating a new Web site in Visual Studio based on the <strong>ASP.NET 5 Web Application</strong> project template.</p>
+<ol>
+<li><p>Open <strong>Visual Studio Community 2015</strong> and select <strong>File | New Project...</strong> to start a new solution.</p>
+<p> <img class="img-responsive"src="Images/creating-a-new-project.png?raw=true" alt="Creating a New Project" title="Creating a New Project"></p>
+<p> <em>Creating a New Project</em></p>
+</li>
+<li><p>In the <strong>New Project</strong> dialog box, select <strong>ASP.NET Web Application</strong> under the <strong>Visual C# | Web</strong> tab, and make sure <strong>.NET Framework 4.6</strong> is selected. Name the project <em>MyWebApplication</em>, choose a <strong>Location</strong> and click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="Images/creating-new-aspnet-web-application-project.png?raw=true" alt="New ASP.NET Web Application project" title="New ASP.NET Web Application project"></p>
+<p> <em>Creating a new ASP.NET Web Application project</em></p>
+</li>
+<li><p>In the <strong>New ASP.NET Project</strong> dialog box, select the <strong>Web Application</strong> template under <strong>ASP.NET 5 Templates</strong>. Also, make sure that the <strong>Authentication</strong> option is set to <strong>Individual User Accounts</strong>. Click <strong>OK</strong> to continue.</p>
+<p> <img class="img-responsive"src="Images/creating-a-new-aspnet5-project.png?raw=true" alt="Creating a new project with the ASP.NET 5 Web Application template" title="Creating a new project with the ASP.NET 5 Web Application template"></p>
+<p> <em>Creating a new project with the ASP.NET 5 Web Application template</em></p>
+</li>
+<li><p>You can now explore the structure of the generated solution.</p>
+<p> <img class="img-responsive"src="Images/exploring-the-generated-solution.png?raw=true" alt="Exploring the generated solution" title="Exploring the generated solution"></p>
+<p> <em>Exploring the generated solution</em></p>
+<ol>
+<li><strong>global.json:</strong> This file is used to configure the solution as a whole. It includes just two sections, projects and sdk by default.</li>
+<li><strong>References</strong>: This folder details the server-side references for the project which might be assemblies, NuGet packages, or projects.</li>
+<li><strong>wwwroot:</strong> This special folder represents the actual root of the web app when running on a web server. Resources like images, script files and stylesheets are located inside this folder.</li>
+<li><strong>Dependencies:</strong> This section contains two subfolders: <strong>Bower</strong> and <strong>NPM</strong>. These folders correspond to two package managers by the same names, and they�re used to pull in client-side dependencies and tool.</li>
+<li><strong>Migrations:</strong> This folder contains the Entity Frameworks migrations. This folder is added when the <strong>Individual User Accounts</strong> authentication option is selected during the configuration of the project template.</li>
+<li><strong>Models:</strong> This folder will contain the classes that represent your application data.</li>
+<li><strong>Controllers</strong>, <strong>ViewModels</strong>, <strong>Views</strong> and <strong>Services</strong>: These folders are related with <strong>ASP.NET MVC</strong> components. Except for the Controllers folder, these folders are added when the <strong>Individual User Accounts</strong> authentication option is selected during the configuration of the project template. You will explore the MVC and Web API technologies in the next exercises.</li>
+<li><strong>appsettings.json:</strong> This file contains the configurations like connection strings and logging levels.</li>
+<li><strong>gulpfile.js:</strong> This file contains the Gulp tasks for the project.</li>
+<li><strong>project.json:</strong> This file is used to define the project�s server side dependencies, as well as other project-specific information.</li>
+<li><strong>Startup.cs:</strong> class file wires up configuration, MVC, EF, Identity services, logging, routes, and more. It provides a good example for how to configure the services used by your ASP.NET app.</li>
+</ol>
+</li>
+<li><p>Double-click the <strong>Index.cshtml</strong> file located inside the <em>Views/Home</em> folder, to explore the content of the page.</p>
+<p> <img class="img-responsive"src="Images/index-page.png?raw=true" alt="Exploring the Index.cshtml page" title="Exploring the Index.cshtml page"></p>
+<p> <em>Exploring the Index.cshtml page</em></p>
+</li>
+<li><p>Double-click the <strong>_Layout.cshtml</strong> file located inside the <em>Views/Shared</em> folder, to explore the layout of the page.</p>
+<p> <img class="img-responsive"src="Images/layout-page.png?raw=true" alt="Exploring the _Layout.cshtml page" title="Exploring the _Layout.cshtml page"></p>
+<p> <em>Exploring the _Layout.cshtml page</em></p>
+</li>
+<li><p>Open the <strong>Startup.cs</strong> file. In the <em>Startup</em> class you will find the wires up configuration. At the end of the <strong>Configure</strong> method, you will find the configuration which maps HTTP routes to <strong>controllers</strong>.</p>
+ <!-- mark:5-10 -->
+<pre><code class="lang-C#"> public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+ {
+     // ...
+
+     app.UseMvc(routes =&gt;
+     {
+         routes.MapRoute(
+             name: &quot;default&quot;,
+             template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+     });
+ }
+</code></pre>
+</li>
+</ol>
+<p><a name="Ex1Task2"></a></p>
+<h4 id="task-2-running-the-solution">Task 2 - Running the Solution</h4>
+<p>In this task you will run the generated solution, explore the app and some of its features, like URL rewriting and built-in authentication.</p>
+<ol>
+<li><p>To run the solution, press <strong>F5</strong> or click the <strong>Start</strong> button located on the toolbar. The application home page should open in the browser.</p>
+<p> <img class="img-responsive"src="Images/running-the-solution.png?raw=true" alt="Running the solution" title="Running the solution"></p>
+<p> <em>Running the solution</em></p>
+</li>
+<li><p>Verify the configured routes. To do this, append <strong>/Home/Contact</strong> to the URL in the address bar and press <strong>Enter</strong>.</p>
+<p> <img class="img-responsive"src="Images/navigating-to-contacts.png?raw=true" alt="Navigating to the Contact action" title="Navigating to the Contact action"></p>
+<p> <em>Navigating to the Contact action</em></p>
+</li>
+<li><p>You will now explore the authentication flow integrated into the application. To do this, click <strong>Register</strong> in the upper-right corner of the page.</p>
+<p> <img class="img-responsive"src="Images/registering-a-new-account.png?raw=true" alt="Registering a new user" title="Registering a new user"></p>
+<p> <em>Registering a new user</em></p>
+</li>
+<li><p>In the <strong>Register</strong> page, enter an <strong>Email</strong> and <strong>Password</strong>, and then click <strong>Register</strong>.</p>
+<p> <img class="img-responsive"src="Images/register-page.png?raw=true" alt="Register page"></p>
+<p> <em>Register page</em></p>
+</li>
+<li><p>You will be prompt with the following error page that indicates that applying the migrations may resolve the issue. Click <strong>Apply Migrations</strong> and refresh the page once this action is completed.</p>
+<p> <img class="img-responsive"src="Images/applying-the-migrations.png?raw=true" alt="Applying the migrations" title="Applying the migrations"></p>
+<p> <em>Applying the migrations</em></p>
+</li>
+<li><p>The application registers the new account, and the user is authenticated.</p>
+<p> <img class="img-responsive"src="Images/user-authenticated.png?raw=true" alt="User authenticated"></p>
+<p> <em>User authenticated</em></p>
+</li>
+<li><p>Go back to Visual Studio and press <strong>SHIFT + F5</strong> to stop debugging.</p>
+</li>
+</ol>
+<p><a name="Exercise2"></a></p>
+<h3 id="exercise-2-creating-an-mvc-controller-using-scaffolding">Exercise 2: Creating an MVC Controller Using Scaffolding</h3>
+<p>In this exercise you will take advantage of the ASP.NET Scaffolding framework provided by Visual Studio to create an ASP.NET MVC 6 controller with actions and Razor views to perform CRUD operations, without writing a single line of code. The scaffolding process will use Entity Framework Code First to generate the data context and the database schema in the SQL database.</p>
+<p><strong>About Entity Framework Code First</strong></p>
+<p>Entity Framework (EF) is an object-relational mapper (ORM) that enables you to create data access applications by programming with a conceptual application model instead of programming directly using a relational storage schema.</p>
+<p>The Entity Framework Code First modeling workflow allows you to use your own domain classes to represent the model that EF relies on when performing querying, change-tracking and updating functions. Using the Code First development workflow, you do not need to begin your application by creating a database or specifying a schema. Instead, you can write standard .NET classes that define the most appropriate domain model objects for your application, and Entity Framework will create the database for you.</p>
+<blockquote>
+<p><strong>Note:</strong> You can learn more about Entity Framework <a href="http://www.asp.net/entity-framework/readme.htm">here</a>.</p>
+</blockquote>
+<p><a name="Ex2Task1"></a></p>
+<h4 id="task-1-creating-a-new-model">Task 1 - Creating a New Model</h4>
+<p>You will now define a <strong>Person</strong> class, which will be the model used by the scaffolding process to create the MVC controller and the views. You will start by creating a <strong>Person</strong> model class, and the CRUD operations in the controller will be automatically created using scaffolding features.</p>
+<ol>
+<li><p>Open <strong>Visual Studio Community 2015</strong> and the <strong>MyWebApplication.sln</strong> solution located in the <strong>Source/Ex2-MvcScaffolding/Begin</strong> folder. Alternatively, you can continue with the solution that you obtained in the previous exercise.</p>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>Models</strong> folder of the <strong>MyWebApplication</strong> project and select <strong>Add | Class...</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-the-person-model-class.png?raw=true" alt="Adding the Person model class" title="Adding the Person model class"></p>
+<p> <em>Adding the Person model class</em></p>
+</li>
+<li><p>In the <strong>Add New Item</strong> dialog box, name the file <em>Person.cs</em> and click <strong>Add</strong>.</p>
+<p> <img class="img-responsive"src="Images/creating-the-person-model-class.png?raw=true" alt="Creating the Person model class" title="Creating the Person model class"></p>
+<p> <em>Creating the Person model class</em></p>
+</li>
+<li><p>Replace the content of the <strong>Person.cs</strong> file with the following code. Press <strong>CTRL + S</strong> to save the changes.</p>
+<p> (Code Snippet - <em>IntroASPNET5 - Ex2 - PersonClass</em>)</p>
+ <!-- mark:1-11 -->
+<pre><code class="lang-C#"> namespace MyWebApplication.Models
+ {
+     public class Person
+     {
+         public int Id { get; set; }
+
+         public string Name { get; set; }
+
+         public int Age { get; set; }
+     }
+ }
+</code></pre>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>MyWebApplication</strong> project and select <strong>Build</strong>, or press <strong>CTRL + SHIFT + B</strong> to build the project.</p>
+</li>
+</ol>
+<p><a name="Ex2Task2"></a></p>
+<h4 id="task-2-creating-an-mvc-controller">Task 2 - Creating an MVC Controller</h4>
+<p>Now that the <strong>Person</strong> model is created, you will use ASP.NET MVC scaffolding with Entity Framework to create the CRUD controller actions and views for <strong>Person</strong>.</p>
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>Controllers</strong> folder of the <strong>MyWebApplication</strong> project and select <strong>Add | New Scaffolded Item...</strong>.</p>
+<p> <img class="img-responsive"src="Images/creating-a-new-scaffolded-controller.png?raw=true" alt="Creating a new scaffolded Controller" title="Creating a new Scaffolded Controller"></p>
+<p> <em>Creating a new Scaffolded Controller</em></p>
+</li>
+<li><p>In the <strong>Add Scaffold</strong> dialog box, select <strong>MVC 6 Controller with views, using Entity Framework</strong> and then click <strong>Add.</strong></p>
+<p> <img class="img-responsive"src="Images/selecting-mvc-6-controller.png?raw=true" alt="Selecting MVC 6 Controller with views and Entity Framework" title="Selecting MVC 6 Controller with views and Entity Framework"></p>
+<p> <em>Selecting MVC 6 Controller with views and Entity Framework</em></p>
+</li>
+<li><p>Set <em>MvcPersonController</em> as the <strong>Controller name</strong>, select the <strong>Use async controller actions</strong> option and select <strong>Person (MyHybridSite.Models)</strong> as the <strong>Model class</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-an-mvc-controller-with-scaffolding.png?raw=true" alt="Adding an MVC controller with scaffolding" title="Adding an MVC controller with scaffolding"></p>
+<p> <em>Adding an MVC controller with scaffolding</em></p>
+</li>
+<li><p>Under <strong>Data context class</strong>, click <strong>New data context</strong> button. </p>
+<p> <img class="img-responsive"src="Images/creating-a-new-data-context.png?raw=true" alt="Creating a new data context" title="Creating a new data context"></p>
+<p> <em>Creating a new data context</em></p>
+</li>
+<li><p>In the <strong>New Data Context</strong> dialog box, name the new data context <em>PersonContext</em> and click <strong>Add</strong>.</p>
+<p> <img class="img-responsive"src="Images/creating-the-new-personcontext.png?raw=true" alt="Creating the new PersonContext" title="Creating the new PersonContext"></p>
+<p> <em>Creating the new PersonContext type</em></p>
+</li>
+<li><p>Click <strong>Add</strong> to create the new controller for <strong>Person</strong> with scaffolding. Visual Studio will then generate the controller actions, the Person data context and the Razor views.</p>
+<p> <img class="img-responsive"src="Images/after-creating-the-mvc-controller-with-scaffo.png?raw=true" alt="After creating the MVC controller with scaffolding" title="After creating the MVC controller with scaffolding"></p>
+<p> <em>After creating the MVC controller with scaffolding</em></p>
+</li>
+<li><p>Open the <strong>MvcPersonController.cs</strong> file in the <strong>Controllers</strong> folder. Notice that the CRUD action methods have been generated automatically. </p>
+<pre><code class="lang-C#"> // ...
+
+ // POST: MvcPeople/Create
+ [HttpPost]
+ [ValidateAntiForgeryToken]
+ public async Task&lt;IActionResult&gt; Create(Person person)
+ {
+     if (ModelState.IsValid)
+     {
+         _context.Person.Add(person);
+         await _context.SaveChangesAsync();
+         return RedirectToAction(&quot;Index&quot;);
+     }
+     return View(person);
+ }
+
+ // GET: MvcPeople/Edit/5
+ public async Task&lt;IActionResult&gt; Edit(int? id)
+ {
+     if (id == null)
+     {
+         return HttpNotFound();
+     }
+
+     Person person = await _context.Person.SingleAsync(m =&gt; m.Id == id);
+     if (person == null)
+     {
+         return HttpNotFound();
+     }
+     return View(person);
+ }
+
+ // ...
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> By selecting the <strong>Use async controller actions</strong> check box from the scaffolding options in the previous steps, Visual Studio generates asynchronous action methods for all actions that involve access to the Person data context. It is recommended that you use asynchronous action methods for long-running, non-CPU bound requests to avoid blocking the Web server from performing work while the request is being processed.</p>
+</blockquote>
+</li>
+</ol>
+<p><a name="Ex2Task3"></a></p>
+<h4 id="task-3-running-the-solution">Task 3 - Running the Solution</h4>
+<p>In this task, you will run the solution again to verify that the views for <strong>Person</strong> are working as expected. You will add a new person to verify that it is successfully saved to the database. </p>
+<ol>
+<li><p>Press <strong>F5</strong> to run the solution.</p>
+</li>
+<li><p>Navigate to <strong>/MvcPerson</strong>. The scaffolded view that shows the list of people should appear.</p>
+</li>
+<li><p>Click <strong>Create New</strong> to add a new person.</p>
+<p> <img class="img-responsive"src="Images/navigating-to-the-scaffolded-mvc-views.png?raw=true" alt="Navigating to the scaffolded MVC views"></p>
+<p> <em>Navigating to the scaffolded MVC views</em></p>
+</li>
+<li><p>In the <strong>Create</strong> view, provide a <strong>Name</strong> and an <strong>Age</strong> for the person, and click <strong>Create</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-a-new-person.png?raw=true" alt="Adding a new person"></p>
+<p> <em>Adding a new person</em></p>
+</li>
+<li><p>The new person is added to the list. In the element list, click <strong>Details</strong> to display the person&#39;s details view. Then, in the <strong>Details</strong> view, click <strong>Back to List</strong> to go back to the list view.</p>
+<p> <img class="img-responsive"src="Images/person-details-view.png?raw=true" alt="Person&#39;s details view"></p>
+<p> <em>Person&#39;s details view</em></p>
+</li>
+<li><p>Click the <strong>Delete</strong> link to delete the person. In the <strong>Delete</strong> view, click <strong>Delete</strong> to confirm the operation.</p>
+<p> <img class="img-responsive"src="Images/deleting-a-person.png?raw=true" alt="Deleting a person"></p>
+<p> <em>Deleting a person</em></p>
+</li>
+<li><p>Go back to Visual Studio and press <strong>SHIFT + F5</strong> to stop debugging.</p>
+</li>
+</ol>
+<p><a name="Exercise3"></a></p>
+<h3 id="exercise-3-creating-an-api-controller-using-scaffolding">Exercise 3: Creating an API Controller Using Scaffolding</h3>
+<p>HTTP is not just for serving up web pages. It�s also a powerful platform for building APIs that expose services and data. HTTP is simple, flexible, and ubiquitous. Almost any platform that you can think of has an HTTP library, so HTTP services can reach a broad range of clients, including browsers, mobile devices, and traditional desktop apps.</p>
+<p>Previous versions of ASP.NET included the Web API framework for creating web APIs. In ASP.NET Core, this functionality has been merged into the MVC 6 framework. Unifying the two frameworks makes it simpler to build apps that include both UI (HTML) and APIs, because now they share the same code base and pipeline.</p>
+<p>In this exercise, you will use ASP.NET Scaffolding again to generate a web API controller. You will use the same <strong>Person</strong> and <strong>PersonContext</strong> classes from the previous exercise to provide the same person data in JSON format. You will see how you can expose the same resources in different ways within the same ASP.NET application.</p>
+<p><a name="Ex3Task1"></a></p>
+<h4 id="task-1-creating-an-api-controller">Task 1 - Creating an API Controller</h4>
+<p>In this task you will create a new <strong>API Controller</strong> that will expose the person data in a machine-consumable format like JSON.</p>
+<ol>
+<li><p>If not already opened, open <strong>Visual Studio Community 2015</strong> and open the <strong>MyWebApplication.sln</strong> solution located in the <strong>Source/Ex3-WebAPI/Begin</strong> folder. Alternatively, you can continue with the solution that you obtained in the previous exercise.</p>
+<blockquote>
+<p><strong>Note:</strong> If you start with the Begin solution from Exercise 3, press <strong>CTRL + SHIFT + B</strong> to build the solution.</p>
+</blockquote>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>Controllers</strong> folder of the <strong>MyWebApplication</strong> project and select <strong>Add | New Scaffolded Item...</strong>.</p>
+<p> <img class="img-responsive"src="Images/creating-a-new-scaffolded-controller.png?raw=true" alt="Creating a new scaffolded Controller"></p>
+<p> <em>Creating a new scaffolded Controller</em></p>
+</li>
+<li><p>In the <strong>Add Scaffold</strong> dialog box, select <strong>Web API</strong> in the left pane, then <strong>API Controller with actions, using Entity Framework</strong> in the middle pane and then click <strong>Add.</strong></p>
+<p> <img class="img-responsive"src="Images/selecting-api-controller.png?raw=true" alt="Selecting API Controller with actions and Entity Framework" title="Selecting API Controller with actions and Entity Framework"></p>
+<p> <em>Selecting API Controller with actions and Entity Framework</em></p>
+</li>
+<li><p>Set <em>ApiPersonController</em> as the <strong>Controller name</strong>, select the <strong>Use async controller actions</strong> option and select <strong>Person (MyWebApplication.Models)</strong> and <strong>PersonContext (MyWebApplication.Models)</strong> as the <strong>Model</strong> and <strong>Data context</strong> classes respectively. Then click <strong>Add</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-an-api-controller-with-scaffolding.png?raw=true" alt="Adding an API Controller with scaffolding" title="Adding an API controller with scaffolding"></p>
+<p> <em>Adding an API controller with scaffolding</em></p>
+</li>
+<li><p>Visual Studio will then generate the <strong>ApiPersonController</strong> class with the four CRUD actions to work with your data.</p>
+<p> <img class="img-responsive"src="Images/after-creating-the-api-controller.png?raw=true" alt="After creating the API controller with scaffolding" title="After creating the API controller with scaffolding"></p>
+<p> <em>After creating the API controller with scaffolding</em></p>
+</li>
+<li><p>Open the <strong>ApiPersonController.cs</strong> file and inspect the <em>GetPerson</em> action method. This method queries the db field of <strong>PersonContext</strong> type in order to get the people data.</p>
+ <!--mark: 5-->
+<pre><code class="lang-C#"> // GET: api/ApiPerson
+ [HttpGet]
+ public IEnumerable&lt;Person&gt; GetPerson()
+ {
+     return _context.Person;
+ }
+</code></pre>
+</li>
+<li><p>Now notice the comment above the method definition. It provides the URI that exposes this action which you will use in the next task.</p>
+ <!--mark: 1-->
+<pre><code class="lang-C#"> // GET: api/ApiPerson
+ [HttpGet]
+ public IEnumerable&lt;Person&gt; GetPerson()
+ {
+     return _context.Person;
+ }
+</code></pre>
+</li>
+<li><p>Notice the attributes of the <strong>ApiPersonController</strong> class. This attributes specify the output of the actions which in this case is <code>application/json</code>, as well as the base route; which in this case is <code>api/ApiPerson</code></p>
+ <!--mark: 3-4-->
+<pre><code class="lang-C#"> namespace MyWebApplication.Controllers
+ {
+     [Produces(&quot;application/json&quot;)]
+     [Route(&quot;api/ApiPerson&quot;)]
+     public class ApiPersonController : Controller
+     { 
+         // ...
+</code></pre>
+</li>
+</ol>
+<p><a name="Ex3Task2"></a></p>
+<h4 id="task-2-running-the-solution">Task 2 - Running the Solution</h4>
+<p>In this task you will use the Microsoft Edge <strong>F12 developer tools</strong> to inspect the full response from the API controller. You will see how you can capture network traffic to get more insight into your application data.</p>
+<blockquote>
+<p><strong>Note:</strong> Make sure that <strong>Microsoft Edge</strong> is selected in the <strong>Start</strong> button located on the Visual Studio toolbar.</p>
+<p><img class="img-responsive"src="Images/microsoft-edge-option.png?raw=true" alt="Microsoft Edge option" title="Microsoft Edge option"></p>
+<p><em>Microsoft Edge option</em></p>
+<p>The <strong>F12 developer tools</strong> have a wide set of functionality that is not covered in this hands-on-lab. If you want to learn more about it, refer to <a href="https://dev.windows.com/en-us/microsoft-edge/platform/documentation/f12-devtools-guide/readme.htm">Using the F12 developer tools</a>.</p>
+</blockquote>
+<ol>
+<li><p>Press <strong>F5</strong> to run the solution.</p>
+<blockquote>
+<p><strong>Note:</strong> In order to follow this task correctly, your application needs to have data. If your database is empty, you can go back to Task 3 in Exercise 2 and follow the steps on how to create a new person using the MVC views. </p>
+</blockquote>
+</li>
+<li><p>In the browser, press <strong>F12</strong> to open the <strong>Developer Tools</strong> panel. Press <strong>CTRL</strong> + <strong>4</strong> or click the <strong>Network</strong> icon, and then click the <strong>clean session</strong> button to begin capturing network traffic.</p>
+<p> <img class="img-responsive"src="Images/initiating-web-api-network-capture.png?raw=true" alt="Initiating Web API network capture" title="Initiating Web API network capture"></p>
+<p> <em>Initiating Web API network capture</em></p>
+</li>
+<li><p>Append <strong>api/ApiPerson</strong> to the URL in the browser&#39;s address bar. You will now inspect the details of the response from the <strong>ApiPersonController</strong>.</p>
+<p> <img class="img-responsive"src="Images/retrieving-person-data-through-web-api.png?raw=true" alt="Retrieving person data through the API" title="Retrieving person data through the API"></p>
+<p> <em>Retrieving person data through the API</em></p>
+</li>
+<li><p>Now you will inspect the body of the response. To do this, click the <strong>Details</strong> tab and then click <strong>Response body</strong>. You can check that the downloaded data is a list of objects with the properties <strong>Id</strong>, <strong>Name</strong> and <strong>Age</strong> that correspond to the <strong>Person</strong> class.</p>
+<p> <img class="img-responsive"src="Images/viewing-web-api-response-body.png?raw=true" alt="Viewing the API Response Body" title="Viewing the API Response Body"></p>
+<p> <em>Viewing the API Response Body</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="Summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this hands-on lab you have learned how to:</p>
+<ul>
+<li>Create a new Web application using ASP.NET Core in Visual Studio 2015</li>
+<li>Generate MVC controllers and views from your model classes using ASP.NET Scaffolding</li>
+<li>Generate API controllers, which use features such as Async Programming and data access through Entity Framework</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> You can take advantage of the <a href="https://www.visualstudio.com/en-us/products/visual-studio-dev-essentials-vs.aspx">Visual Studio Dev Essentials</a> subscription in order to get everything you need to build and deploy your app on any platform.</p>
+</blockquote>
+
+      </div>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="azure-active-directory-authentication">Azure Active Directory Authentication</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<ol>
+<li>File / New / Configure Azure Active Directory in a new project.</li>
+<li>Show the GeekQuiz solution with Azure Active Directory Authentication.</li>
+<li>Deploy and show portal configuration.</li>
+</ol>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li>Create an application in Visual Studio that is automatically integrated with an Azure Active Directory tenant.</li>
+<li>Deploy an existing application using Visual Studio to an Azure Web App and have it automatically integrate with an Azure Active Directory tenant.</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ul>
+<li><a href="http://azure.microsoft.com/en-us/services/active-directory/readme.htm">Azure Active Directory</a></li>
+<li><a href="https://www.visualstudio.com/readme.htm">Visual Studio 2015</a></li>
+</ul>
+<p><a name="Setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>Follow these steps to setup your environment for the demo.</p>
+<ol>
+<li><p>Create a new <a href="https://azure.microsoft.com/en-us/documentation/articles/active-directory-howto-tenant/readme.htm">Azure Active Directory tenant</a>.</p>
+</li>
+<li><p>Create a new Web App in Azure.</p>
+</li>
+<li><p>Configure an Azure SQL Database following the steps provided in <a href="https://azure.microsoft.com/en-us/documentation/articles/sql-database-get-started/readme.htm">this link</a>. Copy the ADO.NET connection string value.</p>
+</li>
+<li><p>In the <strong>Application settings</strong> of your new Web App, update the connection string key for the DB to <em>DefaultConnection</em> and value copied from previous step. Save the changes.</p>
+<p> <img class="img-responsive"src="images/default-connection.png?raw=true" alt="Default Connection" title="Default Connection"></p>
+<p> <em>Default connection</em></p>
+</li>
+<li><p>Download the publish profile. This is required for segment #2.</p>
+<blockquote>
+<p><strong>Important:</strong> At the time of writing, you can only create one AD per subscription and it cannot be deleted.</p>
+</blockquote>
+</li>
+<li><p>Open Visual Studio 2015.</p>
+</li>
+</ol>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#segment1">Adding a new website to an organization</a>.</li>
+<li><a href="#segment2">Running the organization&#39;s GeekQuiz</a>.</li>
+</ol>
+<p><a name="segment1"></a></p>
+<h3 id="adding-a-new-website-to-an-organization">Adding a new website to an organization</h3>
+<ol>
+<li><p>Open the <strong>File / New / Project</strong> dialog and select the <strong>Visual C# / Web</strong> templates.</p>
+</li>
+<li><p>Select the <strong>ASP.NET Web Application</strong> template, name the application <em>GeekQuiz</em> and click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-a-new-project.png?raw=true" alt="Creating a new project" title="Creating a new project"></p>
+<p> <em>Creating a new project</em></p>
+</li>
+<li><p>Select the <strong>Web Application</strong> template under <strong>ASP.NET 5 Templates</strong>.</p>
+</li>
+<li><p>Click <strong>Change Authentication</strong>.</p>
+<p> <img class="img-responsive"src="images/updating-the-authentication-method.png?raw=true" alt="Updating the authentication method" title="Updating the authentication method"></p>
+<p> <em>Updating the authentication method</em></p>
+<blockquote>
+<p><strong>Speaking Point:</strong> VS tooling allows you to enable AAD authentication easily. All you need is to provide your tenant domain name and administrator credentials, the two-way trust between your AAD tenant and your web application is automatically configured.</p>
+</blockquote>
+</li>
+<li><p>In the <strong>Change Authentication</strong> dialog box, select <strong>Work And School Accounts</strong>.</p>
+<p> <img class="img-responsive"src="images/selecting-organizational-accounts.png?raw=true" alt="Selecting the Work And School Accounts option" title="Selecting the Work And School Accounts option"></p>
+<p> <em>Selecting Work And School Accounts</em></p>
+</li>
+<li><p>Expand the first combo box to show the different options.</p>
+<p><img class="img-responsive"src="images/showing-the-organization-types.png?raw=true" alt="Showing the organization account types" title="Showing the organization account types"></p>
+<p><em>Showing the organization account types</em></p>
+</li>
+<li><p>Enter your domain (e.g.: &quot;mydomainname.onmicrosoft.com&quot;) as <strong>Domain</strong>.</p>
+<p> <img class="img-responsive"src="images/updating-the-domain.png?raw=true" alt="Setting the domain name" title="TODO"></p>
+<p> <em>Setting the domain name</em></p>
+</li>
+<li><p>Click the button with the chevron to see more options.</p>
+<p> <img class="img-responsive"src="images/showing-more-options.png?raw=true" alt="Showing more options" title="Showing more options"></p>
+<p> <em>Showing more options</em></p>
+</li>
+<li><p>Click <strong>OK</strong> to continue.</p>
+<p> <img class="img-responsive"src="images/completing-the-authentication-update.png?raw=true" alt="Completing the authentication update" title="Completing the authentication update"></p>
+<p> <em>Completing the authentication update</em></p>
+</li>
+<li><p>Sign in using an admin account for your organization (e.g.: &quot;admin@mydomainname.onmicrosoft.com&quot;)</p>
+<p> <img class="img-responsive"src="images/signing-in-with-an-organization-admin-account.png?raw=true" alt="Signing in with an organization admin account" title="Signing in with an organization admin account"></p>
+<p> <em>Signing in with an organization admin account</em></p>
+</li>
+<li><p>Back in the <strong>New ASP.Net Project</strong> dialog box, click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-the-project.png?raw=true" alt="Completing the project creation" title="Completing the project creation"></p>
+<p> <em>Completing the project creation</em></p>
+<blockquote>
+<p><strong>Speaking Point:</strong> VS tooling configures two-way trust relationship between your app and your AAD tenant. Your app is registered as a Relying Party in the tenant; and the tenant is configured as an Identity Provider for the app.</p>
+</blockquote>
+</li>
+<li><p>Press <strong>CTRL+F5</strong> to run the web site.</p>
+</li>
+<li><p>If a certificate error is displayed, click <strong>Continue to this website</strong>.</p>
+</li>
+<li><p>Sign in using a user account for your organization (e.g.: &quot;admin@mydomainname.onmicrosoft.com&quot;)</p>
+<p><img class="img-responsive"src="images/logging-in-with-an-organization-user.png?raw=true" alt="Signing in using one of the organization&#39;s user account" title="Signing in using one of the organization&#39;s user account"></p>
+<p><em>Signing in using one of the organization&#39;s user account</em></p>
+</li>
+<li><p>Show that you are logged as the organization&#39;s user.</p>
+<p> <img class="img-responsive"src="images/showing-the-organization-user-logged.png?raw=true" alt="Showing that you are logged as the organization&#39;s user" title="Showing that you are logged as the organization&#39;s user"></p>
+<p> <em>Showing that you are logged as the organization&#39;s user</em></p>
+</li>
+<li><p>Close the browser.</p>
+</li>
+</ol>
+<p><a name="segment2"></a></p>
+<h3 id="running-the-organization-s-geekquiz">Running the organization&#39;s GeekQuiz</h3>
+<ol>
+<li><p>Open the <strong>GeekQuiz.sln</strong> solution located under <strong>source\end-segment2</strong>.</p>
+</li>
+<li><p>Right-click the <strong>GeekQuiz</strong> project and select <strong>Publish</strong>.</p>
+<p> <img class="img-responsive"src="images/publishing-the-site.png?raw=true" alt="Publishing the Website" title="Publishing the Website"></p>
+<p> <em>Publishing the Website</em></p>
+</li>
+<li><p>In the <strong>Publish Web</strong> dialog box, click <strong>Import</strong>.</p>
+<p> <img class="img-responsive"src="images/selecting-the-profile.png?raw=true" alt="Importing the publish profile" title="Importing the publish profile"></p>
+<p> <em>Importing the publish profile</em></p>
+</li>
+<li><p>In the <strong>Import Publish Settings</strong> dialog, click <strong>Browse...</strong> to select the previously downloaded publish profile file and click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="images/selecting-import-publish-profile.png?raw=true" alt="Selecting the publish profile file" title="Selecting the publish profile file"></p>
+<p> <em>Selecting the publish profile file</em></p>
+</li>
+<li><p>Back in the <strong>Publish Web</strong> dialog, click <strong>Publish</strong>.</p>
+<p> <img class="img-responsive"src="images/reviewing-the-connection-settings-to-deploy.png?raw=true" alt="Reviewing the connection settings to deploy" title="Reviewing the connection settings to deploy"></p>
+<p> <em>Reviewing the connection settings to deploy</em></p>
+<blockquote>
+<p><strong>Note:</strong> If Visual Studio prompt you with the Sign in dialog box, just sign in using an admin account for your organization (e.g.: &quot;admin@mydomainname.onmicrosoft.com&quot;)</p>
+<p><img class="img-responsive"src="images/signing-in-with-an-organization-admin-account.png?raw=true" alt="Signing in with an organization admin account" title="Signing in with an organization admin account"></p>
+<p><em>Signing in with an organization admin account</em></p>
+</blockquote>
+</li>
+<li><p>Once the deployment is completed and the browser is opened, sign in using an admin account for your organization (e.g.: &quot;admin@mydomainname.onmicrosoft.com&quot;)</p>
+<p> <img class="img-responsive"src="images/signing-in-with-an-organization-admin-account-published-site.png?raw=true" alt="Signing in with an organization admin account" title="Signing in with an organization admin account"></p>
+<p> <em>Signing in with an organization admin account</em></p>
+</li>
+<li><p>In the Authorization page, click <strong>Accept</strong>.</p>
+<p> <img class="img-responsive"src="images/accepting-the-permissions.png?raw=true" alt="Accepting the application permissions" title="Accepting the application permissions"></p>
+<p> <em>Accepting the application permissions</em></p>
+</li>
+<li><p>Show that you are logged as the organization&#39;s user.</p>
+<p> <img class="img-responsive"src="images/showing-the-geekquiz-with-ad.png?raw=true" alt="Showing that you are logged as the organization&#39;s user" title="Showing that you are logged as the organization&#39;s user"></p>
+<p> <em>Showing that you are logged as the organization&#39;s user</em></p>
+</li>
+<li><p>Switch to the <em>Azure Classic Portal</em>.</p>
+</li>
+<li><p>Navigate to the <strong>Active Directory</strong> section and select the one used for this demo.</p>
+<p> <img class="img-responsive"src="images/selecting-your-active-directory.png?raw=true" alt="Selecting your active directory" title="Selecting your active directory"></p>
+<p> <em>Selecting your active directory</em></p>
+</li>
+<li><p>Navigate to the <strong>USERS</strong> tab and show the users that you used for the demo.</p>
+<p> <img class="img-responsive"src="images/showing-the-organization-users.png?raw=true" alt="Showing the organization&#39;s users" title="Showing the organization&#39;s users"></p>
+<p> <em>Showing the organization&#39;s users</em></p>
+</li>
+<li><p>Navigate to the <strong>APPLICATIONS</strong> tab and filter them by <strong>Application that my company owns</strong> to show the new two applications, which were automatically created.</p>
+<p> <img class="img-responsive"src="images/showing-the-geekquiz-application-in-the-portal.png?raw=true" alt="Showing the organization&#39;s applications" title="Showing the organization&#39;s applications"></p>
+<p> <em>Showing the organization&#39;s applications</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this demo you learned how to integrate your website with an existing Azure Active Directory tenant.</p>
+<hr>
+
+      </div>
+  </body>
+</html>

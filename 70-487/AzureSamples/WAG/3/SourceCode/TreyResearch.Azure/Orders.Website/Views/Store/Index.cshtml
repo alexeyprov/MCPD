@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Orders.Website.Models.Product>
+ 
+@{
+    ViewBag.Title = "Browse Products";
+}
+ 
+<div>
+    <h3>Products</h3>
+ 
+    <ul id="album-list">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="@Url.Action("Details", new { id = item.ProductId })">    
+                    <img src="@Url.Content(string.Format("~/Content/Images/{0}.png", item.ProductId))" alt="@item.Description" style="width:60px;height:60px" /> <br />            
+                    <span>@item.Description</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

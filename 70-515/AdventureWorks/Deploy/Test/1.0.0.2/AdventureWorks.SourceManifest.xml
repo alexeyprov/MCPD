@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Projects\MCPD\70-515\AdventureWorks\obj\Release\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="C:\Projects\MCPD\70-515\AdventureWorks\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Projects\MCPD\70-515\AdventureWorks\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <dbFullSql path="C:\Projects\MCPD\70-515\AdventureWorks\obj\Release\AutoScripts\ApplicationServices-Deployment_SchemaOnly.sql" Transacted="True" />
+  <dbFullSql path="C:\Projects\MCPD\70-515\AdventureWorks\DB\AspNetProviderData.sql" Transacted="True" />
+  <dbFullSql path="C:\Projects\MCPD\70-515\AdventureWorks\DB\AdventureWorksGrant.sql" Transacted="True" />
+  <dbFullSql path="C:\Projects\MCPD\70-515\AdventureWorks\obj\Release\AutoScripts\AdventureWorks-Deployment_SchemaAndData.sql" Transacted="True" />
+</sitemanifest>

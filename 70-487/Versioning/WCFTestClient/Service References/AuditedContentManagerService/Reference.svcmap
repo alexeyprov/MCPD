@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f72c6724-d142-4e53-b0e3-233f2322b6c1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2547/AuditedContentManagerService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AuditedContentManagerService.xsd" MetadataType="Schema" ID="53a54253-8e2d-4209-abe2-b734c1d67474" SourceId="1" SourceUrl="http://localhost:2547/AuditedContentManagerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AuditedContentManagerService.disco" MetadataType="Disco" ID="25df4d39-4c94-4098-8a17-1b575f81a55c" SourceId="1" SourceUrl="http://localhost:2547/AuditedContentManagerService.svc?disco" />
+    <MetadataFile FileName="AuditedContentManagerService1.xsd" MetadataType="Schema" ID="5c20de03-f987-4f83-8e6e-76997960b0d3" SourceId="1" SourceUrl="http://localhost:2547/AuditedContentManagerService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AuditedContentManagerService2.xsd" MetadataType="Schema" ID="0f421fdf-6ddc-4550-b2ce-02cf8d622e08" SourceId="1" SourceUrl="http://localhost:2547/AuditedContentManagerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AuditedContentManagerService.wsdl" MetadataType="Wsdl" ID="e912a21d-cf3e-4ec4-9544-408cffd04385" SourceId="1" SourceUrl="http://localhost:2547/AuditedContentManagerService.svc?wsdl" />
+    <MetadataFile FileName="AuditedContentManagerService1.wsdl" MetadataType="Wsdl" ID="9b62e816-908e-42e2-9080-9126ec4a62a0" SourceId="1" SourceUrl="http://localhost:2547/AuditedContentManagerService.svc?wsdl=wsdl0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

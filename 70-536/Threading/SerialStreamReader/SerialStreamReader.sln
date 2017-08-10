@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialStreamReader", "SerialStreamReader.csproj", "{E605300D-5516-4459-9B00-B5C0E3C8E85F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E605300D-5516-4459-9B00-B5C0E3C8E85F}.Debug.ActiveCfg = Debug|.NET
+		{E605300D-5516-4459-9B00-B5C0E3C8E85F}.Debug.Build.0 = Debug|.NET
+		{E605300D-5516-4459-9B00-B5C0E3C8E85F}.Release.ActiveCfg = Release|.NET
+		{E605300D-5516-4459-9B00-B5C0E3C8E85F}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

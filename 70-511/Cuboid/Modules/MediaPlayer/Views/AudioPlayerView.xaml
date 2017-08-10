@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Cuboid.Modules.MediaPlayer.Views.AudioPlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:behaviors="clr-namespace:Cuboid.Modules.MediaPlayer.Behaviors"
+             xmlns:converters="clr-namespace:Cuboid.Shared.Converters;assembly=Cuboid.Shared"
+             xmlns:views="clr-namespace:Cuboid.Modules.MediaPlayer.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Storyboard x:Key="MediaStoryBoard" >
+            <MediaTimeline Source="{Binding SelectedFileName}" Storyboard.TargetName="Media" />
+        </Storyboard>
+        <converters:DoubleToTimespanConverter x:Key="TimespanConverter" />
+        <converters:LinearConverter Alpha="0.1" x:Key="TickConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="PlayButton">
+                <BeginStoryboard Storyboard="{StaticResource MediaStoryBoard}" Name="BeginMediaStoryBoard" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="StopButton">
+                <StopStoryboard BeginStoryboardName="BeginMediaStoryBoard" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="PauseButton">
+                <PauseStoryboard BeginStoryboardName="BeginMediaStoryBoard" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="ResumeButton">
+                <ResumeStoryboard BeginStoryboardName="BeginMediaStoryBoard" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="RangeBase.ValueChanged" SourceName="SpeedSlider">
+                <SetStoryboardSpeedRatio BeginStoryboardName="BeginMediaStoryBoard" x:Name="SetSpeedAction"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="RangeBase.ValueChanged" SourceName="PositionSlider">
+                <SeekStoryboard BeginStoryboardName="BeginMediaStoryBoard" x:Name="SeekAction"/>
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid.Background>
+            <RadialGradientBrush Center="0.1,0.1" GradientOrigin="0.5,0" RadiusX="0.8" RadiusY="0.8">
+                <GradientStop Color="#FF110497" Offset="1"/>
+                <GradientStop Color="White"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <MediaElement Name="Media" LoadedBehavior="Manual">
+            <i:Interaction.Behaviors>
+                <behaviors:MediaElementInfoProviderBehavior RefreshInterval="0:0:1" 
+                                                            x:Name="MediaInfoProvider"
+                                                            Position="{Binding Mode=OneWayToSource, ElementName=PositionSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                                                            Refreshing="Behavior_Refreshing">
+                </behaviors:MediaElementInfoProviderBehavior>
+            </i:Interaction.Behaviors>
+        </MediaElement>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="5">Volume:</TextBlock>
+            <Slider Margin="5" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding ElementName=Media, Path=Volume}" />
+            
+            <TextBlock Margin="5" Grid.Row="1">Balance:</TextBlock>
+            <Slider Margin="5" Grid.Row="1" Grid.Column="1" Minimum="-1" Maximum="1" Value="{Binding ElementName=Media, Path=Balance}" />
+            
+            <TextBlock Margin="5" Grid.Row="2">Speed:</TextBlock>
+            <Slider Margin="5" Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="2" Name="SpeedSlider" 
+                    Value="{Binding Mode=OneWayToSource, ElementName=SetSpeedAction, Path=SpeedRatio, UpdateSourceTrigger=PropertyChanged, FallbackValue=1}">
+            </Slider>
+            
+            <Slider VerticalAlignment="Bottom" Grid.Row="3" Grid.ColumnSpan="2" Height="23" Margin="5" 
+                    TickPlacement="BottomRight" Name="PositionSlider" 
+                    Maximum="{Binding Mode=OneWay, ElementName=MediaInfoProvider, Path=Duration}"
+                    TickFrequency="{Binding Mode=OneWay, ElementName=MediaInfoProvider, Path=Duration, Converter={StaticResource TickConverter}}"
+                    Value="{Binding Mode=OneWayToSource, ElementName=SeekAction, Path=Offset, Converter={StaticResource TimespanConverter}}"
+                    ValueChanged="PositionSlider_ValueChanged"
+                    PresentationTraceSources.TraceLevel="High">
+            </Slider>
+        </Grid>
+        <views:MediaCommandsView Grid.Row="1" />
+    </Grid>
+</UserControl>

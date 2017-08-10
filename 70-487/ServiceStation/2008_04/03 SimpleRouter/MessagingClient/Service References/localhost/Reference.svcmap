@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b5aeff98-283e-4574-8014-eef5ff28d4cb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8000/MessageManagerService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MessageManagerService.wsdl" MetadataType="Wsdl" ID="eb64ba35-9f9e-44c2-a03a-633d6377dae0" SourceId="1" SourceUrl="http://localhost:8000/MessageManagerService?wsdl=wsdl0" />
+    <MetadataFile FileName="MessageManagerService.xsd" MetadataType="Schema" ID="b4e3e851-cd4a-4202-88f7-a0af44d7bd5b" SourceId="1" SourceUrl="http://localhost:8000/MessageManagerService?xsd=xsd1" />
+    <MetadataFile FileName="MessageManagerService.disco" MetadataType="Disco" ID="857200ec-a838-4d5e-bd20-bcd2366f854b" SourceId="1" SourceUrl="http://localhost:8000/MessageManagerService?disco" />
+    <MetadataFile FileName="MessageManagerService1.xsd" MetadataType="Schema" ID="72dfd0f7-141e-4ca1-9723-193e803b9004" SourceId="1" SourceUrl="http://localhost:8000/MessageManagerService?xsd=xsd0" />
+    <MetadataFile FileName="MessageManagerService1.wsdl" MetadataType="Wsdl" ID="3ec8c8e8-d947-4633-8a99-4c3d266b8593" SourceId="1" SourceUrl="http://localhost:8000/MessageManagerService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

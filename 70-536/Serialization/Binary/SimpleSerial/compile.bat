@@ -1,0 +1,1 @@
+csc /debug /out:SimpleSerial.exe Employee.cs SimpleSerial.cs SerialInfo.cs

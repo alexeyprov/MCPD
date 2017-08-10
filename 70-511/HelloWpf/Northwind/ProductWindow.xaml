@@ -1,0 +1,32 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:n="clr-namespace:HelloWpf.Northwind" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:e="clr-namespace:Northwind.Data.Entities;assembly=NorthwindDataAccessComponents" 
+        mc:Ignorable="d" 
+        x:Class="HelloWpf.Northwind.ProductWindow"
+        Title="Products" Width="300" MinWidth="300"
+        SizeToContent="Height" Loaded="Window_Loaded"
+        >
+    <Window.Resources>
+        <Style x:Key="NavItemStyle">
+            <Setter Property="Control.Padding" Value="5 0 5 0" />
+        </Style>
+        <CollectionViewSource x:Key="ProductViewSource" d:DesignSource="{d:DesignInstance {x:Type e:Product}, CreateList=True}"/>
+    </Window.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <n:ProductControl DataContext="{StaticResource ProductViewSource}" />
+
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <Button x:Name="ButtonBack" Style="{StaticResource NavItemStyle}" Content="&lt;" Click="ButtonBack_Click"/>
+            <TextBlock MinWidth="100" TextAlignment="Center" 
+                       Style="{StaticResource NavItemStyle}"
+                       x:Name="NavigationLabel"><Run Text="Record 0 of 0"/></TextBlock>
+            <Button x:Name="ButtonForward" Style="{StaticResource NavItemStyle}" Content="&gt;" Click="ButtonForward_Click"/>
+            <TextBlock Margin="5">Filter:</TextBlock>
+            <TextBox MinWidth="80" TextChanged="TextBox_TextChanged" />
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -1,0 +1,4 @@
+<Customer xmlns="http://example.org/customer">
+   <Email>bob@abc.com</Email>
+   <Name>Bob</Name>
+</Customer>

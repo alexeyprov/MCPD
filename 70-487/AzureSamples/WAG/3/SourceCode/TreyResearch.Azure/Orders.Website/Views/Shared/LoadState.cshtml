@@ -1,0 +1,15 @@
+﻿@model Orders.Website.Models.Order
+<div class="editor-label">
+                @Html.LabelFor(m => m.State)
+</div>
+<div class="editor-field">
+    @if (Model.Country == "1")
+    {
+        <div id="stateDropDown">@Html.DropDownListFor(m => m.State, new SelectList((List<Orders.Website.Models.State>)ViewData["states"], "Name", "Name", Model.State))</div>
+    }
+    else
+    {
+        <div id="stateText">@Html.TextBoxFor(m => m.State)</div>
+    }
+    @Html.ValidationMessageFor(m => m.State)
+</div>

@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script type="text/javascript" src="scripts/jquery-1.5.js">
+		</script>
+		<script type="text/javascript">
+		<!--
+			var _parent;
+
+			$(document).ready(
+				function() {
+				    _parent = window.opener;
+					
+					$("#btnMoveParentRaftLeft").click(
+						function() {
+							if (_parent != null) {
+								_parent.MoveRaftLeft();
+							}
+						});
+
+					$("#btnMoveParentRaftRight").click(
+						function() {
+							if (_parent != null) {
+								_parent.MoveRaftRight();
+							}
+						});
+				}
+			);
+
+			function MoveRaftLeft() {
+				$("div.raft").animate({left: "-=50px"});
+			}
+
+			function MoveRaftRight() {
+				$("div.raft").animate({left: "+=50px"});
+			}
+			
+		//->
+		</script>
+		<style type="text/css" >
+			div.raft
+			{
+				position: relative;
+				top: 100px;
+				left: 50px;
+				background: green;
+				width: 200px;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>Child Window</h3>
+		<p>
+			<button id="btnMoveParentRaftLeft">&lt;</button>
+			&nbsp;
+			<button id="btnMoveParentRaftRight">&gt;</button>			
+		</p>
+		<div class="raft">
+			Child Raft
+		</div>
+	</body>
+</html>

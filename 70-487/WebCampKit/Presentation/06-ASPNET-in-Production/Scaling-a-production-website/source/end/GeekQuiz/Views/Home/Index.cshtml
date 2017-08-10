@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Geek Quiz";
+}
+
+<section id="content">
+    <div class="container">
+        <div class="row" style="background-color: #00bcf2; text-align:center">
+            <img src="@Url.Content("~/img/logo-big.png")" alt="" />
+        </div>
+        <div class="row">
+            <geekquiz-app>Loading...</geekquiz-app>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        System.config({
+            packages: { 'js': { defaultExtension: 'js' } }
+        });
+
+        System.import('js/app');
+    </script>
+}

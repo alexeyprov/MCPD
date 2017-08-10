@@ -1,0 +1,2 @@
+70-528: TS: Microsoft .NET Framework 2.0 - Web-based Client Development
+70-562: TS: Microsoft .NET Framework 3.5, ASP.NET Application Development

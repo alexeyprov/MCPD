@@ -1,0 +1,21 @@
+﻿<Window x:Class="HelloWpf.Northwind.GeographyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ne="clr-namespace:Northwind.Data.Entities;assembly=NorthwindDataAccessComponents"
+        Style="{StaticResource RoundedWindow}"
+        Title="Regions and Locations" Height="300" Width="300"
+        MinHeight="300" MinWidth="300">
+    <Window.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type ne:Region}" 
+                                  ItemsSource="{Binding Territories}">
+            <TextBlock Text="{Binding RegionDescription}" />
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type ne:Territory}">
+            <TextBlock Text="{Binding TerritoryDescription}" />
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+    <Grid>
+        <TreeView Name="GeographyTree">
+        </TreeView>
+    </Grid>
+</Window>

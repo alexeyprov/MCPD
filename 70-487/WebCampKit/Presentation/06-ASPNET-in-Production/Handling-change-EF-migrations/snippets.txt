@@ -1,0 +1,41 @@
+dnx ef migrations add InitialMigration --context TriviaDbContext
+
+============================
+
+dnx ef database update --context TriviaDbContext --verbose
+
+============================
+
+public string Hint { get; set; }
+
+============================
+
+dnx ef migrations add QuestionHint --context TriviaDbContext
+
+============================
+
+dnx ef database update --context TriviaDbContext --verbose
+
+============================
+
+public async Task<bool> StoreAsync(TriviaAnswer answer)
+{
+	var selectedOption = await this.db.TriviaOptions.FirstOrDefaultAsync(o =>
+		MatchesOption(answer, o));
+
+	if (selectedOption != null)
+	{
+		answer.TriviaOption = selectedOption;
+		this.db.TriviaAnswers.Add(answer);
+
+		await this.db.SaveChangesAsync();
+	}
+
+	return selectedOption.IsCorrect;
+}
+
+private static bool MatchesOption(TriviaAnswer answer, TriviaOption o)
+{
+	return o.Id == answer.OptionId
+							&& o.QuestionId == answer.QuestionId;
+}

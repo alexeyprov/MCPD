@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<configuration>
+  <!-- This section is required for configuration of the resource provider -->
+  <configSections>
+    <!-- Custom Sections -->
+    <section name="DbResourceProvider" type="Westwind.Globalization.DbResourceProviderSection,Westwind.Globalization" 
+                  requirePermission="false"/>
+    <!-- End Custom Sections -->
+
+  </configSections>
+
+  <!-- ResourceProvider/Manager Configuration section -->
+  <!-- Using ConnectionStrings entry. You can also use a full SQL connection string. -->
+  <DbResourceProvider  connectionString="LocalizationSamples"
+                       resourceTableName="Localizations"                       
+                       useVsNetResourceNaming="false"
+                       />
+  
+  <connectionStrings>
+    <add name="LocalizationSamples"
+         connectionString="server=.;database=DevSamples;integrated security=true;"/>
+    <add name="_LocalizationSamples"
+         connectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Internationalization.mdf;Integrated Security=True;User Instance=True;"/>
+
+
+  </connectionStrings>
+
+
+ <appSettings>
+    <add key="Theme"
+         value="Luna" />
+    <add key="Culture"
+         value="en-US" />
+    <add key="DisplayTimeout"
+         value="5000" />
+    <add key="DefaultResourceAssembly"
+         value="WpfClickOnce"/>
+ </appSettings>
+  
+</configuration>

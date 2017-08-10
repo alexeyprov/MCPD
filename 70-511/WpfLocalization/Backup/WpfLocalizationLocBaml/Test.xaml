@@ -1,0 +1,42 @@
+﻿<Window x:Uid="wndTest" x:Class="WpfLocalizationLocBaml.Test"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:glob="clr-namespace:System.Globalization;assembly=mscorlib"
+        x:Name="wndTest"
+    Title="Current Culture not Automatically Loading" 
+    SizeToContent="Height" 
+    Height="350" Width="363"
+        >
+    <StackPanel x:Uid="StackPanel_1" >
+
+        
+        <TextBlock x:Uid="WindowMessage" x:Name="WindowMessage" 
+                   Background="{DynamicResource ShineBrush}" Foreground="{DynamicResource ShineColor}"
+                   Padding="15" Margin="0,0,0,20" TextWrapping="Wrap">
+            The following demonstrates a rather annoying bug in WPF where 
+            a change of culture apparently is not reflected in bindings. In the following
+            text blocks the display is always in the OS culture, and not the current
+            culture which is displayed as the first item. Testing a some "quoted text as well".
+            The workaround for this is to set the Language Property for the form before the
+            document is initialized. (you can uncomment in constructor in this document).
+        </TextBlock>
+        
+        <StackPanel x:Uid="StackPanel_2" Margin="15">
+            <TextBlock x:Uid="lblCultureName" x:Name="lblCultureName" FontWeight="bold">Culture:</TextBlock>
+            <TextBlock x:Uid="txtCultureName" x:Name="txtCultureName" 
+                       Text="{Binding Source={x:Static glob:CultureInfo.CurrentCulture},Path=DisplayName}" />
+                   
+            <TextBlock x:Uid="lblLocaleDateValue" x:Name="lblLocaleDateValue" FontWeight="bold">Date Value:</TextBlock>
+            <TextBlock x:Uid="txtLocaleDateValue" x:Name="txtLocaleDateValue" Foreground="Red" 
+    			       Text="{Binding ElementName=wndTest, Path=TestDate}"/>
+            
+            <TextBlock x:Uid="lblLocaleNumberValue" x:Name="lblLocaleNumberValue" FontWeight="bold">Number Value:</TextBlock>
+            <TextBlock x:Uid="txtLocaleNumberValue" x:Name="txtLocaleNumberValue" 
+				       Text="{Binding ElementName=wndTest,Path=NumberValue,StringFormat=c}"  Foreground="Red"/>
+
+            
+            <TextBlock x:Uid="lblManualBoundNumberValue" x:Name="lblManualBoundNumberValue" FontWeight="bold" Text="Manual Bound:" />
+            <TextBlock x:Uid="txtManualBoundNumberValue" x:Name="txtManualBoundNumberValue"  />
+        </StackPanel>
+    </StackPanel>
+</Window>

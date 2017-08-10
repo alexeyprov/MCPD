@@ -1,0 +1,98 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>CrossDomain</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>.</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="ITestedType.cs" />
+    <Compile Include="MarshalByRefType.cs" />
+    <Compile Include="MarshalByValType.cs" />
+    <Compile Include="NonMarshalledType.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="PrintReservedProperties">
+    <Message Text="MSBuildProjectDirectory : $(MSBuildProjectDirectory)" />
+    <Message Text="MSBuildProjectFile : $(MSBuildProjectFile)" />
+    <Message Text="MSBuildProjectExtension : $(MSBuildProjectExtension)" />
+    <Message Text="MSBuildProjectFullPath : $(MSBuildProjectFullPath)" />
+    <Message Text="MSBuildProjectName : $(MSBuildProjectName)" />
+    <Message Text="MSBuildBinPath : $(MSBuildBinPath)" />
+    <Message Text="MSBuildProjectDefaultTargets : $(MSBuildProjectDefaultTargets)" />
+    <Message Text="MSBuildExtensionsPath : $(MSBuildExtensionsPath)" />
+  </Target>
+
+  <!--
+    Overriding CoreBuildDependsOn - sequence of core build steps
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      BuildOnlySettings;
+      PrepareForBuild;
+      PreBuildEvent;
+      UnmanagedUnregistration;
+      ResolveReferences;
+      PrepareResources;
+      ResolveKeySource;
+      Compile;
+      PrintIntermediateAssemblyName;
+      GenerateSerializationAssemblies;
+      CreateSatelliteAssemblies;
+      GenerateManifests;
+      GetTargetPath;
+      PrepareForRun;
+      UnmanagedRegistration;
+      IncrementalClean;
+      PostBuildEvent
+    </CoreBuildDependsOn>
+  </PropertyGroup>
+  <Target Name="PrintIntermediateAssemblyName" DependsOnTargets="Compile">
+    <Message Text="Intermediate assembly name: @(IntermediateAssembly)" />
+    <Message Text="Int assm full path:
+      $(MSBuildProjectDirectory)\@(IntermediateAssembly)"/>
+    <Message Text="-CoreBuildDependsOn-"/>
+    <Message Text="$(CoreBuildDependsOn)"/>
+    <Message Text="-"/>
+  </Target>
+  -->
+  <UsingTask TaskName="HelloTask"
+    AssemblyFile="C:\Projects\MCPD\MSBuild\SampleTasks\SampleTasks.dll" />
+  <Target Name="DoHelloTask" DependsOnTargets="Compile">
+    <HelloTask TheAssembly="@(IntermediateAssembly->'%(FullPath)')" >
+      <Output TaskParameter="HelloOutput" PropertyName="HelloTaskString" />
+    </HelloTask>
+    <!-- now printing task's output -->
+    <Message Text="Task output = $(HelloTaskString)" />
+  </Target>
+  
+</Project>

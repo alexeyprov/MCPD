@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBoundMenus", "DataBoundMenus\DataBoundMenus.csproj", "{A79667A2-8F03-498F-856A-67807AFB25FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalLibs", "ExternalLibs", "{63C817CE-2BE0-4CB0-96CC-2252C35BAA01}"
+	ProjectSection(SolutionItems) = preProject
+		ExternalLibs\UpdateControls.dll = ExternalLibs\UpdateControls.dll
+		ExternalLibs\UpdateControls.XAML.dll = ExternalLibs\UpdateControls.XAML.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A79667A2-8F03-498F-856A-67807AFB25FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A79667A2-8F03-498F-856A-67807AFB25FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A79667A2-8F03-498F-856A-67807AFB25FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A79667A2-8F03-498F-856A-67807AFB25FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

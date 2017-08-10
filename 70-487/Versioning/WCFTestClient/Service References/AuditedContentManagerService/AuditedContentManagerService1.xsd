@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://alexeypr.com/Versioning/2015/12" elementFormDefault="qualified" targetNamespace="http://alexeypr.com/Versioning/2015/12" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="LinkItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element name="Url" nillable="true" type="xs:string" />
+      <xs:element name="StartDate" type="xs:dateTime" />
+      <xs:element name="EndDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LinkItem" nillable="true" type="tns:LinkItem" />
+</xs:schema>

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Cuboid.Modules.MediaPlayer.Views.VideoPlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Cuboid.Modules.MediaPlayer.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Storyboard x:Key="MediaStoryBoard" >
+            <MediaTimeline Source="{Binding SelectedFileName}" Storyboard.TargetName="Media" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="PlayButton">
+                <BeginStoryboard Storyboard="{StaticResource MediaStoryBoard}" Name="BeginMediaStoryBoard" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="StopButton">
+                <StopStoryboard BeginStoryboardName="BeginMediaStoryBoard" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="PauseButton">
+                <PauseStoryboard BeginStoryboardName="BeginMediaStoryBoard" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click" SourceName="ResumeButton">
+                <ResumeStoryboard BeginStoryboardName="BeginMediaStoryBoard" />
+            </EventTrigger>
+        </Grid.Triggers>
+        <Grid.Background>
+            <RadialGradientBrush Center="0.1,0.1" GradientOrigin="0.5,0" RadiusX="0.8" RadiusY="0.8">
+                <GradientStop Color="#FF500B53" Offset="1"/>
+                <GradientStop Color="White"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <MediaElement Name="Media" LoadedBehavior="Manual" Grid.ColumnSpan="2"/>
+        
+        <TextBlock Grid.Row="1" Margin="5">Volume:</TextBlock>
+        <Slider Grid.Row="1" Margin="5" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding ElementName=Media, Path=Volume}" />
+
+        <views:MediaCommandsView Grid.Row="2" Grid.ColumnSpan="2" />
+    </Grid>
+</UserControl>

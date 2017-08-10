@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Projects\MCPD\MSBuild\LoggerPack\obj\Debug\LoggerPack.dll" total="2" failures="0" not-run="0" date="2009-01-11" time="02:33:16">
+  <environment nunit-version="2.4.7.0" clr-version="2.0.50727.1433" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\Programs\NUnit\bin" machine-name="EPUSPRIW0081" user="Alexey_Provotorov" user-domain="PRINCETON" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite name="C:\Projects\MCPD\MSBuild\LoggerPack\obj\Debug\LoggerPack.dll" success="True" time="0.266" asserts="0">
+    <results>
+      <test-suite name="LoggerPack" success="True" time="0.203" asserts="0">
+        <results>
+          <test-suite name="UnitTests" success="True" time="0.203" asserts="0">
+            <results>
+              <test-suite name="LoggerTest" success="True" time="0.188" asserts="0">
+                <results>
+                  <test-case name="LoggerPack.UnitTests.LoggerTest.TestOutput" executed="True" success="True" time="0.047" asserts="1" />
+                  <test-case name="LoggerPack.UnitTests.LoggerTest.TestParameters" executed="True" success="True" time="0.000" asserts="3" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

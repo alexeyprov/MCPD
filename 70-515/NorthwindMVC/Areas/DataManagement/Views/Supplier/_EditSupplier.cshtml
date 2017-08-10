@@ -1,0 +1,52 @@
+﻿@model NorthwindMVC.Areas.DataManagement.Models.EditViewModelBase<Northwind.Data.Entities.Supplier>
+
+@{
+	Layout = null;
+}
+
+@using (Html.BeginForm("Update", "Supplier", new { Model.SelectedEntity.SupplierID }))
+{
+	<table>
+		<tr>
+			<td><b>ID:</b></td>
+			<td>@Model.SelectedEntity.SupplierID</td>
+		</tr>
+		<tr>
+			<td><b>Company:</b></td>
+			<td>@Html.TextBox("CompanyName", Model.SelectedEntity.CompanyName)
+				<br />
+				@Html.ValidationMessageFor(m => m.SelectedEntity.CompanyName)
+			</td>
+		</tr>
+		<tr>
+			<td><b>Contact:</b></td>
+			<td>@Html.TextBox("ContactName", Model.SelectedEntity.ContactName)
+				<br />
+				@Html.ValidationMessageFor(m => m.SelectedEntity.ContactName)
+			</td>
+		</tr>
+		<tr>
+			<td><b>Country:</b></td>
+			<td>@Html.TextBox("Country", Model.SelectedEntity.Country)
+				<br />
+				@Html.ValidationMessageFor(m => m.SelectedEntity.Country)
+			</td>
+		</tr>
+		<tr>
+			<td><b>Phone:</b></td>
+			<td>@Html.TextBox("Phone", Model.SelectedEntity.Phone)
+				<br />
+				@Html.ValidationMessageFor(m => m.SelectedEntity.Phone)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" value="Save"/>
+			</td>
+			<td>
+				@Model.UpdateStatus
+			</td>
+		</tr>
+	</table>
+	
+}

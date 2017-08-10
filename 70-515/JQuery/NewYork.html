@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  
+  <script>
+  $(document).ready(function(){
+    $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=nyc&tagmode=any&format=json&jsoncallback=?",
+        function(data){
+          $.each(data.items, function(i, item) {
+            $("<img/>").attr("src", item.media.m).appendTo("#images");
+            if (i == 4) {
+				return false;
+			}
+          });
+        });
+  });
+  </script>
+  <style>img{ height: 200px; float: left; }</style>
+</head>
+<body>
+  <div id="images">
+  </div>
+</body>
+</html>

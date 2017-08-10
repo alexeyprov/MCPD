@@ -1,0 +1,657 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Building Hybrid Applications in the Cloud on Windows Azure - Readme</title>
+    <link rel="stylesheet" href="readme_files/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="readme_files/styles/mnp.css" type="text/css" />
+    <style type="text/css">
+
+ p.MsoNormal
+  {margin-bottom:.0001pt;
+  font-size:11.0pt;
+  font-family:"Calibri","sans-serif";
+          margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+    </style>
+</head>
+<body>
+    <a name="top"></a>
+    <div id="commonWrapper">
+        <div id="pageWrapper">
+            <!--   START HEADER   -->
+            <div class="page_header">
+                <div class="page_header_logo">
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="http://wag.codeplex.com/">
+                                    <div class="page_header_title">Building Hybrid Applications in the Cloud on Windows Azure</div>
+                                </a>
+                                <div class="page_header_subtitle">Running the Example</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--   END HEADER   -->
+            <div id="Main">
+                <div id="MainMid">
+                    <!-- START NAVIGATION BAR -->
+                    <div id="TopNavigation">
+                        <div class="topnav_item" id="topnav1">
+                            <a tabindex="1" href="Readme.htm"><span class="topnav_item_left_selected"></span><span
+                                class="topnav_item_middle_selected"><span class="topnav_item_text">Readme</span>
+                            </span><span class="topnav_item_right_selected"></span></a>
+                            <a tabindex="1" href="ReleaseNotes.htm"><span class="topnav_item_left"></span><span
+                                class="topnav_item_middle"><span class="topnav_item_text">Release notes</span>
+                            </span><span class="topnav_item_right"></span></a>
+                        </div>
+                        <div class="topnav_item_divider">
+                        </div>
+                    </div>
+                    <!-- END NAVIGATION BAR -->
+                    <div id="Content">
+                        <div class="content_table_home">
+                            <div class="homePgImgWide">
+                                <div class="homearea">
+                                    <div class="pageTitle">
+                                        <div class="maintitle">Examples Summary</div>
+                                    </div>
+                                    <div class="newpromo">
+                                        <a href="http://msdn.microsoft.com/practices">
+                                            <img src="readme_files/images/pnp_logo.gif" alt="Microsoft Patterns & Practices" />
+                                        </a>
+                                    </div>
+                                    <div class="content_header_text" style="width:600px">
+
+<p>This document describes the example code that accompanies the guide <i>Building Hybrid Applications in the Cloud on Windows Azure</i> (see <a href="http://wag.codeplex.com/" target="_blank">http://wag.codeplex.com/</a>).
+The guide focuses on the common issues you will encounter when building applications that run partly in the cloud and partly on-premises,
+or when you decide to migrate all or parts of an existing on-premises application to the cloud. It concentrates on Windows Azure and SQL Azure,
+and shows how you can take advantage of the many features of the platform to simplify and speed up development of these kinds of applications.</p>
+
+</div><div class="content_header_text" style="width:850px">
+
+<p>&nbsp;</p>
+
+<p><b>About the examples</b></p>
+<p>&nbsp;</p>
+<p>The main example solution illustrates the major features of the Trey Research Orders application that is discussed in the accompanying guide.
+Trey Research deployed the <b>Orders</b> application to the cloud in Windows Azure. The following schematic illustrates the complete architecture of the
+cloud-hosted application described in the guide, but note that the example code does not by default contain all of the features shown. To implement these you must configure additional services.</p>
+<p>&nbsp;</p>
+<img src="readme_files/images/azure-hosted.png" width="550" height="572" alt="" />
+<p>&nbsp;</p>
+<p>The example is a series of Microsoft Visual Studio 2010 projects that you can compile and run. See the following sections of this document for setup and configuration instructions.</p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><b>Before you start - Set up your development computer</b></p>
+<p>&nbsp;</p>
+<ul>
+<li>
+	<p>Run <b>CheckDependencies.cmd</b> to check for and install software prerequisites:<br />
+	<ul>
+		<li>
+			Run <b>CheckDependencies.cmd</b> in the root folder of the examples using an administrator account.
+			This launches a dependency checking tool that reports any components missing on your system, and provides links to obtain, install,
+			and configure these missing components. You must have
+			<a href="http://www.microsoft.com/download/en/details.aspx?id=17718">.NET Framework version 4.0</a>
+			installed to run the dependency checker.
+			<br /><b>NOTE:</b><br />
+			<ul>
+			<li>
+			If you want to install the Windows Azure SDK for .NET on Windows Server 2008 R2, you must ensure
+			that the .NET Framework version 3.5.1 is installed on your computer before you run the CheckDependencies.cmd batch file.
+			</li>
+			<li>
+			If you are not able to install the pre-requisites using the Dependency Checker, you can install them manually in the order
+			shown in the list of pre-requisites in the <a href="ReleaseNotes.htm">Release Notes</a>. <br />
+			<ul>
+				<li>After you install IIS you must set the <b>Load User Profile</b> option for the ASP.NET v4.0 Application Pool to <b>True</b>.
+				Instructions on how to do this are included in the <a href="ReleaseNotes.htm#install_iis">Release Notes</a>.</li>
+				<li>To install the example databases manually you must execute the scripts in the \Source\Setup\DependencyChecker\SqlScripts folder
+				and allocate the required permissions to the NETWORK SERVICE account. Instructions on how to do this are included in the
+				<a href="ReleaseNotes.htm#install_db">Release Notes</a>.</li>
+			</ul>
+			</li>
+			</ul>
+		</li>
+	</ul>
+</li>
+<li>
+    Run <b>SetupLocalFirewallSettings.cmd</b> to open local firewall ports:
+    <ul>
+        <li>Run <b>SetupLocalFirewallSettings.cmd</b> in the root folder of the examples using an administrator account.
+            <br /><p><b>NOTE:</b>
+            <ul>
+              <li>
+                    If your network contains an external proxy server or firewall, you may need to open ports there to allow requests to be
+                    routed to Windows Azure data centers. For Service Bus requests when a required port is closed the error message shows
+                    the port number that was used. For the Azure Cache service, you will not see the port number in the error message.
+              </li>
+              <li>You should open the following ports for TCP traffic OUTBOUND (only): Service Bus Relay: 808, 818, 819 and 828. Service Bus Messaging: 9350 to 9355 inclusive. Azure Cache: 22233 and 22243.
+              </li>
+
+              <li>You should not attempt to limit the IP address ranges in a firewall rule as these will change over time for the different Azure datacenters.
+                  However, a list of the current IP addresses for the data centers is available on
+                  <a href="http://vasters.com/clemensv/2010/10/25/Windows+Azure+AppFabric+Datacenter+IP+Ranges.aspx" target="_blank">this blog</a>.
+              </li>
+          </ul>
+    </ul>
+</li>
+</ul>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+<p><a name="requiredtasks"></a>You will first run the example in your local Compute Emulator (the default) using the local SQL Express database,
+then you will switch to using databases hosted in SQL Azure, and finally you will publish the complete example to your own Windows Azure account.</p>
+<p>&nbsp;</p>
+<p><b>Stage 1 - Run the example in the local Compute Emulator environment</b></p>
+<p>Before you start you must create and configure some services in Windows Azure. Step through the following procedures
+   in the order shown to perform the required tasks:</p>
+<ol>
+<li><a href="#createNamespace">Create namespaces for ACS, Service Bus, and Cache</a></li>
+<li><a href="#updatesourceFiles">Update the configuration values in the source files</a></li>
+<li><a href="#configureACSandSB1">Configure your Service Bus Topics, Queues, and ACS for the local Compute Emulator</a></li>
+<li><a href="#runLocalEmulator">Run the example in the local Compute Emulator environment</a></li>
+<li><a href="#checkFunctionality">Check the sample functionality</a></p></li>
+</ol>
+<p><b>Stage 2 - Use SQL Azure instead of the local SQL Server 2008 database</b></p>
+<p>Now you will switch to using databases hosted in SQL Azure instead of the local SQL Express database. Step through the following procedures
+   in the order shown to perform the required tasks:</p>
+<ol>
+<li><a href="#configureSQLAzure">Use SQL Azure instead of the local SQL Server 2008 database</a></li>
+<li><a href="#runLocalEmulator">Run the example in the local Compute Emulator environment</a></li>
+<li><a href="#checkFunctionality">Check the sample functionality</a></p></li>
+</ol>
+<p><b>Stage 3 - Deploy the example to Windows Azure and run it hosted in the cloud</b></p>
+<p>Now you will reconfigure the example to run in Windows Azure, deploy it, and run it in the cloud. Step through the following procedures
+   in the order shown to perform the required tasks:</p>
+<ol>
+<li><a href="#configureACSandSB2">Setup your Windows Azure environment with required ACS, Service Bus Queues and Topics</a></li>
+<li><a href="#createStorageAccount">Create an Azure Storage Account for Diagnostics data</a></li>
+<li><a href="#updateStorageAccount">Configure the Diagnostics settings to use your Azure Storage account</a></li>
+<li><a href="#addLocalhostCert">Add the localhost certificate to the certificate store</a>.</li>
+<li><a href="#runInCloud">Publish and run the example in the Windows Azure environment</a></li>
+<li><a href="#checkFunctionality">Check the sample functionality</a></p></li>
+</ol>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="createNamespace"></a><b>To create namespaces for ACS, Service Bus, and Cache and update the configuration values in the source files</b></p>
+<ol>
+<li>Sign into the Windows Azure Management Portal at <a href="http://windows.azure.com" target="_blank">http://windows.azure.com</a> using
+    your Azure <b>Service Administrator</b> account. </li>
+    <ul>
+    <li>There are usually many <b>Co-Administrator</b> accounts, but there might be only one <b>Service Administrator</b> account for a subscription.
+    If you are a <b>Co-Administrator</b>, you will not be able to perform the required procedures. However, you can locate the service administrator user name
+    by logging in to windows Azure management portal, clicking <b>Hosted Services, Storage Accounts & CDN</b>, and selecting <b>User Management</b>.</li>
+    <li>If you don't have a Windows Azure account, you can sign up for a free trial account at <a href="http://windows.azure.com" target="_blank">http://windows.azure.com</a>. </li>
+</ul>
+
+<li>Open the file <b>set-NamespaceInSourceFile.ps1</b> from the Source folder of the examples in a text editor. You must replace the values for the
+<b>$namespace</b>, <b>$managementaccountname</b>, <b>$password</b>, <b>$defaultkey,</b>
+    <b>$cacheauthenticationtoken</b> and <b> $X509certthumbprint </b> settings in the following steps.</li>
+<p>&nbsp;</p>
+<li>Click <b>Service Bus, Access Control &amp; Caching</b> in the bottom left navigation pane.</li>
+<li>Click <b>Services</b>.</li>
+<li>Click <b>New</b> in the top left corner of the web page, and check the following three checkboxes:
+    <ul>
+        <li><b>Access Control</b></li>
+        <li><b>Service Bus</b></li>
+        <li><b>Cache</b></li>
+    </ul>
+<li>Enter the required namespace name, and click <b>Check Availability</b>.</li>
+<li>Select the appropriate <b>Country/Region</b> and <b>Subscription</b> settings.</li>
+<li>In the <b>Service Properties</b> section select <b>128 MB</b> for <b>Cache - Cache Size Quota</b>.</li>
+<li>Click <b>Create Namespace</b>.</li>
+<li>Make a note of the <b>namespace</b> value and use it to update the <b>$namespace</b> value in the <b>set-NamespaceInSourceFile.ps1</b> file.</li>
+<p>&nbsp;</p>
+<li>In the <b>Services</b> section click <b>Access Control</b>.</li>
+<li>Select the new namespace you just created and click <b>Access Control Service</b> at the top of the page.
+<br />
+    <b>Note</b>: You must log in to the Azure management portal with the Azure <b>Service Administrator</b> account
+    (not a <b>Co-Administrator</b> account) to access the ACS configuration, otherwise you will get an exception.
+</li>
+
+<li>In the <b>Administration</b> section click <b>Management Service</b>. The default name for the management account name is <b>ManagementClient</b>. You can click <b>Add</b> to create a new account if you prefer.</li>
+<li>Click <b>ManagementClient</b> and then click <b>Password</b> to obtain the default auto-generated password for your ACS namespace, or change it to a new password if required.</li>
+<li>Make a note of the <b>management account name</b> and <b>password</b> values, and use them to update the <b>$managementaccountname</b> and <b>$password</b> values in the <b>set-NamespaceInSourceFile.ps1</b> file.</li>
+<li>Click <b>Certificates and keys</b> in the <b>Service settings</b> section and then click <b>Service Namespace</b> with Type X.509 Certificate.
+    Copy the Thumbprint and replace the value for <b>MY_X509certthumbprint</b> in the <b>set-NamespaceInSourceFile.ps1</b> file.</li>
+<p>&nbsp;</p>
+<li>Click <b>Windows Azure Portal</b></li>
+<li>Click <b>Service Bus, Access Control &amp; Caching</b> in the bottom left navigation pane.</li>
+<li>Click <b>Services</b> and then click <b>Service Bus</b>.</li>
+<li>Select the new namespace you just created and, at the right of the page, click <b>Default Key</b> then click <b>View</b>.</li>
+<li>Make a note of <b>default key</b> value and use it to update the <b>$defaultkey</b> value in the <b>set-NamespaceInSourceFile.ps1</b> file.</li>
+<p>&nbsp;</p>
+<li>In the <b>Services</b> section click <b>Caching</b>.</li>
+<li>Select the new namespace you just created and, at the right of the page, click <b>Authentication Token</b> then click <b>View</b>.</li>
+<li>Make a note of the <b>authentication token</b> value and use it to update the <b>$cacheauthenticationtoken</b> value in the <b>set-NamespaceInSourceFile.ps1</b> file.</li>
+<p>&nbsp;</p>
+<li>Save <b>set-NamespaceInSourceFile.ps1</b> file.</li>
+</ol>
+<p>Now continue with the steps in <a href="#updatesourceFiles">Update the configuration values in the source files</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="updatesourceFiles"></a><b>To update the configuration values in the source files</b></p>
+<ol>
+<li>Open the <b>set-NamespaceInSourceFile.ps1</b> file and verify that you have the correct value for the following variables:</li>
+    <ul>
+        <li>$namespace</li>
+        <li>$managementaccountname</li>
+        <li>$password</li>
+        <li>$defaultkey</li>
+        <li>$cacheauthenticationtoken</li>
+        <li>$x509certthumbprint</li>
+    </ul>
+<li>Close the <b>set-NamespaceInSourceFile.ps1</b> file.</li>
+<li>Open a Windows PowerShell command window as an Administrator and execute the command <b>Get-ExecutionPolicy</b> to check the execution policy.</li>
+<ul>
+  <li>If it is <i>not</i> shown as <b>Unrestricted</b>, execute the command <b>Set-ExecutionPolicy Unrestricted</b>.</li>
+</ul>
+<li>Change to the folder where <b>set-NamespaceInSourceFile.ps1</b> resides using the <b>cd</b> command and execute the command <b>.\set-NamespaceInSourceFile.ps1</b>.</li>
+<ul><li>This replaces the following place holders in the files <b>Web.config</b>, <b>App.config</b>, and <b>serviceConfiguration.cscfg</b>.
+You should verify that no place holders remain in the source files and all have been replaced with the correct strings.<br /><code>
+    '{Your ACS Namespace}'<br />
+    '{your cache auth info}'<br />
+    '{your cache namespace}'<br />
+    'ManagementClient'<br />
+    'Your Access Control X509 Thumbprint'<br />
+    'Your ACS Namespace'<br />
+    'Your ACS Password'<br />
+    'Your ACS Secret'<br />
+    'Your ACS Username'<br />
+    'Your Service Bus Key'<br />
+    'Your Service Bus Namespace'</code></li>
+<li><b>NOTE:</b> If you want use the file <b>set-NamespaceInSourceFile.ps1</b> for different namespaces you must use a copy of the original downloaded files, change the values it contains as described above, and then execute it.</li>
+</ul>
+</ol>
+<p>Now continue with the steps in <a href="#configureACSandSB1">Configure your Service Bus Topics, Queues, and ACS for the local Compute Emulator</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="configureACSandSB1"></a><b>To configure your Service Bus Topics, Queues, and ACS for the local Compute Emulator</b></p>
+<ol>
+<li>Open Visual Studio as an Administrator.</li>
+<li>Navigate to the <b>SourceCode</b> folder of the example files and open the solution named <b>TreyResearch.Azure.sln</b>.</li>
+
+<li>In Solution explorer, locate the project named <b>Orders.Website</b> and open the file <b>Web.config</b>.</li>
+    <ul>
+        <li>Verify that the <b>&lt;audienceUris&gt;</b> element contains the child element <b>&lt;add value="https://127.0.0.1" /&gt;</b></li>
+        <li>Verify that the value of the <b>realm</b> attribute of the <b>wsFederation</b> element in the <b>federatedAuthentication</b> section points
+        to your local website: <b>realm="https://127.0.0.1"</b></li>
+    </ul>
+<li>In Solution explorer, locate the project named <b>TreyResearch.Setup</b> and open the file <b>App.config</b>.
+  The App.config file contains predefined values that are used to set up the Windows Azure environment for running this project.</li>
+    <ul>
+        <li>Verify that the value of <b>RealmAddress</b> points to your deployed website: <b>RealmAddress = "https://127.0.0.1"</b>.</li>
+        <li>Verify that the value of <b>ReplyAddress</b> points to your deployed website: <b>ReplyAddress = "https://127.0.0.1"</b>. </li>
+        <li><b>NOTE:</b> The default port for the above four addresses is 443. You can change the port to 444 if port 443 is used by other web applications.</li>
+    </ul>
+<li>Right-click the <b>TreyResearch.Setup</b> project, select <b>Debug</b>, and click <b>Start new instance</b>. The application:</li>
+<ul>
+  <li>Cleans up the existing configuration and sets up the relying party, identity providers, and rule groups in the ACS namespace.</li>
+  <li>Creates the Queues, Topics, and Subscriptions in the Service Bus namespace.</li>
+</ul>
+<li>When the application ends, verify the configuration of your ACS and Service Bus namespaces using the Windows Azure web portal.<br />
+    <b>Note</b>: You must login to the Azure management portal with the Azure <b>Service Administrator</b> account
+    (not a <b>Co-Administrator</b> account) to access the ACS configuration, otherwise you will get an exception.
+</li>
+</ol>
+<p>Now continue with the steps in <a href="#runLocalEmulator">Run the example in the local Compute Emulator environment</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+<!--------------------------------------------------------------------------------------------------->
+
+<p><b><a name="runLocalEmulator"></a>To run the example in the local Compute Emulator environment</b></p>
+<ol>
+<li>Open Visual Studio as an Administrator.</li>
+<li>Navigate to the <b>SourceCode</b> folder of the example files and open the solution named <b>TreyResearch.Azure.sln</b>.</li>
+<li>Open the <b>Web.config</b> file in the <b>Orders.Website</b> project and verify (or edit) the following settings:
+<ul>
+  <li>The <b>FederationMetadataLocation</b> setting in the <b>&lt;appSettings&gt;</b> section should point to your ACS metadata location.</li>
+  <li>The <b>thumbprint</b> and <b>name</b> settings in the <b>&lt;trustedIssuers&gt;</b> section within the <b>&lt;microsoft.identitymodel&gt;</b>
+      section should correspond to the values for your ACS namespace. The thumbprint can be found in the Windows Azure portal in the <b>Service Namespace</b>
+      settings for <b>X.509 Certificate</b> under Access Control Service | Certificates and Keys | Service Namespace.</li>
+</ul>
+<li>In Solution Explorer, make sure that that the startup project is <b>Orders.Azure</b>. The startup solution is displayed in bold text in Solution Explorer.</li>
+<li>Press <b>F5</b> to start debugging.</li>
+</ol>
+<p>Now continue with the steps in <a href="#checkFunctionality">Check the sample functionality</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><b><a name="checkFunctionality"></a>To check the sample functionality</b></p>
+<ol>
+<li>The browser displays the message "There is a problem with this website's security certificate". Click <b>Continue to this website</b> to open the <b>Orders</b> website.</li>
+<li>In Solution Explorer right-click the project named <b>TransportPartner</b>, point to <b>Debug</b>, and click <b>Start new instance</b>.</li>
+<ul>
+  <li>This displays a launcher to start the two transport partners. Each one listens for orders for delivery to a specific location.</li>
+  <li><b>NOTE</b>: If you cannot see the Solution Explorer window, open the <b>View</b> menu and click <b>Solution Explorer</b>.
+  Alternatively you can start a second instance of Visual Studio run the <b>TransportPartner</b> project.</li>
+</ul>
+<li>Click both buttons to open both of the transport partner listeners ("<b>Contoso Transport Partner</b>" and "<b>Fabrikam Transport Partner</b>").</li>
+<li>In the <b>Orders</b> website, click a product in the list on the <b>Store</b> page and then click <b>Add to cart</b>.</li>
+<li>To add more products to your order, click the <b>Store</b> link and repeat the previous step.</li>
+<li>After your order is complete, click <b>Checkout</b>.</li>
+<li>The ACS home discovery page is displayed. Select an identity provider and log on at their site.</li>
+<li>Back in the <b>Orders</b> website click on <b>Checkout</b>
+<li>if you have not yet created an account:
+<ul>
+<li>Click the <b>Register</b> link and enter the details for a new account. Then click <b>Register</b>.</li>
+<li>Back in the checkout page, click the <b>Checkout</b> button.</li>
+</ul>
+<li>The shipping information is displayed. You can edit this if required. For now select <b>USA</b> as country and select <b>Iowa</b> as the state.</li>
+<ul>
+  <li>If you want the Contoso Transport Partner to receive the order you must select <b>USA</b> as the country and specify
+      any of these states: <b>Minnesota</b>, <b>Iowa</b>, <b>Missouri</b>, <b>Illinois</b>, <b>Wisconsin</b>, <b>Indiana</b>, or <b>Michigan</b>.
+</ul>
+<li>Click <b>Submit Order</b>. The following actions occur:</li>
+<ul>
+  <li>Initially, the status of the order is set to "TreyResearch: Order placed".</li>
+  <li>After the worker role reads the order from the database, the order is posted to the Service Bus Topic,
+      and the status of the order is set to "TreyResearch: Order sent to transport partner".</li>
+  <li>The appropriate transport partner application receives the message from the Topic
+      and displays the order.</li>
+  <li>The transport partner application sends an acknowledgement message to the Service Bus Queue.</li>
+  <li>The worker role listens to the Queue, retrieves the acknowledgement message, and sets the status of the order to
+      either "Contoso: Order Received" or "Fabrikam: Order Received", depending on the transport partner that was selected to ship the order.</li>
+</ul>
+<li>Go to the <b>Orders</b> website and open the <b>My Orders</b> page. This page shows that status of all orders. If you keep refreshing this page you should see the status of orders change as follows:
+<ul>
+  <li>"TreyResearch: Order placed".</li>
+  <li>"TreyResearch: Order sent to transport partner".</li>
+  <li>"Contoso: Order Received" or "Fabrikam: Order Received"<br />
+       <b>Note</b>: The transport partner applications must be running to receive orders. If the Contoso Transport Partner is not running, the orders will
+       not be received and the status will be "TreyResearch: Order sent to transport partner" instead of "Contoso: Order Received". This is also true for Fabrikam Transport Partner.
+  </li>
+</ul>
+<li>Click the <b>Shipped</b> cell of the data grid in the list of orders in the Contoso Transport Partner to simulate this partner delivering the order to the customer.</li>
+<ul>
+  <li>This causes the transport partner to send an order status update message for that order to the Service Bus reply queue.</li>
+  <li>The Windows Azure Worker Role reads the order status update messages from the reply queue and sets the status of the order to "Contoso: Order shipped".</li>
+</ul>
+<li>Go to the <b>Orders</b> website and refresh the <b>My Orders</b> page. This shows that the shipped orders now have the status "Contoso: Order shipped".</li>
+<li>In Solution Explorer right-click the project named <b>HeadOffice</b>, point to <b>Debug</b>, and click <b>Start new instance</b> to run a simplified
+    version of the on-premises management and monitoring application.</li>
+<ul>
+  <li>This application receives audit messages sent through a Service Bus Topic from the <b>Orders</b> application for orders over $10,000,
+  and diagnostics log data generated by Enterprise Library and sent as messages through a Service Bus Queue.</li>
+  <li><b>NOTE</b>: If you cannot see the Solution Explorer window, open the <b>View</b> menu and click <b>Solution Explorer</b>.
+  Alternatively you can start a second instance of Visual Studio run the <b>TransportPartner</b> project.</li>
+  <li><b>NOTE</b>: The <b>Customers</b> page of the <b>HeadOffice</b> application does not show newly-registered customers. To enable this feature requires
+  SQL Azure Data Sync to be configured to replicate the data from the Customers database.</li>
+</ul>
+<li>Click the <b>Audit Log</b> tab and then click <b>Download Audit Logs</b>.</li>
+<li>Go to the <b>Orders</b> application and place an order with a total value above $10,000. The table displays any existing audit messages.</li>
+<li>Click <b>Refresh page</b> in the Audit Log page of the <b>HeadOffice</b> application to see the message about the new order in the list.</li>
+<li>Click the <b>Diagnostics Log</b> tab and then click <b>Transfer Diagnostics Logs</b>. The data from the <b>WADLogs</b> table in the <b>Orders</b>
+    application is downloaded into the <b>HeadOffice</b> database and displayed.</li>
+<li>If you want to delete the data from the <b>WADLogs</b> table in the <b>Orders</b> application when you download it, set the <b>Delete...</b> checkbox before clicking <b>Transfer Diagnostics Logs</b></li>
+<li>In Solution Explorer right-click on the project named <b>ExternalDataAnalyzer</b>, point to <b>Debug</b>, and click <b>Start new instance</b> to run the
+    simulation of the External Data Analyzer.</li>
+<ul>
+  <li>A new console window displays the Service Bus namespace and WCF service information. It asks for user input before displaying the result.</li>
+  <li>To display results by quarter year period press [Q] and then press a number between 1 and 4 to select a quarter.</li>
+  <li>To display results by region press [R] and then press [W], [E], or [C] (West, East, or Central) to select a region.</li>
+  <li>To close the application press [Enter].</li>
+  <li><b>NOTE:</b> The External Data Analyzer application accesses the sales information by Region and by Quarter using the WCF service exposed by the <b>HeadOffice</b> project
+  through Windows Azure Service Bus Relay. The sales information exposed by the WCF service is hardcoded in the <b>HeadOffice</b> project for demonstration purpose.</li>
+  <li><b>NOTE</b>: If you cannot see the Solution Explorer window, open the <b>View</b> menu and click <b>Solution Explorer</b>.
+  Alternatively you can start a second instance of Visual Studio run the <b>ExternalDataAnalyzer</b> project.</li>
+</ul>
+</ol>
+<p>Now go back to the <a href="#requiredtasks">main task stages</a> and continue with the next stage</p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="configureSQLAzure"></a><b>To use SQL Azure instead of the local SQL Server 2008 database</b></p>
+<p>You can run the script <b>Setup-AzureSqlServerAndDB.ps1</b> (in the Source\Setup\ps-scripts folder) to create a SQL Azure instance
+within your Windows Azure account. The script also creates the <b>TreyResearch</b> database. The following steps describe the process:</p>
+<ol>
+<li>Open a Windows PowerShell command window as an Administrator.</li>
+<li>Change to the folder <b>\Setup\ps-scripts</b> using the <b>cd</b> command and execute the command <b>.\Setup-AzureSqlServerAndDB.ps1</b>.</li>
+<li>Enter your Windows Azure Subscription ID when prompted.</li>
+<li>Enter the thumbprint of your Management Certificate when prompted. The certificate must exist on the computer that is running the script
+    and in the Windows Azure management portal. You can create the certificate and upload it to your Windows Azure certificate store or you can
+    import the certificate onto the local computer.</li>
+<ul>
+  <li>To create a new certificate, open a Visual Studio Command Prompt(2010) as an Administrator from your Start | All Programs | Microsoft Visual Studio 2010
+  | Visual Studio Tools menu and run the following command:</li>
+  <li><code>makecert -sky exchange -r -n "CN=MyEncryptionCert" -pe -a sha1 -len 2048 -ss My -sr localMachine "MyEncryptionCert.cer"</code></li>
+  <li>Add the new certificate to the Windows Azure certificate store using Windows Azure management portal.</li>
+  <li><b>NOTE</b>: The certificate is required to allow the PowerShell script to create and populate the SQL Azure database. For more information about
+    installing management certificates, see <a href="http://msdn.microsoft.com/en-us/library/windowsazure/gg551721.aspx" target="_blank">How to: Manage Management Certificates in Windows Azure</a></li>
+</ul>
+<li>Enter a <b>user id</b> for the new SQL Azure server login when prompted. Make a note of this new user ID for use later.</li>
+<li>Enter a <b>password</b> for the new SQL Azure server login when prompted. Make a note of this password for use later.</li>
+<li>Enter the location you want to use for the SQL Azure database (for example: North Central US, South Central US, North Europe, West Europe, East Asia, or Southeast Asia).</li>
+
+<li>Enter the start and end IP addresses for a range. The start and the end IP addresses can be the same. The max possible range is 0.0.0.0 to 255.255.255.255.
+Then wait for around one minute after you enter the range.</li>
+<li>The example database named <b>TreyResearch</b> should now be created in your SQL Azure namespace. If you continue to receive the client address exception,
+    wait for several minutes and then run the script named <b>Setup-AzureSqlServerDb.ps1</b> to create the database.</li>
+<li>Make a note of the SQL Azure server name you just created.</li>
+<li>Sign into the Windows Azure web portal, click <b>Database</b>, select your SQL Azure Server instance, and make sure that the setting "Allow other Windows Azure
+    services to access this server" is checked in the <b>Firewall Rules</b> section.</li>
+<li>Select the <b>TreyResearch</b> database, click <b>View</b> under the <b>Connection Strings</b> property, and copy the ADO.NET connection string into a text file.
+    The connection string will look something like this:</li>
+<ul>
+  <li>Server=tcp:yourDbServerName.database.windows.net,1433;<br />
+  Database=TreyResearch;<br />
+  User ID=yourUserName@yourDbServerName;<br />
+  Password=<b>myPassword</b>;<br />
+  Trusted_Connection=False;<br />
+  Encrypt=True;</li>
+  <li><b>NOTE</b>: You must replace <b>myPassword</b> in the connection string with your actual password.</li>
+</ul>
+<li>Wait for five minutes before attempting to access the database.</li>
+<li>Now you must change the connection strings used by the example to point to your SQL Azure instance. Open the <b>ServiceConfiguration.cscfg</b>
+    file from the <b>Orders.Azure</b> project and edit the following values to include your own connection string.</li>
+<ul>
+  <li>In the section <b>ConfigurationSettings</b> edit the value for <b>TreyResearchModel</b> as shown here:<br />
+  <code>&lt;Setting name="TreyResearchModel" value=
+    "metadata=res://*/Stores.Entities.TreyResearchDataModelContainer.csdl
+    |res://*/Stores.Entities.TreyResearchDataModelContainer.ssdl
+    |res://*/Stores.Entities.TreyResearchDataModelContainer.msl;
+    provider=System.Data.SqlClient;
+    provider connection string='<br /><b>
+    your_connection_string</b><br />
+    multipleactiveresultsets=True;App=EntityFramework'" /&gt;</code></li>
+  <li>In the section <b>Role name="Orders.Website"</b> edit the value for <b>TreyResearchDataModelContainer</b> as shown here:
+  <code>&lt;Setting name="TreyResearchDataModelContainer" value=
+    "metadata=res://*/DataStores.Entities.TreyResearchDataModelContainer.csdl
+    |res://*/DataStores.Entities.TreyResearchDataModelContainer.ssdl
+    |res://*/DataStores.Entities.TreyResearchDataModelContainer.msl;
+    provider=System.Data.SqlClient;
+    provider connection string='<br />
+    <b>your_connection_string</b><br />
+    multipleactiveresultsets=True;App=EntityFramework'" /&gt;</code></li>
+    <li><b>NOTE</b>: You must enter the elements above on a single line. </li>
+</ul>
+  <li>You may need to add additional firewall rules to your SQL Azure server to allow your local Compute Emulator to connect to
+  the SQL Azure server. See <a href="http://msdn.microsoft.com/en-us/library/ee621783.aspx" target="_blank">How to: Configure the SQL Azure Firewall</a> for more information.</li>
+  <li>Using the Windows Azure web portal, or your favorite database access tool, verify that the SQL Azure Server you just created contains a database named TreyResearch.
+  The TreyResearch database should contain the following tables: Cart, Customer, Order, OrderDetail, OrderProcessStatus, OrderStatus, and Product. The Product table should be pre-populated with 18 rows.</li>
+</ol>
+<p>Now continue with the steps in <a href="#runLocalEmulator">Run the example in the local Compute Emulator environment</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="configureACSandSB2"></a><b>Setup your Windows Azure environment with required ACS, Service Bus Queues and Topics</b></p>
+
+<br />
+<p>
+The following steps assume that you have already created a hosted service and that know its DNS prefix. For information on how to create a hosted service,
+see <a href="http://msdn.microsoft.com/en-us/library/windowsazure/gg433118.aspx" target="_blank">How to Create a Hosted Service.</a>
+</p>
+
+<ol>
+<li>Open Visual Studio as an Administrator.</li>
+<li>Navigate to the <b>SourceCode</b> folder of the example files and open the solution named <b>TreyResearch.Azure.sln</b>.</li>
+<li>In Solution explorer, locate the project named <b>Orders.Website</b> and open the file <b>Web.config</b>.</li>
+<ul>
+    <li>Within the <b>&lt;audienceUris&gt;</b> element add the element <br /> <b>&lt;add value="https://[<i>DNS Prefix of your hosted service</i>].cloudapp.net" /&gt;</b></li>
+    <li>Edit the attribute value of the <b>realm</b> attribute of the <b>wsFederation</b> element in the <b>federatedAuthentication</b> section to point to your deployed website: <b>realm="https://[<i>DNS Prefix of your hosted service</i>].cloudapp.net"</b></li>
+</ul>
+<li>In Solution explorer, locate the project named <b>TreyResearch.Setup</b> and open the <b>App.config</b> file.</li>
+    <ul>
+        <li>Edit the value of <b>RealmAddress</b> to point to your deployed website: <b>RealmAddress = "https://[<i>DNS Prefix of your hosted service</i>].cloudapp.net"</b></li>
+        <li>Edit the value of <b>ReplyAddress</b> to point to your deployed website: <b>ReplyAddress = "https://[<i>DNS Prefix of your hosted service</i>].cloudapp.net"</b></li>
+    </ul>
+<li>Right-click the <b>TreyResearch.Setup</b> project, point to <b>Debug</b>, and click <b>Start new instance</b>. The application:</li>
+<ul>
+  <li>Cleans up the existing configuration and sets up the relying party, identity providers, and rule groups in the ACS namespace.</li>
+  <li>Creates the Queues, Topics, and Subscriptions in the Service Bus namespace.</li>
+</ul>
+<li>When the application ends, verify the configuration of your ACS and Service Bus namespaces using the Windows Azure web portal.<br />
+    <b>Note</b>: You must log in to the Azure management portal with the Azure <b>Service Administrator</b> account
+    (not a <b>Co-Administrator</b> account) to access the ACS configuration, otherwise you will get an exception.
+
+</ol>
+<p>Now continue with the steps in <a href="#createStorageAccount">Create an Azure Storage Account for Diagnostics data</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="createStorageAccount"></a><b>To create an Azure Storage Account for Diagnostics data</b></p>
+<ol>
+<li>Sign into the Windows Azure Management Portal at <a href="http://windows.azure.com" target="_blank">http://windows.azure.com</a> using
+    your Azure Service Administrator account.</li>
+<ul>
+  <li>If you are already signed into Windows Live using a different account, you can run Internet
+      Explorer as different user. Hold down the Shift key while right-clicking the icon in your Start menu,
+      and click <b>Run as different user</b>.</li>
+</ul>
+<li>Click <b>Hosted Services, Storage Accounts &amp; CDN</b> in the left navigation pane.</li>
+<li>Click <b>Storage Accounts</b>.</li>
+<li>Click the <b>New Storage Account</b> icon in the top left corner of the page.</li>
+<li>Enter the Storage URL value, choose a suitable region\affinity group, and click <b>OK</b>.</li>
+<li>Select the Storage Account you just created and make a note of the primary key value in the right-hand Properties pane.</li>
+</ol>
+<p>Now continue with the steps in <a href="#updateStorageAccount">Configure the Diagnostics settings to use your Azure Storage account</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="updateStorageAccount"></a><b>To configure the Diagnostics settings to use your Azure Storage account</b></p>
+<ol>
+<li>In Solution Explorer locate the project <b>Orders.Azure</b> and double-click the <b>Orders.Website</b> role in the <b>Roles</b> folder.
+<li>Click the <b>Settings</b> tab.</li>
+<li>Select the <b>DiagnosticsConnectionString</b> row.</li>
+<li>Click the ellipses (<b>...</b>) button (make sure that type is <b>Connection String</b>), select <b>Enter storage account credentials</b>,
+      enter your <b>Account name</b> and <b>Account key</b>, and click <b>OK</b>.</li>
+      <ul>
+      <li><b>NOTE:</b> If you have not previously set up a Windows Azure Storage
+      Account, follow the steps in <a href="#createStorageAccount">Create an Azure Storage Account for Diagnostics data</a> to create one.</li>
+      </ul>
+<li>Select the <b>Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString</b> row.</li>
+<li>Click the ellipses (<b>...</b>) button (make sure that type is <b>Connection String</b>), select <b>Enter storage account credentials</b>,
+      enter your <b>Account name</b> and <b>Account key</b>, and click <b>OK</b>.</li>
+<p>&nbsp;</p>
+<li>In Solution Explorer, double-click the <b>Orders.Workers</b> role in the <b>Roles</b> folder of the <b>Orders.Azure</b> project.
+<li>Click the <b>Settings</b> tab.</li>
+<li>Select the <b>DiagnosticsConnectionString</b> row.</li>
+<li>Click the ellipses (<b>...</b>) button (make sure that type is <b>Connection String</b>), select <b>Enter storage account credentials</b>,
+      enter your <b>Account name</b> and <b>Account key</b>, and click <b>OK</b>.</li>
+<li>Select the <b>Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString</b> row.</li>
+<li>Click the ellipses (<b>...</b>) button (make sure that type is <b>Connection String</b>), select <b>Enter storage account credentials</b>,
+      enter your <b>Account name</b> and <b>Account key</b>, and click <b>OK</b>.</li>
+<p>&nbsp;</p>
+
+<li>In Solution Explorer locate the project <b>HeadOffice</b> and open the <b>Web.config</b> file.</li>
+<li>Find the key <b>datacenters</b> in the <b>appsettings</b> section </li>
+<li>Edit the following line by adding XML comment markers as shown:<br />
+    <code>&lt;!-- add key="dataCenters" value="StorageEmulator" /--&gt;</code></li>
+<li>Add the following three lines:<br />
+    <code>&lt;add key="dataCenters" value="<b>[Your data center]</b>"/&gt;<br />
+    &lt;add key="diagnosticsStorageAccountName.<b>[Your data center]</b>" value="<b>[your storage account name]</b>"/&gt;<br />
+    &lt;add key="diagnosticsStorageAccountKey.<b>[Your data center]</b>" value="<b>[your storage account key</b>]"/&gt;</code></li>
+<ul><li>Ensure that you replace the place holders <b>[Your data center]</b>, <b>[your storage account name]</b>, and <b>[your storage account key]</b> with the actual values, for example:<br />
+<code>&lt;add key="dataCenters" value="<b>North-Central-US</b>"/&gt;<br />
+    &lt;add key="diagnosticsStorageAccountName.<b>North-Central-US</b>" value="<b>abcStorageAccount</b>"/&gt;<br />
+    &lt;add key="diagnosticsStorageAccountKey.<b>North-Central-US</b>" value=
+    "<b>yal9rbQ+l3g9uQ3zxuqzKN7X55O9EGJw8sCtf4x5kGMBP0TqSnTTT5e3pRlhuJ04W3l6MLRfyzB==</b>"/&gt;</code></li>
+<li>Save and close all of the files.</li>
+</ol>
+<p>Now continue with the steps in <a href="#addLocalhostCert">Add the localhost certificate to the certificate store</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><a name="addLocalhostCert"></a><b>To add the localhost certificate to the certificate store</b></p>
+<p>Before you publish the application to Windows Azure, you must add the <b>localhost</b> certificate to the certificate store
+of the hosted service to which you are publishing.</p>
+<ol>
+<li>Upload the certificate file named <b>localhost.pfx</b> from the <b>Setup\DependencyChecker\certs</b> folder of the examples to the <b>Certificates</b> section of your hosted service using the Azure portal.</li>
+<li>When prompted, enter the password <b>xyz</b>.</li>
+<ul>
+  <li><b>NOTE</b>: The <b>localhost</b> certificate provided with the example is for use only with the example. In your own applications
+   you should use a certificate signed by a trusted certificate issuer and choose a more secure password.</li>
+</ul>
+</ol>
+<p>Now continue with the steps in <a href="#runInCloud">Publish and run the example in the Windows Azure environment</a></p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+<p><b><a name="runInCloud"></a>To publish and run the example in the Windows Azure environment</b></p>
+<ol>
+<li>Open Visual Studio as an Administrator.</li>
+<li>Navigate to the <b>SourceCode</b> folder of the example files and open the solution named <b>TreyResearch.Azure.sln</b>.</li>
+<li>Open the <b>Web.config</b> file in the <b>Orders.Website</b> project and verify (or edit) the following settings:
+<ul>
+  <li>The <b>FederationMetadataLocation</b> setting in the <b>&lt;appSettings&gt;</b> section should point to your ACS metadata location.</li>
+  <li>The <b>thumbprint</b> and <b>name</b> settings in the <b>&lt;trustedIssuers&gt;</b> section within the <b>&lt;microsoft.identitymodel&gt;</b>
+      section should correspond to the values for your ACS namespace. The thumbprint can be found in the Windows Azure portal in the <b>Service Namespace</b>
+      settings under Access Control Service | Certificates and Keys | Service Settings.</li>
+</ul>
+<li>In Solution Explorer, make sure that that the startup project is <b>Orders.Azure</b>. The startup solution is displayed in bold text in Solution Explorer.</li>
+<li>Verify that the <b>ServiceConfiguration.cscfg</b> file in the <b>Orders.Azure</b> project contains the correct connection strings for your SQL Azure database.
+    See <a href="#configureSQLAzure">To use SQL Azure instead of the local SQL Server 2008 database</a> for details.</li>
+<li>Verify that you have uploaded the <b>localhost</b> certificate to your Windows Azure hosting instance as shown in the procedure <a href="#addLocalhostCert">Add the localhost certificate to the certificate store</a>.</li>
+<li>In Solution Explorer, open the <b>References</b> section of the <b>Orders.Website</b> project, select <b>Microsoft.IdentityModel</b>, and set the
+  <b>CopyLocal</b> property to <b>True</b>.</li>
+<li>Right click the <b>Orders.Azure</b> project, click <b>Publish</b>, and follow the steps in the wizard to publish the application to the cloud.<br />
+    <b>Note</b>: Make sure that you click <b>Advanced Settings</b> and select the Storage account that you created in the step <a href="#updateStorageAccount">Configure the Diagnostics settings to use your Azure Storage account</a>
+</li>
+
+<li>Open the website in your browser. You must use <b>https:</b> to navigate to the website.</li>
+<ul>
+  <li><b>NOTE</b>: You will see warnings when publishing the project because it contains only one instance of the Web and Worker roles.
+  This is done to minimize Azure hosting costs and resource usage during development and testing. You can reconfigure the number of instances
+  for the Web and the Worker roles after deployment by using Windows Azure management portal.</li>
+</ul>
+</ol>
+<p>Now continue with the steps in <a href="#checkFunctionality">Check the sample functionality</a> to complete the three stages of using the sample application.</p>
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<!--------------------------------------------------------------------------------------------------->
+
+                  </div>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footerstrip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</body>
+</html>
+
+

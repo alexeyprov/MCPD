@@ -1,0 +1,1 @@
+csc /out:SleepingBarber.exe Program.cs ISimulator.cs BaseSimulator.cs BlockingCollectionSimulator.cs PlainSimulator.cs

@@ -1,0 +1,156 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- A RegEx task -->
+  <UsingTask TaskName="RegexReplace" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" > 
+    <ParameterGroup>
+      <Pattern ParameterType="System.String" Required="true" />
+      <Replacement ParameterType="System.String" Required="true" />
+      <Files ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <WarnOnNoMatch ParameterType="System.Boolean" />
+      <IgnoreCase ParameterType="System.Boolean" />
+      <IgnorePatternWhitespace ParameterType="System.Boolean" />
+      <RightToLeft ParameterType="System.Boolean" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.Text.RegularExpressions"/>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+        Log.LogMessage(MessageImportance.Low, "Pattern = {0}", Pattern);
+        Log.LogMessage(MessageImportance.Low, "Replacement = {0}", Replacement);
+        
+        RegexOptions options = RegexOptions.Compiled | RegexOptions.Multiline;
+        if (IgnoreCase)
+          options |= RegexOptions.IgnoreCase;
+        if (IgnorePatternWhitespace)
+          options |= RegexOptions.IgnorePatternWhitespace;
+        if (RightToLeft)
+          options |= RegexOptions.RightToLeft;
+
+        Regex regex = null;        
+        try
+        {
+            regex = new Regex(Pattern, options);
+        }
+        catch (Exception ex)
+        {
+            Log.LogError("Pattern error: {0}", ex.Message);            
+        }               
+
+        foreach (ITaskItem file in Files)
+        {
+            try
+            {
+                string fileSpec = Path.GetFullPath(file.ItemSpec);
+                string originalText = File.ReadAllText(fileSpec);
+                string replacementText = regex.Replace(originalText, Replacement);
+
+                if (WarnOnNoMatch && !regex.IsMatch(originalText))
+                    Log.LogWarning("No matches in '{0}'.", fileSpec);
+
+                if (originalText != replacementText)
+                {
+                    File.WriteAllText(fileSpec, replacementText);
+                    Log.LogMessage("Changed '{0}'.", fileSpec);
+                }
+                else
+                    Log.LogMessage("Skipped '{0}' (no changes)", fileSpec);
+            }
+            catch (Exception ex)
+            {
+                Log.LogError("File error: {0}", ex.Message);                
+            }
+        }
+        ]]>        
+      </Code>
+    </Task>
+  </UsingTask> 
+  
+  <PropertyGroup Condition="'$(BuildType)' == ''">
+    <BuildType>Release</BuildType>
+  </PropertyGroup>
+  
+  <!-- Azure Service Information -->
+  <PropertyGroup>
+	<CloudServiceName>#YOUR CLOUD SERVICE NAME#</CloudServiceName>
+    <StorageAccountName>Your Storage Account Name</StorageAccountName>
+    <StorageAccountKey>Your Storage Account Key</StorageAccountKey>
+    <ApiCertThumbprint>#YOUR API CERT THUMBPRINT#</ApiCertThumbprint>
+    <SubscriptionId>#YOUR SUBSCRIPTION ID#</SubscriptionId>
+    <HostSlot>Staging</HostSlot>
+  </PropertyGroup>
+  
+  <!-- Certificate Information -->
+  <PropertyGroup>
+    <CertLocation>"$(MSBuildProjectDirectory)\Setup\DependencyChecker\certs\localhost.pfx"</CertLocation>
+    <CertPassword>xyz</CertPassword>
+    <DeployCertAlgorithm>sha1</DeployCertAlgorithm>
+    <DeployCertThumbprint>5A074D678466F59DBD063D1A98B1791474723365</DeployCertThumbprint>
+  </PropertyGroup>
+  
+  <!-- Project/Solution Information -->
+  <PropertyGroup>
+    <WebProjectConfig>SourceCode\Azure-CloudService-SQLServer\aExpense\Web.config</WebProjectConfig>
+    <AzureProjectName>aExpense.Azure.ccproj</AzureProjectName>
+    <AzureProjectPath>SourceCode\Azure-CloudService-SQLServer\aExpense.Azure</AzureProjectPath>
+    <SolutionToBuild>SourceCode\Azure-CloudService-SQLServer\aExpense.sln</SolutionToBuild>
+    <PackageName>aExpense.Azure.cspkg</PackageName>
+    <ServiceConfigName>ServiceConfiguration.CloudTest.cscfg</ServiceConfigName>
+    <PackageLocation>"$(MSBuildProjectDirectory)\$(AzureProjectPath)\bin\$(BuildType)\app.publish"</PackageLocation>
+  </PropertyGroup>
+  
+  <!-- Windows Azure SQL Database Information -->
+  <PropertyGroup>
+    <DatabaseServer>#YOUR DATABASE SERVER#</DatabaseServer>
+    <DatabaseName>#YOUR DATABASE NAME#</DatabaseName>
+    <UserName>#YOUR DATABASE USERNAME#</UserName>
+    <Password>#YOUR PASSWORD#</Password>
+  </PropertyGroup>
+  
+  <Target Name="Clean">
+    <MSBuild
+      Projects="$(SolutionToBuild)"
+      Targets="Clean"
+      Properties="Configuration=$(BuildType)"/>
+  </Target>
+
+  <Target Name="Build">
+    <MSBuild
+      Projects="$(SolutionToBuild)"
+      Targets="Build"
+      Properties="Configuration=$(BuildType)"/>
+  </Target>
+  
+  <Target Name="SetConnectionStrings">
+    <RegexReplace
+        Pattern='Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true"'
+        Replacement='Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=$(StorageAccountName);AccountKey=$(StorageAccountKey)"'
+        Files='$(AzureProjectPath)\$(ServiceConfigName)'/>
+    <RegexReplace
+        Pattern='Setting name="DataConnectionString" value="UseDevelopmentStorage=true"'
+        Replacement='Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=$(StorageAccountName);AccountKey=$(StorageAccountKey)"'
+        Files='$(AzureProjectPath)\$(ServiceConfigName)'/>
+	<RegexReplace
+        Pattern='Setting name="Microsoft.WindowsAzure.Plugins.Caching.ConfigStoreConnectionString" value="UseDevelopmentStorage=true"'
+        Replacement='Setting name="Microsoft.WindowsAzure.Plugins.Caching.ConfigStoreConnectionString" value="DefaultEndpointsProtocol=https;AccountName=$(StorageAccountName);AccountKey=$(StorageAccountKey)"'
+        Files='$(AzureProjectPath)\$(ServiceConfigName)'/>
+    <RegexReplace
+        Pattern='connectionString="Data Source=WAGSqlAlias;Initial Catalog=aExpense;Integrated Security=True"'
+        Replacement='connectionString="Data Source=$(DatabaseServer);Initial Catalog=$(DatabaseName);UId=$(UserName);Pwd=$(Password);"'
+        Files='$(WebProjectConfig)'/>    
+  </Target>
+  
+  <Target Name="DeployCert">
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)" 
+      Command="$(windir)\system32\WindowsPowerShell\v1.0\powershell.exe -f deploycert.ps1 $(CloudServiceName) $(CertLocation) $(CertPassword) $(ApiCertThumbprint) $(SubscriptionId) $(DeployCertAlgorithm) $(DeployCertThumbprint)" />
+  </Target>
+  
+  <Target Name="Deploy" DependsOnTargets="SetConnectionStrings;Build;DeployCert">
+    <MSBuild
+      Projects="$(AzureProjectPath)\$(AzureProjectName)"
+      Targets="CorePublish"
+      Properties="Configuration=$(BuildType)"/>
+    
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)" 
+      Command="$(windir)\system32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -f deploy.ps1 $(PackageLocation) $(PackageName) $(ServiceConfigName) $(CloudServiceName) $(ApiCertThumbprint) $(SubscriptionId) $(HostSlot) $(StorageAccountName)" />
+    
+  </Target>
+</Project>

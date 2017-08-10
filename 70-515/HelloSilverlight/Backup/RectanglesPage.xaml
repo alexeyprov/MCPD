@@ -1,0 +1,22 @@
+﻿<code:BaseShapePage x:Class="HelloSilverlight.RectanglesPage" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:code="clr-namespace:HelloSilverlight.Code"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Rectangles Game">
+    <code:BaseShapePage.Resources>
+        <Storyboard x:Name="RectangleActions" Completed="RectangleActions_Completed">
+            <ColorAnimation x:Name="ColorTransform" Duration="00:00:03" From="Green" To="Yellow"
+                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" />
+            <DoubleAnimation x:Name="PositionTransform" Duration="00:00:03" 
+                Storyboard.TargetProperty="(Canvas.Top)" />
+        </Storyboard>
+    </code:BaseShapePage.Resources>
+    <Border x:Name="LayoutRoot" BorderBrush="SteelBlue" BorderThickness="1">
+        <Canvas x:Name="RootCanvas" Background="AliceBlue" />
+    </Border>
+</code:BaseShapePage>

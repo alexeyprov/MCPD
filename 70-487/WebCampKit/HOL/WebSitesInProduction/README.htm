@@ -1,0 +1,784 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="HOLTop"></a></p>
+<div class="jumbotron"><h1 id="web-sites-in-production">Web Sites in Production</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>Microsoft Azure offers secure and flexible development, deployment and scaling options for any size web application. Leverage your existing tools to create and deploy applications without the hassle of managing infrastructure.</p>
+<p>Provision a production web application on your own in minutes by easily deploying content created using your favorite development tool. You can deploy an existing site directly from source control with support for <strong>Git</strong>, <strong>GitHub</strong>, <strong>Bitbucket</strong>, <strong>CodePlex</strong>, <strong>TFS</strong>, and even <strong>DropBox</strong>. Deploy directly from your favorite IDE or from scripts using <strong>PowerShell</strong> in Windows or <strong>CLI</strong> tools running on any OS. Once deployed, keep your sites constantly up-to-date with support for continuous deployment.</p>
+<p>Microsoft Azure provides scalable, durable cloud storage, backup, and recovery solutions for any data, big or small. When deploying applications to a production environment, storage services such as Tables, Blobs and SQL Databases help you scale your application in the cloud. </p>
+<p>With SQL Databases, it is important to keep your productive database up-to-date when deploying new versions of your application. Thanks to <strong>Entity Framework Migrations</strong>, the development and deployment of your data model has been simplified to update your environments in minutes.</p>
+<p>This hands-on lab will show you the different topics you could encounter when deploying your site to production environments in Microsoft Azure.</p>
+<p><a name="Objectives"></a></p>
+<h3 id="objectives">Objectives</h3>
+<p>In this hands-on lab, you will learn how to:</p>
+<ul>
+<li>Enable Entity Framework Migrations with an existing model</li>
+<li>Update the object model and database accordingly using Entity Framework Migrations</li>
+<li>Deploy to a Microsoft Azure Web App using Git</li>
+<li>Rollback to a previous deployment using the Azure Portal</li>
+<li>Use Azure Storage to scale a Web App</li>
+<li>Configure auto-scaling for a Web App using the Azure Portal</li>
+<li>Create and configure a load test project in Visual Studio</li>
+</ul>
+<p><a name="Prerequisites"></a></p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>The following is required to complete this hands-on lab:</p>
+<ul>
+<li><a href="https://www.visualstudio.com/products/visual-studio-community-vs/readme.htm">Visual Studio Community 2015</a> or greater</li>
+<li><a href="http://azure.microsoft.com/en-us/downloads/readme.htm">Azure SDK for Visual Studio 2015</a> or later</li>
+<li><a href="http://git-scm.com/download/readme.htm">GIT Version Control System</a></li>
+<li><p>Enable the ASP.NET Core command-line tools. Open a command-prompt and run:</p>
+<pre><code>  dnvm upgrade
+</code></pre></li>
+<li><p>A Microsoft Azure subscription</p>
+<ul>
+<li>Sign up for a <a href="http://aka.ms/watk-freetrial/readme.htm">Free Trial</a></li>
+<li>If you are a Visual Studio Professional, Test Professional, Premium or Ultimate with MSDN or MSDN Platforms subscriber, activate your <a href="http://aka.ms/watk-msdn/readme.htm">MSDN benefit</a> now to start developing and testing on Microsoft Azure</li>
+<li><a href="http://aka.ms/watk-bizspark/readme.htm">BizSpark</a> members automatically receive the Microsoft Azure benefit through their Visual Studio Ultimate with MSDN subscriptions</li>
+<li>Members of the <a href="http://azure.microsoft.com/en-us/offers/ms-azr-0025p/readme.htm">Microsoft Partner Network</a> Cloud Essentials program receive monthly Microsoft Azure credits at no charge</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> You can take advantage of the <a href="https://www.visualstudio.com/en-us/products/visual-studio-dev-essentials-vs.aspx">Visual Studio Dev Essentials</a> subscription in order to get everything you need to build and deploy your app on any platform.</p>
+</blockquote>
+<p><a name="Setup"></a></p>
+<h3 id="setup">Setup</h3>
+<p>In order to run the exercises in this hands-on lab, you will need to set up your environment first.</p>
+<ol>
+<li>Open Windows Explorer and browse to the lab&#39;s <strong>Source</strong> folder.</li>
+<li>Right-click on <strong>Setup.cmd</strong> and select <strong>Run as administrator</strong> to launch the setup process that will configure your environment and install the Visual Studio code snippets for this lab.</li>
+<li>If the User Account Control dialog box is shown, confirm the action to proceed.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Make sure you have checked all the dependencies for this lab before running the setup.</p>
+</blockquote>
+<p><a name="CodeSnippets"></a></p>
+<h3 id="using-the-code-snippets">Using the Code Snippets</h3>
+<p>Throughout the lab document, you will be instructed to insert code blocks. For your convenience, most of this code is provided as Visual Studio Code Snippets, which you can access from within Visual Studio 2015 to avoid having to add it manually. </p>
+<blockquote>
+<p><strong>Note</strong>: Each exercise is accompanied by a starting solution located in the <strong>Begin</strong> folder of the exercise that allows you to follow each exercise independently of the others. Please be aware that the code snippets that are added during an exercise are missing from these starting solutions and may not work until you have completed the exercise. Inside the source code for an exercise, you will also find an <strong>End</strong> folder containing a Visual Studio solution with the code that results from completing the steps in the corresponding exercise. You can use these solutions as guidance if you need additional help as you work through this hands-on lab.</p>
+</blockquote>
+<hr>
+<p><a name="Exercises"></a></p>
+<h2 id="exercises">Exercises</h2>
+<p>This hands-on lab includes the following exercises:</p>
+<ol>
+<li><a href="#Exercise1">Using Entity Framework Migrations</a></li>
+<li><a href="#Exercise2">Deploying a Web Site to Staging</a></li>
+<li><a href="#Exercise3">Performing Deployment Rollback in Production</a></li>
+<li><a href="#Exercise4">Scaling Using Azure Storage</a></li>
+<li><a href="#Exercise5">Using Autoscale for Web Sites</a> (Optional for Visual Studio 2015 Ultimate edition)</li>
+</ol>
+<p>Estimated time to complete this lab: <strong>75 minutes</strong></p>
+<blockquote>
+<p><strong>Note:</strong> When you first start Visual Studio, you must select one of the predefined settings collections. Each predefined collection is designed to match a particular development style and determines window layouts, editor behavior, IntelliSense code snippets, and dialog box options. The procedures in this lab describe the actions necessary to accomplish a given task in Visual Studio when using the <strong>General Development Settings</strong> collection. If you choose a different settings collection for your development environment, there may be differences in the steps that you should take into account.</p>
+</blockquote>
+<p><a name="Exercise1"></a></p>
+<h3 id="exercise-1-using-entity-framework-migrations">Exercise 1: Using Entity Framework Migrations</h3>
+<p>When you are developing an application, your data model might change over time. These changes could affect the existing model in your database (if you are creating a new version) and it is important to keep your database up-to-date to prevent errors. </p>
+<p>To simplify the tracking of these changes in your model, <strong>Entity Framework Code First Migrations</strong> automatically detect changes comparing your model with the database schema and generates specific code to update your database, creating new <em>versions</em> of your database. </p>
+<p>This exercise shows you how to enable <strong>Migrations</strong> for your application and how you can easily detect and generate changes to update your databases.</p>
+<p><a name="Ex1Task1"></a></p>
+<h4 id="task-1-enabling-migrations">Task 1 - Enabling Migrations</h4>
+<p>In this task, you will go through the steps of enabling <strong>Entity Framework Code First Migrations</strong> to the <strong>Geek Quiz</strong> database, changing the model and understanding how those changes are reflected in the database. </p>
+<ol>
+<li><p>Open the <strong>GeekQuiz.sln</strong> solution file from <strong>Source\Ex1-UsingEntityFrameworkMigrations\Begin</strong> in Visual Studio.</p>
+</li>
+<li><p>Build the solution in order to download and install the <strong>NuGet</strong> package dependencies. To do this, right-click the solution and click <strong>Build Solution</strong> or press <strong>Ctrl + Shift + B</strong>.</p>
+</li>
+<li><p>In the <strong>Solution Explorer</strong>, select the GeekQuiz project and press <strong>Shift + Alt + ,</strong> to open a Command Prompt in the folder where the project is located.</p>
+</li>
+<li><p>In the <strong>Command Prompt</strong> you just opened, enter the following command and then press <strong>Enter</strong>. An initial migration based on the existing model will be created.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef migrations add InitialMigration --context TriviaDbContext
+</code></pre>
+<p> <img class="img-responsive"src="Images/creating-the-initial-migration.png?raw=true" alt="Creating the initial migration" title="Creating the initial migration"></p>
+<p> <em>Creating the initial migration</em></p>
+<blockquote>
+<p><strong>Note:</strong> Make sure that there is no database named &quot;GeekQuizProd&quot; in your LocalDB instance.</p>
+<p><strong>Note:</strong> <code>dnx ef migrations add</code> will scaffold the next migration based on changes you have made to your model since the last migration was created. In this case, being the first migration of the project, it will add the scripts to create all the tables defined in the <strong>TriviaDbContext</strong> class.    </p>
+</blockquote>
+</li>
+<li><p>Back in Visual Studio, verify that the new migration was created inside the <strong>TriviaDb</strong> folder located under the <strong>Migrations</strong> folder.</p>
+<p> <img class="img-responsive"src="Images/verifying-the-initial-migration.png?raw=true" alt="Verifying the initial migration" title="Verifying the initial migration"></p>
+<p> <em>Verifying the initial migration</em></p>
+</li>
+<li><p>Execute the migration to update the database by running the following command in the <strong>Command Prompt</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> <code>dnx ef database update</code> will apply any pending migrations to the database. In this case, it will create the database using the connection string defined in your appsettings.json file.</p>
+</blockquote>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef database update --context TriviaDbContext
+</code></pre>
+<p> <img class="img-responsive"src="Images/applying-the-initial-migration.png?raw=true" alt="Applying the initial migration" title="Applying the initial migration"></p>
+</li>
+<li><p>Go to the <strong>View</strong> menu and open <strong>SQL Server Object Explorer</strong>.</p>
+<p> <img class="img-responsive"src="Images/open-in-sql-server-object-explorer.png?raw=true" alt="Open in SQL Server Object Explorer" title="Open in SQL Server Object Explorer"></p>
+<p> <em>Open in SQL Server Object Explorer</em></p>
+</li>
+<li><p>In the <strong>SQL Server Object Explorer</strong> window, verify that you have the <strong>(localdb)\MSSQLLocalDB</strong> database in the list. If the database is not in the list, connect to your LocalDB instance by right-clicking the <strong>SQL Server</strong> node and selecting <strong>Add SQL Server...</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-sql-server-instance.png?raw=true" alt="Adding a SQL Server Instance" title="Adding a SQL Server Instance"></p>
+<p> <em>Adding a SQL Server instance to SQL Server Object Explorer</em></p>
+</li>
+<li><p>Open the <strong>GeekQuizProd</strong> database and expand the <strong>Tables</strong> node. As you can see, the <code>dnx ef database update</code> command generated all the tables defined in the <strong>TriviaDbContext</strong> class. Locate the <strong>dbo.TriviaQuestion</strong> table and open the columns node. In the next task, you will add a new column to this table and update the database using <strong>Migrations</strong>. </p>
+<p> <img class="img-responsive"src="Images/trivia-questions-columns.png?raw=true" alt="Trivia Questions Columns" title="Trivia Questions Columns"></p>
+<p> <em>Trivia Questions Columns</em></p>
+</li>
+</ol>
+<p><a name="Ex1Task2"></a></p>
+<h4 id="task-2-updating-database-schema-using-migrations">Task 2 - Updating Database Schema Using Migrations</h4>
+<p>In this task, you will use <strong>Entity Framework Code First Migrations</strong> to detect a change in your model and generate the necessary code to update the database. You will update the <strong>TriviaQuestion</strong> entity by adding a new property to it. Then you will run commands to create a new Migration to include the new column in the table.</p>
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, double-click the <strong>TriviaQuestion.cs</strong> file located in the <strong>Models</strong> folder.</p>
+</li>
+<li><p>Add a new property named <strong>Hint</strong>, as shown in the following code snippet.</p>
+ <!-- mark:11 -->
+<pre><code class="lang-C#"> public class TriviaQuestion
+ {
+     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     public int Id { get; set; }
+
+     [Required]
+     public string Title { get; set; }
+
+     public virtual List&lt;TriviaOption&gt; Options { get; set; }
+
+     public string Hint { get; set; }
+ }
+</code></pre>
+</li>
+<li><p>Switch back to the <strong>Command Prompt</strong>, enter the following command and then press <strong>Enter</strong>. A new migration will be created reflecting the change in our model.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef migrations add QuestionHint --context TriviaDbContext
+</code></pre>
+<p> <img class="img-responsive"src="Images/adding-questionhint-migration.png?raw=true" alt="Adding the QuestionHint migration" title="Adding the QuestionHint migration"></p>
+<p> <em>Adding the QuestionHint migration</em></p>
+<blockquote>
+<p><strong>Note:</strong> A Migration file is composed of two methods, <strong>Up</strong> and <strong>Down</strong>. </p>
+<ul>
+<li>The <strong>Up</strong> method will be used to specify the changes the current version of our application needs to apply to the database. </li>
+<li>The <strong>Down</strong> method is used to reverse the changes we have added to the <strong>Up</strong> method. </li>
+</ul>
+<p>When the Database Migration updates the database, it will run all migrations that have not been used since the last update in the timestamp (The _EFMigrationsHistory table keeps track of which migrations have been applied). The <strong>Up</strong> method of all migrations will be called and will make the changes we have specified to the database. If we decide to go back to a previous migration, the <strong>Down</strong> method will be called to redo the changes in reverse order.</p>
+</blockquote>
+</li>
+<li><p>In the <strong>Command Prompt</strong>, enter the following command and then press <strong>Enter</strong>.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-PowerShell"> dnx ef database update --context TriviaDbContext
+</code></pre>
+<p> <img class="img-responsive"src="Images/applying-questionhint-migration.png?raw=true" alt="Applying the QuestionHint migration" title="Applying the QuestionHint migration"></p>
+<p> <em>Applying the QuestionHint migration</em></p>
+</li>
+<li><p>In <strong>SQL Server Object Explorer</strong>, refresh the <strong>dbo.TriviaQuestion</strong> table and check that the new <strong>Hint</strong> column is displayed.</p>
+<p> <img class="img-responsive"src="Images/checking-the-new-hint-column.png?raw=true" alt="Checking the new Hint Column" title="Checking the new Hint Column"></p>
+<p> <em>Checking the new Hint Column</em></p>
+</li>
+</ol>
+<p><a name="Exercise2"></a></p>
+<h3 id="exercise-2-deploying-a-web-site-to-staging">Exercise 2: Deploying a Web Site to Staging</h3>
+<p><strong>Azure Web Apps</strong> enables you to perform staged publishing. When you deploy your site to an <strong>Azure Web App</strong>, you can choose to deploy it to a separate deployment slot instead of the default production slot. And then swap the deployments in these two slots with no down time. This is really useful for validating changes before releasing to the public, incrementally integrating site content, and rolling back if changes are not working as expected.</p>
+<p>In this exercise, you will deploy the <strong>Geek Quiz</strong> application to the staging environment of your Azure Web App using Git source control. To do this, you will create the Web App and provision the required components at the management portal, configure a <strong>Git</strong> repository and push the application source code from your local computer to a deployment slot. You will also update your production database with the <strong>Code First Migrations</strong> you created in the previous exercise. You will then execute the application in this staging environment to verify its operation. Once you are satisfied that it is working according to your expectations, you will promote the application to production.</p>
+<blockquote>
+<p><strong>Note:</strong> To enable staged publishing, the Web App must be on one of the Standard plans. Note that additional charges will be incurred if you upgrade your Web App to a Standard plan. For more information about pricing, see <a href="http://azure.microsoft.com/en-us/pricing/details/app-service/readme.htm">App Service Pricing</a>. </p>
+</blockquote>
+<p><a name="Ex2Task1"></a></p>
+<h4 id="task-1-creating-a-microsoft-azure-web-app">Task 1 - Creating a Microsoft Azure Web App</h4>
+<p>In this task, you will create a <strong>Microsoft Azure Web App</strong> from the management portal. You will also configure a <strong>SQL Database</strong> to persist the application data, and configure a local Git repository for source control.</p>
+<ol>
+<li><p>Go to the <a href="https://portal.azure.com">Azure Portal</a> and sign in using the Microsoft account associated with your subscription.</p>
+<p> <img class="img-responsive"src="Images/sign-in-to-windows-azure-management-portal.png?raw=true" alt="Sign in to the Azure Portal"></p>
+<p> <em>Sign in to the Azure Portal</em></p>
+</li>
+<li><p>Click <strong>New</strong> in the left command bar and then search for <strong>Web App + SQL</strong>.</p>
+<p> <img class="img-responsive"src="Images/searching-for-webapp-sql.png?raw=true" alt="Searching for Web App + SQL" title="Searching for Web App + SQL"></p>
+<p> <em>Searching for Web App + SQL</em></p>
+</li>
+<li><p>Select <strong>Web App + SQL</strong> from the list.</p>
+<p> <img class="img-responsive"src="Images/selecting-webapp-sql.png?raw=true" alt="Selecting Web App + SQL" title="Selecting Web App + SQL"></p>
+<p> <em>Selecting Web App + SQL</em></p>
+</li>
+<li><p>In the <strong>Web App + SQL</strong> blade, click <strong>Create</strong> in order to continue to the configuration of the site.</p>
+<p> <img class="img-responsive"src="Images/creating-webapp-sql.png?raw=true" alt="Creating the Web App + SQL" title="Creating the Web App + SQL"></p>
+<p> <em>Creating the Web App + SQL</em></p>
+</li>
+<li><p>In the new <strong>Web App + SQL</strong> blade, select a <strong>Resource Group</strong> or create a new one. Then, click <strong>App Service Name</strong>, provide an available <strong>URL</strong> (e.g. <em>geekquiz-site</em>), create a new <strong>AppService Plan</strong>, then choose the pricing tier and location. Finally, click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="Images/configure-the-new-web-app.png?raw=true" alt="Configure the new Web App"></p>
+<p> <em>Configure the new Web App</em></p>
+</li>
+<li><p>Next, select <strong>Database</strong> and create a new database, specifying the required information for the new server. Then, click <strong>OK</strong> in both <strong>New server</strong> and <strong>New database</strong> blades.</p>
+<p> <img class="img-responsive"src="Images/configure-the-new-sql-database.png?raw=true" alt="Configure a new SQL Database"></p>
+<p> <em>Configure a new SQL Database</em></p>
+</li>
+<li><p>Finally, in the <strong>Web App + SQL</strong> blade, click <strong>Create</strong> and wait until the Web App is created.</p>
+<blockquote>
+<p><strong>Note:</strong> By default, Microsoft Azure provides domains at <em>azurewebsites.net</em> but also gives you the possibility to set custom domains using the Azure Portal. However, you cannot use custom domains with a free Web App.</p>
+<p>Microsoft Azure offers 5 plans for users to run their Web Apps - Free, Shared, Basic, Standard and Premium. In Free and Shared, all Web Apps run in a multi-tenant environment and have quotas for CPU, Memory, and Network usage. You can mix and match which sites are Free (strict quotas) vs. Shared (more flexible quotas). The maximum number of free Web Apps may vary with your plan. In Standard, you choose which Web Apps run on dedicated virtual machines that correspond to the standard Azure compute resources. You can change the mode of your Web App by clicking the <strong>Pricing tier</strong> tile in the <strong>Usage</strong> section of the corresponding App Service plan blade.</p>
+<p><img class="img-responsive"src="Images/web-site-modes.png?raw=true" alt="Web Apps Modes" title="Web Apps Modes"></p>
+<p>If you are using <strong>Shared</strong> or <strong>Standard</strong>, you will be able to manage custom domains for your Web Apps by going to your Web App&#39;s <strong>Settings</strong> blade and clicking <strong>Custom domains and SSL</strong>.</p>
+<p><img class="img-responsive"src="Images/manage-custom-domains.png?raw=true" alt="Custom Domains and SLL" title="Custom Domains and SSL"></p>
+</blockquote>
+</li>
+<li><p>Once the Web app is created, select it and click the <strong>Browse</strong> button to validate that the new Web app is running.</p>
+<p> <img class="img-responsive"src="Images/browsing-to-the-new-web-site.png?raw=true" alt="Browsing to the new Web app"></p>
+<p> <em>Browsing to the new web app</em></p>
+<p> <img class="img-responsive"src="Images/web-site-running.png?raw=true" alt="Web app running"></p>
+<p> <em>Web app running</em></p>
+</li>
+</ol>
+<p><a name="Ex2Task2"></a></p>
+<h4 id="task-2-deploying-geek-quiz-to-staging-using-git">Task 2 - Deploying Geek Quiz to Staging Using Git</h4>
+<p>In this task, you will create a staging deployment slot for your Web App. Then, you will use Git to publish the Geek Quiz application directly from your local computer to the staging environment of your Web App.</p>
+<ol>
+<li><p>Go back to the portal and open your Web App.</p>
+</li>
+<li><p>Select <strong>Scale Up (App Service Plan)</strong> in the <strong>Settings</strong> blade of your web app.</p>
+<p> <img class="img-responsive"src="Images/scaling-up-the-app-service-plan.png?raw=true" alt="Scaling up the App Service Plan " title="Scaling up the App Service Plan"></p>
+<p> <em>Scaling up the App Service Plan</em></p>
+</li>
+<li><p>If your Web App is not on a <strong>Standard</strong> plan, select one by clicking the <strong>Pricing tier</strong> tile. For instance, select the <strong>S1 Standard</strong> plan.</p>
+<p> <img class="img-responsive"src="Images/upgrading-the-web-site-to-standard-mode.png?raw=true" alt="Upgrading the Web App to Standard Instance " title="Upgrading the Web App to Standard Instance"></p>
+<p> <em>Upgrading the Web app to a Standard plan</em></p>
+</li>
+<li><p>Click <strong>Continuous deployment</strong> in the <strong>Settings</strong> blade of your web app and then choose <strong>Local Git Repository</strong> as source. Then, click <strong>OK</strong> to save the changes.</p>
+<p> <img class="img-responsive"src="Images/configuring-the-git-deployment.png?raw=true" alt="Configuring the Git Deployment" title="Configuring the Git Deployment"></p>
+<p> <em>Configuring the Git Deployment in staging Web App</em></p>
+</li>
+<li><p>Now, click <strong>Deployment credentials</strong> in the Settings blade of your web app to configure the user that will perform the deployments. Fill in the credentials and then click <strong>Save</strong> at the top.</p>
+<p> <img class="img-responsive"src="Images/setting-deployment-credentials.png?raw=true" alt="Setting deployment credentials" title="Setting deployment credentials"></p>
+<p> <em>Setting deployment credentials</em></p>
+</li>
+<li><p>Back in the <strong>Settings</strong> blade, select <strong>Deployment slots</strong>.</p>
+<p> <img class="img-responsive"src="Images/enabling-staged-publishing.png?raw=true" alt="Opening deploymet slots" title="Opening deployment slots"></p>
+<p> <em>Opening deployment slots</em></p>
+</li>
+<li><p>Click the <strong>Add Slot</strong> command at the top and create a new slot named <strong>staging</strong>. Set your Web App as <strong>Configuration Source</strong> and then click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="Images/create-deployment-slot.png?raw=true" alt="Creating deploymet slot" title="Creating deployment slot"></p>
+<p> <em>Creating deployment slot</em></p>
+</li>
+<li><p>After a few seconds you will see a new slot with the name of your Web App followed by <em><strong>-staging</strong></em>. Select it to navigate to the <em>staging Web App</em> settings.</p>
+<p> <img class="img-responsive"src="Images/navigating-to-the-staging-web-site.png?raw=true" alt="Navigating to the staging Web App" title="Navigating to the staging Web App"></p>
+<p> <em>Navigating to the staging Web App</em></p>
+</li>
+<li><p>Repeat Step 4 to configure continuous deployment in the <em>staging Web App</em> using <strong>Local Git Repository</strong> as source.</p>
+</li>
+<li><p>Now, click the <em>staging Web App</em> <strong>Settings</strong> command, select <strong>Properties</strong> and then copy the <strong>GIT URL</strong> value. You will use it later in this exercise.</p>
+<p> <img class="img-responsive"src="Images/coping-the-git-url-value.png?raw=true" alt="Copying the Git URL value"></p>
+<p> <em>Copying the Git URL value</em></p>
+</li>
+<li><p>Open a new <strong>Git Bash</strong> console and execute the following commands. Update the <em>[YOUR-APPLICATION-PATH]</em> placeholder with the path to the <strong>GeekQuiz</strong> solution, located in the <strong>Source\Ex2-DeployingWebSiteToStaging\Begin</strong> folder of this lab. </p>
+<pre><code class="lang-GitBash"> cd &quot;[YOUR-APPLICATION-PATH]&quot;
+ git init
+ git config --global user.email &quot;{username@example.com}&quot;
+ git config --global user.name &quot;{your-user-name}&quot;
+ git add .
+ git commit -m &quot;Initial commit&quot;
+</code></pre>
+</li>
+<li><p>Run the following command to push your site to the remote <strong>Git</strong> repository. Replace the placeholder with the URL you obtained from the Azure Portal.</p>
+<blockquote>
+<p><strong>Note:</strong> When you deploy content to the FTP host or GIT repository of a Microsoft Azure Web App you must authenticate using the <strong>deployment credentials</strong> that you configured in a previous step. If you do not know your deployment credentials you can easily reset them in the Azure Portal by opening the Web App <strong>Settings</strong> and clicking <strong>Deployment credentials</strong>. These deployment credentials are valid for all the Web Apps associated with your subscription.</p>
+</blockquote>
+<pre><code class="lang-GitBash"> git remote add azure [GIT-URL-STAGING-SLOT]
+ git push azure master
+</code></pre>
+</li>
+<li><p>In order to verify that the site was successfully deployed, go back to the Azure Portal and select your Web App.</p>
+</li>
+<li><p>Navigate to the staging slot of this Web App by clicking <strong>Deployment slots</strong> in the <strong>Settings</strong> blade and then selecting its row inside the <strong>Deployments</strong> blade.</p>
+</li>
+<li><p>In the <em>staging Web App</em>, verify that there is an <strong>Active</strong> deployment with your <em>&quot;initial commit&quot;</em> in the <strong>Continuous deployment</strong> blade.</p>
+<p> <img class="img-responsive"src="Images/active-deployment.png?raw=true" alt="Active deployment"></p>
+<p> <em>Active deployment</em></p>
+</li>
+<li><p>Finally, click the <strong>Browse</strong> command to navigate to the deployed site.</p>
+<p> <img class="img-responsive"src="Images/browse-web-site.png?raw=true" alt="Browse site"></p>
+<p> <em>Browse site</em></p>
+</li>
+<li><p>If the application was successfully deployed, you will see the Geek Quiz Log in page.</p>
+<blockquote>
+<p><strong>Note:</strong> The address URL of the deployed application contains the name of your Web App followed by <em>-staging</em>.</p>
+</blockquote>
+<p> <img class="img-responsive"src="Images/application-running-in-staging.png?raw=true" alt="Application running in the staging environment"></p>
+<p> <em>Application running in the staging environment</em></p>
+</li>
+<li><p>If you wish to explore the application, click <strong>Register</strong> to configure a new user. Complete the account details by entering a user name, email address and password. Next, the application shows the first question of the quiz. Answer a few questions to make sure it is working as expected.</p>
+<p> <img class="img-responsive"src="Images/application-ready-to-be-used.png?raw=true" alt="Application ready to be used"></p>
+<p> <em>Application ready to be used</em></p>
+</li>
+</ol>
+<p><a name="Ex2Task3"></a></p>
+<h4 id="task-3-promoting-the-web-app-to-production">Task 3 - Promoting the Web App to Production</h4>
+<p>Now that you have verified that the site is working correctly in the deployment slot, you are ready to promote it to production. In this task, you will swap the site in a staging slot with the production slot.</p>
+<ol>
+<li><p>Go back to the Azure Portal and navigate to the <em>staging Web App</em>.</p>
+</li>
+<li><p>Click the <strong>Swap</strong> command at the top.</p>
+<p> <img class="img-responsive"src="Images/swap-to-production.png?raw=true" alt="Swap to production"></p>
+<p> <em>Swap to production</em></p>
+</li>
+<li><p>Verify that the <strong>Source</strong> targets the staging slot and the <strong>Destination</strong> targets production, and then click <strong>OK</strong> to proceed with the swap operation. Azure will immediately swap the content of the production site with the content of the staging site.</p>
+<blockquote>
+<p><strong>Note:</strong> Some settings from the staged version will automatically be copied to the production version (e.g. connection string overrides, handler mappings, etc.) but others will stay the same (e.g. DNS endpoints, SSL bindings, etc.).</p>
+</blockquote>
+<p> <img class="img-responsive"src="Images/confirm-swap-operation.png?raw=true" alt="Confirming swap operation"></p>
+<p> <em>Confirming swap operation</em></p>
+</li>
+<li><p>Once the swap is complete, browse to your Web App in both slots. You can verify that the production site is now the one with the GeekQuiz site.</p>
+<blockquote>
+<p><strong>Note:</strong> You might need to refresh your browser to clear the cache. In Microsoft Edge, you can do this by pressing <strong>CTRL+F5</strong>.</p>
+</blockquote>
+<p> <img class="img-responsive"src="Images/web-site-running-in-the-production-environmen.png?raw=true" alt="Web App running in the production environment"></p>
+</li>
+<li><p>In the <strong>GitBash</strong> console, update the remote URL for the local Git repository to target the production slot. To do this, run the following command replacing the placeholders with your deployment username and the name of your Web App.</p>
+<blockquote>
+<p><strong>Note:</strong> In the following exercises, you will push changes to the production site instead of staging just for the simplicity of the lab. In a real-world scenario, it is recommended to verify the changes in the staging environment before promoting to production.</p>
+</blockquote>
+<pre><code class="lang-GitBash"> git remote set-url azure https://&lt;your-user&gt;@&lt;your-web-site&gt;.scm.azurewebsites.net:443/&lt;your-web-site&gt;.git
+</code></pre>
+</li>
+</ol>
+<p><a name="Exercise3"></a></p>
+<h3 id="exercise-3-performing-deployment-rollback-in-production">Exercise 3: Performing Deployment Rollback in Production</h3>
+<p>There are scenarios where you do not have a staging slot to perform hot swap between staging and production, for example, if you are working with <strong>Web Apps</strong> running in <strong>Free</strong> or <strong>Shared</strong> mode. In those scenarios, you should test your application in a testing environment (either locally or in a remote site) before deploying to production. However, it is possible that an issue not detected during the testing phase may arise in the production site. In this case, it is important to have a mechanism to easily switch to a previous and more stable version of the application as quickly as possible.</p>
+<p>In <strong>Azure Web Apps</strong>, continuous deployment from source control makes this possible thanks to the <strong>Redeploy</strong> action available in the Azure Portal. Microsoft Azure keeps track of the deployments associated with the commits pushed to the repository and provides an option to redeploy your application using any of your previous deployments, at any time.</p>
+<p>In this exercise you will perform a change to the code in the <strong>Geek Quiz</strong> application that intentionally injects a <em>bug</em>. You will deploy the application to production to see the error, and then you will take advantage of the redeploy feature to go back to the previous state.</p>
+<p><a name="Ex3Task1"></a></p>
+<h4 id="task-1-updating-the-geek-quiz-application">Task 1 - Updating the Geek Quiz Application</h4>
+<p>In this task, you will refactor a small piece of code from the <strong>TriviaController</strong> class by extracting part of the logic that retrieves the selected quiz option from the database to a new method.</p>
+<ol>
+<li><p>Switch to the Visual Studio instance with the <strong>GeekQuiz</strong> solution from the previous exercise.</p>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, open the <strong>AnswersService.cs</strong> file in the <strong>Services</strong> folder.</p>
+</li>
+<li><p>Replace the <strong>StoreAsync</strong> method implementation with the following code snippet.</p>
+<p> (Code Snippet - <em>WebSitesInProduction - Ex3 - StoreAsync</em>)</p>
+ <!-- mark:3-4,17-22 -->
+<pre><code class="lang-C#"> public async Task&lt;bool&gt; StoreAsync(TriviaAnswer answer)
+ {
+     var selectedOption = await this.db.TriviaOptions.FirstOrDefaultAsync(o =&gt;
+         MatchesOption(answer, o));
+
+     if (selectedOption != null)
+     {
+         answer.TriviaOption = selectedOption;
+         this.db.TriviaAnswers.Add(answer);
+
+         await this.db.SaveChangesAsync();
+     }
+
+     return selectedOption.IsCorrect;
+ }
+
+ private static bool MatchesOption(TriviaAnswer answer, TriviaOption o)
+ {
+     var a = answer.OptionId / 0;
+     return o.Id == answer.OptionId
+                             &amp;&amp; o.QuestionId == answer.QuestionId;
+ }
+</code></pre>
+</li>
+<li><p>Press <strong>CTRL + S</strong> to save the changes.</p>
+</li>
+</ol>
+<p><a name="Ex3Task2"></a></p>
+<h4 id="task-2-redeploying-the-geek-quiz-application">Task 2 - Redeploying the Geek Quiz Application</h4>
+<p>You will now push the changes you made in the previous task to the repository, which will trigger a new deployment to the production environment. Then, you will troubleshoot an issue using the <strong>F12 development tools</strong> provided by Microsoft Edge and then perform a rollback to the previous deployment from the Azure Portal.</p>
+<ol>
+<li><p>Open a new <strong>Git Bash</strong> console to deploy the updated application to Azure Web Apps.</p>
+</li>
+<li><p>Execute the following commands to push the changes to Microsoft Azure. Update the <em>[YOUR-APPLICATION-PATH]</em> placeholder with the path to the <strong>GeekQuiz</strong> solution. You will be prompted for your deployment password.</p>
+<pre><code class="lang-GitBash"> cd &quot;[YOUR-APPLICATION-PATH]&quot;
+ git add .
+ git commit -m &quot;Refactored answer check&quot;
+ git push azure master
+</code></pre>
+</li>
+<li><p>Open Microsoft Edge and navigate to your site (e.g. <em><a href="http://geek-quiz-site.azurewebsites.net/readme.htm">http://geek-quiz-site.azurewebsites.net/</a></em>). Log in with your user credentials.</p>
+</li>
+<li><p>Press <strong>F12</strong> to launch the development tools, select the <strong>Network</strong> tab and click the <strong>Clear Session</strong> button.</p>
+<p> <img class="img-responsive"src="Images/starting-the-network-recording.png?raw=true" alt="Starting network recording" title="Starting network recording"></p>
+<p> <em>Starting network recording</em></p>
+</li>
+<li><p>Select any of the quiz options. You will see that nothing happens.</p>
+</li>
+<li><p>In the <strong>F12</strong> window, the entry corresponding to the POST HTTP request shows an HTTP <strong>500</strong> result.</p>
+<p> <img class="img-responsive"src="Images/http-500-error.png?raw=true" alt="HTTP 500 error" title="HTTP 500 error"></p>
+<p> <em>HTTP 500 error</em></p>
+</li>
+<li><p>Select the <strong>Console</strong> tab. An error is logged with the details of the cause. This error is caused by the code refactoring you committed in the previous steps</p>
+<p> <img class="img-responsive"src="Images/logged-error.png?raw=true" alt="Logged error" title="Logged error"></p>
+<p> <em>Logged error</em></p>
+</li>
+<li><p>Do not close the browser.</p>
+</li>
+<li><p>In a new browser instance, navigate to the <a href="http://portal.azure.com">Azure Portal</a> and sign in using the Microsoft account associated with your subscription.</p>
+</li>
+<li><p>Select <strong>App Services</strong> and click the Web app you created in Exercise 2.</p>
+</li>
+<li><p>Open the <strong>Deployments</strong> blade by clicking the <strong>Continuous deployment</strong> option in the <strong>Settings</strong> blade. Notice that all the commits performed are listed in the deployment history.</p>
+<p> <img class="img-responsive"src="Images/list-of-existing-deployments.png?raw=true" alt="List of existing deployments"></p>
+<p> <em>List of existing deployments</em></p>
+</li>
+<li><p>Select the previous commit and then click <strong>Redeploy</strong> on the command bar.</p>
+<p> <img class="img-responsive"src="Images/redeploying-previous-commit.png?raw=true" alt="Redeploying the previous commit"></p>
+<p> <em>Redeploying the previous commit</em></p>
+</li>
+<li><p>When prompted to confirm, click <strong>Yes</strong>.</p>
+<p> <img class="img-responsive"src="Images/confirming-the-redeployment.png?raw=true" alt="Confirming the redeployment"></p>
+</li>
+<li><p>When the deployment completes, switch back to the browser instance with your site and press <strong>CTRL + F5</strong>.</p>
+</li>
+<li><p>Click any of the options. The flip animation will now take place and the result (<em>correct/incorrect</em>) will be displayed.</p>
+</li>
+<li><p>(Optional) Switch to the <strong>Git Bash</strong> console and execute the following commands to revert to the previous commit.</p>
+<blockquote>
+<p><strong>Note:</strong> These commands create a new commit that undoes all changes in the Git repository that were made in the bad commit. Azure will then redeploy the application using the new commit.</p>
+</blockquote>
+<pre><code class="lang-GitBash"> git revert HEAD --no-edit
+ git push azure master
+</code></pre>
+</li>
+</ol>
+<p><a name="Exercise4"></a></p>
+<h3 id="exercise-4-scaling-using-azure-storage">Exercise 4: Scaling Using Azure Storage</h3>
+<p><strong>Blobs</strong> are the simplest way to store large amounts of unstructured text or binary data such as video, audio and images. Moving the static content of your application to Storage helps scale your application by serving images or documents directly to the browser.</p>
+<p>In this exercise, you will move the static content of your application to a Blob container. Then you will configure your application to add an <strong>ASP.NET URL rewrite rule</strong> in the <strong>Web.config</strong> to redirect your content to the Blob container.</p>
+<p><a name="Ex4Task1"></a></p>
+<h4 id="task-1-creating-an-azure-storage-account">Task 1 - Creating an Azure Storage Account</h4>
+<p>In this task you will learn how to create a new storage account using the management portal.</p>
+<ol>
+<li><p>Navigate to the <a href="http://portal.azure.com">Azure Portal</a> and sign in using the Microsoft account associated with your subscription.</p>
+</li>
+<li><p>Select <strong>New | Data + Storage | Storage account</strong> to start creating a new storage account. </p>
+<p> <img class="img-responsive"src="Images/creating-a-new-storage-account.png?raw=true" alt="Creating a new Storage Account" title="Creating a new Storage Account"></p>
+<p> <em>Creating a new storage account</em></p>
+</li>
+<li><p>In the Storage account blade, click <strong>Create</strong>.</p>
+<p> <img class="img-responsive"src="Images/creating-the-storage-account.png?raw=true" alt="Creating the Storage Account" title="Creating the Storage Account"></p>
+<p> <em>Creating the storage account</em></p>
+</li>
+<li><p>Enter a unique name for the account and select a <strong>Location</strong> from the list. Click <strong>Create</strong> to continue.</p>
+<p> <img class="img-responsive"src="Images/configuring-the-new-storage-account.png?raw=true" alt="Configuring the new Storage Account" title="Configuring the new Storage Account"></p>
+<p> <em>Configuring the new storage account</em></p>
+</li>
+<li><p>Once the storage account is created it will open automatically. Click <strong>Properties</strong> in the <strong>Settings</strong> blade to see the information about the service endpoints that can be used within your applications.</p>
+<p> <img class="img-responsive"src="Images/storage-account-created.png?raw=true" alt="Storage Account created" title="Storage Account created"></p>
+<p> <em>Storage Account created</em></p>
+</li>
+<li><p>Click the <strong>Manage Keys</strong> button in the navigation bar.</p>
+<p> <img class="img-responsive"src="Images/manage-access-keys-button.png?raw=true" alt="Manage Access Keys button" title="Manage Access Keys button"></p>
+<p> <em>Manage Access Keys button</em></p>
+</li>
+<li><p>Take note of the <strong>Storage Account Name</strong> and <strong>Primary Access Key</strong> in the <strong>Manage Keys</strong> dialog box, as you will need them in the following exercise. Then, close the dialog box.</p>
+<p> <img class="img-responsive"src="Images/manage-key-blade.png?raw=true" alt="Manage Keys blade" title="Manage Keys blade"></p>
+<p> <em>Manage Keys blade</em></p>
+</li>
+</ol>
+<p><a name="Ex4Task2"></a></p>
+<h4 id="task-2-uploading-an-asset-to-azure-blob-storage">Task 2 - Uploading an Asset to Azure Blob Storage</h4>
+<p>In this task, you will use the Server Explorer window from Visual Studio to connect to your storage account. You will then create a blob container and upload a file with the Geek Quiz logo to the container.</p>
+<ol>
+<li><p>Switch to the Visual Studio instance with the <strong>GeekQuiz</strong> solution from the previous exercise.</p>
+</li>
+<li><p>From the menu bar, select <strong>View</strong> and then click <strong>Server Explorer</strong>.</p>
+</li>
+<li><p>In <strong>Server Explorer</strong>, right-click the <strong>Azure</strong> node and select <strong>Connect to Microsoft Azure Subscription...</strong>. Then, sign in using the Microsoft account associated with your subscription.</p>
+<p> <img class="img-responsive"src="Images/connect-to-microsoft-azure.png?raw=true" alt="Connect to Microsoft Azure"></p>
+<p> <em>Connect to Microsoft Azure</em></p>
+</li>
+<li><p>Expand the <strong>Azure</strong> node, right-click <strong>Storage</strong> and select <strong>Attach External Storage...</strong>.</p>
+<p> <img class="img-responsive"src="Images/attaching-an-external-storage.png?raw=true" alt="Attaching an external storage" title="Attaching an external storage"></p>
+<p> <em>Attaching an external storage</em></p>
+</li>
+<li><p>In the <strong>Add New Storage Account</strong> dialog box, enter the <strong>Account name</strong> and <strong>Account key</strong> you obtained in the previous task and click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="Images/add-new-storage-account-dialog-box.png?raw=true" alt="Add New Storage Account dialog box"></p>
+<p> <em>Add New Storage Account dialog box</em></p>
+</li>
+<li><p>Your storage account should appear under the <strong>Storage</strong> node. Expand your storage account, right-click <strong>Blobs</strong> and select <strong>Create Blob Container...</strong>. </p>
+<p> <img class="img-responsive"src="Images/create-blob-container.png?raw=true" alt="Create Blob Container" title="Create Blob Container"></p>
+<p> <em>Create Blob Container</em></p>
+</li>
+<li><p>In the <strong>Create Blob Container</strong> dialog box, enter <em>images</em> as the name for the blob container and click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="Images/create-blob-container-dialog-box.png?raw=true" alt="Create Blob Container dialog box" title="Create Blob Container dialog box"></p>
+<p> <em>Create Blob Container dialog box</em></p>
+</li>
+<li><p>The new blob container should be added to the <strong>Blobs</strong> node. Change the access permissions in the container to make the container public. To do this, right-click the <strong>images</strong> container and select <strong>Properties</strong>.</p>
+<p> <img class="img-responsive"src="Images/images-container-properties.png?raw=true" alt="images container properties" title="images container properties"></p>
+<p> <em>Images container properties</em></p>
+</li>
+<li><p>In the <strong>Properties</strong> window, set the <strong>Public Read Access</strong> to <strong>Container</strong>.</p>
+<p> <img class="img-responsive"src="Images/changing-public-read-access-property.png?raw=true" alt="Changing public read access property" title="Changing public read access property"></p>
+<p> <em>Changing public read access property</em></p>
+</li>
+<li><p>When prompted if you are sure you want to change the public access property, click <strong>Yes</strong>.</p>
+<p> <img class="img-responsive"src="Images/microsoft-visual-studio-warning.png?raw=true" alt="Microsoft Visual Studio warning" title="Microsoft Visual Studio warning"></p>
+<p> <em>Microsoft Visual Studio warning</em></p>
+</li>
+<li><p>In <strong>Server Explorer</strong>, right-click the <strong>images</strong> blob container and select <strong>View Blob Container</strong>.</p>
+<p> <img class="img-responsive"src="Images/view-blob-container.png?raw=true" alt="View Blob Container" title="View Blob Container"></p>
+<p> <em>View Blob Container</em></p>
+</li>
+<li><p>The images container should open in a new window and a legend with no entries should be shown. Click the <strong>Upload Blob</strong> icon to upload a file to the blob container.</p>
+<p> <img class="img-responsive"src="Images/images-container-with-no-entries.png?raw=true" alt="Images container with no entries" title="Images container with no entries"></p>
+<p> <em>Images container with no entries</em></p>
+</li>
+<li><p>Upload the <strong>logo-big.png</strong> file located in the <strong>Assets</strong> folder of this lab. Leave the <strong>Folder (optional)</strong> field empty.</p>
+<p> <img class="img-responsive"src="Images/uploading-the-asset.png?raw=true" alt="Uploading the asset" title="Uploading the asset"></p>
+<p> <em>Uploading the asset</em></p>
+</li>
+<li><p>When the upload completes, the file should be listed in the images container. Right-click the file entry and select <strong>Copy URL</strong>.</p>
+<p> <img class="img-responsive"src="Images/copy-blob-file-url.png?raw=true" alt="Copy blob file URL" title="Copy blob file URL"></p>
+<p> <em>Copy blob file URL</em></p>
+</li>
+<li><p>Open Microsoft Edge and paste the URL. The following image should be shown in the browser.</p>
+<p> <img class="img-responsive"src="Images/logo-bigpng-image-from-storage.png?raw=true" alt="logo-big.png image from Azure Blob Storage" title="logo-big.png image from storage"></p>
+<p> <em>logo-big.png image from Azure Blob Storage</em></p>
+</li>
+</ol>
+<p><a name="Ex4Task3"></a></p>
+<h4 id="task-3-updating-the-solution-to-consume-static-content-from-azure-blob-storage">Task 3 - Updating the Solution to Consume Static Content from Azure Blob Storage</h4>
+<p>In this task, you will configure the <strong>GeekQuiz</strong> solution to consume the image uploaded to Azure Blob Storage (instead of the image located in the web site) by adding an ASP.NET URL rewrite rule in the <strong>web.config</strong> file.</p>
+<ol>
+<li><p>In Visual Studio, open the <strong>web.config</strong> file located in the <strong>wwwroot</strong> folder in the <strong>GeekQuiz</strong> project and locate the <strong>\<system.webServer></strong> element.</p>
+</li>
+<li><p>Add the following code to add a URL rewrite rule, updating the placeholder with your storage account name.</p>
+<p> (Code Snippet - <em>WebSitesInProduction - Ex4 - UrlRewriteRule</em>)</p>
+ <!--mark:2-9-->
+<pre><code class="lang-XML"> &lt;system.webServer&gt;
+     &lt;rewrite&gt;
+         &lt;rules&gt;
+             &lt;rule name=&quot;redirect-images&quot; stopProcessing=&quot;true&quot;&gt;
+                 &lt;match url=&quot;img/(.*)&quot;/&gt;
+                 &lt;action type=&quot;Redirect&quot; url=&quot;http://[YOUR-STORAGE-ACCOUNT].blob.core.windows.net/images/{R:1}&quot;&gt;&lt;/action&gt;
+             &lt;/rule&gt;
+         &lt;/rules&gt;
+     &lt;/rewrite&gt;
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> URL rewriting is the process of intercepting an incoming Web request and redirecting the request to a different resource. The URL rewriting rules tells the rewriting engine when and where a request needs to be redirected. A rewriting rule is composed of two strings: the pattern to look for in the requested URL (usually, using regular expressions), and the string to replace the pattern with, if found. For more information, see <a href="http://msdn.microsoft.com/en-us/library/ms972974.aspx">URL Rewriting in ASP.NET</a>.</p>
+</blockquote>
+</li>
+<li><p>Press <strong>CTRL + S</strong> to save the changes.</p>
+</li>
+<li><p>Open the <strong>Index.cshtml</strong> file located at <strong>Views | Home</strong> and add the following header row inside the div element with the <strong>container</strong> class.</p>
+<pre><code class="lang-HTML"> &lt;div class=&quot;row header&quot;&gt;
+     &lt;img src=&quot;@Url.Content(&quot;~/img/logo-big.png&quot;)&quot; alt=&quot;&quot; /&gt;
+ &lt;/div&gt;
+</code></pre>
+<p> <img class="img-responsive"src="Images/updated-index-view.png?raw=true" alt="Updated index view" title="Updated index view"></p>
+<p> <em>Updated index view</em></p>
+</li>
+<li><p>Now you will deploy the updated application to Azure. Open a new <strong>Git Bash</strong> console and execute the following commands to push the changes into the repository and trigger a new deployment. Update the <em>[YOUR-APPLICATION-PATH]</em> placeholder with the path to the <strong>GeekQuiz</strong> solution. </p>
+<blockquote>
+<p><strong>Note:</strong> When you deploy content to the FTP host or GIT repository of an Azure Web App you must authenticate using the <strong>deployment credentials</strong> associated with your subscription. If you do not know your deployment credentials you can easily reset them in the Azure Portal by opening the Web App <strong>Settings</strong> and clicking <strong>Deployment credentials</strong>. </p>
+</blockquote>
+<pre><code class="lang-GitBash"> cd &quot;[YOUR-APPLICATION-PATH]&quot;
+ git add .
+ git commit -m &quot;Added URL rewrite rule in web.config file&quot;
+ git push azure master
+</code></pre>
+</li>
+</ol>
+<p><a name="Ex4Task4"></a></p>
+<h4 id="task-4-verification">Task 4 - Verification</h4>
+<p>In this task you will use <strong>Microsoft Edge</strong> to browse the <strong>Geek Quiz</strong> application and check that the URL rewrite rule for images works and that you are redirected to the image hosted on <strong>Azure Blob Storage</strong>.</p>
+<ol>
+<li><p>Open Microsoft Edge and navigate to your site (e.g. <em><a href="http://geek-quiz-site.azurewebsites.net/readme.htm">http://geek-quiz-site.azurewebsites.net/</a></em>). Log in using the credentials you created previously.</p>
+<p> <img class="img-responsive"src="Images/showing-the-geek-quiz-website-with-the-image.png?raw=true" alt="Showing the Geek Quiz website with the image" title="Showing the Geek Quiz website with the image"></p>
+<p> <em>Showing the Geek Quiz website with the image</em></p>
+</li>
+<li><p>Press <strong>F12</strong> to launch the development tools, select the <strong>Network</strong> tab and start recording.</p>
+<p> <img class="img-responsive"src="Images/starting-the-network-recording-2.png?raw=true" alt="Starting network recording" title="Starting network recording"></p>
+<p> <em>Starting network recording</em></p>
+</li>
+<li><p>Press <strong>CTRL + F5</strong> to refresh the web page.</p>
+</li>
+<li><p>Once the page has finished loading, you should see an HTTP request for the <strong>/img/logo-big.png</strong> URL with an HTTP <strong>301</strong> result (redirect) and another request for <strong><a href="http://[YOUR-STORAGE-ACCOUNT].blob.core.windows.net/images/logo-big.png">http://[YOUR-STORAGE-ACCOUNT].blob.core.windows.net/images/logo-big.png</a></strong> URL with an HTTP <strong>200</strong> result.</p>
+<p> <img class="img-responsive"src="Images/showing-the-redirect-in-dev-tools.png?raw=true" alt="Verifying the URL redirect" title="Showing the redirect in Dev Tools"></p>
+<p> <em>Verifying the URL redirect</em></p>
+</li>
+</ol>
+<p><a name="Exercise5"></a></p>
+<h3 id="exercise-5-using-autoscale-for-web-sites">Exercise 5: Using Autoscale for Web Sites</h3>
+<blockquote>
+<p><strong>Note:</strong> This exercise is optional, since it requires support for Web Load &amp; Performance Testing which is only available for <strong>Visual Studio 2015 Ultimate Edition</strong>. For more information on specific Visual Studio 2015 features, compare versions <a href="http://www.microsoft.com/visualstudio/eng/products/compare/readme.htm">here</a>.</p>
+</blockquote>
+<p><strong>Azure Web Apps</strong> provides the Autoscale feature for Web Apps running on a Standard plan. Autoscale lets Azure automatically scale the instance count of your Web App depending on the load. When Autoscale is enabled, Azure checks the CPU of your Web App once every five minutes and adds instances as needed at that point in time. If the CPU usage is low, Azure will remove instances once every two hours to ensure that the performance of your Web App is not degraded.</p>
+<p>In this exercise you will go through the steps required to configure the <strong>Autoscale</strong> feature for the <strong>Geek Quiz</strong> Web App. You will verify this feature by running a Visual Studio load test to generate enough CPU load on the application to trigger an instance upgrade.</p>
+<p><a name="Ex5Task1"></a></p>
+<h4 id="task-1-configuring-autoscale-based-on-the-cpu-metric">Task 1 - Configuring Autoscale Based on the CPU Metric</h4>
+<p>In this task you will use the Azure Portal to enable the Autoscale feature for the Web App you created in Exercise 2.</p>
+<ol>
+<li><p>In the <a href="https://portal.azure.com/readme.htm">Azure Portal</a>, select <strong>App Services</strong> and click the Web app you created in Exercise 2.</p>
+</li>
+<li><p>Navigate to the <strong>Scale Out (App Service Plan)</strong> option in the <strong>Settings</strong> blade. In the <strong>Scale setting</strong> blade, select the <strong>CPU Percentage</strong> option for the <strong>Scale by</strong> configuration.</p>
+<blockquote>
+<p><strong>Note:</strong> When scaling by CPU, Azure dynamically adjusts the number of instances that the Web app uses if the CPU usage changes.</p>
+</blockquote>
+<p> <img class="img-responsive"src="Images/selecting-the-cpu-metric-for-auto-scaling.png?raw=true" alt="Selecting to scale by CPU" title="Selecting the CPU metric for auto scaling"></p>
+<p> <em>Selecting to scale by CPU</em></p>
+</li>
+<li><p>Set the maximum number of <strong>Instances</strong> to 3 and the <strong>Target range</strong> to <strong>5</strong>-<strong>25</strong> percent. Then, click <strong>Save</strong> in the command bar at the top to save the changes.</p>
+<blockquote>
+<p><strong>Note:</strong> This range represents the average CPU usage for your Web App. Azure will add or remove instances to keep the CPU within this range. The minimum and maximum number of instances used for scaling is specified in the <strong>Instance</strong> configuration. Azure will never go above or beyond that limit.</p>
+<p>The default <strong>Target range</strong> values are modified just for the purposes of this lab. By configuring the CPU range with these small values, you are increasing the chances to trigger Autoscale when a moderate load is placed on the application.</p>
+</blockquote>
+<p> <img class="img-responsive"src="Images/changing-the-target-cpu-to-be-between-20-and.png?raw=true" alt="Changing the target range to be between 5 and 25 percent" title="Changing the target CPU to be between 5 and 25 percent"></p>
+<p> <em>Changing the Target range to be between 5 and 25 percent</em></p>
+</li>
+</ol>
+<p><a name="Ex5Task2"></a></p>
+<h4 id="task-2-load-testing-with-visual-studio">Task 2 - Load Testing with Visual Studio</h4>
+<p>Now that <strong>Autoscale</strong> has been configured, you will create a <strong>Web Performance and Load Test Project</strong> in Visual Studio to generate some CPU load on your Web App.</p>
+<ol>
+<li><p>Open <strong>Visual Studio Ultimate 2015</strong> and select <strong>File | New | Project...</strong> to start a new solution.</p>
+<p> <img class="img-responsive"src="Images/creating-a-new-project.png?raw=true" alt="Creating a new project" title="Creating a new project"></p>
+<p> <em>Creating a new project</em></p>
+</li>
+<li><p>In the <strong>New Project</strong> dialog box, select <strong>Web Performance and Load Test Project</strong> under the <strong>Visual C# | Test</strong> tab. Make sure <strong>.NET Framework 4.5</strong> is selected, name the project <em>WebAndLoadTestProject</em>, choose a <strong>Location</strong> and click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="Images/creating-a-new-web-and-load-test-project.png?raw=true" alt="Creating a new Web and Load Test project" title="Creating a new Web and Load Test project"></p>
+<p> <em>Creating a new Web and Load Test project</em></p>
+</li>
+<li><p>Inside the <strong>WebTest1.webtest</strong> window, right-click the <strong>WebTest1</strong> node and select <strong>Add Request</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-a-request-to-webtest1.png?raw=true" alt="Adding a request to WebTest1" title="Adding a request to WebTest1"></p>
+<p> <em>Adding a request to WebTest1</em></p>
+</li>
+<li><p>In the <strong>Properties</strong> window of the new request node, update the <strong>Url</strong> property to point to the URL of your Microsoft Azure Web App (e.g. <em><a href="http://geek-quiz.azurewebsites.net/readme.htm">http://geek-quiz.azurewebsites.net/</a></em>).</p>
+<p> <img class="img-responsive"src="Images/changing-the-url-property.png?raw=true" alt="Changing the Url property" title="Changing the Url property"></p>
+<p> <em>Changing the Url property</em></p>
+</li>
+<li><p>Back in the <strong>WebTest1.webtest</strong> window, right-click <strong>WebTest1</strong> and select <strong>Add Loop...</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-a-loop-to-webtest1.png?raw=true" alt="Adding a loop to WebTest1" title="Adding a loop to WebTest1"></p>
+<p> <em>Adding a loop to WebTest1</em></p>
+</li>
+<li><p>In the <strong>Add Conditional Rule and Items to Loop</strong> dialog box, select the <strong>For Loop</strong> rule and modify the following properties.</p>
+<ol>
+<li><strong>Terminating value:</strong> 1000</li>
+<li><strong>Context Parameter Name:</strong> Iterator</li>
+<li><p><strong>Increment Value:</strong> 1</p>
+<p><img class="img-responsive"src="Images/selecting-the-for-loop-rule-and-updating-the.png?raw=true" alt="Selecting the For Loop rule and updating the properties" title="Selecting the For Loop rule and updating the properties"></p>
+<p><em>Selecting the For Loop rule and updating the properties</em></p>
+</li>
+</ol>
+</li>
+<li><p>Under the <strong>Items in loop</strong> section, select the request you created previously as the first and last items for the loop. Click <strong>OK</strong> to continue.</p>
+<p> <img class="img-responsive"src="Images/selecting-the-first-and-last-items-for-the-lo.png?raw=true" alt="Selecting the first and last items for the loop" title="Selecting the first and last items for the loop"></p>
+<p> <em>Selecting the first and last items for the loop</em></p>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>WebAndLoadTestProject</strong> project, expand the <strong>Add</strong> menu and select <strong>Load Test...</strong>.</p>
+<p> <img class="img-responsive"src="Images/adding-a-load-test-to-the-webandloadtestproje.png?raw=true" alt="Adding a Load Test to the WebAndLoadTestProject project" title="Adding a Load Test to the WebAndLoadTestProject project"></p>
+<p> <em>Adding a Load Test to the WebAndLoadTestProject project</em></p>
+</li>
+<li><p>In the <strong>New Load Test Wizard</strong> dialog box, click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/new-load-test-wizard.png?raw=true" alt="New Load Test Wizard" title="New Load Test Wizard"></p>
+<p> <em>New Load Test Wizard</em></p>
+</li>
+<li><p>In the <strong>Scenario</strong> page, select <strong>Do not use think times</strong> and click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/selecting-not-to-use-think-times.png?raw=true" alt="Selecting not to use think times" title="Selecting not to use think times"></p>
+<p> <em>Selecting not to use think times</em></p>
+</li>
+<li><p>In the <strong>Load Pattern</strong> page, make sure the <strong>Constant Load</strong> option is selected. Change the <strong>User Count</strong> setting to <strong>250</strong> users and click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/changing-the-user-count-to-250.png?raw=true" alt="Changing the user count to 250" title="Changing the user count to 250"></p>
+<p> <em>Changing the user count to 250</em></p>
+</li>
+<li><p>In the <strong>Test Mix Model</strong> page, select <strong>Based on sequential test order</strong> and click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/selecting-the-test-mix-model.png?raw=true" alt="Selecting the test mix model" title="Selecting the test mix model"></p>
+<p> <em>Selecting the test mix model</em></p>
+</li>
+<li><p>In the <strong>Test Mix Model</strong> page, click <strong>Add...</strong> to add a test to the mix.</p>
+<p> <img class="img-responsive"src="Images/adding-a-test-to-the-test-mix.png?raw=true" alt="Adding a test to the test mix" title="Adding a test to the test mix"></p>
+<p> <em>Adding a test to the test mix</em></p>
+</li>
+<li><p>In the <strong>Add Tests</strong> dialog box, double-click <strong>WebTest1</strong> to add the test to the <strong>Selected tests</strong> list. Click <strong>OK</strong> to continue.</p>
+<p> <img class="img-responsive"src="Images/adding-the-webtest1-to-the-test-mix-model.png?raw=true" alt="Adding the WebTest1 test" title="Adding the WebTest1 test"></p>
+<p> <em>Adding the WebTest1 test</em></p>
+</li>
+<li><p>Back in the <strong>Test Mix</strong> page, click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/completing-the-test-mix-page.png?raw=true" alt="Completing the Test Mix page" title="Completing the Test Mix page"></p>
+<p> <em>Completing the Test Mix page</em></p>
+</li>
+<li><p>In the <strong>Network Mix</strong> page, click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/clicking-next-in-the-network-mix-page.png?raw=true" alt="Clicking Next in the Network Mix page" title="Clicking Next in the Network Mix page"></p>
+<p> <em>Clicking Next in the Network Mix page</em></p>
+</li>
+<li><p>In the <strong>Browser Mix</strong> page, select <strong>Internet Explorer 11.0</strong> as the browser type and click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/selecting-the-browser-type.png?raw=true" alt="Selecting the browser type" title="Selecting the browser type"></p>
+<p> <em>Selecting the browser type</em></p>
+</li>
+<li><p>In the <strong>Counter Sets</strong> page, click <strong>Next</strong>.</p>
+<p> <img class="img-responsive"src="Images/clicking-next-in-the-counter-sets-page.png?raw=true" alt="Clicking Next in the Counter Sets page" title="Clicking Next in the Counter Sets page"></p>
+<p> <em>Clicking Next in the Counter Sets page</em></p>
+</li>
+<li><p>In the <strong>Run Settings</strong> page, select <strong>Load test duration</strong>, make sure the <strong>Run duration</strong> is set to <strong>5 minutes</strong> and then click <strong>Finish</strong>.</p>
+<p> <img class="img-responsive"src="Images/setting-the-load-test-duration-to-5-minutes.png?raw=true" alt="Setting the load test duration to 5 minutes" title="Setting the load test duration to 5 minutes"></p>
+<p> <em>Setting the load test duration to 5 minutes</em></p>
+</li>
+<li><p>In <strong>Solution Explorer</strong>, double-click the <strong>Local.settings</strong> file to explore the test settings. Make sure that Visual Studio uses your local computer to run the tests.</p>
+<blockquote>
+<p><strong>Note:</strong> Alternatively, you can configure your test project to run the load tests in the cloud using <strong>Visual Studio Online (VSO)</strong>. VSO provides a cloud-based load testing service that simulates a more realistic load, avoiding local environment constraints like CPU capacity, available memory and network bandwidth. For more information about using VSO to run load tests, see <a href="http://www.visualstudio.com/get-started/load-test-your-app-vs/readme.htm">this article</a>.</p>
+</blockquote>
+<p> <img class="img-responsive"src="Images/test-settings.png?raw=true" alt="Test settings"></p>
+</li>
+</ol>
+<p><a name="Ex5Task3"></a></p>
+<h4 id="task-3-autoscale-verification">Task 3 - Autoscale Verification</h4>
+<p>You will now execute the load test you created in the previous task and see how your Web App behaves under load.</p>
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, double-click <strong>LoadTest1.loadtest</strong> to open the load test.</p>
+<p> <img class="img-responsive"src="Images/opening-loadtest1loadtest.png?raw=true" alt="Opening LoadTest1.loadtest" title="Opening LoadTest1.loadtest"></p>
+<p> <em>Opening LoadTest1.loadtest</em></p>
+</li>
+<li><p>In the <strong>LoadTest1.loadtest</strong> windows, right-click the <strong>Run Settings1</strong> node and select <strong>Properties</strong> or press <strong>ALT + Enter</strong>.</p>
+<p> <img class="img-responsive"src="Images/opening-run-settings-properties.png?raw=true" alt="Opening Run Settings properties" title="Opening Run Settings properties"></p>
+<p> <em>Open Run Settings properties</em></p>
+</li>
+<li><p>Update the <strong>WebTest Connection Pool Size</strong> to <strong>100</strong> and save the changes.</p>
+<p> <img class="img-responsive"src="Images/run-settings-properties.png?raw=true" alt="Run Settings properties" title="Run Settings properties"></p>
+<p> <em>Run Settings properties</em></p>
+</li>
+<li><p>In the <strong>LoadTest1.loadtest</strong> window, click the first button in the toolbox to run the load test.</p>
+<p> <img class="img-responsive"src="Images/running-the-load-test.png?raw=true" alt="Running the load test" title="Running the load test"></p>
+<p> <em>Running the load test</em></p>
+</li>
+<li><p>Wait until the load test completes.</p>
+<blockquote>
+<p><strong>Note:</strong> The load test simulates multiple users that send requests to the site simultaneously. When the test is running, you can monitor the available counters to detect any errors, warnings or other information related to your load test run.</p>
+</blockquote>
+<p> <img class="img-responsive"src="Images/waiting-until-the-load-test-completes.png?raw=true" alt="Load test running" title="Waiting until the load test completes"></p>
+<p> <em>Load test running</em></p>
+</li>
+<li><p>Once the test completes, go back to the Azure Portal and navigate to the App Service Plan in which your web app was created. In the <strong>Scale</strong> tile under the <strong>Usage</strong> section, you should see that the number of instances has increased.</p>
+<p> <img class="img-responsive"src="Images/new-instance-automatically-deployed.png?raw=true" alt="New instance automatically deployed"></p>
+<p> <em>New instance automatically deployed</em></p>
+<blockquote>
+<p><strong>Note:</strong> It may take several minutes for the changes to appear in the graph (press <strong>CTRL + F5</strong> periodically to refresh the page). If you do not see any changes, you can try the following:</p>
+<ul>
+<li>Increase the duration of the load test (e.g. to <strong>10 minutes</strong>)</li>
+<li>Reduce the maximum and minimum values of the <strong>Target CPU</strong> range in the Autoscale configuration of your Web App</li>
+<li>Run the load test in the cloud with <strong>Visual Studio Online</strong>. More information <a href="http://www.visualstudio.com/en-us/get-started/load-test-your-app-vs.aspx">here</a></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><a name="Summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>In this hands-on lab, you have learned how to set up and deploy your application to a production Web App in Microsoft Azure. You started by detecting and updating your databases using <strong>Entity Framework Code First Migrations</strong>, then continued by deploying new versions of your site to different deployment slots using <strong>Git</strong> and performing rollbacks to the latest stable version of your site. Additionally, you learned how to scale your Web App using Storage to move your static content to a Blob container. </p>
+<blockquote>
+<p><strong>Note:</strong> You can take advantage of the <a href="https://www.visualstudio.com/en-us/products/visual-studio-dev-essentials-vs.aspx">Visual Studio Dev Essentials</a> subscription in order to get everything you need to build and deploy your app on any platform.</p>
+</blockquote>
+
+      </div>
+  </body>
+</html>

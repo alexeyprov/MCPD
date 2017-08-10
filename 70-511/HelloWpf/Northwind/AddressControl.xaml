@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="HelloWpf.Northwind.AddressControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:v="clr-namespace:CustomUI.Validation;assembly=CustomUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="AddressFirstColumn" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!-- Line 1 -->
+        <TextBlock Style="{StaticResource EditorLabel}">Street:</TextBlock>
+        <TextBox Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource EditorField}">
+            <TextBox.Text>
+                <Binding Path="StreetAddress">
+                    <Binding.ValidationRules>
+                        <v:AnnotationValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        
+        <!-- Line 2 -->
+        <TextBlock Grid.Row="1" Style="{StaticResource EditorLabel}">City:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource EditorField}">
+            <TextBox.Text>
+                <Binding Path="City">
+                    <Binding.ValidationRules>
+                        <v:AnnotationValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource EditorLabel}">Region:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource EditorField}">
+            <TextBox.Text>
+                <Binding Path="Region">
+                    <Binding.ValidationRules>
+                        <v:AnnotationValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <!-- Line 3 -->
+        <TextBlock Grid.Row="2" Style="{StaticResource EditorLabel}">Country:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource EditorField}">
+            <TextBox.Text>
+                <Binding Path="Country">
+                    <Binding.ValidationRules>
+                        <v:AnnotationValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource EditorLabel}">Postal Code:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource EditorField}">
+            <TextBox.Text>
+                <Binding Path="PostalCode">
+                    <Binding.ValidationRules>
+                        <v:AnnotationValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+    </Grid>
+</UserControl>

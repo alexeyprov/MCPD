@@ -1,0 +1,206 @@
+﻿<Window 
+    x:Uid="wndLocalizationInfo" x:Name="wndLocalizationInfo"
+    x:Class="WpfLocalizationResx.LocalizationInfo"    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit"            
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+	xmlns:globalization="clr-namespace:System.Globalization;assembly=mscorlib"             
+    xmlns:res="http://www.west-wind.com/WpfControls"
+    xmlns:local="clr-namespace:WpfLocalizationResx.LocalResources"
+    xmlns:props="clr-namespace:WpfLocalizationResx.Properties"
+    Background="{DynamicResource WindowBackgroundBrush}"    
+    SizeToContent="WidthAndHeight"                          
+    res:TranslationExtension.TranslateResourceSet="WpfLocalizationResx.LocalResources.LocalizationInfoRes"
+    res:TranslationExtension.TranslateResourceAssembly="WpfLocalizationResx"
+    Title="{x:Static local:LocalizationInfoRes.wndLocalizationInfo_Title}"     
+    FlowDirection="{Binding Source={x:Static res:LocalizationSettings.Current},Path=FlowDirection}"            
+>
+    
+    <Grid x:Uid="LayoutRoot" x:Name="LayoutRoot" >
+        <Rectangle x:Uid="Rectangle_1" RadiusX="10" RadiusY="10" VerticalAlignment="Stretch"/>
+
+        <StackPanel x:Uid="StackPanel_1" Margin="0">
+            <Menu x:Uid="MainMenu" x:Name="MainMenu">
+                <MenuItem x:Uid="mnuFile" Header="{res:Res Static=local:LocalizationInfoRes.mnuFile_Header,Default=_File!}" x:Name="mnuFile">
+                    <MenuItem x:Uid="mnuSave" Header="{x:Static local:LocalizationInfoRes.mnuSave_Header}" x:Name="mnuSave"   />
+                    <MenuItem x:Uid="mnuExit" Header="{x:Static local:LocalizationInfoRes.mnuExit_Header}" x:Name="mnuExit" Click="ButtonHandler"/>
+                </MenuItem>
+
+                <MenuItem x:Uid="MenuItem_1" Header="{res:Res Static=local:LocalizationInfoRes.mnuHelp_Header,Default=Help!}">
+                    <MenuItem x:Uid="MenuItem_2" Header="{x:Static local:LocalizationInfoRes.mnuHelpContent_Header}" />
+                    <Separator x:Uid="Separator_1" />
+                    <MenuItem x:Uid="MenuItem_3" Header="{x:Static local:LocalizationInfoRes.mnuHelpAbout_Header}" />
+                </MenuItem>
+
+                <Separator x:Uid="Separator_2"/>
+
+            </Menu>
+
+            <ToolBar x:Uid="ToolbarMain" x:Name="ToolbarMain">
+                <!--<ItemsControl  Height="25" Padding="4" VerticalAlignment="Center">                    
+                </ItemsControl>-->
+
+                <ToolBarPanel x:Uid="ToolBarPanel_1"  Orientation="Horizontal" VerticalAlignment="Center" >
+                    <Label x:Uid="lblLanguageSelections" x:Name="lblLanguageSelections" Margin="10,0"  
+                           Content="{res:Res Static=local:LocalizationInfoRes.lblLanguageSelections_Content,Default=Select Language:!}" VerticalAlignment="Center" />
+                    <ComboBox x:Uid="lstLanguageSelections" x:Name="lstLanguageSelections" 
+                              VerticalAlignment="Center"
+                              SelectionChanged="lstLanguageSelections_SelectionChanged"
+                              MinWidth="100"
+                              >
+                        <ComboBoxItem x:Uid="ComboBoxItem_1" Tag="en-US" Content="{res:Res Static=local:LocalizationInfoRes.cmbLanguageItem1,Default=English (en-US)}"/>
+                        <ComboBoxItem x:Uid="ComboBoxItem_2" Content="{res:Res Static=local:LocalizationInfoRes.cmbLanguageItem2,Default=German (de-DE)}" Tag="de-DE" />
+                        <ComboBoxItem x:Uid="ComboBoxItem_3" Content="{res:Res Static=local:LocalizationInfoRes.cmbLanguageItem3,Default=Hebrew (he-IL)}" Tag="he-IL" />
+                    </ComboBox>
+                    <Separator x:Uid="Separator_3" Width="3" />
+                    <Label x:Uid="lblThemeSelection" x:Name="lblThemeSelection" 
+                           Content="{res:Res Static=local:LocalizationInfoRes.lblThemeSelection_Content,Default=Select Theme:!}" 
+                           VerticalAlignment="Center" Margin="10,0" />
+                    <ComboBox x:Uid="lstThemeSelections" x:Name="lstThemeSelections" Width="Auto" MinWidth="75" 
+                              SelectionChanged="lstThemeSelections_SelectionChanged" 
+                              VerticalAlignment="Center"/>
+                </ToolBarPanel>
+            </ToolBar>
+
+            <StackPanel  x:Uid="StackPanel_3" Width="500" Margin="15,0,15,0">
+
+                <GroupBox x:Uid="gbValueInput" x:Name="gbValueInput" Header="{res:Res Static=local:LocalizationInfoRes.gbValueInput_Header,Default=Locale Information}"  Margin="10">
+                    <Grid  x:Uid="Grid_2" x:Name="Grid_2" Margin="10"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  x:Uid="ColumnDefinition_3" Width="150"  />
+                            <ColumnDefinition  x:Uid="ColumnDefinition_4" Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions >
+                            <RowDefinition x:Uid="RowDefinition_26"   />
+                            <RowDefinition x:Uid="RowDefinition_27"  />
+                        </Grid.RowDefinitions>
+
+                        <Label x:Uid="lblNumberLabel" x:Name="lblNumberLabel" Content="{res:Res Static=local:LocalizationInfoRes.lblNumberLabel_Content,Default=Enter a numeric value:!}" VerticalAlignment="Center"  />
+                        <TextBox x:Uid="txtNumber" x:Name="txtNumber" TextAlignment="Right" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left" Width="100" VerticalAlignment="Center" 
+                                 Text="{Binding ElementName=wndSimpleForm,Path=NumberValue,Mode=TwoWay}" TextChanged="txtNumber_TextChanged" />
+
+                        <Label x:Uid="lblDateLabel" x:Name="lblDateLabel" Grid.Row="1" Grid.Column="0" Content="{res:Res Static=local:LocalizationInfoRes.lblDateLabel_Content,Default=Enter a date value:}" VerticalAlignment="Center"/>
+
+                        <Custom:DatePicker x:Uid="txtDate" x:Name="txtDate" 
+                                           Grid.Row="1" Grid.Column="1" 
+                                           HorizontalAlignment="Left" Width="100" 
+                                           VerticalAlignment="Center" 
+                                           SelectedDate="{x:Static system:DateTime.Now}" />
+                    </Grid>
+                </GroupBox>
+
+                <TextBox x:Uid="TextBox_1" HorizontalAlignment="Left" Margin="138,0,0,0" Width="5" Height="2" Text="TextBox" TextWrapping="Wrap"/>
+
+                <GroupBox x:Uid="gbLocaleInformation" x:Name="gbLocaleInformation" Margin="10" Padding="10"
+                          Header="{res:Res Static=local:LocalizationInfoRes.gbLocaleInformation_Header,Default=Locale}">                
+                    <Grid x:Uid="Grid_1" DataContext="{Binding ElementName=wndSimpleForm}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  x:Uid="ColumnDefinition_1" Width="150" />
+                            <ColumnDefinition x:Uid="ColumnDefinition_2" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Uid="RowDefinition_1" Height="22"/>
+                            <RowDefinition x:Uid="RowDefinition_2" Height="22"/>
+                            <RowDefinition x:Uid="RowDefinition_3" Height="22"/>
+                            <RowDefinition x:Uid="RowDefinition_4" Height="22"/>
+                            <RowDefinition x:Uid="RowDefinition_5" Height="22"/>
+                            <RowDefinition x:Uid="RowDefinition_6" Height="22"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Uid="lblLocale" x:Name="lblLocale" Grid.Column="0" 
+                                   Text="{res:Res Static=local:LocalizationInfoRes.lblLocale_Content,Default=Locale}" />
+                        <TextBlock x:Uid="lblLocaleValue" x:Name="lblLocaleValue" Grid.Column="1" 
+    						Text="{Binding ElementName=wndLocalizationInfo,Path=CurrentCulture.IetfLanguageTag}" />
+
+                        <TextBlock x:Uid="lblLocaleName" x:Name="lblLocaleName" Grid.Column="0" Grid.Row="1" Text="{res:Res Static=local:LocalizationInfoRes.lblLocaleName_Content,Default=Display Name:!}"/>
+                        <TextBlock x:Uid="lblLocaleNameValue" x:Name="lblLocaleNameValue" Grid.Column="1" Grid.Row="1"
+    						Text="{Binding ElementName=wndLocalizationInfo,Path=CurrentCulture.DisplayName}" />
+
+                        <TextBlock x:Uid="lblNativeName" x:Name="lblNativeName" Grid.Column="0" Grid.Row="2" Text="{res:Res Static=local:LocalizationInfoRes.lblNativeName_Content,Default=Native Name:!}"/>
+                        <TextBlock x:Uid="lblNativeNameValue" x:Name="lblNativeNameValue" Grid.Column="1" Grid.Row="2"
+    						Text="{Binding ElementName=wndLocalizationInfo,Path=CurrentCulture.NativeName}" />
+
+                        <TextBlock x:Uid="lblLocaleDateName" x:Name="lblLocaleDateName" Grid.Column="0" Grid.Row="3"  Text="{res:Res Static=local:LocalizationInfoRes.lblLocalDateTimeName_Content,Default=Date Time:!}" />
+                        <TextBlock x:Uid="lblLocaleDateValue" x:Name="lblLocaleDateValue" Grid.Column="1" Grid.Row="3"
+    						  Text="{Binding ElementName=txtDate, Path=SelectedDate}"/>
+
+                        <TextBlock x:Uid="lblLocaleNumberName" x:Name="lblLocaleNumberName" Grid.Column="0" Grid.Row="4" Text="{res:Res Static=local:LocalizationInfoRes.lblLocaleNumberName_Content,Default=Numeric:}"/>
+                        <TextBlock x:Uid="lblLocaleNumberValue" x:Name="lblLocaleNumberValue" Grid.Column="1" Grid.Row="4" 
+						           Text="{Binding ElementName=wndLocalizationInfo,Path=NumberValue,StringFormat={}\{0:c\}}" />
+
+                        <TextBlock x:Uid="lblFlowDirection" x:Name="lblFlowDirection" 
+                                   Text="{res:Res Static=local:LocalizationInfoRes.lblFlowDirectionName_Content,Default=Flow Direction:!}"  
+                                   Grid.Column="0" Grid.Row="5"/>
+                        <CheckBox x:Uid="chkRightToLeft" x:Name="chkRightToLeft" 
+                                  Content="{res:Res Static=local:LocalizationInfoRes.chkRightToLeft_Content,Default=Right to left!}" 
+                                  IsChecked="{Binding ElementName=wndLocalizationInfo,Path=IsRightToLeft}"
+                                  Grid.Column="1" Grid.Row="5" />
+
+                    </Grid>
+                </GroupBox>
+                
+                <GroupBox x:Uid="grpBoundValues" x:Name="grpBoundValues" Header="{res:Res Static=local:LocalizationInfoRes.grpBoundValues_Header,Default=Bound Values!}"  Margin="10" Padding="10">
+                    <Grid x:Uid="Grid_3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Uid="ColumnDefinition_5" />
+                            <ColumnDefinition x:Uid="ColumnDefinition_6" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition x:Uid="RowDefinition_28" />
+                            <RowDefinition x:Uid="RowDefinition_29" />
+                            <RowDefinition x:Uid="RowDefinition_30" />
+                            <RowDefinition x:Uid="RowDefinition_31" />
+                         </Grid.RowDefinitions>
+                        
+                        <Label x:Uid="lblResxHelloWorldStrongLabel" x:Name="lblResxHelloWorldStrongLabel" Grid.Column="0" Grid.Row="0" Content="{res:Res Static=local:LocalizationInfoRes.lblResxHelloWorldStrongLabel_Content,Default=Hello World Strong Type!}"/>
+                        <Label x:Uid="lblResxHelloWorldStrongValue" x:Name="lblResxHelloWorldStrongValue" Content="{x:Static props:Resources.HelloWorld}" Grid.Column="1" Grid.Row="0"/>
+                        
+                        <Label x:Uid="lblResxHelloWorldMarkupExtension1Label" x:Name="lblResxHelloWorldMarkupExtension1Label" Grid.Column="0" Grid.Row="1"  
+                               Content="{res:Res Static=local:LocalizationInfoRes.lblResxHelloWorldMarkupExtension1Label_Content,Default=Hello World Markup Extension Default!}" />                    
+                        <Label x:Uid="lblResxHelloWorldMarkupExtension1Value" x:Name="lblResxHelloWorldMarkupExtension1Value" 
+                               Content="{res:Res Id=HelloWorld,Default=Hello World#}" 
+                               Margin="{res:Res Id=HelloWorldMargin,Assembly=WpfLocalizationResx}"
+                               Grid.Column="1" Grid.Row="1"/>
+
+                        <Label x:Uid="lblResxHelloWorldMarkupExtension2Label" x:Name="lblResxHelloWorldMarkupExtension2Label" Grid.Column="0" Grid.Row="2"
+                               Content="{res:Res Static=local:LocalizationInfoRes.lblResxHelloWorldMarkupExtension2Label_Content,Default=Today Markup Extensions Explicit:}" />                               
+                        <Label x:Uid="lblResxHelloWorldMarkupExtension2Value" x:Name="lblResxHelloWorldMarkupExtension2Value" 
+                               Content="{res:Res Static=props:Resources.Today,Default=Today#}"                                
+                               Grid.Column="1" Grid.Row="2" />
+                        
+                        <Label x:Uid="lblAttachedLabel" x:Name="lblAttachedLabel" Grid.Column="0" Grid.Row="3" 
+                               Content="{res:Res Static=local:LocalizationInfoRes.lblAttachedLabel_Content,Default=Attached Property (Content/Tooltip):}" />
+                        <Label x:Uid="lblAttachedValue" 
+                               x:Name="lblAttachedValue"  
+                                res:TranslationExtension.Translate="True" 
+                               Grid.Row="3" Grid.Column="1">Hello World Attached Property (non res text)</Label>
+                    </Grid>                                       
+                </GroupBox>
+
+                
+            
+                <Grid x:Uid="Grid_4" Margin="0,0,0,10">
+                    
+                    <Image x:Uid="imgFlag" x:Name="imgFlag"  Height="50" HorizontalAlignment="Left">
+                        <!-- Demonstrate Context Menu which doesn't work with Translate due to containership -->
+                        <Image.ContextMenu>
+                            <ContextMenu x:Uid="ContextMenu_1">
+                                <MenuItem x:Uid="MyContext_Hello" x:Name="MyContext_Hello" Header="{res:Res Static=local:LocalizationInfoRes.MyContext_Hello_Header}" />
+                                <Separator x:Uid="Separator_4" />
+                                <MenuItem x:Uid="MyContext_Goodbye" x:Name="MyContext_Goodbye" Header="{x:Static local:LocalizationInfoRes.MyContext_GoodBye_Header}" />
+                            </ContextMenu>
+                        </Image.ContextMenu>
+                    </Image>
+
+                    <Button x:Uid="btnExit" x:Name="btnExit"  
+    			            HorizontalAlignment="Right" Margin="10" Width="75" Height="23" 
+    			            Content="{res:Res Static=local:LocalizationInfoRes.btnExit_Content,Default=E_xit!}" 
+                            Click="ButtonHandler"/>
+                </Grid>
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

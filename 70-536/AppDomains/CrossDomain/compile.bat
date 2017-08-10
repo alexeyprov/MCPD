@@ -1,0 +1,1 @@
+csc /debug /out:CrossDomain.exe Program.cs ITestedType.cs MarshalByRefType.cs MarshalByValType.cs NonMarshalledType.cs

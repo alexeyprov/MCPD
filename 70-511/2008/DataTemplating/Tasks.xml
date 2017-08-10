@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Task>
+    <Name>Shopping</Name>
+    <Description>Pick up groceries &amp; detergent</Description>
+    <Priority>2</Priority>
+    <Category>Home</Category>
+  </Task>
+  <Task>
+    <Name>Laundry</Name>
+    <Description>Do my laundry</Description>
+    <Priority>2</Priority>
+    <Category>Home</Category>
+  </Task>
+  <Task>
+    <Name>Email</Name>
+    <Description>Email clients</Description>
+    <Priority>1</Priority>
+    <Category>Work</Category>
+  </Task>
+  <Task>
+    <Name>Clean</Name>
+    <Description>Clean my office</Description>
+    <Priority>3</Priority>
+    <Category>Work</Category>
+  </Task>
+  <Task>
+    <Name>Dinner</Name>
+    <Description>Get ready for family reunion</Description>
+    <Priority>1</Priority>
+    <Category>Home</Category>
+  </Task>
+  <Task>
+    <Name>Proposals</Name>
+    <Description>Review new budget proposals</Description>
+    <Priority>2</Priority>
+    <Category>Work</Category>
+  </Task>
+</ArrayOfTask>

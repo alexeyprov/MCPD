@@ -1,0 +1,13 @@
+﻿@model Guid
+
+@{
+    ViewBag.Title = "Checkout Complete";
+}
+
+<h2>Checkout Complete</h2>
+
+<p>Thanks for your order! Your order id is: @Model.ToString()</p>
+
+<p>How about shopping for some more in our 
+    @Html.ActionLink("store", "Index", "Store")
+</p>

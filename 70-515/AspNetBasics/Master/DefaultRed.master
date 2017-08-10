@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="DefaultRed.master.cs" Inherits="DefaultRedMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<title>ASP.NET Basics</title>
+	<asp:ContentPlaceHolder ID="HeadPlaceholder" runat="server">
+	</asp:ContentPlaceHolder>
+	<link href="../App_Themes/MasterStyleSheet.css" rel="Stylesheet" type="text/css" />
+</head>
+<body runat="server" id="body">
+	<form id="form1" runat="server">
+	<asp:XmlDataSource ID="srcMasterPages" runat="server" DataFile="~/App_Data/MasterPages.xml"
+		CacheExpirationPolicy="Sliding" />
+	<asp:SiteMapDataSource ID="srcSiteMap" runat="server" 
+		SiteMapProvider="RootSiteMapProvider" ShowStartingNode="false"/>
+	<table width="100%" cellspacing="5px">
+		<tr>
+			<td width="100%" align="left">
+				<h1 id="H1" runat="server" innertext='<%$ Resources: Resource, ApplicationName %>'>
+				</h1>
+			</td>
+			<td width="100px">
+				&nbsp;
+				<asp:Image ID="imgLogo" runat="server" SkinID="LogoImage" 
+					meta:resourcekey="imgLogoResource1"/>
+			</td>
+			<td width="120px">
+				<asp:DropDownList ID="ddlLanguages" runat="server" 
+					AutoPostBack="true"
+					meta:resourcekey="ddlLanguagesResource1" 
+					onselectedindexchanged="ddlLanguages_SelectedIndexChanged"
+					onprerender="ddlLanguages_PreRender"
+					Width="120px">
+					<asp:ListItem meta:resourcekey="ListItemResource1" Selected="True" 
+						Value="en-US">English</asp:ListItem>
+					<asp:ListItem meta:resourcekey="ListItemResource2" Value="ru-RU">Russian</asp:ListItem>
+				</asp:DropDownList>
+			</td>
+		</tr>
+		<tr>
+			<td width="100%" align="left">
+				A web-site for MS exam <a href="http://www.microsoft.com/learning/en/us/exam.aspx?ID=70-515"
+					target="blank">70-515</a> training
+			</td>
+			<td width="100px" align="right">
+				Master&nbsp;Page/Theme:
+			</td>
+			<td width="120px">
+				<asp:DropDownList ID="ddlMasters" runat="server" Width="120px" AutoPostBack="true"
+					DataSourceID="srcMasterPages" DataTextField="Name" DataValueField="Path" OnSelectedIndexChanged="ddlMasters_SelectedIndexChanged"
+					OnDataBound="ddlMasters_DataBound">
+				</asp:DropDownList>
+			</td>
+		</tr>
+	</table>
+	<asp:Menu ID="mnuMain" runat="server" DataSourceID="srcSiteMap" 
+		Orientation="Horizontal" DynamicHorizontalOffset="2" 
+		StaticSubMenuIndent="10px" >
+		<DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+		<StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+	</asp:Menu>
+	<hr />
+	<div class="mainBody">
+		<asp:ContentPlaceHolder ID="BodyContentPlaceHolder" runat="server">
+		</asp:ContentPlaceHolder>
+	</div>
+	<br />
+	<asp:SiteMapPath ID="smpMain" runat="server" />
+	</form>
+	<br />
+	<center>
+		<small>Copyright (C) 2009-2011 by Alexey Provotorov</small>
+	</center>
+</body>
+</html>

@@ -1,0 +1,2 @@
+70-503: TS: Microsoft .NET Framework 3.5, Windows Communication Foundation Application Development
+70-513: TS: Windows Communication Foundation Development with Microsoft .NET Framework 4

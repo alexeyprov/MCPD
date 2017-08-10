@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Northwind.Data.Entities.Shipper>
+
+@{
+	ViewBag.Title = "Shippers";
+}
+
+<style>
+	td.padded
+	{
+		padding: 10px;
+		vertical-align: top;
+	}
+</style>
+
+<fieldset>
+	<legend>Suppliers</legend>
+	<table>
+		<tr>
+			<td class="padded">
+				@using (Ajax.BeginForm("Edit", new AjaxOptions()
+					{
+						LoadingElementId = "loader",
+						UpdateTargetId = "shipperHost"
+					}))
+				{
+					@Html.DropDownList("shippers", new SelectList(Model, "ShipperID", "CompanyName"))
+					<input type="submit" value="Edit" />
+					<br/>
+					<img id="loader" alt="Loading..." src="../../../../Images/loading.gif" style="display:none"/>
+				}
+			</td>
+			<td class="padded">
+				<div id="shipperHost" />
+			</td>
+		</tr>
+	</table>
+</fieldset>

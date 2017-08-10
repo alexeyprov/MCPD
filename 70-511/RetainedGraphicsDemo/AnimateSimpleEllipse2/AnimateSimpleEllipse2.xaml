@@ -1,0 +1,21 @@
+﻿<Window xmlns="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:rgd="clr-namespace:RetainedGraphicsLib;assembly=RetainedGraphicsLib"
+        Title="Animate SimpleEllipse2">
+    
+    <rgd:SimpleEllipse2 Name="ellipse" />
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard TargetName="ellipse" 
+                            TargetProperty="Fill">
+                    <ColorAnimation From="Red" 
+                                    To="Blue" 
+                                    Duration="0:0:5"
+                                    AutoReverse="True"
+                                    RepeatBehavior="Forever" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+</Window>

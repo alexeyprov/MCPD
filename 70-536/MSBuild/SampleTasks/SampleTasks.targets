@@ -1,0 +1,83 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <NUnitErrorLog Include="$(OutputPath)\NUnit.error.log" />
+    <NUnitLog Include="$(OutputPath)\NUnit.log" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <NUnitErrorTargets>
+      HandleNUnitError
+    </NUnitErrorTargets>
+    <!-- Extends CleanDependsOn to include cleaning NUnit-generated files -->
+    <CleanDependsOn>
+      $(CleanDependsOn);
+      CleanNUnit
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <UsingTask TaskName="NUnitTask" AssemblyFile="SampleTasks.dll" />
+  <UsingTask TaskName="HelloTask" AssemblyFile="SampleTasks.dll" />
+
+  <Target Name="RunUnitTests"
+    DependsOnTargets="Build"
+    Inputs="@(MainAssembly)"
+    Outputs="@(NUnitLog)" >
+
+    <Delete Files="@(NUnitErrorLog);@(NUnitLog)"/>
+
+    <Message Text="Running unit tests for: @(MainAssembly->'%(FullPath)')"/>
+
+    <NUnitTask Assemblies="@(MainAssembly->'%(FullPath)')"
+      LogPath="@(NUnitErrorLog->'%(FullPath)')" 
+      ContinueOnError="False"
+      ContinueIfError="False" 
+    >
+
+      <Output TaskParameter="NumFailedTests" 
+        PropertyName="NumNUnitFailures"/>
+      <Output TaskParameter="NumExecutedTests"
+        PropertyName="NumExecutedTests"/>
+    </NUnitTask>
+
+	<!--
+	If the tests passed, then move the file to the target output
+	location; that way we don't have to run this target again against
+	the same code base. If it fails, we purposefully don't move to the
+	successful location because incremental building will skip
+	this target after failed tests.
+	-->
+    <Copy
+      SourceFiles="@(NUnitErrorLog)"
+      DestinationFiles="@(NUnitLog)"
+      SkipUnchangedFiles="false"
+      Condition="'$(NumNUnitFailures)' == '0'" />
+    <Delete Files="@(NUnitErrorLog)"
+      Condition="'$(NumNUnitFailures)' == '0'" />
+
+    <Message Text="NUnitLogFile: @(NUnitLog->'%(FullPath)')" 
+      Condition="'$(NumNUnitFailures)' == '0'" />
+    <Message Text="NUnitLogFile: @(NUnitErrorLog->'%(FullPath)')"
+      Condition="'$(NumNUnitFailures)' != '0'" />
+
+    <Message Text="Executed tests: $(NumExecutedTests)"/>
+
+    <!-- If an error occurs during the process, these
+    targets will be called -->
+    <OnError ExecuteTargets="$(NUnitErrorTargets)"/>
+  </Target>
+
+  <!-- NUnit Error Handler. May be overridden -->
+  <Target Name="HandleNUnitError" >
+    <Message Text="$(NumNUnitFailures) test(s) failed." />
+    <Message Text="NUnitLogFile: @(NUnitErrorLog->'%(FullPath)')"
+      Condition="'$(NumNUnitFailures)' != '0' and Exists(@(NUnitErrorLog))" />
+    <Message Text="Executed tests: $(NumExecutedTests)" />
+  </Target>
+
+  <!-- NUnit Clean target. Removes generated files -->
+  <Target Name="CleanNUnit">
+    <Delete Files="@(NUnitLog)" Condition="Exists(@(NUnitLog))" />
+    <Delete Files="@(NUnitErrorLog)" Condition="Exists(@(NUnitErrorLog))" />
+    <OnError />
+  </Target>
+</Project>

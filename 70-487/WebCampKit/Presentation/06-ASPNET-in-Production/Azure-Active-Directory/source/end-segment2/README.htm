@@ -1,0 +1,41 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <div class="jumbotron"><h1 id="readme-md">README.md</h1></div>
+<p>To use this solution you have to follow these steps:</p>
+<ol>
+<li><p>Right-click on the <strong>GeekQuiz</strong> project and select <strong>Manage User Secrets</strong> to open the <strong>secrets.json</strong> file.</p>
+</li>
+<li><p>Update the <strong>secrets.json</strong> file with the Azure AD tenant created in the <strong>Setup</strong> section of this demo:</p>
+<pre><code class="lang-JavaScript"> {
+   &quot;Authentication&quot;: {
+      &quot;AzureAd&quot;: {
+         &quot;ClientId&quot;: &quot;[YOUR-AZURE-AD-CLIENT-ID]&quot;,
+         &quot;AADInstance&quot;: &quot;https://login.microsoftonline.com/&quot;,
+         &quot;PostLogoutRedirectUri&quot;: &quot;https://localhost:44329/&quot;,
+         &quot;Domain&quot;: &quot;[YOUR-AZURE-AD-DOMAIN-NAME].onmicrosoft.com&quot;,
+         &quot;TenantId&quot;: &quot;[YOUR-AZURE-AD-TENANT-ID]&quot;
+      }
+   }
+ }
+</code></pre>
+</li>
+<li><p>Create an application inside the Azure AD tenant created in the <strong>Setup</strong> section of this demo with the following information:</p>
+</li>
+</ol>
+<ul>
+<li>Name: GeekQuiz</li>
+<li>Sign-on URL: <a href="https://localhost:44329/readme.htm">https://localhost:44329/</a> (or the port used in the solution)</li>
+<li>App ID URL: <a href="https://[YOUR-AZURE-AD-DOMAIN]/GeekQuiz/readme.htm">https://[YOUR-AZURE-AD-DOMAIN]/GeekQuiz</a></li>
+</ul>
+
+      </div>
+  </body>
+</html>

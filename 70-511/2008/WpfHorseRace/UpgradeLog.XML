@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="WpfHorseRace">
+</Property><Property Name="Solution File" Value="D:\Projects\MyStuff\WPF\WpfHorseRace\WpfHorseRace.sln">
+</Property><Property Name="Date" Value="Tuesday, March 11, 2008">
+</Property><Property Name="Time" Value="18:02 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="WpfHorseRace.sln" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace.sln">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\WpfHorseRace.csproj" Description="Project file successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\WpfHorseRace.csproj">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\App.xaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\App.xaml.cs">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Window1.xaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Window1.xaml.cs">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Properties\Resources.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Properties\Resources.cs">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Properties\Settings.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Properties\Settings.cs">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\RaceHorse.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\RaceHorse.cs">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\ValueConverters.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\ValueConverters.cs">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Properties\Settings.settings" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Properties\Resources.resx" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\App.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\App.xaml">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Resources\RacePitBorderStyle.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Resources\RacePitBorderStyle.xaml">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Resources\RaceHorseDataTemplate.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Resources\RaceHorseDataTemplate.xaml">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\Window1.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\WpfHorseRace\Backup\WpfHorseRace\Window1.xaml">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\WpfHorseRace.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="WpfHorseRace" Source="WpfHorseRace\WpfHorseRace.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="WpfHorseRace.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="WpfHorseRace.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="WpfHorseRace" Source="WpfHorseRace\WpfHorseRace.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

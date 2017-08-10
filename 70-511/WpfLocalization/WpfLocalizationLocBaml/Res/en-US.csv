@@ -1,0 +1,261 @@
+﻿WpfLocalizationLocBaml.g.en-US.resources:startform.baml,frmStartMenuForm:WpfLocalizationLocBaml.StartForm.$Content,None,True,True,,#grdPage;
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,frmStartMenuForm:System.Windows.Window.Title,Title,True,True,,WPF Localization Samples
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,frmStartMenuForm:System.Windows.Window.WindowStyle,None,True,False,,SingleBorderWindow
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,frmStartMenuForm:System.Windows.Window.ResizeMode,None,False,True,,NoResize
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,frmStartMenuForm:System.Windows.FrameworkElement.Height,None,False,True,,316
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,frmStartMenuForm:System.Windows.FrameworkElement.Width,None,False,True,,350
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,frmStartMenuForm:System.Windows.Window.SizeToContent,None,False,True,,Width
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,stackOuter:System.Windows.FrameworkElement.Margin,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,StackPanel_2:System.Windows.FrameworkElement.Margin,None,False,True,,"0,0,0,25"
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,WindowHeader:System.Windows.Controls.TextBlock.$Content,Text,True,True,,LocBaml Localization Example
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,WindowHeader:System.Windows.Controls.TextBlock.FontSize,None,True,True,,25
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,WindowHeader:System.Windows.Controls.TextBlock.FontWeight,None,True,True,,Bold
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,WindowHeader:System.Windows.FrameworkElement.Margin,None,False,True,,"10,10,10,2"
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,TextBlock_1:System.Windows.Controls.TextBlock.$Content,Text,True,True,,This sample is localized in English and German using LocBaml as well as a few Resx resources.
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,TextBlock_1:System.Windows.FrameworkElement.Margin,None,False,True,,"10,0,25,10"
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,TextBlock_1:System.Windows.Controls.TextBlock.TextWrapping,None,False,True,,Wrap
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,TextBlock_1:System.Windows.FrameworkElement.HorizontalAlignment,None,False,True,,Left
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,GroupBox_1:System.Windows.Controls.GroupBox.$Content,None,False,True,,#StackPanel_1;
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,GroupBox_1:System.Windows.Controls.HeaderedContentControl.Header,Label,True,True,,Samples
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,GroupBox_1:System.Windows.FrameworkElement.Margin,None,False,True,,"30,0"
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,StackPanel_1:System.Windows.FrameworkElement.Margin,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnLocalizationInfo:System.Windows.Controls.Button.$Content,Button,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnLocalizationInfo:System.Windows.Controls.ContentControl.Content,Button,True,True,,Localization Information
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnLocalizationInfo:System.Windows.FrameworkElement.Margin,None,False,True,,5
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnLocalizationInfo:System.Windows.FrameworkElement.Height,None,False,True,,30
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnTest:System.Windows.Controls.Button.$Content,Button,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnTest:System.Windows.Controls.ContentControl.Content,Button,True,True,,Test Form
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnTest:System.Windows.FrameworkElement.Margin,None,False,True,,5
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnTest:System.Windows.FrameworkElement.Height,None,False,True,,30
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnExit:System.Windows.Controls.Button.$Content,Button,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnExit:System.Windows.FrameworkElement.Width,None,False,True,,73
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnExit:System.Windows.FrameworkElement.Height,None,False,True,,25
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnExit:System.Windows.Controls.ContentControl.Content,Button,True,True,,Exit
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnExit:System.Windows.Controls.Button.IsDefault,None,False,True,,True
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnExit:System.Windows.FrameworkElement.HorizontalAlignment,None,False,True,,Right
+WpfLocalizationLocBaml.g.en-US.resources:startform.baml,btnExit:System.Windows.FrameworkElement.Margin,None,False,True,,"0,10,30,10"
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,wndTest:WpfLocalizationLocBaml.Test.$Content,None,True,True,,#StackPanel_1;
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,wndTest:System.Windows.Window.Title,Title,True,True,,Test
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,wndTest:System.Windows.FrameworkElement.Height,None,False,True,,330
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,wndTest:System.Windows.FrameworkElement.Width,None,False,True,,363
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,WindowMessage:System.Windows.Controls.TextBlock.$Content,Text,True,True,,"The following demonstrates a rather annoying bug in WPF where a change of culture apparently is not reflected in bindings. In the following text blocks the display is always in the OS culture, and not the current culture which is displayed as the first item. Testing a some &quot;quoted text as well&quot;. The workaround for this problem is to explicitly set the x:Language attribute in the document (not done here)."
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,WindowMessage:System.Windows.Controls.TextBlock.Padding,None,False,True,,15
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,WindowMessage:System.Windows.FrameworkElement.Margin,None,False,True,,"0,0,0,20"
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,WindowMessage:System.Windows.Controls.TextBlock.TextWrapping,None,False,True,,Wrap
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,StackPanel_2:System.Windows.FrameworkElement.Margin,None,False,True,,15
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblCultureName:System.Windows.Controls.TextBlock.$Content,Text,True,True,,Culture:
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblCultureName:System.Windows.Controls.TextBlock.FontWeight,None,True,True,,bold
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,txtCultureName:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblLocaleDateValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,Date Value:
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblLocaleDateValue:System.Windows.Controls.TextBlock.FontWeight,None,True,True,,bold
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,txtLocaleDateValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblLocaleNumberValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,Number Value:
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblLocaleNumberValue:System.Windows.Controls.TextBlock.FontWeight,None,True,True,,bold
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,txtLocaleNumberValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblManualBoundNumberValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblManualBoundNumberValue:System.Windows.Controls.TextBlock.FontWeight,None,True,True,,bold
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,lblManualBoundNumberValue:System.Windows.Controls.TextBlock.Text,Text,True,True,,Manual Bound:
+WpfLocalizationLocBaml.g.en-US.resources:test.baml,txtManualBoundNumberValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:applicationresources.baml,LongLongAgo:System.String.$Content,None,True,True,,Long Long Ago
+WpfLocalizationLocBaml.g.en-US.resources:applicationresources.baml,Today:System.String.$Content,None,True,True,,Today (App Resources)
+WpfLocalizationLocBaml.g.en-US.resources:applicationresources.baml,HelloWorld:System.String.$Content,None,True,True,,Hello World (App Resource)
+WpfLocalizationLocBaml.g.en-US.resources:applicationresources.baml,Ready:System.String.$Content,None,True,True,,Ready (App Resource)
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,wndLocalizationInfo:WpfLocalizationLocBaml.LocalizationInfo.$Content,None,True,True,,#LayoutRoot;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,wndLocalizationInfo:System.Windows.Window.SizeToContent,None,False,True,,WidthAndHeight
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,wndLocalizationInfo:System.Windows.Window.Title,Title,True,True,,LocalizationInfo
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Today:System.String.$Content,None,True,True,,Today (Local Resource)
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,LongLongAgo:System.String.$Content,None,True,True,,Long Long Ago (Local Resource)
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Rectangle_1:System.Windows.Shapes.Rectangle.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Rectangle_1:System.Windows.Shapes.Rectangle.RadiusX,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Rectangle_1:System.Windows.Shapes.Rectangle.RadiusY,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Rectangle_1:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Stretch
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,StackPanel_1:System.Windows.FrameworkElement.Margin,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,MainMenu:System.Windows.Controls.Menu.$Content,Menu,True,True,,#mnuFile;#MenuItem_1;#Separator_2;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,mnuFile:System.Windows.Controls.MenuItem.$Content,Menu,True,True,,#mnuSave;#mnuExit;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,mnuFile:System.Windows.Controls.HeaderedItemsControl.Header,Menu,True,True,,_File
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,mnuSave:System.Windows.Controls.MenuItem.$Content,Menu,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,mnuSave:System.Windows.Controls.HeaderedItemsControl.Header,Menu,True,True,,_Save
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,mnuExit:System.Windows.Controls.MenuItem.$Content,Menu,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,mnuExit:System.Windows.Controls.HeaderedItemsControl.Header,Menu,True,True,,_Exit
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,MenuItem_1:System.Windows.Controls.MenuItem.$Content,Menu,True,True,,#MenuItem_2;#Separator_1;#MenuItem_3;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,MenuItem_1:System.Windows.Controls.HeaderedItemsControl.Header,Menu,True,True,,Help
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,MenuItem_2:System.Windows.Controls.MenuItem.$Content,Menu,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,MenuItem_2:System.Windows.Controls.HeaderedItemsControl.Header,Menu,True,True,,Help Contents
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Separator_1:System.Windows.Controls.Separator.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,MenuItem_3:System.Windows.Controls.MenuItem.$Content,Menu,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,MenuItem_3:System.Windows.Controls.HeaderedItemsControl.Header,Menu,True,True,,About
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Separator_2:System.Windows.Controls.Separator.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ToolbarMain:System.Windows.Controls.ToolBar.$Content,Menu,True,True,,#ToolBarPanel_1;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ToolBarPanel_1:System.Windows.Controls.StackPanel.Orientation,None,False,True,,Horizontal
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ToolBarPanel_1:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLanguageSelections:System.Windows.Controls.Label.$Content,Label,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLanguageSelections:System.Windows.FrameworkElement.Margin,None,False,True,,"10,0"
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLanguageSelections:System.Windows.Controls.ContentControl.Content,Label,True,True,,Select Language:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLanguageSelections:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lstLanguageSelections:System.Windows.Controls.ComboBox.$Content,ComboBox,True,True,,#ComboBoxItem_1;#ComboBoxItem_2;#ComboBoxItem_3;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lstLanguageSelections:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lstLanguageSelections:System.Windows.FrameworkElement.MinWidth,None,False,True,,100
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ComboBoxItem_1:System.Windows.Controls.ComboBoxItem.$Content,ComboBox,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ComboBoxItem_1:System.Windows.Controls.Primitives.Selector.IsSelected,None,False,True,,True
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ComboBoxItem_1:System.Windows.Controls.ContentControl.Content,ComboBox,True,True,,English (en)
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ComboBoxItem_2:System.Windows.Controls.ComboBoxItem.$Content,ComboBox,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ComboBoxItem_2:System.Windows.Controls.ContentControl.Content,ComboBox,True,True,,German (de)
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ComboBoxItem_3:System.Windows.Controls.ComboBoxItem.$Content,ComboBox,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,ComboBoxItem_3:System.Windows.Controls.ContentControl.Content,ComboBox,True,True,,Hebrew (he)
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Separator_3:System.Windows.Controls.Separator.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Separator_3:System.Windows.FrameworkElement.Width,None,False,True,,3
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblThemeSelection:System.Windows.Controls.Label.$Content,Label,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblThemeSelection:System.Windows.Controls.ContentControl.Content,Label,True,True,,Select Theme:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblThemeSelection:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblThemeSelection:System.Windows.FrameworkElement.Margin,None,False,True,,"10,0"
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lstThemeSelections:System.Windows.Controls.ComboBox.$Content,ComboBox,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lstThemeSelections:System.Windows.FrameworkElement.Width,None,False,True,,Auto
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lstThemeSelections:System.Windows.FrameworkElement.MinWidth,None,False,True,,75
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lstThemeSelections:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,StackPanel_3:System.Windows.FrameworkElement.Width,None,False,True,,500
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,StackPanel_3:System.Windows.FrameworkElement.Margin,None,False,True,,"15,0,15,0"
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,GroupBox_2:System.Windows.Controls.GroupBox.$Content,None,False,True,,#Grid_2;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,GroupBox_2:System.Windows.Controls.HeaderedContentControl.Header,Label,True,True,,Value Display Input
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,GroupBox_2:System.Windows.FrameworkElement.Margin,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Grid_2:System.Windows.FrameworkElement.Margin,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNumberLabel:System.Windows.Controls.Label.$Content,Label,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNumberLabel:System.Windows.Controls.ContentControl.Content,Label,True,True,,Enter a numeric value:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNumberLabel:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtNumber:System.Windows.Controls.TextBox.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtNumber:System.Windows.Controls.TextBox.TextAlignment,None,False,True,,Right
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtNumber:System.Windows.Controls.Grid.Row,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtNumber:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtNumber:System.Windows.FrameworkElement.HorizontalAlignment,None,False,True,,Left
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtNumber:System.Windows.FrameworkElement.Width,None,False,True,,100
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtNumber:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblDateLabel:System.Windows.Controls.Label.$Content,Label,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblDateLabel:System.Windows.Controls.Grid.Row,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblDateLabel:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblDateLabel:System.Windows.Controls.ContentControl.Content,Label,True,True,,Enter a date value:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblDateLabel:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtDate:Microsoft.Windows.Controls.DatePicker.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtDate:System.Windows.Controls.Grid.Row,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtDate:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtDate:System.Windows.FrameworkElement.HorizontalAlignment,None,False,True,,Left
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtDate:System.Windows.FrameworkElement.Width,None,False,True,,100
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,txtDate:System.Windows.FrameworkElement.VerticalAlignment,None,False,True,,Center
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,TextBox_1:System.Windows.Controls.TextBox.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,TextBox_1:System.Windows.FrameworkElement.HorizontalAlignment,None,False,True,,Left
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,TextBox_1:System.Windows.FrameworkElement.Margin,None,False,True,,"138,0,0,0"
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,TextBox_1:System.Windows.FrameworkElement.Width,None,False,True,,5
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,TextBox_1:System.Windows.FrameworkElement.Height,None,False,True,,2
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,TextBox_1:System.Windows.Controls.TextBox.Text,Text,True,True,,TextBox
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,TextBox_1:System.Windows.Controls.TextBox.TextWrapping,None,False,True,,Wrap
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,gbLocaleInformation:System.Windows.Controls.GroupBox.$Content,None,False,True,,#Grid_1;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,gbLocaleInformation:System.Windows.FrameworkElement.Margin,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,gbLocaleInformation:System.Windows.Controls.Control.Padding,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,gbLocaleInformation:System.Windows.Controls.HeaderedContentControl.Header,Label,True,True,,Locale Information
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocale:System.Windows.Controls.TextBlock.$Content,Text,True,True,,#Run_2;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocale:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_2:System.Windows.Documents.Run.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_2:System.Windows.Documents.Run.Text,Text,True,True,,Locale:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleValue:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleName:System.Windows.Controls.TextBlock.$Content,Text,True,True,,#Run_3;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleName:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleName:System.Windows.Controls.Grid.Row,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_3:System.Windows.Documents.Run.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_3:System.Windows.Documents.Run.Text,Text,True,True,,Display Name:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNameValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNameValue:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNameValue:System.Windows.Controls.Grid.Row,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNativeName:System.Windows.Controls.TextBlock.$Content,Text,True,True,,#Run_4;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNativeName:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNativeName:System.Windows.Controls.Grid.Row,None,False,True,,2
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_4:System.Windows.Documents.Run.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_4:System.Windows.Documents.Run.Text,Text,True,True,,Native Name:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNativeNameValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNativeNameValue:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblNativeNameValue:System.Windows.Controls.Grid.Row,None,False,True,,2
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleDateName:System.Windows.Controls.TextBlock.$Content,Text,True,True,,#Run_5;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleDateName:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleDateName:System.Windows.Controls.Grid.Row,None,False,True,,3
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_5:System.Windows.Documents.Run.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_5:System.Windows.Documents.Run.Text,Text,True,True,,Date Time:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleDateValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleDateValue:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleDateValue:System.Windows.Controls.Grid.Row,None,False,True,,3
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNumberName:System.Windows.Controls.TextBlock.$Content,Text,True,True,,#Run_6;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNumberName:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNumberName:System.Windows.Controls.Grid.Row,None,False,True,,4
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_6:System.Windows.Documents.Run.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,Run_6:System.Windows.Documents.Run.Text,Text,True,True,,Numeric:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNumberValue:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNumberValue:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblLocaleNumberValue:System.Windows.Controls.Grid.Row,None,False,True,,4
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblFlowDirection:System.Windows.Controls.TextBlock.$Content,Text,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblFlowDirection:System.Windows.Controls.TextBlock.Text,Text,True,True,,Flow Direction:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblFlowDirection:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblFlowDirection:System.Windows.Controls.Grid.Row,None,False,True,,5
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,chkRightToLeft:System.Windows.Controls.CheckBox.$Content,CheckBox,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,chkRightToLeft:System.Windows.Controls.ContentControl.Content,CheckBox,True,True,,Right To Left
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,chkRightToLeft:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,chkRightToLeft:System.Windows.Controls.Grid.Row,None,False,True,,5
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,grpBoundValues:System.Windows.Controls.GroupBox.$Content,None,False,True,,#Grid_3;
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,grpBoundValues:System.Windows.Controls.HeaderedContentControl.Header,Label,True,True,,Bound Resource Values
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,grpBoundValues:System.Windows.FrameworkElement.Margin,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,grpBoundValues:System.Windows.Controls.Control.Padding,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldStrongLabel:System.Windows.Controls.Label.$Content,Label,True,True,,Hello World x:Static Resx Strong Type:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldStrongLabel:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldStrongLabel:System.Windows.Controls.Grid.Row,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldStrongValue:System.Windows.Controls.Label.$Content,Label,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldStrongValue:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldStrongValue:System.Windows.Controls.Grid.Row,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension1Label:System.Windows.Controls.Label.$Content,Label,True,True,,Hello World App Resources Value:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension1Label:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension1Label:System.Windows.Controls.Grid.Row,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension1Value:System.Windows.Controls.Label.$Content,Label,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension1Value:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension1Value:System.Windows.Controls.Grid.Row,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension2Label:System.Windows.Controls.Label.$Content,Label,True,True,,Today Local Resource Value:
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension2Label:System.Windows.Controls.Grid.Column,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension2Label:System.Windows.Controls.Grid.Row,None,False,True,,2
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension2Value:System.Windows.Controls.Label.$Content,Label,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension2Value:System.Windows.Controls.Grid.Column,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,lblResxHelloWorldMarkupExtension2Value:System.Windows.Controls.Grid.Row,None,False,True,,2
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,imgFlag:System.Windows.Controls.Image.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,imgFlag:System.Windows.Controls.Image.Stretch,None,True,False,,Fill
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,imgFlag:System.Windows.FrameworkElement.Width,None,False,True,,80
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,imgFlag:System.Windows.FrameworkElement.Height,None,False,True,,40
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,imgFlag:System.Windows.FrameworkElement.HorizontalAlignment,None,False,True,,Left
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,imgFlag:System.Windows.FrameworkElement.Margin,None,False,True,,"10,0,0,10"
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,btnExit:System.Windows.Controls.Button.$Content,Button,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,btnExit:System.Windows.FrameworkElement.HorizontalAlignment,None,False,True,,Right
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,btnExit:System.Windows.FrameworkElement.Margin,None,False,True,,10
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,btnExit:System.Windows.FrameworkElement.Width,None,False,True,,75
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,btnExit:System.Windows.FrameworkElement.Height,None,False,True,,23
+WpfLocalizationLocBaml.g.en-US.resources:localizationinfo.baml,btnExit:System.Windows.Controls.ContentControl.Content,Button,True,True,,Exit
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,Application_1:WpfLocalizationLocBaml.App.$Content,None,True,True,,
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,ResourceDictionary_2:System.Windows.ResourceDictionary.Source,None,True,False,,ApplicationResources.xaml
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_1:System.Windows.Media.LinearGradientBrush.$Content,None,False,True,,#GradientStop_1;#GradientStop_2;
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_1:System.Windows.Media.LinearGradientBrush.EndPoint,None,True,False,,".75,.75"
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_1:System.Windows.Media.LinearGradientBrush.StartPoint,None,True,False,,"0,0"
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_1:System.Windows.Media.GradientStop.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_1:System.Windows.Media.GradientStop.Color,None,False,True,,\#FFF3F4F7
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_1:System.Windows.Media.GradientStop.Offset,None,False,True,,0.991
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_2:System.Windows.Media.GradientStop.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_2:System.Windows.Media.GradientStop.Color,None,False,True,,\#FFB6B6B6
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_2:System.Windows.Media.GradientStop.Offset,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_2:System.Windows.Media.LinearGradientBrush.$Content,None,False,True,,#GradientStop_3;#GradientStop_4;
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_2:System.Windows.Media.LinearGradientBrush.EndPoint,None,True,False,,".75,.75"
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_2:System.Windows.Media.LinearGradientBrush.StartPoint,None,True,False,,"0,0"
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_3:System.Windows.Media.GradientStop.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_3:System.Windows.Media.GradientStop.Color,None,False,True,,\#FF5B5B5B
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_3:System.Windows.Media.GradientStop.Offset,None,False,True,,0.991
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_4:System.Windows.Media.GradientStop.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_4:System.Windows.Media.GradientStop.Color,None,False,True,,\#FF222222
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_4:System.Windows.Media.GradientStop.Offset,None,False,True,,0
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_3:System.Windows.Media.LinearGradientBrush.$Content,None,False,True,,#GradientStop_5;#GradientStop_6;
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_3:System.Windows.Media.LinearGradientBrush.EndPoint,None,True,False,,"0,1"
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,LinearGradientBrush_3:System.Windows.Media.LinearGradientBrush.StartPoint,None,True,False,,"0,0"
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_5:System.Windows.Media.GradientStop.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_5:System.Windows.Media.GradientStop.Color,None,False,True,,\#FFFFFFCC
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_5:System.Windows.Media.GradientStop.Offset,None,False,True,,1
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_6:System.Windows.Media.GradientStop.$Content,None,False,True,,
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_6:System.Windows.Media.GradientStop.Color,None,False,True,,\#FFFFFFFF
+WpfLocalizationLocBaml.g.en-US.resources:app.baml,GradientStop_6:System.Windows.Media.GradientStop.Offset,None,False,True,,0

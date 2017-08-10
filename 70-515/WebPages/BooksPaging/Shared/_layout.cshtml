@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@Page.Title</title>
+        <link href="@Href("/Styles/StyleSheet.css")" rel="stylesheet" type="text/css" />
+    </head>
+    <body> 
+        @RenderPage("/Shared/_header.cshtml")
+    
+        @RenderBody()
+        
+        @if(IsSectionDefined("footer")){
+            @RenderSection("footer", required:false)
+        }
+    </body>
+</html>

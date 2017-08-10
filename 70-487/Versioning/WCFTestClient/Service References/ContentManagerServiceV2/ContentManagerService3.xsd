@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://alexeypr.com/Versioning/2015/11" elementFormDefault="qualified" targetNamespace="http://alexeypr.com/Versioning/2015/11" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:2547/ContentManagerService.svc?xsd=xsd2" namespace="http://alexeypr.com/Versioning/2015/10/" />
+  <xs:element name="DeleteLinkItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://alexeypr.com/Versioning/2015/10/" minOccurs="0" name="item" nillable="true" type="q1:LinkItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteLinkItemResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

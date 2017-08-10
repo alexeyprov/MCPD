@@ -1,0 +1,38 @@
+﻿<Window x:Class="HelloWpf.Northwind.CustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:n="clr-namespace:HelloWpf.Northwind"
+        Title="Customer" Height="300" Width="300"
+        MinWidth="300"
+        SizeToContent="Height"
+        Style="{StaticResource RoundedWindow}"
+        Tag="Click Update to save"
+        Grid.IsSharedSizeScope="True" >
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="19,0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="AddressFirstColumn"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource EditorLabel}">Customer ID:</TextBlock>
+        <TextBox Margin="5" Name="CustomerIDTextBox" Grid.Column="1" />
+        <Button Name="LoadButton" Grid.Column="2" Click="LoadButton_Click">Load</Button>
+        
+        <n:CustomerControl Grid.Row="1" Grid.ColumnSpan="3" x:Name="CustomerDataControl"/>
+        
+        <Button Name="UpdateButton" Grid.Row="2" Click="UpdateButton_Click">Update</Button>
+        <Button Name="OrdersButton" Grid.Row="2" Grid.Column="1" Click="OrdersButton_Click" Width="85">Orders...</Button>
+        <Button Name="CloseButton" Grid.Row="2" Grid.Column="2" IsCancel="True" Click="CloseButton_Click">Close</Button>
+    </Grid>
+</Window>

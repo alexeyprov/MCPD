@@ -1,0 +1,89 @@
+﻿<Window x:Class="HelloWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:HelloWpf.Commands"
+        Title="Hello WPF!" Height="350" Width="525" Background="LightGreen" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Image Height="16" Width="16" Source="/Images/ColorPicker.png" x:Key="ColorPickerImage" x:Shared="false"/>
+        <Image Width="16" Height="16" Source="/Images/Select.png" x:Key="SquaresImage" x:Shared="false"/>
+        <Image Width="16" Height="16" Source="/Images/Bomb.png" x:Key="BombImage" x:Shared="false"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="c:Core.DynamicXaml" Executed="DynamicXaml_Executed" />
+        <CommandBinding Command="c:Controls.Popup" Executed="Popup_Executed" />
+        <CommandBinding Command="c:Core.ElementBinding" Executed="ElementBinding_Executed" />
+        <CommandBinding Command="c:Core.MonitoredCommands" Executed="MonitoredCommands_Executed" />
+        <CommandBinding Command="c:Core.FlowDocument" Executed="FlowDocument_Executed" />
+        <CommandBinding Command="c:UiTricks.CustomBehavior" Executed="CustomBehavior_Executed" />
+        <CommandBinding Command="c:UiTricks.Reflection" Executed="Reflection_Executed" />
+        <CommandBinding Command="c:UiTricks.SquaresGame" Executed="SquaresGame_Executed" />
+        <CommandBinding Command="c:UiTricks.Animations" Executed="Animations_Executed" />
+        <CommandBinding Command="c:UiTricks.BombGame" Executed="BombGame_Executed" />
+        <CommandBinding Command="c:UiTricks.CalloutWindow" Executed="CalloutWindow_Executed" />
+        <CommandBinding Command="c:UiTricks.ThreeDDemo" Executed="ThreeDDemo_Executed" />
+        <CommandBinding Command="c:UiTricks.WinFormsInterop" Executed="WinFormsInterop_Executed" />
+        <CommandBinding Command="c:UiTricks.DragnDrop" Executed="DragnDrop_Executed" />
+        <CommandBinding Command="c:Controls.ControlTemplateBrowser" Executed="ControlTemplateBrowser_Executed" />
+        <CommandBinding Command="c:Controls.ColorPicker" Executed="ColorPicker_Executed" />
+        <CommandBinding Command="c:Controls.FlipPanel" Executed="FlipPanel_Executed" />
+        <CommandBinding Command="c:Controls.CustomDrawn" Executed="CustomDrawn_Executed" />
+        <CommandBinding Command="c:Northwind.Customers" Executed="Customers_Executed" />
+        <CommandBinding Command="c:Northwind.Employees" Executed="Employees_Executed" />
+        <CommandBinding Command="c:Northwind.Suppliers" Executed="Suppliers_Executed" />
+        <CommandBinding Command="c:Northwind.Geography" Executed="Geography_Executed" />
+        <CommandBinding Command="c:Northwind.Products" Executed="Products_Executed" />
+    </Window.CommandBindings>
+    <DockPanel>
+        <Menu x:Name="mnuMain" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="_Core">
+                <MenuItem Command="c:Core.DynamicXaml"/>
+                <MenuItem Command="c:Core.ElementBinding"/>
+                <MenuItem Command="c:Core.MonitoredCommands"/>
+                <Separator />
+                <MenuItem Command="c:Core.FlowDocument" />
+            </MenuItem>
+            <MenuItem Header="Con_trols">
+                <MenuItem Command="c:Controls.ControlTemplateBrowser"/>
+                <Separator/>
+                <MenuItem Command="c:Controls.Popup"/>
+                <MenuItem Command="c:Controls.ColorPicker" Icon="{StaticResource ColorPickerImage}" />
+                <MenuItem Command="c:Controls.FlipPanel"/>
+                <MenuItem Command="c:Controls.CustomDrawn"/>
+            </MenuItem>
+            <MenuItem Header="_UI Tricks">
+                <MenuItem Command="c:UiTricks.CustomBehavior"/>
+                <MenuItem Command="c:UiTricks.Reflection"/>
+                <MenuItem Command="c:UiTricks.Animations"/>
+                <MenuItem Command="c:UiTricks.ThreeDDemo"/>
+                <Separator />
+                <MenuItem Command="c:UiTricks.SquaresGame" Icon="{StaticResource SquaresImage}"/>
+                <MenuItem Command="c:UiTricks.BombGame" Icon="{StaticResource BombImage}" />
+                <Separator />
+                <MenuItem Command="c:UiTricks.CalloutWindow" />
+                <MenuItem Command="c:UiTricks.WinFormsInterop" />
+                <MenuItem Command="c:UiTricks.DragnDrop" />
+            </MenuItem>
+            <MenuItem Header="_Northwind">
+                <MenuItem Command="c:Northwind.Customers" />
+                <MenuItem Command="c:Northwind.Employees" />
+                <MenuItem Command="c:Northwind.Suppliers" />
+                <MenuItem Command="c:Northwind.Geography" />
+                <MenuItem Command="c:Northwind.Products" />
+            </MenuItem>
+        </Menu>
+        <ToolBarTray HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Command="c:Controls.ColorPicker" Content="{StaticResource ColorPickerImage}"/>
+            </ToolBar>
+            <ToolBar>
+                <Button Command="c:UiTricks.SquaresGame" Content="{StaticResource SquaresImage}"/>
+                <Button Command="c:UiTricks.BombGame" Content="{StaticResource BombImage}"/>
+            </ToolBar>
+        </ToolBarTray>
+        <StatusBar Height="20" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="{Binding UserInfo}" />
+            </StatusBarItem>
+        </StatusBar>
+    </DockPanel>
+</Window>

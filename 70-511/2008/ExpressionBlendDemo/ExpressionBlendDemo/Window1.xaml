@@ -1,0 +1,13 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="ExpressionBlendDemo.Window1"
+	x:Name="Window"
+	Title="Window1"
+	Width="640" Height="480" Background="#FF000000">
+
+	<Grid x:Name="LayoutRoot">
+		<Button HorizontalAlignment="Left" Margin="42,74,0,0" VerticalAlignment="Top" Width="128" Height="40" Content="Button" Background="#FFCF13D9"/>
+		<Button HorizontalAlignment="Left" Margin="42,153,0,0" VerticalAlignment="Top" Width="128" Height="40" Content="Button" Background="#FFDFA021"/>
+	</Grid>
+</Window>

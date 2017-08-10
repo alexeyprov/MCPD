@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTemplating", "DataTemplating.csproj", "{AE9CFEC8-F5FC-41C4-910B-A422EAC393A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE9CFEC8-F5FC-41C4-910B-A422EAC393A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE9CFEC8-F5FC-41C4-910B-A422EAC393A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE9CFEC8-F5FC-41C4-910B-A422EAC393A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE9CFEC8-F5FC-41C4-910B-A422EAC393A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

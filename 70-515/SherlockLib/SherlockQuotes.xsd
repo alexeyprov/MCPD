@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="quotations" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="quotations" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="quotations" msprop:Generator_UserDSName="quotations">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="quotation" msprop:Generator_TableClassName="quotationDataTable" msprop:Generator_TableVarName="tablequotation" msprop:Generator_TablePropName="quotation" msprop:Generator_RowDeletingName="quotationRowDeleting" msprop:Generator_UserTableName="quotation" msprop:Generator_RowChangingName="quotationRowChanging" msprop:Generator_RowEvHandlerName="quotationRowChangeEventHandler" msprop:Generator_RowDeletedName="quotationRowDeleted" msprop:Generator_RowEvArgName="quotationRowChangeEvent" msprop:Generator_RowChangedName="quotationRowChanged" msprop:Generator_RowClassName="quotationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="source" msdata:Caption="Source" msprop:Generator_ColumnVarNameInTable="columnsource" msprop:Generator_ColumnPropNameInRow="source" msprop:Generator_ColumnPropNameInTable="sourceColumn" msprop:Generator_UserColumnName="source" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+              <xs:element name="p" nillable="true" msprop:Generator_TableClassName="pDataTable" msprop:Generator_TableVarName="tablep" msprop:Generator_TablePropName="p" msprop:Generator_RowDeletingName="pRowDeleting" msprop:Generator_UserTableName="p" msprop:Generator_RowChangingName="pRowChanging" msprop:Generator_RowEvHandlerName="pRowChangeEventHandler" msprop:Generator_RowDeletedName="pRowDeleted" msprop:Generator_RowEvArgName="pRowChangeEvent" msprop:Generator_RowChangedName="pRowChanged" msprop:Generator_RowClassName="pRow" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:Caption="Text" msprop:Generator_ColumnVarNameInTable="columnp_Text" msprop:Generator_ColumnPropNameInRow="p_Text" msprop:Generator_ColumnPropNameInTable="p_TextColumn" msprop:Generator_UserColumnName="p_Text" msdata:ColumnName="p_Text" msdata:Ordinal="0">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="quotation_Id" msdata:Caption="QuotationId" msprop:Generator_ColumnVarNameInTable="columnquotation_Id" msprop:Generator_ColumnPropNameInRow="quotation_Id" msprop:Generator_ColumnPropNameInTable="quotation_IdColumn" msprop:Generator_UserColumnName="quotation_Id" type="xs:int" use="prohibited" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="author" msprop:Generator_TableClassName="authorDataTable" msprop:Generator_TableVarName="tableauthor" msprop:Generator_TablePropName="author" msprop:Generator_RowDeletingName="authorRowDeleting" msprop:Generator_UserTableName="author" msprop:Generator_RowChangingName="authorRowChanging" msprop:Generator_RowEvHandlerName="authorRowChangeEventHandler" msprop:Generator_RowDeletedName="authorRowDeleted" msprop:Generator_RowEvArgName="authorRowChangeEvent" msprop:Generator_RowChangedName="authorRowChanged" msprop:Generator_RowClassName="authorRow" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="resource" msdata:Caption="Resource" msprop:Generator_ColumnVarNameInTable="columnresource" msprop:Generator_ColumnPropNameInRow="resource" msprop:Generator_ColumnPropNameInTable="resourceColumn" msprop:Generator_UserColumnName="resource" type="xs:string" />
+                  <xs:attribute name="quotation_Id" msdata:Caption="QuotationId" msprop:Generator_ColumnVarNameInTable="columnquotation_Id" msprop:Generator_ColumnPropNameInRow="quotation_Id" msprop:Generator_ColumnPropNameInTable="quotation_IdColumn" msprop:Generator_UserColumnName="quotation_Id" type="xs:int" use="prohibited" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" msdata:Caption="Id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" />
+            <xs:attribute name="date" msdata:Caption="Date" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_UserColumnName="date" type="xs:string" />
+            <xs:attribute name="quotation_Id" msdata:AutoIncrement="true" msdata:Caption="QuotationId" msprop:Generator_ColumnVarNameInTable="columnquotation_Id" msprop:Generator_ColumnPropNameInRow="quotation_Id" msprop:Generator_ColumnPropNameInTable="quotation_IdColumn" msprop:Generator_UserColumnName="quotation_Id" type="xs:int" msdata:AllowDBNull="false" use="prohibited" />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//quotation" />
+      <xs:field xpath="@quotation_Id" />
+    </xs:unique>
+    <xs:keyref name="quotation_author" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="author" msprop:rel_Generator_ChildPropName="GetauthorRows" msprop:rel_Generator_ParentPropName="quotationRow" msprop:rel_Generator_UserRelationName="quotation_author" msprop:rel_Generator_RelationVarName="relationquotation_author" msprop:rel_Generator_UserParentTable="quotation">
+      <xs:selector xpath=".//author" />
+      <xs:field xpath="@quotation_Id" />
+    </xs:keyref>
+    <xs:keyref name="quotation_p" refer="Constraint1" msdata:IsNested="true" msprop:rel_Generator_UserChildTable="p" msprop:rel_Generator_ChildPropName="GetpRows" msprop:rel_Generator_ParentPropName="quotationRow" msprop:rel_Generator_UserRelationName="quotation_p" msprop:rel_Generator_RelationVarName="relationquotation_p" msprop:rel_Generator_UserParentTable="quotation">
+      <xs:selector xpath=".//p" />
+      <xs:field xpath="@quotation_Id" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

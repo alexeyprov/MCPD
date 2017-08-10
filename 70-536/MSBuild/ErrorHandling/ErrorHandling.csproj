@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="GlobalHandler.csproj"/>
+	<PropertyGroup>
+		<ErrorEmailTo>$(ErrorEmailTo);alexeypro@gmail.com</ErrorEmailTo>
+		<!--
+		uncomment to escape errors
+		<DeploymentURL>http://www.nosite.nodomain.com</DeploymentURL>
+		-->
+	</PropertyGroup>
+	<Target Name="Deploy" >
+		<Error Code="DP0001" Text="Deployment URL is not defined." Condition="'' == '$(DeploymentURL)'" />
+		<Message Text="Successfully deployed to: $(DeploymentURL)" />
+		<OnError ExecuteTargets="$(ErrorHandlerTargets)"/>
+	</Target>
+	<!-- overriden project-level error handler -->
+	<Target Name="ProjectErrorHandler">
+		<Message Text="Failed building $(MSBuildProjectFile)" />
+	</Target>
+</Project>

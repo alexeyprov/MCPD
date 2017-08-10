@@ -1,0 +1,10 @@
+2015-04-01 08:00:18,156 DEBUG [8] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 08:02:50,552 DEBUG [16] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 08:04:00,384 DEBUG [8] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 08:13:05,437 DEBUG [7] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 08:16:23,009 DEBUG [5] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 11:19:36,122 DEBUG [5] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 20:52:43,632 DEBUG [9] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 20:53:05,490 DEBUG [9] TasksWebApiServer - EXITING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 20:54:28,610 DEBUG [8] TasksWebApiServer - ENTERING Tasks.WebApi.Server.Controllers.TestController::Get
+2015-04-01 20:54:56,699 DEBUG [8] TasksWebApiServer - EXITING Tasks.WebApi.Server.Controllers.TestController::Get

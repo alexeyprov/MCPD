@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://alexeypr.com/Versioning/2015/10" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://alexeypr.com/Versioning/2015/10" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://alexeypr.com/Versioning/2015/10/Imports">
+      <xsd:import schemaLocation="http://localhost:2547/AuditedContentManagerService.svc?xsd=xsd1" namespace="http://alexeypr.com/Versioning/2015/10" />
+      <xsd:import schemaLocation="http://localhost:2547/AuditedContentManagerService.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:2547/AuditedContentManagerService.svc?xsd=xsd2" namespace="http://alexeypr.com/Versioning/2015/12" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LinkItemId">
+    <wsdl:part name="Id" element="tns:Id" />
+  </wsdl:message>
+  <wsdl:message name="AuditedLinkItem">
+    <wsdl:part name="LinkItem" element="tns:LinkItem" />
+  </wsdl:message>
+  <wsdl:message name="AuditedLinkItem_Headers">
+    <wsdl:part name="LastModifiedBy" element="tns:LastModifiedBy" />
+  </wsdl:message>
+  <wsdl:message name="AuditedContentManagerContract_DeleteLinkItem_OutputMessage" />
+  <wsdl:portType name="AuditedContentManagerContract">
+    <wsdl:operation name="GetLinkItem">
+      <wsdl:input wsaw:Action="http://alexeypr.com/Versioning/2015/10/AuditedContentManagerContract/GetLinkItem" name="LinkItemId" message="tns:LinkItemId" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/Versioning/2015/10/AuditedContentManagerContract/GetLinkItemResponse" name="AuditedLinkItem" message="tns:AuditedLinkItem" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLinkItem">
+      <wsdl:input wsaw:Action="http://alexeypr.com/Versioning/2015/10/AuditedContentManagerContract/UpdateLinkItem" name="AuditedLinkItem" message="tns:AuditedLinkItem" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/Versioning/2015/10/AuditedContentManagerContract/UpdateLinkItemResponse" name="AuditedLinkItem" message="tns:AuditedLinkItem" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkItem">
+      <wsdl:input wsaw:Action="http://alexeypr.com/Versioning/2015/10/AuditedContentManagerContract/DeleteLinkItem" name="AuditedLinkItem" message="tns:AuditedLinkItem" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/Versioning/2015/10/AuditedContentManagerContract/DeleteLinkItemResponse" message="tns:AuditedContentManagerContract_DeleteLinkItem_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="7b9d73ff-f92a-4fc1-b9f7-7397c4dd9577" name="mperetz@DALAT 2011-01-16 21:32:06" runUser="ATRION\mperetz" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="07bedcec-5dff-44b7-b15e-46e5193dd517">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="mperetz_DALAT 2011-01-16 21_32_06">
+      <DeploymentItem filename="C:\Work\DynamicRouterWithDiscovery\DynamicRouterWithDiscovery\Service.Api\bin\Debug\Service.Api.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2011-01-16T21:32:06.9579880-05:00" queuing="2011-01-16T21:32:08.2879880-05:00" start="2011-01-16T21:32:08.4289880-05:00" finish="2011-01-16T21:36:54.3949880-05:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="DALAT" outcome="Error" timestamp="2011-01-16T21:36:54.3949880-05:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestRouter" storage="c:\work\dynamicrouterwithdiscovery\dynamicrouterwithdiscovery\testdynamicrouter.cs\bin\debug\testdynamicrouter.cs.dll" id="20f993fa-ac75-eead-0969-ecdbc193e5c3">
+      <Execution id="bbb774cd-0471-4f96-9b77-d42b4dfc515f" />
+      <TestMethod codeBase="c:/Work/DynamicRouterWithDiscovery/DynamicRouterWithDiscovery/TestDynamicRouter.cs/bin/Debug/TestDynamicRouter.cs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestDynamicRouter.cs.TestDynamicRouterUnitTest, TestDynamicRouter.cs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestRouter" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="20f993fa-ac75-eead-0969-ecdbc193e5c3" executionId="bbb774cd-0471-4f96-9b77-d42b4dfc515f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="bbb774cd-0471-4f96-9b77-d42b4dfc515f" testId="20f993fa-ac75-eead-0969-ecdbc193e5c3" testName="TestRouter" computerName="DALAT" duration="00:04:45.8320000" startTime="2011-01-16T21:32:08.5629880-05:00" endTime="2011-01-16T21:36:54.3949880-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bbb774cd-0471-4f96-9b77-d42b4dfc515f">
+    </UnitTestResult>
+  </Results>
+</TestRun>

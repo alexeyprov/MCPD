@@ -1,0 +1,67 @@
+<!--  
+  LocBaml Resource Compilation Task 
+  
+  Based on a solution by Andre van Heerwarde on CodeProject
+  http://www.codeproject.com/KB/WPF/LocBamlClickOnce.aspx
+  
+  Adapted to perform only assembly generation and resource merging
+  of localized assemblies. Handles resource compilation via LocBaml 
+  from .csv fileand merges Resx resources with Baml Resources.
+    
+  To use:
+  - Ensure you have tools directory at the same folder level as the 
+    project and have LocBaml.exe installed in it.
+    
+  - Add this target to your project file (after other <imports />
+    <Import Project="$(ProjectDir)LocBamlCsv.Target.xml" />
+    
+  - Add each culture in the project to use this target explicitly
+    and point it at the localized .csv file (project relative). Add this
+    entry to the main compile <ItemGroup>.    
+    
+    <LocBamlCsv Include="Res\de.csv">
+      <Culture>de</Culture>
+    </LocBamlCsv>
+    <LocBamlCsv Include="Res\fr.csv">
+      <Culture>fr</Culture>
+    </LocBamlCsv>
+    
+    NOTE: there are timing problems with this script and it fails
+    to write the merged resources on full rebuild presumably because
+    the VS resource satellite assembly overwrites the assembly we're
+    creating.
+   
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Adds the build action 'LocBamlCsv' -->
+  <ItemGroup>
+    <AvailableItemName Include="LocBamlCsv"/>
+  </ItemGroup>
+
+  
+  <Target Name="AfterBuild" DependsOnTargets="$(CreateSatelliteAssembliesDependsOn)" >
+    
+    <!-- Locbaml needs the runtime assemblies in the intermediate dir -->
+    <Copy SourceFiles="$(ProjectDir)..\Tools\LocBaml.exe"
+          DestinationFolder="$(OutputPath)" />    
+
+    <!-- generate a .resources file for .csv merged output -->
+    <Exec Command="LocBaml /generate ..\..\$(IntermediateOutputPath)$(TargetName).g.$(UICulture).resources /trans:%(LocBamlCsv.FullPath) /out:..\..\$(IntermediateOutputPath) /cul:%(LocBamlCsv.Culture)"
+          WorkingDirectory="$(OutputPath)"  
+           ContinueOnError="true"           
+    />     
+    
+    <!-- Generate the resource assembly by merging all .resources files 
+         NOTE: Explicitly add any resource files here. Template: 
+         /embed:$(TargetName).Folder.MyResourceFile.%(LocBamlCsv.Culture).resources
+    -->
+    <Exec Command="al /template:$(TargetName).exe /culture:%(LocBamlCsv.Culture) /out:..\..\$(OutputPath)%(LocBamlCsv.Culture)\$(TargetName).resources.dll /embed:$(TargetName).g.%(LocBamlCsv.Culture).resources /embed:$(TargetName).Properties.Resources.%(LocBamlCsv.Culture).resources"
+          WorkingDirectory="$(IntermediateOutputPath)"
+          ContinueOnError="true"
+    />
+
+    <Delete Files="$(IntermediateOutputPath)$(TargetName).g.%(LocBamlCsv.Culture).resources"  
+            ContinueOnError="true"/>
+    
+  </Target>
+</Project>

@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWpf", "HelloWpf.csproj", "{9437DC55-6200-4DE9-906D-D78CB8C55C75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomUI", "..\CustomUI\CustomUI.csproj", "{9084EC30-FD0F-462F-B488-8DA7B6ABEE68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthwindBusinessEntities", "..\..\70-516\NorthwindBusinessEntities\NorthwindBusinessEntities.csproj", "{F21F6AA2-24CF-4E6B-A1B8-D2868AD1098B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthwindDataAccessComponents", "..\..\70-516\NorthwindDataAccessComponents\NorthwindDataAccessComponents.csproj", "{C94B203F-6F73-411D-976C-02DFA4962051}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionUtilities", "..\..\70-536\ReflectionUtilities\ReflectionUtilities.csproj", "{5F1370A6-FFDB-4849-BD31-10C88E71BF0E}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Northwind", "..\..\70-516\Northwind\Northwind.sqlproj", "{5DED13DC-E3D2-4A1B-BB8B-82C492E2C91B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWpfTests", "HelloWpfTests\HelloWpfTests.csproj", "{E78AF2A7-3132-49C0-9E76-E6868C1C7C35}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://hanauma:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HelloWpf.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\CustomUI\\CustomUI.csproj
+		SccProjectName2 = ../CustomUI
+		SccLocalPath2 = ..\\CustomUI
+		SccProjectUniqueName3 = ..\\..\\70-516\\NorthwindBusinessEntities\\NorthwindBusinessEntities.csproj
+		SccProjectName3 = ../../70-516/NorthwindBusinessEntities
+		SccLocalPath3 = ..\\..\\70-516\\NorthwindBusinessEntities
+		SccProjectUniqueName4 = ..\\..\\70-516\\NorthwindDataAccessComponents\\NorthwindDataAccessComponents.csproj
+		SccProjectName4 = ../../70-516/NorthwindDataAccessComponents
+		SccLocalPath4 = ..\\..\\70-516\\NorthwindDataAccessComponents
+		SccProjectUniqueName5 = ..\\..\\70-536\\ReflectionUtilities\\ReflectionUtilities.csproj
+		SccProjectName5 = ../../70-536/ReflectionUtilities
+		SccLocalPath5 = ..\\..\\70-536\\ReflectionUtilities
+		SccProjectUniqueName6 = ..\\..\\70-516\\Northwind\\Northwind.sqlproj
+		SccProjectName6 = ../../70-516/Northwind
+		SccLocalPath6 = ..\\..\\70-516\\Northwind
+		SccProjectUniqueName7 = HelloWpfTests\\HelloWpfTests.csproj
+		SccProjectName7 = HelloWpfTests
+		SccLocalPath7 = HelloWpfTests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9437DC55-6200-4DE9-906D-D78CB8C55C75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9437DC55-6200-4DE9-906D-D78CB8C55C75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9437DC55-6200-4DE9-906D-D78CB8C55C75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9437DC55-6200-4DE9-906D-D78CB8C55C75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9084EC30-FD0F-462F-B488-8DA7B6ABEE68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9084EC30-FD0F-462F-B488-8DA7B6ABEE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9084EC30-FD0F-462F-B488-8DA7B6ABEE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9084EC30-FD0F-462F-B488-8DA7B6ABEE68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F21F6AA2-24CF-4E6B-A1B8-D2868AD1098B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F21F6AA2-24CF-4E6B-A1B8-D2868AD1098B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F21F6AA2-24CF-4E6B-A1B8-D2868AD1098B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F21F6AA2-24CF-4E6B-A1B8-D2868AD1098B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C94B203F-6F73-411D-976C-02DFA4962051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C94B203F-6F73-411D-976C-02DFA4962051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C94B203F-6F73-411D-976C-02DFA4962051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C94B203F-6F73-411D-976C-02DFA4962051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F1370A6-FFDB-4849-BD31-10C88E71BF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F1370A6-FFDB-4849-BD31-10C88E71BF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F1370A6-FFDB-4849-BD31-10C88E71BF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F1370A6-FFDB-4849-BD31-10C88E71BF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DED13DC-E3D2-4A1B-BB8B-82C492E2C91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DED13DC-E3D2-4A1B-BB8B-82C492E2C91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DED13DC-E3D2-4A1B-BB8B-82C492E2C91B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5DED13DC-E3D2-4A1B-BB8B-82C492E2C91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DED13DC-E3D2-4A1B-BB8B-82C492E2C91B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DED13DC-E3D2-4A1B-BB8B-82C492E2C91B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E78AF2A7-3132-49C0-9E76-E6868C1C7C35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E78AF2A7-3132-49C0-9E76-E6868C1C7C35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E78AF2A7-3132-49C0-9E76-E6868C1C7C35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E78AF2A7-3132-49C0-9E76-E6868C1C7C35}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

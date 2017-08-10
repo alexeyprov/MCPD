@@ -1,0 +1,292 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="building-and-deploying-an-asp-net-application">Building and Deploying an ASP.NET Application</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>In this demo you will create a new ASP.NET MVC application using the Web Application ASP.NET template, explain how routing works in MVC and show the default HomeController and Views. Then you will walk through the process of creating part of the GeekQuiz object model (TriviaQuestion and TriviaOption) and leverage MVC scaffolding to create the controllers and views. Finally, you&#39;ll deploy the site to a new Microsoft Azure Web App created from within Visual Studio using the new tooling.</p>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li>Create a new MVC application using the ASP.NET tooling</li>
+<li>Create GeekQuiz object model</li>
+<li>Use MVC Scaffolding to create controllers and views for your model</li>
+<li>Create a new Web App in Microsoft Azure and deploy</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ul>
+<li><a href="https://www.visualstudio.com/readme.htm">Visual Studio 2015</a></li>
+<li><a href="http://www.asp.net/mvc/readme.htm">ASP.NET MVC</a></li>
+<li><a href="http://azure.microsoft.com/readme.htm">Microsoft Azure</a></li>
+</ul>
+<p><a name="Setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>In order to execute this demo you need to set up your environment.</p>
+<ol>
+<li><p>Azure SDK for Visual Studio 2015 from <a href="http://azure.microsoft.com/en-us/downloads/readme.htm">here</a>.</p>
+</li>
+<li><p>Azure Subscription.</p>
+</li>
+<li><p>Visual Studio 2015 running.</p>
+</li>
+</ol>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#Segment1">Creating the project</a>.</li>
+<li><a href="#Segment2">Creating the Controllers using Scaffolding</a></li>
+<li><a href="#Segment3">Running the site locally</a></li>
+<li><a href="#Segment4">Deploying to Microsoft Azure Web Apps</a>.</li>
+</ol>
+<p><a name="Segment1"></a></p>
+<h3 id="creating-the-project">Creating the project</h3>
+<ol>
+<li><p>Open the <strong>File / New / Project</strong> dialog and show the options in the <strong>Visual C# / Web</strong> section.</p>
+<p> <img class="img-responsive"src="images/creating-a-new-asp-net-web-app.png?raw=true" alt="Creating a new ASP.NET Web application" title="Creating a new ASP.NET Web application"></p>
+<p> <em>Creating a new ASP.NET Web application</em></p>
+</li>
+<li><p>Name the application <em>GeekQuiz</em> and click <strong>OK</strong>.</p>
+<blockquote>
+<pre><code>**Note:** Make sure that the **Add to source control** checkbox is not selected.
+</code></pre></blockquote>
+</li>
+<li><p>Select Web Application project.</p>
+<p> <img class="img-responsive"src="images/new-aspnet-template-options-for-other-project-types.png?raw=true" alt="New ASP.NET template options for other project types" title="New ASP.NET template options for other project types"></p>
+<p> <em>New ASP.NET templates</em></p>
+<blockquote>
+<pre><code>**Speaking Point:**
+</code></pre><p> Explain the templates in the new ASP.NET Project dialog.</p>
+</blockquote>
+</li>
+<li><p>Click <strong>OK</strong> to create the project.</p>
+<blockquote>
+<pre><code>**Speaking Point:**
+</code></pre><p> As the project is loading, talk about changes to the project template, including the new application anatomy, services, prebuilt middlewares and client-side development.</p>
+</blockquote>
+</li>
+<li><p>Explore the generated solution in the <strong>Solution Explorer</strong>.</p>
+<p> <img class="img-responsive"src="images/exploring-the-solution.png?raw=true" alt="Exploring the solution" title="Exploring the solution"></p>
+<p> <em>Exploring the solution</em></p>
+</li>
+<li><p>Open the <strong>Controllers/HomeController.cs</strong> file and show the generated code.</p>
+<p> <img class="img-responsive"src="images/exploring-the-controllers.png?raw=true" alt="Exploring the controllers" title="Exploring the controllers"></p>
+<p> <em>Exploring the controllers</em></p>
+</li>
+<li><p>Expand to the <strong>Views/Home</strong> folder and show the generated files.</p>
+<p> <img class="img-responsive"src="images/exploring-the-views.png?raw=true" alt="Exploring the views" title="Exploring the views"></p>
+<p> <em>Exploring the views</em></p>
+</li>
+<li><p>Open the <strong>Index.cshtml</strong> file located in the <strong>Views/Home</strong> folder.</p>
+</li>
+<li><p>Open the <strong>Startup.cs</strong> file, go to the Configure method and explain the <a href="https://docs.asp.net/en/latest/fundamentals/middleware.html">Middleware</a> concept and talk about the built-in routing middleware.</p>
+<blockquote>
+<pre><code>**Speaking Point:**
+</code></pre><p> Note that when accessing to the url ending with /home/index you will be calling the home controller and the index action of that controller. Additionally, the index action is mapped to the cshtml file with the same name inside the home folder.</p>
+</blockquote>
+</li>
+<li><p>Create the GeekQuiz model classes. To do that, right-click the <strong>Model</strong> folder and expand the <strong>Add</strong> menu and select <strong>Class</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-a-new-model-class.png?raw=true" alt="Creating a new model class" title="Creating a new model class"></p>
+<p> <em>Creating a new model class</em></p>
+</li>
+<li><p>Name the file <em>TriviaQuestion.cs</em> and click <strong>Add</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-the-trivia-question-class.png?raw=true" alt="Creating the TriaviaQuestion class" title="Creating the TriaviaQuestion class"></p>
+<p> <em>Creating the TriaviaQuestion class</em></p>
+</li>
+<li><p>Add the following code to the <strong>TriviaQuestion</strong> class.</p>
+ <!-- mark:3-8 -->
+<pre><code class="lang-C#"> public class TriviaQuestion
+ {
+     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     public int Id { get; set; }
+
+     [Required]
+     public string Title { get; set; }
+
+     public virtual List&lt;TriviaOption&gt; Options { get; set; }
+ }
+</code></pre>
+</li>
+<li><p>Add the following using statement to the <strong>TriviaQuestion.cs</strong> file.</p>
+<pre><code class="lang-C#"> using System.ComponentModel.DataAnnotations;
+</code></pre>
+<p> <img class="img-responsive"src="images/adding-the-missing-using-statement.png?raw=true" alt="Adding the missing using statement" title="Adding the missing using statement"></p>
+<p> <em>Adding the missing using statement</em></p>
+</li>
+<li><p>Repeat steps 10 and 11 to add a new class named <em>TriviaOption</em>.</p>
+</li>
+<li><p>Add the following code to the <strong>TriviaOption</strong> class.</p>
+ <!-- mark:3-14 -->
+<pre><code class="lang-C#"> public class TriviaOption
+ {
+     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     public int Id { get; set; }
+
+     [ForeignKey(&quot;TriviaQuestion&quot;)]
+     public int QuestionId { get; set; }
+
+     public virtual TriviaQuestion TriviaQuestion { get; set; }
+
+     [Required]
+     public string Title { get; set; }
+
+     public bool IsCorrect { get; set; }
+ }
+</code></pre>
+</li>
+<li><p>Include all the missing using statements.</p>
+</li>
+<li><p>Build the solution.</p>
+</li>
+</ol>
+<p><a name="Segment2"></a></p>
+<h3 id="creating-the-controllers-using-scaffolding">Creating the Controllers using Scaffolding</h3>
+<ol>
+<li><p>Create the controller to manage the model&#39;s CRUD operations. To do that, right-click the <strong>Controllers</strong> folder and expand the <strong>Add</strong> menu and select <strong>Controller...</strong></p>
+<p> <img class="img-responsive"src="images/creating-a-new-controller.png?raw=true" alt="Creating a new Controller" title="Creating a new Controller"></p>
+<p> <em>Creating a new Controller</em></p>
+<blockquote>
+<pre><code>**Speaking Point:**
+</code></pre><p> Let&#39;s create the controllers and views using scaffolding for each model class.</p>
+</blockquote>
+</li>
+<li><p>Select the <strong>MVC 6 Controller with views, using Entity Framework</strong> option in the <strong>Add Scaffold</strong> dialog and click <strong>Add</strong>.</p>
+<p> <img class="img-responsive"src="images/selecting-mvc6-controller-with-views.png?raw=true" alt="Selecting the MVC 6 Controller with views and Entity Framework" title="Selecting the MVC 6 Controller with views and Entity Framework"></p>
+<p> <em>Selecting the MVC 6 Controller with views and Entity Framework</em></p>
+</li>
+<li><p>Select <strong>TriviaQuestion</strong> from the <strong>Model class</strong> list.</p>
+<p> <img class="img-responsive"src="images/selecting-the-triviaquestion-model.png?raw=true" alt="Selecting the TriviaQuestion model" title="Selecting the TriviaQuestion model"></p>
+<p> <em>Selecting the TriviaQuestion model</em></p>
+</li>
+<li><p>Create a new data context named <strong>TriviaContext</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-the-new-triviacontext.png?raw=true" alt="Creating the new TriviaContext" title="Creating the new TriviaContext"></p>
+<p> <em>Creating the new TriviaContext</em></p>
+</li>
+<li><p>Check the <strong>Use async controller actions</strong> checkbox.</p>
+<p> <img class="img-responsive"src="images/checking-the-async-option.png?raw=true" alt="Checking the use async controller actions checkbox" title="Checking the use async controller actions checkbox"></p>
+<p> <em>Checking the use async controller actions checkbox</em></p>
+</li>
+<li><p>Change the name of the controller to <strong>QuestionController</strong>.</p>
+<p> <img class="img-responsive"src="images/changing-the-controller-name.png?raw=true" alt="Changing the controller name" title="Changing the controller name"></p>
+<p> <em>Changing the controller name</em></p>
+</li>
+<li><p>Finally, click <strong>Add</strong> to create the views and the controller with the default actions.</p>
+<p> <img class="img-responsive"src="images/creating-the-questioncontroller.png?raw=true" alt="Creating the QuestionController" title="Creating the QuestionController"></p>
+<p> <em>Creating the QuestionController</em></p>
+</li>
+<li><p>Expand to the <strong>Controller</strong> folder and show the <strong>QuestionController.cs</strong> file, which was just created.</p>
+</li>
+<li><p>Open the <strong>QuestionController.cs</strong> file to show the generated content.</p>
+<p> <img class="img-responsive"src="images/showing-the-questioncontroller.png?raw=true" alt="Showing the QuestionController" title="Showing the QuestionController"></p>
+<p> <em>Showing the QuestionController</em></p>
+</li>
+<li><p>Expand the <strong>Views</strong> folder and show the new views under the <strong>Question</strong> folder.</p>
+<p> <img class="img-responsive"src="images/showing-the-question-views.png?raw=true" alt="Showing the Question Views" title="Showing the Question Views"></p>
+<p> <em>Showing the Question Views</em></p>
+</li>
+<li><p>Build the solution. Then, repeat steps 1 through 7 to create the <strong>OptionController</strong> for the <strong>TriviaOption</strong> class using the already existing <strong>TriviaContext</strong>.</p>
+</li>
+</ol>
+<p><a name="Segment3"></a></p>
+<h3 id="running-the-site-locally">Running the site locally</h3>
+<ol>
+<li><p>Press <strong>F5</strong> to run the web site.</p>
+</li>
+<li><p>Navigate to <strong>/question</strong>.</p>
+<p> <img class="img-responsive"src="images/navigating-to-question.png?raw=true" alt="Navigating to question" title="Navigating to question"></p>
+<p> <em>Navigating to question</em></p>
+</li>
+<li><p>Add a new question.</p>
+<p> <img class="img-responsive"src="images/adding-a-new-question.png?raw=true" alt="Adding a new question" title="Adding a new question"></p>
+<p> <em>Adding a new question</em></p>
+</li>
+<li><p>Close the browser to stop the solution.</p>
+</li>
+</ol>
+<p><a name="Segment4"></a></p>
+<h3 id="deploying-to-microsoft-azure-web-apps">Deploying to Microsoft Azure Web Apps</h3>
+<ol>
+<li><p>Right-click the <strong>GeekQuiz</strong> project and select <strong>Publish...</strong></p>
+<p> <img class="img-responsive"src="images/publishing-the-site.png?raw=true" alt="Publishing the Website" title="Publishing the Website"></p>
+<p> <em>Publishing the Website</em></p>
+</li>
+<li><p>In the <strong>Publish Web</strong> dialog, click <strong>Microsoft Azure App Service</strong>.</p>
+<p> <img class="img-responsive"src="images/selecting-azure-app-service.png?raw=true" alt="Selecting Microsoft Azure App Service" title="Microsoft Azure App Service"></p>
+<p> <em>Microsoft Azure App Service</em></p>
+</li>
+<li><p>Click <strong>Add an account...</strong>. to sign in to Visual Studio with your Azure account.</p>
+<p> <img class="img-responsive"src="images/adding-an-account.png?raw=true" alt="Adding an account" title="Adding an account"></p>
+<p> <em>Adding an account</em></p>
+</li>
+<li><p>Then, click <strong>New...</strong> to open the <em>Create App Service</em> dialog box.</p>
+<p> <img class="img-responsive"src="images/create-new-web-app.png?raw=true" alt="Creating a new App Service" title="Creating a new App Service"></p>
+<p> <em>Creating a new App Service</em></p>
+</li>
+<li><p>The <em>Create App Service</em> dialog box will appear. Fill the Web App name field, the Resource Group and the App Service plan. Then, click <strong>Services</strong> to add the SQL Database.</p>
+<p> <img class="img-responsive"src="images/create-app-service-dialog-box.png?raw=true" alt="Creating Web App on Microsoft Azure dialog" title="Creating Web App on Microsoft Azure dialog"></p>
+<p> <em>Creating Web App on Microsoft Azure dialog</em></p>
+<blockquote>
+<pre><code>**Speaking Point:**
+</code></pre><p> You can create a new Web App without a database, or a new Web App with a new database on an existing database server, or a new Web App with a new database on a new database server. Fill in all the required information and voila... your new Microsoft Azure Web App is ready and you can deploy your website project there.</p>
+</blockquote>
+</li>
+<li><p>In the <strong>Services</strong> tab, click the add buton next to <strong>SQL Database</strong> in <strong>Resource Type</strong> list.</p>
+<p> <img class="img-responsive"src="images/adding-a-new-sql-database.png?raw=true" alt="Adding a new SQL Database" title="Adding a new SQL Database"></p>
+<p> <em>Adding a new SQL Database</em></p>
+</li>
+<li><p>In the <strong>Configure SQL Database</strong> dialog box, create a new SQL Server by clicking the <strong>New...</strong> button.</p>
+<p> <img class="img-responsive"src="images/creating-a-new-sql-server.png?raw=true" alt="Creating a new SQL Server" title="Creating a new SQL Server"></p>
+<p> <em>Creating a new SQL Server</em></p>
+</li>
+<li><p>In the <strong>Configure SQL Server</strong> dialog box, fill the server name, the administrator username and password and then click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="images/configuring-the-sql-server.png?raw=true" alt="Configuring the SQL Server" title="Configuring the SQL Server"></p>
+<p> <em>Configuring the SQL Server</em></p>
+</li>
+<li><p>Back in the <strong>Configure SQL Database</strong> dialog box, click <strong>OK</strong>.</p>
+<p> <img class="img-responsive"src="images/configuring-the-sql-database.png?raw=true" alt="Configuring the SQL Database" title="Configuring the SQL Database"></p>
+<p> <em>Configuring the SQL Database</em></p>
+</li>
+<li><p>In the <strong>Create App Service</strong> dialog box, click <strong>Create</strong> and wait until the Web App is created.</p>
+<p> <img class="img-responsive"src="images/creating-the-app-service.png?raw=true" alt="Creating the app Service" title="Creating the app Service"></p>
+<p> <em>Creating the app Service</em></p>
+</li>
+<li><p>Back in the <strong>Publish Web</strong> dialog, click <strong>Next &gt;</strong>.</p>
+<p> <img class="img-responsive"src="images/reviewing-the-connection-settings-to-deploy.png?raw=true" alt="Reviewing the connection settings to deploy" title="Reviewing the connection settings to deploy"></p>
+<p> <em>Reviewing the connection settings to deploy</em></p>
+</li>
+<li><p>In the settings tab, show that you can select to target differents DNX versions.</p>
+<p> <img class="img-responsive"src="images/showing-the-dnx-versions.png?raw=true" alt="Showing the different DNX versions" title="Showing the different DNX versions"></p>
+<p> <em>Showing the different DNX versions</em></p>
+</li>
+<li><p>Finally, click <strong>Publish</strong> to publish the site.</p>
+<p> <img class="img-responsive"src="images/publishing-the-site-to-azure.png?raw=true" alt="Publishing the site to the new Microsoft Azure Web Appp" title="Publishing the site to the new Microsoft Azure Web Appp"></p>
+<p> <em>Publishing the site to the new Microsoft Azure Web Appp</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this demo you should have:</p>
+<ul>
+<li>Created a new MVC application using the Web Application ASP.NET template</li>
+<li>Learned how MVC routing, views and controllers work</li>
+<li>Created GeekQuiz object model (TriviaQuestion and TriviaOption)</li>
+<li>Scaffolded the views and controllers for your model</li>
+<li>Created a new Web App in Azure and deployed to it from within Visual Studio</li>
+</ul>
+<hr>
+
+      </div>
+  </body>
+</html>

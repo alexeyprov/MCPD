@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ResourceCombiner xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <TargetFileName>C:\projects2008\Articles\WpfLocalization\WpfLocalization\bin\Debug\WpfLocalization.exe</TargetFileName>
+   <LocBamlPath>C:\projects2008\Articles\WpfLocalization\WpfLocalization\bin\Debug\LocBaml.exe</LocBamlPath>
+   <TranslateLocale>de</TranslateLocale>
+   <AssemblyLinkerFileName>C:\Program Files\Microsoft SDKs\Windows\v6.0A\bin\al.exe</AssemblyLinkerFileName>
+   <CsvFolder>Res</CsvFolder>
+</ResourceCombiner>

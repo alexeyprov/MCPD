@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="http://192.168.1.3" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/NorthwindMVC" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="False" msdeployMarkAsApp="True" profileName="VM-Deploy" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="ladmin" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAmnEKk4EBskacTFaZjYsPnwAAAAACAAAAAAADZgAAwAAAABAAAAC/ff1SdZkiIftQzMpg0NB5AAAAAASAAACgAAAAEAAAALcAfO3DPgR7meqG6B3ICF8YAAAA+Bx9EY7ss87WLfvqvM5xfuFj9vsLQ/YKFAAAAFJKBg8tRbKzjXF1gSclT14xqtWG" SelectedForPublish="True" />
+</publishData>

@@ -1,0 +1,17 @@
+<Project DefaultTargets="SampleTarget" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target
+       Name="SampleTarget"
+       Inputs="SampleInput"
+       Outputs="SampleOutput"
+       DependsOnTargets="PrecursorTarget">
+        <Message Text="SampleTarget says: $(SampleInput)" />
+    </Target>
+    <Target
+       Name="PrecursorTarget">
+        <Message Text="Attention!" />
+    </Target>
+    <PropertyGroup>
+        <SampleInput>Hello, world</SampleInput>
+        <SampleOutput></SampleOutput>
+    </PropertyGroup>   
+</Project>

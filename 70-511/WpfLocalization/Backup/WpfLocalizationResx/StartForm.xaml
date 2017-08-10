@@ -1,0 +1,51 @@
+﻿<Window x:Uid="frmStartMenuForm" x:Class="WpfLocalizationResx.StartForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:res="http://www.west-wind.com/WpfControls"        
+        
+    Title="WPF Localization Samples" 
+    WindowStyle="SingleBorderWindow"
+    ResizeMode="NoResize"
+      
+    Height="316" Width="350" SizeToContent="Width"    
+    Background="{DynamicResource WindowBackgroundBrush}"    
+    x:Name="frmStartMenuForm"
+    res:TranslationExtension.TranslateResourceSet="WpfLocalizationResx.LocalResources.StartForm"
+    res:TranslationExtension.Translate="True"
+>    
+   
+    <Grid x:Uid="grdPage" x:Name="grdPage">
+
+        <StackPanel x:Uid="stackOuter" x:Name="stackOuter" Margin="0" >
+                        
+            <StackPanel x:Uid="StackPanel_2" Background="{DynamicResource ShineBrush}"                      
+                       Margin="0,0,0,25">
+                <TextBlock x:Uid="WindowHeader" x:Name="WindowHeader" FontSize="25"  FontWeight="Bold"
+                           Margin="10,10,10,2" Foreground="{DynamicResource ShineColor}"   
+                           res:TranslationExtension.Translate="True">
+                    Resx Resource Localization Example
+                </TextBlock>
+                <TextBlock x:Uid="txtSubHeader" Foreground="{DynamicResource ShineColor}" 
+                           Margin="10,0,25,10" TextWrapping="Wrap"  HorizontalAlignment="Left"
+                           res:TranslationExtension.Translate="True">
+                    This sample is localized in English and German using Resx Resources.
+                </TextBlock>
+            </StackPanel>                
+            
+            <GroupBox x:Uid="gbSamples" Header="Samples" Margin="30,0" res:TranslationExtension.Translate="True">
+                <StackPanel x:Uid="StackPanel_1" Margin="10">
+                    <Button x:Uid="btnLocalizationInfo" x:Name="btnLocalizationInfo" 
+                            Content="Localization Information"  res:TranslationExtension.Translate="True"
+                            Margin="5" Height="30" Click="ButtonHandler"/>
+                    <Button x:Uid="btnLocalizationInfoAttached" x:Name="btnLocalizationInfoAttached"  
+                            Content="Localization Info (Attached Property)"  res:TranslationExtension.Translate="True"
+                            Margin="5" Height="30" Click="ButtonHandler"/>
+                </StackPanel>            
+            </GroupBox>
+            <Button x:Uid="btnExit" x:Name="btnExit" Width="73" Height="25" 
+                    Content="Exit"  res:TranslationExtension.Translate="True"
+                   IsDefault="True" Click="ButtonHandler" HorizontalAlignment="Right" Margin="0,10,30,10" />
+        </StackPanel>
+    </Grid>
+    
+</Window>

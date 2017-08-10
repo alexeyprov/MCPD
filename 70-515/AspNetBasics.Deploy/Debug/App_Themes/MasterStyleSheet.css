@@ -1,0 +1,25 @@
+﻿.max_width
+{
+	width:100%
+}
+.labelCell
+{
+	text-align:right;
+	width:120px;
+}
+div.centered
+{
+    margin-left:auto;
+    margin-right:auto;
+}
+div.mainBody
+{
+	margin-left:20px;
+	margin-right:20px;
+}
+td.field_caption
+{
+    font-weight: bold;
+    text-align: right;
+    margin-right: 2px;
+}

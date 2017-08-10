@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="databindinglab">
+</Property><Property Name="Solution File" Value="D:\Projects\MyStuff\WPF\DataBinding\databindinglab.sln">
+</Property><Property Name="Date" Value="Tuesday, March 18, 2008">
+</Property><Property Name="Time" Value="15:43:12 PM">
+</Property></Properties><Event ErrorLevel="0" Project="databindinglab" Source="databindinglab.csproj" Description="Project file successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\databindinglab.csproj">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="DataBindingLabApp.xaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\DataBindingLabApp.xaml.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="AddProductWindow.xaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\AddProductWindow.xaml.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="MainWindow.xaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\MainWindow.xaml.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="AuctionItem.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\AuctionItem.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="Bid.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\Bid.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="DateConverter.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\DateConverter.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="FutureDateRule.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\FutureDateRule.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="SpecialFeaturesConverter.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\SpecialFeaturesConverter.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="User.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\User.cs">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="DataBindingLabApp.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\DataBindingLabApp.xaml">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="AddProductWindow.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\AddProductWindow.xaml">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="MainWindow.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\DataBinding\Backup\MainWindow.xaml">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="databindinglab.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="databindinglab" Source="databindinglab.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="databindinglab" Source="databindinglab.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

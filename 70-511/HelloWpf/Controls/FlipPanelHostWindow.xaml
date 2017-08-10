@@ -1,0 +1,139 @@
+﻿<Window x:Class="HelloWpf.Controls.FlipPanelHostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:CustomUI;assembly=CustomUI"
+        Title="FlipPanelHostWindow" Height="300" Width="300">
+    <Window.Resources>
+        <Style x:Key="SlidingPanel" TargetType="c:FlipPanel">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="c:FlipPanel">
+                        <Grid>
+                            <!-- Visual State Animations -->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="ViewStates">
+                                    <VisualStateGroup.States>
+                                        <!-- Normal state -->
+                                        <VisualState Name="Normal">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="FrontBorderScaleTransform" 
+                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                 To="1" />
+                                                <DoubleAnimation Storyboard.TargetName="FrontBorderBlurEffect"
+                                                                 Storyboard.TargetProperty="Radius"
+                                                                 To="0" />
+                                                <DoubleAnimation Storyboard.TargetName="BackBorderScaleTransform" 
+                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                 To="0" />
+                                                <DoubleAnimation Storyboard.TargetName="BackBorderBlurEffect"
+                                                                 Storyboard.TargetProperty="Radius"
+                                                                 To="30" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <!-- Flipped state -->
+                                        <VisualState Name="Flipped">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="FrontBorderScaleTransform" 
+                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                 To="0" />
+                                                <DoubleAnimation Storyboard.TargetName="FrontBorderBlurEffect"
+                                                                 Storyboard.TargetProperty="Radius"
+                                                                 To="30" />
+                                                <DoubleAnimation Storyboard.TargetName="BackBorderScaleTransform" 
+                                                                 Storyboard.TargetProperty="ScaleY"
+                                                                 To="1" />
+                                                <DoubleAnimation Storyboard.TargetName="BackBorderBlurEffect"
+                                                                 Storyboard.TargetProperty="Radius"
+                                                                 To="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup.States>
+                                    <!-- BUG: Setting duration here drops transition logic for Normal state -->
+                                    <!--
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition To="Flipped" GeneratedDuration="0:0:0.8" />
+                                        <VisualTransition To="Normal" GeneratedDuration="0:0:0.5" />
+                                    </VisualStateGroup.Transitions>
+                                    -->
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+
+                            <!-- Front Panel -->
+                            <Border
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}">
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="FrontBorderScaleTransform" ScaleX="1" ScaleY="1"/>
+                                </Border.RenderTransform>
+                                <Border.Effect>
+                                    <BlurEffect x:Name="FrontBorderBlurEffect" Radius="0" />
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ContentPresenter Content="{TemplateBinding FrontContent}" Name="FrontContent"/>
+                                    <Rectangle Fill="SteelBlue" HorizontalAlignment="Stretch" Grid.Row="1" />
+                                    <ToggleButton HorizontalAlignment="Right" Margin="5" Content="^" Name="FlipButton" Padding="10, 0" Grid.Row="1"/>
+                                </Grid>
+                            </Border>
+
+                            <!-- Back Panel -->
+                            <Border
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                RenderTransformOrigin="0.5, 1">
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="BackBorderScaleTransform" ScaleX="1" ScaleY="0"/>
+                                </Border.RenderTransform>
+                                <Border.Effect>
+                                    <BlurEffect x:Name="BackBorderBlurEffect" Radius="30" />
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Rectangle Fill="SteelBlue" HorizontalAlignment="Stretch" />
+                                    <ToggleButton HorizontalAlignment="Right" Margin="5" Content="v" Name="FlipButtonAlternate" Padding="10, 0"/>
+                                    <ContentPresenter Content="{TemplateBinding BackContent}" Name="BackContent" Grid.Row="1" />
+                                </Grid>
+                            </Border>
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <c:FlipPanel Margin="5" BorderBrush="DarkGreen" BorderThickness="3" Name="FlippingPanel" Style="{StaticResource SlidingPanel}">
+        <c:FlipPanel.FrontContent>
+            <StackPanel Margin="6">
+                <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16"
+                           Foreground="DarkOrange">This is the front side of the FlipPanel.</TextBlock>
+                <Button Margin="3" Padding="3" Content="Button One"></Button>
+                <Button Margin="3" Padding="3" Content="Button Two"></Button>
+                <Button Margin="3" Padding="3" Content="Button Three"></Button>
+                <Button Margin="3" Padding="3" Content="Button Four"></Button>
+            </StackPanel>
+        </c:FlipPanel.FrontContent>
+        <c:FlipPanel.BackContent>
+            <Grid Margin="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock TextWrapping="Wrap" Margin="3" FontSize="16"
+                           Foreground="DarkMagenta">This is the back side of the FlipPanel.</TextBlock>
+                <Button Grid.Row="2" Margin="3" Padding="10" Content="Flip Back to Front"
+                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Click="cmdFlip_Click"></Button>
+            </Grid>
+        </c:FlipPanel.BackContent>
+    </c:FlipPanel>
+</Window>

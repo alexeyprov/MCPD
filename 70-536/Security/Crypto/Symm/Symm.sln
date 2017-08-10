@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PwdEncryption", "PwdEncryption\PwdEncryption.csproj", "{5634F13F-D90A-49DE-A074-01DB10B286D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionClient", "EncryptionClient\EncryptionClient.csproj", "{719DF221-F0AC-4D3D-A7E1-1E3BDB1078A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5634F13F-D90A-49DE-A074-01DB10B286D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5634F13F-D90A-49DE-A074-01DB10B286D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5634F13F-D90A-49DE-A074-01DB10B286D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5634F13F-D90A-49DE-A074-01DB10B286D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719DF221-F0AC-4D3D-A7E1-1E3BDB1078A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719DF221-F0AC-4D3D-A7E1-1E3BDB1078A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719DF221-F0AC-4D3D-A7E1-1E3BDB1078A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719DF221-F0AC-4D3D-A7E1-1E3BDB1078A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

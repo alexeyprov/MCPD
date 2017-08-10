@@ -1,0 +1,1 @@
+csc /out:Test.exe Singleton.cs SIngletonSerializationTest.cs

@@ -1,0 +1,279 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="building-a-spa-interface-using-angular-2">Building a SPA interface using Angular 2</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>In this demo you will go through the steps required to build the web front end portion of GeekQuiz, focusing on the single page application interaction using Angular 2, and the CSS3 flip animation. </p>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li>Create a single page application using Angular 2 and ASP.NET Web API</li>
+<li>Use CSS3 to perform rich animations</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ul>
+<li><a href="https://angular.io/readme.htm">Angular 2</a></li>
+<li><a href="http://www.typescriptlang.org/readme.htm">TypeScript</a></li>
+<li><a href="http://www.w3schools.com/css/css3_intro.asp">CSS3</a></li>
+</ul>
+<p><a name="setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>Follow these steps to setup your environment for the demo.</p>
+<ol>
+<li>Open Visual Studio 2015.</li>
+<li>Open the <strong>GeekQuiz.sln</strong> solution located under <strong>source\begin</strong>.</li>
+<li><p>If you don&#39;t have one, create a user account for the application. To do that, press <strong>F5</strong>, click <strong>Register</strong> and provide the information required. After that, close the browser window.</p>
+<blockquote>
+<p><strong>Note:</strong> Remember the information you provided as you will be using it during the demo.</p>
+</blockquote>
+</li>
+<li><p>In Visual Studio, close all open files.</p>
+</li>
+<li>Make sure that you have an Internet connection, as this demo requires it to download the npm packages.</li>
+</ol>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#segment1">Consuming data from a Web API in an Angular 2 app</a></li>
+<li><a href="#segment2">Creating a flip animation using CSS3</a></li>
+</ol>
+<p><a name="segment1"></a></p>
+<h3 id="consuming-data-from-a-web-api-in-an-angular-2-app">Consuming data from a Web API in an Angular 2 app</h3>
+<ol>
+<li><p>Press <strong>CTRL + ,</strong> and search for &quot;_Layout.cshtml&quot; (without the quotes).</p>
+<p> <img class="img-responsive"src="images/opening-the-layout.png?raw=true" alt="Opening the layout file" title="Opening the layout file"></p>
+<p> <em>Opening the layout file</em></p>
+</li>
+<li><p>Press <strong>Enter</strong>. The &quot;_Layout.cshtml&quot; file is opened in the editor.</p>
+</li>
+<li><p>Add the following code inside the <code>&lt;environment names=&quot;Development&quot;&gt;</code> tag located inside the <code>head</code> tag.</p>
+ <!-- mark:1-3 -->
+<pre><code class="lang-HTML"> &lt;script src=&quot;https://code.angularjs.org/tools/system.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;https://code.angularjs.org/2.0.0-alpha.46/angular2.dev.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;https://code.angularjs.org/2.0.0-alpha.46/http.dev.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li><p>Add the following code inside the <code>&lt;environment names=&quot;Staging,Production&quot;&gt;</code> tag located inside the <code>head</code> tag.</p>
+ <!-- mark:1-3 -->
+<pre><code class="lang-HTML"> &lt;script src=&quot;https://code.angularjs.org/tools/system.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;https://code.angularjs.org/2.0.0-alpha.46/angular2.min.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;https://code.angularjs.org/2.0.0-alpha.46/http.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p> <img class="img-responsive"src="images/updating-the-layout.png?raw=true" alt="Updating the layout file to include the new dependencies" title="Updating the layout file to include the new dependencies"></p>
+<p> <em>Updating the layout file to include the new dependencies</em></p>
+</li>
+<li><p>Now, press <strong>CTRL + ,</strong> again and search for &quot;index.cshtml&quot; (without the quotes).</p>
+<p> <img class="img-responsive"src="images/opening-the-index-view.png?raw=true" alt="Opening the index view" title="Opening the index view"></p>
+<p> <em>Opening the index view</em></p>
+</li>
+<li><p>Press <strong>Enter</strong>. The Index.cshtml file is opened in the editor.</p>
+</li>
+<li><p>Add the following code at the bottom of the file. This code will be used as the root of the SPA application.</p>
+ <!-- mark:1-7 -->
+<pre><code class="lang-HTML"> &lt;section id=&quot;content&quot;&gt;
+      &lt;div class=&quot;container&quot;&gt;
+           &lt;div class=&quot;row&quot;&gt;
+                 &lt;geekquiz-app&gt;Loading...&lt;/geekquiz-app&gt;
+           &lt;/div&gt;
+      &lt;/div&gt;
+ &lt;/section&gt;
+</code></pre>
+</li>
+<li><p>Add the following code snippet at the bottom of the file. This code will include the app.js file that will be created during the next steps.</p>
+ <!-- mark:1-9 -->
+<pre><code class="lang-JavaScript"> @section Scripts {
+      &lt;script&gt;
+           System.config({
+                 packages: { &#39;js&#39;: { defaultExtension: &#39;js&#39; } }
+           });
+
+           System.import(&#39;js/app&#39;);
+      &lt;/script&gt;
+ }
+</code></pre>
+</li>
+<li><p>Right-click the <strong>js</strong> folder located under <strong>wwwroot</strong> and select <strong>New Item...</strong> under <strong>Add</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-a-new-item.png?raw=true" alt="Creating a new item" title="Creating a new item"></p>
+<p> <em>Creating a new item</em></p>
+</li>
+<li><p>Select <strong>TypeScript File</strong> under the <strong>DNX | Client-Side</strong> menu, change the name to <strong>app.ts</strong> and click <strong>Add</strong>.</p>
+<p><img class="img-responsive"src="images/adding-a-new-typescript-file.png?raw=true" alt="Adding a new TypeScript file" title="Adding a new TypeScript file"></p>
+<p><em>Adding a new TypeScript file</em></p>
+</li>
+<li><p>Add the following code in the <strong>app.ts</strong> file you just created.</p>
+ <!-- mark:1-73 -->
+<pre><code class="lang-JavaScript"> import {bootstrap, Component, View, NgFor, NgClass, AfterViewInit, Inject} from &#39;angular2/angular2&#39;;
+ import {Http, HTTP_BINDINGS, Headers} from &#39;angular2/http&#39;;
+
+ @Component({
+     selector: &#39;geekquiz-app&#39;,
+     viewBindings: [HTTP_BINDINGS]
+ })
+ class AppComponent implements AfterViewInit {
+     public answered = false;
+     public title = &quot;loading question...&quot;;
+     public options = [];
+     public correctAnswer = false;
+     public working = false;
+
+     constructor( @Inject(Http) private http: Http) {
+     }
+
+     answer() {
+         return this.correctAnswer ? &#39;correct&#39; : &#39;incorrect&#39;;
+     }
+
+     nextQuestion() {
+         this.working = true;
+
+         this.answered = false;
+         this.title = &quot;loading question...&quot;;
+         this.options = [];
+
+         var headers = new Headers();
+         headers.append(&#39;If-Modified-Since&#39;, &#39;Mon, 27 Mar 1972 00:00:00 GMT&#39;);
+
+         this.http.get(&quot;/api/trivia&quot;, { headers: headers })
+             .map(res =&gt; res.json())
+             .subscribe(
+                 question =&gt; {
+                     this.options = question.options;
+                     this.title = question.title;
+                     this.answered = false;
+                     this.working = false;
+                 },
+                 err =&gt; {
+                     this.title = &quot;Oops... something went wrong&quot;;
+                     this.working = false;
+                 });
+     }
+
+     sendAnswer(option) {
+         this.working = true;
+         var answer = { &#39;questionId&#39;: option.questionId, &#39;optionId&#39;: option.id };
+
+         var headers = new Headers();
+         headers.append(&#39;Content-Type&#39;, &#39;application/json&#39;);
+
+         this.http.post(&#39;/api/trivia&#39;, JSON.stringify(answer), { headers: headers })
+             .map(res =&gt; res.json())
+             .subscribe(
+                 answerIsCorrect =&gt; {
+                     this.answered = true;
+                     this.correctAnswer = (answerIsCorrect === true);
+                     this.working = false;
+                 },
+                 err =&gt; {
+                     this.title = &quot;Oops... something went wrong&quot;;
+                     this.working = false;
+                 });
+     }
+
+     afterViewInit() {
+         this.nextQuestion();
+     }
+ }
+
+ bootstrap(AppComponent);
+</code></pre>
+</li>
+<li><p>Add the following View decorator to the <strong>AppComponent</strong> class below the <strong>Component</strong> decorator.</p>
+ <!-- mark:1-19 -->
+<pre><code class="lang-JavaScript"> @View({
+      directives: [NgFor, NgClass],
+      template: `
+           &lt;div class=&quot;flip-container text-center col-md-12&quot;&gt;
+                 &lt;div class=&quot;front&quot; [ng-class]=&quot;{flip: answered}&quot;&gt;
+                      &lt;p class=&quot;lead&quot;&gt;{{title}}&lt;/p&gt;
+                      &lt;div class=&quot;row text-center&quot;&gt;
+                           &lt;button class=&quot;btn btn-info btn-lg option&quot; *ng-for=&quot;#option of options&quot; [disabled]=&quot;working&quot;&gt;{{option.title}}&lt;/button&gt;
+                      &lt;/div&gt;
+                 &lt;/div&gt;
+           &lt;/div&gt;
+      `
+ })
+</code></pre>
+</li>
+<li><p>Save the changes and show that Visual Studio compiles the TypeScript files generating JavaScript code.</p>
+</li>
+</ol>
+<pre><code>![Showing the generated code](images/showing-the-generated-code.png?raw=true &quot;Showing the generated code&quot;)
+
+_Showing the generated code_
+</code></pre><ol>
+<li><p>Press <strong>F5</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> If the Log in page is displayed, provide the credentials you created during the setup steps.</p>
+<p><img class="img-responsive"src="images/logging-in-the-app.png?raw=true" alt="Logging in the site" title="Logging in the site"></p>
+</blockquote>
+</li>
+<li><p>As shown in the following figure, the buttons will be displayed. Click any of the buttons. Nothing will happen.</p>
+<p> <img class="img-responsive"src="images/showing-the-app-running.png?raw=true" alt="Showing the app running" title="Showing the app running"></p>
+<p> <em>Showing the app running</em></p>
+</li>
+</ol>
+<p><a name="segment2"></a></p>
+<h3 id="creating-a-flip-animation-using-css3">Creating a flip animation using CSS3</h3>
+<ol>
+<li><p>Dock the Visual Studio window to the left, and the browser window to the right.</p>
+<p> <img class="img-responsive"src="images/docking-the-windows.png?raw=true" alt="Docking the windows" title="Docking the windows"></p>
+<p> <em>Docking the windows</em></p>
+</li>
+<li><p>In Visual Studio, press <strong>CTRL + ,</strong> again and search for &quot;flip.css&quot; (without the quotes).</p>
+<p> <img class="img-responsive"src="images/opening-the-flip-css-file.png?raw=true" alt="Opening the flip.css file" title="Opening the flip.css file"></p>
+<p> <em>Opening the flip.css file</em></p>
+</li>
+<li><p>Press <strong>Enter</strong>. The flip.css file is opened in the editor.</p>
+</li>
+<li><p>Show the flip.css file.</p>
+</li>
+<li><p>Go back to the <strong>app.ts</strong> file, add the <code>(click)=&quot;sendAnswer(option)&quot;</code> to the <code>&lt;button&gt;</code> element inside the <em>each</em> loop. The resulting <code>&lt;button&gt;</code> element is the one from the following code snippet.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-HTML"> &lt;button class=&quot;btn btn-info btn-lg option&quot; *ng-for=&quot;#option of options&quot; (click)=&quot;sendAnswer(option)&quot; [disabled]=&quot;working&quot;&gt;{{option.title}}&lt;/button&gt;
+</code></pre>
+</li>
+<li><p>Add the following code snippet as the first child of <code>&lt;div class=&quot;flip-container text-center col-md-12&quot;&gt;</code> and save the changes.</p>
+ <!-- mark:1-8 -->
+<pre><code class="lang-HTML"> &lt;div class=&quot;back&quot; [ng-class]=&quot;{flip: answered, correct: correctAnswer, incorrect:!correctAnswer}&quot;&gt;
+     &lt;p class=&quot;lead&quot;&gt;{{answer()}}&lt;/p&gt;
+     &lt;p&gt;
+           &lt;button class=&quot;btn btn-info btn-lg next option&quot; (click)=&quot;nextQuestion()&quot; [disabled]=&quot;working&quot;&gt;Next Question&lt;/button&gt;
+     &lt;/p&gt;
+ &lt;/div&gt;
+</code></pre>
+</li>
+<li><p>Click <strong>Refresh Browser Link</strong>.</p>
+<p> <img class="img-responsive"src="images/refreshing-using-browser-link.png?raw=true" alt="Refreshing the Browser using Browser Link" title="Refreshing the Browser using Browser Link"></p>
+<p> <em>Refreshing the Browser using Browser Link</em></p>
+</li>
+<li><p>In the web browser, click any of the buttons. The flip animation will take place and the result (correct/incorrect) will be displayed.</p>
+<p> <img class="img-responsive"src="images/showing-the-flip-animation.png?raw=true" alt="Showing the flip animation" title="Showing the flip animation"></p>
+<p> <em>Showing the flip animation</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this demo you should have:</p>
+<ol>
+<li>Create a single page application using Angular 2 and ASP.NET Web API</li>
+<li>Set up the CSS3 flip animation</li>
+</ol>
+<hr>
+
+      </div>
+  </body>
+</html>

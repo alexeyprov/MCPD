@@ -1,0 +1,23 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(BuildType)' == ''">
+    <BuildType>Release</BuildType>
+  </PropertyGroup>
+ 
+  <PropertyGroup>
+    <SolutionToBuild>SourceCode\BeforeAzure\aExpense.sln</SolutionToBuild>
+  </PropertyGroup>
+  
+  <Target Name="Clean">
+    <MSBuild
+      Projects="$(SolutionToBuild)"
+      Targets="Clean"
+      Properties="Configuration=$(BuildType)"/>
+  </Target>
+
+  <Target Name="Build">
+    <MSBuild
+      Projects="$(SolutionToBuild)"
+      Targets="Build"
+      Properties="Configuration=$(BuildType)"/>
+  </Target>
+</Project>

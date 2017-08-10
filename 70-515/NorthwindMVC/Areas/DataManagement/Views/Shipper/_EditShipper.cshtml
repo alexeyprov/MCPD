@@ -1,0 +1,56 @@
+﻿@model NorthwindMVC.Areas.DataManagement.Models.EditViewModelBase<Northwind.Data.Entities.Shipper>
+
+@{
+	Layout = null;
+}
+
+@using (Ajax.BeginForm("Update", "Shipper",
+	new
+	{
+		Model.SelectedEntity.ShipperID
+	},
+	new AjaxOptions()
+	{
+		UpdateTargetId = "shipperHost",
+		OnSuccess = "onShipperUpdateSucceeded"
+	}))
+{
+	<table>
+		<tr>
+			<td><b>ID:</b></td>
+			<td>@Model.SelectedEntity.ShipperID</td>
+		</tr>
+		<tr>
+			<td><b>Company:</b></td>
+			<td>@Html.TextBox("CompanyName", Model.SelectedEntity.CompanyName)
+				<br />
+				@Html.ValidationMessageFor(m => m.SelectedEntity.CompanyName)
+			</td>
+		</tr>
+		<tr>
+			<td><b>Phone:</b></td>
+			<td>@Html.TextBox("Phone", Model.SelectedEntity.Phone)
+				<br />
+				@Html.ValidationMessageFor(m => m.SelectedEntity.Phone)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" value="Save" />
+			</td>
+			<td>
+				@Model.UpdateStatus
+			</td>
+		</tr>
+	</table>
+}
+
+<script type="text/javascript">
+	function onShipperUpdateSucceeded(data, textStatus, jqXhr) {
+		var title = jqXhr.getResponseHeader("Content-Title");
+		
+		if (title !== null) {
+			document.title = title;
+		}
+	}
+</script>

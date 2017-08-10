@@ -1,0 +1,9 @@
+﻿TestXbap.g.en-US.resources:resources.baml,LinearGradientBrush_1:System.Windows.Media.LinearGradientBrush.$Content,None,False,True,,#GradientStop_1;#GradientStop_2;
+TestXbap.g.en-US.resources:resources.baml,LinearGradientBrush_1:System.Windows.Media.LinearGradientBrush.StartPoint,None,True,False,,"0.5,0"
+TestXbap.g.en-US.resources:resources.baml,LinearGradientBrush_1:System.Windows.Media.LinearGradientBrush.EndPoint,None,True,False,,"0.5,1"
+TestXbap.g.en-US.resources:resources.baml,GradientStop_1:System.Windows.Media.GradientStop.$Content,None,False,True,,
+TestXbap.g.en-US.resources:resources.baml,GradientStop_1:System.Windows.Media.GradientStop.Color,None,False,True,,Violet
+TestXbap.g.en-US.resources:resources.baml,GradientStop_1:System.Windows.Media.GradientStop.Offset,None,False,True,,0.1
+TestXbap.g.en-US.resources:resources.baml,GradientStop_2:System.Windows.Media.GradientStop.$Content,None,False,True,,
+TestXbap.g.en-US.resources:resources.baml,GradientStop_2:System.Windows.Media.GradientStop.Color,None,False,True,,SkyBlue
+TestXbap.g.en-US.resources:resources.baml,GradientStop_2:System.Windows.Media.GradientStop.Offset,None,False,True,,0.9

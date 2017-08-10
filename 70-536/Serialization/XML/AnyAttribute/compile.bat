@@ -1,0 +1,1 @@
+csc /out:TestAnyAttribute.exe TestAnyAttribute.cs Group.cs

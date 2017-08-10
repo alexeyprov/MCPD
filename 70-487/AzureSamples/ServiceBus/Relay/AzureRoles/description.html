@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head><link rel="stylesheet" type="text/css" href="description/Combined.css,0:HeaderFooterSprite,0:Header.NonMtps,1:LinkList;/Areas/Centers/Themes/StandardDevCenter/Content:0,/Areas/Epx/Themes/Base/Content:1&amp;amp;hashKey=C9973DA951AE6202C9B348379A1BE49D" xmlns="http://www.w3.org/1999/xhtml" />
+<link type="text/css" rel="stylesheet" xmlns="http://www.w3.org/1999/xhtml" />
+<link rel="stylesheet" type="text/css" href="description/9bf1b74c-1640-46af-84d3-e440c8f95162Combined.css,0:HeaderFooterSprite,0:Footer.NonMtps,1:LinkList;/Areas/Centers/Themes/StandardDevCenter/Content:0,/Areas/Epx/Themes/Base/Content:1&amp;amp;hashKey=F576C687BC536B84D6E5B3246EE39B49" xmlns="http://www.w3.org/1999/xhtml" />
+<link type="text/css" rel="stylesheet" xmlns="http://www.w3.org/1999/xhtml" />
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Relayed Messaging; Windows Azure</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>Relayed Messaging; Windows Azure</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            Microsoft Azure, Service Bus
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            Service Bus
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Cloud
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Updated</label>
+                    <div id="LastUpdated">11/16/2011</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">Apache License, Version 2.0</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h1>Introduction</h1>
+<div>This sample demonstrates how to run a Windows Azure Service Bus client and service on Windows Azure.</div>
+<div>This sample configure Service Bus programmatically. Only environment and security information is stored in the configuration files. Also, these samples package the Microsoft.ServiceBus.dll (note that
+<strong>Copy Local</strong> is set to <strong>True </strong>for the <strong>Assembly Reference
+</strong>setting).</div>
+<div>&nbsp;</div>
+<h1>Prerequisites</h1>
+<div>To run this sample on .Net Framework 4, you must install the Windows Azure SDK 1.5. You would also need the Windows Azure Tools for Visual Studio 1.5 for working with this sample in Visual Studio 2010. This sample works on the local developer fabric (included
+ in the Windows Azure SDK) and also in the Windows Azure cloud service. To run the sample in the cloud service, you must also have a valid Windows Azure account. More information about Windows Azure can be found here:
+<a href="http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/https://windows.azure.com">http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/https://windows.azure.com</a>. Please note that the Windows Azure SDK also has a number of its own pre-requisites (including IIS and SQL Express).</div>
+<div>&nbsp;</div>
+<h1>Running the Sample</h1>
+<div><br>
+You must start Visual Studio in elevated (administrator) mode. Right-click on Visual Studio and then click
+<strong>Run as Administrator</strong>. This is required by the Windows Azure simulation environment.</div>
+<div>Configure the Web.config and App.config files for the Web and Worker Roles, respectively. Then run the WindowsAzureEcho project in the Windows Azure local developer fabric or package and deploy the solution to the Windows Azure service. For more information
+ about running Windows Azure applications locally or in the cloud please refer to the Windows Azure documentation at
+<a href="http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/https://windows.azure.com">http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/http://code.msdn.microsoft.com/Relayed-Messaging-Windows-0d2cede3/https://windows.azure.com</a>.</div>
+<div>&nbsp;</div>
+<h1>WebRole</h1>
+<div><br>
+The WebRole application sends data over the Service Bus to a listener. You can add your service namespace information to the Web.config file of the WorkerRole applications:</div>
+<div><br>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>XML</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">xml</span>
+<pre class="hidden"> &lt;appSettings&gt;
+    &lt;add key=&quot;ServicePath&quot; value=&quot;samples/echo&quot;/&gt;
+    &lt;add key=&quot;ServiceNamespace&quot; value=&quot;MY_SERVICE_NAMESPACE&quot;/&gt;
+    &lt;add key=&quot;IssuerName&quot; value=&quot;owner&quot;/&gt;
+    &lt;add key=&quot;IssuerSecret&quot; value=&quot;MY_ISSUER_SECRET&quot;/&gt;
+&lt;/appSettings&gt;</pre>
+<div class="preview">
+<pre class="js">&nbsp;&lt;appSettings&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;ServicePath&quot;</span>&nbsp;value=<span class="js__string">&quot;samples/echo&quot;</span>/&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;ServiceNamespace&quot;</span>&nbsp;value=<span class="js__string">&quot;MY_SERVICE_NAMESPACE&quot;</span>/&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;IssuerName&quot;</span>&nbsp;value=<span class="js__string">&quot;owner&quot;</span>/&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;IssuerSecret&quot;</span>&nbsp;value=<span class="js__string">&quot;MY_ISSUER_SECRET&quot;</span>/&gt;&nbsp;
+&lt;/appSettings&gt;</pre>
+</div>
+</div>
+</div>
+<h1 class="endscriptcode">&nbsp;WorkerRole</h1>
+</div>
+<div><br>
+The WorkerRole application listens to the Service Bus and writes data to the Windows Azure log. You can add your service namespace information to the WorkerRole App.config file:</div>
+<div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>XML</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">xml</span>
+<pre class="hidden">&lt;appSettings&gt;
+    &lt;add key=&quot;ServicePath&quot; value=&quot;samples/echo&quot;/&gt;
+    &lt;add key=&quot;ServiceNamespace&quot; value=&quot;MY_SERVICE_NAMESPACE&quot;/&gt;
+    &lt;add key=&quot;IssuerName&quot; value=&quot;owner&quot;/&gt;
+    &lt;add key=&quot;IssuerSecret&quot; value=&quot;MY_ISSUER_SECRET&quot;/&gt;
+&lt;/appSettings&gt;</pre>
+<div class="preview">
+<pre class="js">&lt;appSettings&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;ServicePath&quot;</span>&nbsp;value=<span class="js__string">&quot;samples/echo&quot;</span>/&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;ServiceNamespace&quot;</span>&nbsp;value=<span class="js__string">&quot;MY_SERVICE_NAMESPACE&quot;</span>/&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;IssuerName&quot;</span>&nbsp;value=<span class="js__string">&quot;owner&quot;</span>/&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;add&nbsp;key=<span class="js__string">&quot;IssuerSecret&quot;</span>&nbsp;value=<span class="js__string">&quot;MY_ISSUER_SECRET&quot;</span>/&gt;&nbsp;
+&lt;/appSettings&gt;</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;</div>
+</div>
+<div>&nbsp;</div>
+
+</div>
+
+
+    </div>
+</body>
+</html>

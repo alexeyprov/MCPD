@@ -1,0 +1,1 @@
+csc /debug /out:EventLogAcl.exe EventLogAcl.cs EventLogSecurity.cs TempEventLog.cs

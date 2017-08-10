@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="137e3f48-1a7c-4888-a60d-64fd41038f24" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2547/ContentManagerService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ContentManagerService.xsd" MetadataType="Schema" ID="a70a34b3-1b89-418c-888b-a1ac2dc76a05" SourceId="1" SourceUrl="http://localhost:2547/ContentManagerService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ContentManagerService1.xsd" MetadataType="Schema" ID="cb07d645-5c14-4bb7-9d14-39ab1ac5cb0a" SourceId="1" SourceUrl="http://localhost:2547/ContentManagerService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ContentManagerService2.xsd" MetadataType="Schema" ID="bdb80856-2a54-4ece-9ec4-6dda4b7741b3" SourceId="1" SourceUrl="http://localhost:2547/ContentManagerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ContentManagerService.wsdl" MetadataType="Wsdl" ID="4262ae35-b498-41ab-aa0f-dc1d4bf5d97f" SourceId="1" SourceUrl="http://localhost:2547/ContentManagerService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="ContentManagerService1.wsdl" MetadataType="Wsdl" ID="4e0162e8-cbab-41cb-9928-063f2c786a41" SourceId="1" SourceUrl="http://localhost:2547/ContentManagerService.svc?wsdl" />
+    <MetadataFile FileName="ContentManagerService3.xsd" MetadataType="Schema" ID="10ffb45e-8fa0-41a0-980b-195fc7a38bfc" SourceId="1" SourceUrl="http://localhost:2547/ContentManagerService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ContentManagerService.disco" MetadataType="Disco" ID="00e116de-8afa-47a3-9164-87427d8fe744" SourceId="1" SourceUrl="http://localhost:2547/ContentManagerService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

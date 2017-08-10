@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Projects\MCPD\MSBuild\LoggerPack\LoggerTest.nunit</TopNode>
+  <SelectedNode>[0-1000]C:\Projects\MCPD\MSBuild\LoggerPack\LoggerTest.nunit</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Projects\MCPD\MSBuild\LoggerPack\LoggerTest.nunit" Expanded="true">
+      <Nodes>
+        <Node UniqueName="[0-1004]C:\Projects\MCPD\MSBuild\LoggerPack\bin\Debug\LoggerPack.dll" Expanded="true">
+          <Nodes>
+            <Node UniqueName="[0-1005]LoggerPack" Expanded="true">
+              <Nodes>
+                <Node UniqueName="[0-1006]LoggerPack.UnitTests" Expanded="true">
+                  <Nodes>
+                    <Node UniqueName="[0-1001]LoggerPack.UnitTests.LoggerTest" Expanded="true">
+                      <Nodes>
+                        <Node UniqueName="[0-1003]LoggerPack.UnitTests.LoggerTest.TestOutput" />
+                        <Node UniqueName="[0-1002]LoggerPack.UnitTests.LoggerTest.TestParameters" />
+                      </Nodes>
+                    </Node>
+                  </Nodes>
+                </Node>
+              </Nodes>
+            </Node>
+          </Nodes>
+        </Node>
+      </Nodes>
+    </Node>
+  </Nodes>
+</VisualState>

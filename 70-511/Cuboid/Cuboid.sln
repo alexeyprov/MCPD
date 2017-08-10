@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{31631492-2E50-4687-95B7-6D801CF1A462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "Shell\Shell.csproj", "{28005968-FEE7-4505-A074-7BB9F6025876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicMvvm", "Modules\BasicMvvm\BasicMvvm.csproj", "{5647CCB2-2A32-45D8-A5A1-569B21382EE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaPlayer", "Modules\MediaPlayer\MediaPlayer.csproj", "{306F45B2-8AD3-49CE-B909-9FA71A36DA70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{C4D9854C-818C-4681-B1C9-207FA2FD5468}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://hanauma:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Modules\\BasicMvvm\\BasicMvvm.csproj
+		SccProjectTopLevelParentUniqueName1 = Cuboid.sln
+		SccProjectName1 = Modules/BasicMvvm
+		SccLocalPath1 = Modules\\BasicMvvm
+		SccProjectUniqueName2 = Modules\\MediaPlayer\\MediaPlayer.csproj
+		SccProjectTopLevelParentUniqueName2 = Cuboid.sln
+		SccProjectName2 = Modules/MediaPlayer
+		SccLocalPath2 = Modules\\MediaPlayer
+		SccProjectUniqueName3 = Shared\\Shared.csproj
+		SccProjectName3 = Shared
+		SccLocalPath3 = Shared
+		SccProjectUniqueName4 = Shell\\Shell.csproj
+		SccProjectName4 = Shell
+		SccLocalPath4 = Shell
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28005968-FEE7-4505-A074-7BB9F6025876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28005968-FEE7-4505-A074-7BB9F6025876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28005968-FEE7-4505-A074-7BB9F6025876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28005968-FEE7-4505-A074-7BB9F6025876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5647CCB2-2A32-45D8-A5A1-569B21382EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5647CCB2-2A32-45D8-A5A1-569B21382EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5647CCB2-2A32-45D8-A5A1-569B21382EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5647CCB2-2A32-45D8-A5A1-569B21382EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{306F45B2-8AD3-49CE-B909-9FA71A36DA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{306F45B2-8AD3-49CE-B909-9FA71A36DA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{306F45B2-8AD3-49CE-B909-9FA71A36DA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{306F45B2-8AD3-49CE-B909-9FA71A36DA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4D9854C-818C-4681-B1C9-207FA2FD5468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4D9854C-818C-4681-B1C9-207FA2FD5468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4D9854C-818C-4681-B1C9-207FA2FD5468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4D9854C-818C-4681-B1C9-207FA2FD5468}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5647CCB2-2A32-45D8-A5A1-569B21382EE5} = {31631492-2E50-4687-95B7-6D801CF1A462}
+		{306F45B2-8AD3-49CE-B909-9FA71A36DA70} = {31631492-2E50-4687-95B7-6D801CF1A462}
+	EndGlobalSection
+EndGlobal

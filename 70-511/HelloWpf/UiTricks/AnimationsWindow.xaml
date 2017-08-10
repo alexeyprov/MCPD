@@ -1,0 +1,113 @@
+﻿<Window x:Class="HelloWpf.UiTricks.AnimationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AnimationsWindow" Height="300" Width="510" SizeChanged="Window_SizeChanged">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ButtonStyle" >
+                <Setter Property="ContentControl.Content" Value="Click Me to Change Width" />
+                <Setter Property="FrameworkElement.Margin" Value="0,5" />
+                <Setter Property="Control.Padding" Value="5" />
+                <Setter Property="FrameworkElement.HorizontalAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="5" ClipToBounds="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Button Name="FirstButton" Style="{StaticResource ResourceKey=ButtonStyle}">
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width"
+                                             Duration="0:0:2"
+                                             From="{Binding ActualWidth, ElementName=FirstButton}"
+                                             To="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}" 
+                                             FillBehavior="Stop"
+                                             Name="FirstAnimation">
+                                <DoubleAnimation.EasingFunction>
+                                    <PowerEase Power="2.5" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+        <Button Name="SecondButton" Grid.Row="1" Style="{StaticResource ResourceKey=ButtonStyle}">
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width"
+                                Duration="0:0:2"
+                                RepeatBehavior="0:0:8"
+                                From="{Binding ActualWidth, ElementName=SecondButton}"
+                                To="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}, Mode=OneWay}" 
+                                AutoReverse="True"
+                                Name="SecondAnimation">
+                                <DoubleAnimation.EasingFunction>
+                                    <ElasticEase Oscillations="5" EasingMode="EaseOut" Springiness="9" />
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
+        <Canvas Grid.Row="2" Name="Canvas">
+            <Ellipse Canvas.Top="0" Canvas.Left="0" Width="20" Height="20" Fill="Yellow" Name="YellowEllipse"/>
+            <Ellipse Canvas.Bottom="0" Canvas.Left="0" Width="20" Height="20" Fill="Green" Name="GreenEllipse"/>
+            <Path Canvas.Top="30" StrokeThickness="0.01" Name="GreenAnimationFirstCurve">
+                <Path.Stroke>
+                    <SolidColorBrush Color="Black"/>
+                </Path.Stroke>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="0,0">
+                            <BezierSegment Point1="0.25,0" Point2="0.5,0.7" Point3="1,1" />
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+                <Path.LayoutTransform>
+                    <ScaleTransform ScaleX="100" ScaleY="100"/>
+                </Path.LayoutTransform>
+            </Path>
+            <Path Canvas.Top="30" Canvas.Left="250" StrokeThickness="0.01" Name="GreenAnimationSecondCurve">
+                <Path.Stroke>
+                    <SolidColorBrush Color="Black"></SolidColorBrush>
+                </Path.Stroke>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="0,0">
+                            <BezierSegment Point1="0.25,0.8" Point2="0.2,0.4" Point3="1,1" />
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+                <Path.LayoutTransform>
+                    <ScaleTransform ScaleX="100" ScaleY="100"/>
+                </Path.LayoutTransform>
+            </Path>
+            <Canvas.Triggers>
+                <EventTrigger RoutedEvent="MouseLeftButtonUp" SourceName="Canvas">
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="(Canvas.Left)">
+                            <DoubleAnimation Name="YellowEllipseAnimation" Storyboard.TargetName="YellowEllipse" 
+                                             Duration="0:0:10" AutoReverse="True"/>
+                            <DoubleAnimationUsingKeyFrames Name="GreenEllipseAnimation" Storyboard.TargetName="GreenEllipse" 
+                                                           Duration="0:0:10" AutoReverse="True">
+                                <SplineDoubleKeyFrame KeyTime="0:0:5" KeySpline="0.25,0 0.5,0.7" />
+                                <SplineDoubleKeyFrame KeyTime="0:0:10" KeySpline="0.25,0.8 0.2,0.4" />
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Canvas.Triggers>
+        </Canvas>
+    </Grid>
+</Window>

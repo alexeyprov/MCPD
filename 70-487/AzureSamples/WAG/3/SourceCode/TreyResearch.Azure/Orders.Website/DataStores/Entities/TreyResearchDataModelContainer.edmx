@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TreyResearchDataModelContainer.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TreyResearchDataModelContainerStoreContainer">
+          <EntitySet Name="Cart" EntityType="TreyResearchDataModelContainer.Store.Cart" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="TreyResearchDataModelContainer.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="TreyResearchDataModelContainer.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderDetail" EntityType="TreyResearchDataModelContainer.Store.OrderDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderProcessStatus" EntityType="TreyResearchDataModelContainer.Store.OrderProcessStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderStatus" EntityType="TreyResearchDataModelContainer.Store.OrderStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="TreyResearchDataModelContainer.Store.Product" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Cart_Product" Association="TreyResearchDataModelContainer.Store.FK_Cart_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="TreyResearchDataModelContainer.Store.FK_OrderDetail_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Product" Association="TreyResearchDataModelContainer.Store.FK_OrderDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProcessStatus_Order" Association="TreyResearchDataModelContainer.Store.FK_OrderProcessStatus_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderProcessStatus" EntitySet="OrderProcessStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderStatus_Order" Association="TreyResearchDataModelContainer.Store.FK_OrderStatus_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CartId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Total" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="TransportPartner" Type="nvarchar" MaxLength="256" />
+          <Property Name="TrackingId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderProcessStatus">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProcessStatus" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LockedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="LockedUntil" Type="datetime" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="BatchId" Type="uniqueidentifier" />
+          <Property Name="RetryCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="OrderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Price" Type="numeric" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cart_Product">
+          <End Role="Product" Type="TreyResearchDataModelContainer.Store.Product" Multiplicity="1" />
+          <End Role="Cart" Type="TreyResearchDataModelContainer.Store.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="Order" Type="TreyResearchDataModelContainer.Store.Order" Multiplicity="1" />
+          <End Role="OrderDetail" Type="TreyResearchDataModelContainer.Store.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Product">
+          <End Role="Product" Type="TreyResearchDataModelContainer.Store.Product" Multiplicity="1" />
+          <End Role="OrderDetail" Type="TreyResearchDataModelContainer.Store.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderProcessStatus_Order">
+          <End Role="Order" Type="TreyResearchDataModelContainer.Store.Order" Multiplicity="1" />
+          <End Role="OrderProcessStatus" Type="TreyResearchDataModelContainer.Store.OrderProcessStatus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderProcessStatus">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderStatus_Order">
+          <End Role="Order" Type="TreyResearchDataModelContainer.Store.Order" Multiplicity="1" />
+          <End Role="OrderStatus" Type="TreyResearchDataModelContainer.Store.OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Orders.Website.DataStores.Entities" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TreyResearchDataModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carts" EntityType="Orders.Website.DataStores.Entities.Cart" />
+          <EntitySet Name="Orders" EntityType="Orders.Website.DataStores.Entities.Order" />
+          <EntitySet Name="Products" EntityType="Orders.Website.DataStores.Entities.Product" />
+          <AssociationSet Name="FK_Cart_Product" Association="Orders.Website.DataStores.Entities.FK_Cart_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <EntitySet Name="OrderStatus" EntityType="Orders.Website.DataStores.Entities.OrderStatus" />
+          <AssociationSet Name="FK_OrderStatus_Order" Association="Orders.Website.DataStores.Entities.FK_OrderStatus_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderStatus" EntitySet="OrderStatus" />
+          </AssociationSet>
+          <EntitySet Name="OrderProcessStatus" EntityType="Orders.Website.DataStores.Entities.OrderProcessStatus" />
+          <AssociationSet Name="FK_OrderProcessStatus_Order" Association="Orders.Website.DataStores.Entities.FK_OrderProcessStatus_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderProcessStatus" EntitySet="OrderProcessStatus" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="Orders.Website.DataStores.Entities.Customer" />
+          <EntitySet Name="OrderDetails" EntityType="Orders.Website.DataStores.Entities.OrderDetail" />
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Orders.Website.DataStores.Entities.FK_OrderDetail_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Product" Association="Orders.Website.DataStores.Entities.FK_OrderDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="CartId" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Orders.Website.DataStores.Entities.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="TransportPartner" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="TrackingId" />
+          <NavigationProperty Name="OrderStatus" Relationship="Orders.Website.DataStores.Entities.FK_OrderStatus_Order" FromRole="Order" ToRole="OrderStatus" />
+          <NavigationProperty Name="OrderProcessStatus" Relationship="Orders.Website.DataStores.Entities.FK_OrderProcessStatus_Order" FromRole="Order" ToRole="OrderProcessStatus" />
+          <NavigationProperty Name="OrderDetail" Relationship="Orders.Website.DataStores.Entities.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Carts" Relationship="Orders.Website.DataStores.Entities.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="OrderDetail" Relationship="Orders.Website.DataStores.Entities.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="FK_Cart_Product">
+          <End Role="Product" Type="Orders.Website.DataStores.Entities.Product" Multiplicity="1" />
+          <End Role="Cart" Type="Orders.Website.DataStores.Entities.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Type="Guid" Name="OrderId" Nullable="false" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Orders.Website.DataStores.Entities.FK_OrderStatus_Order" FromRole="OrderStatus" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_OrderStatus_Order">
+          <End Type="Orders.Website.DataStores.Entities.Order" Role="Order" Multiplicity="1" />
+          <End Type="Orders.Website.DataStores.Entities.OrderStatus" Role="OrderStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderStatus">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrderProcessStatus">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Type="Guid" Name="OrderId" Nullable="false" />
+          <Property Type="String" Name="ProcessStatus" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LockedBy" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LockedUntil" />
+          <Property Type="Binary" Name="Version" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
+          <Property Type="Guid" Name="BatchId" />
+          <NavigationProperty Name="Order" Relationship="Orders.Website.DataStores.Entities.FK_OrderProcessStatus_Order" FromRole="OrderProcessStatus" ToRole="Order" />
+          <Property Type="Int32" Name="RetryCount" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_OrderProcessStatus_Order">
+          <End Type="Orders.Website.DataStores.Entities.Order" Role="Order" Multiplicity="1" />
+          <End Type="Orders.Website.DataStores.Entities.OrderProcessStatus" Role="OrderProcessStatus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderProcessStatus">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Type="Guid" Name="CustomerId" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Type="Guid" Name="OrderDetailId" Nullable="false" />
+          <Property Type="Guid" Name="OrderId" Nullable="false" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Orders.Website.DataStores.Entities.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Orders.Website.DataStores.Entities.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_OrderDetail_Order">
+          <End Type="Orders.Website.DataStores.Entities.Order" Role="Order" Multiplicity="1" />
+          <End Type="Orders.Website.DataStores.Entities.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Product">
+          <End Type="Orders.Website.DataStores.Entities.Product" Role="Product" Multiplicity="1" />
+          <End Type="Orders.Website.DataStores.Entities.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TreyResearchDataModelContainerStoreContainer" CdmEntityContainer="TreyResearchDataModelContainer">
+          <EntitySetMapping Name="Carts"><EntityTypeMapping TypeName="Orders.Website.DataStores.Entities.Cart"><MappingFragment StoreEntitySet="Cart">
+            <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+            <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="CartId" ColumnName="CartId" />
+            <ScalarProperty Name="Count" ColumnName="Count" />
+            <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Orders"><EntityTypeMapping TypeName="Orders.Website.DataStores.Entities.Order"><MappingFragment StoreEntitySet="Order">
+            <ScalarProperty Name="TrackingId" ColumnName="TrackingId" />
+                <ScalarProperty Name="TransportPartner" ColumnName="TransportPartner" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+            <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Total" ColumnName="Total" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Products"><EntityTypeMapping TypeName="Orders.Website.DataStores.Entities.Product"><MappingFragment StoreEntitySet="Product">
+            <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Price" ColumnName="Price" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="Orders.Website.DataStores.Entities.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderProcessStatus">
+            <EntityTypeMapping TypeName="Orders.Website.DataStores.Entities.OrderProcessStatus">
+              <MappingFragment StoreEntitySet="OrderProcessStatus">
+                <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="LockedUntil" ColumnName="LockedUntil" />
+                <ScalarProperty Name="LockedBy" ColumnName="LockedBy" />
+                <ScalarProperty Name="ProcessStatus" ColumnName="ProcessStatus" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Orders.Website.DataStores.Entities.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="Orders.Website.DataStores.Entities.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TreyResearchDataModelContainer">
+        <EntityTypeShape EntityType="Orders.Website.DataStores.Entities.Cart" Width="1.5" PointX="3" PointY="3.75" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Orders.Website.DataStores.Entities.Order" Width="1.5" PointX="0.75" PointY="6.375" Height="2.9070849609374996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Orders.Website.DataStores.Entities.Product" Width="1.5" PointX="0.75" PointY="3.875" Height="1.9802864583333326" IsExpanded="true" />
+        <AssociationConnector Association="Orders.Website.DataStores.Entities.FK_Cart_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.8987939453125" />
+          <ConnectorPoint PointX="2.5416691666666664" PointY="4.8987939453124989" />
+          <ConnectorPoint PointX="2.7083358333333334" PointY="4.8987939453125" />
+          <ConnectorPoint PointX="3" PointY="4.8987939453125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Orders.Website.DataStores.Entities.OrderStatus" Width="1.5" PointX="5.25" PointY="6.375" Height="1.7879850260416665" />
+        <AssociationConnector Association="Orders.Website.DataStores.Entities.FK_OrderStatus_Order" >
+          <ConnectorPoint PointX="2.25" PointY="10.170146484375" />
+          <ConnectorPoint PointX="6" PointY="10.170146484375" />
+          <ConnectorPoint PointX="6" PointY="8.1629850260416674" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Orders.Website.DataStores.Entities.OrderProcessStatus" Width="1.5" PointX="3" PointY="7.25" Height="2.3648893229166674" />
+        <AssociationConnector Association="Orders.Website.DataStores.Entities.FK_OrderProcessStatus_Order" >
+          <ConnectorPoint PointX="2.25" PointY="8.5285953776041659" />
+          <ConnectorPoint PointX="2.5416691666666664" PointY="8.5285953776041659" />
+          <ConnectorPoint PointX="2.7083358333333334" PointY="8.5285953776041659" />
+          <ConnectorPoint PointX="3" PointY="8.5285953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Orders.Website.DataStores.Entities.Customer" Width="1.5" PointX="5.25" PointY="1.625" Height="3.1340950520833317" />
+        <EntityTypeShape EntityType="Orders.Website.DataStores.Entities.OrderDetail" Width="1.5" PointX="2" PointY="1" Height="2.1725878906249996" />
+        <AssociationConnector Association="Orders.Website.DataStores.Entities.FK_OrderDetail_Order" >
+          <ConnectorPoint PointX="2.25" PointY="9.9886661197916649" />
+          <ConnectorPoint PointX="2.6250025" PointY="9.9886661197916649" />
+          <ConnectorPoint PointX="2.6250025" PointY="3.1725878906249996" />
+        </AssociationConnector>
+        <AssociationConnector Association="Orders.Website.DataStores.Entities.FK_OrderDetail_Product" >
+          <ConnectorPoint PointX="1.3749995" PointY="3.875" />
+          <ConnectorPoint PointX="1.3749995" PointY="2.0862939453125" />
+          <ConnectorPoint PointX="2" PointY="2.0862939453125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

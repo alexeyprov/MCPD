@@ -1,0 +1,7 @@
+<Modules>
+  <Module PersistentId="AB4F078A-B27D-446A-9487-9184E61B14B0" ModuleId="Rashim.RND.ManagedDiscovery.ServiceHost" />
+  <Module PersistentId="3A8FAAB2-07EE-41A7-A3DF-12DAF533349A" ModuleId="Rashim.RND.ManagedDiscovery.Client" />
+  <Module PersistentId="69FC0777-607E-44C2-9132-795933500AAD" ModuleId="Rashim.RND.ManagedDiscovery.DiscoverableService" />
+  <Module PersistentId="693752C2-A5A4-4BF8-9A37-2CFE4C721563" ModuleId="Rashim.RND.ManagedDiscovery.ServiceHost_1" />
+  <Module PersistentId="CB42E7DA-9806-4E01-8EBA-BA968B0F52D6" ModuleId="Rashim.RND.ManagedDiscovery.ServiceHost_2" />
+</Modules>

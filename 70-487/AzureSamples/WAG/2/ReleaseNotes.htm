@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Developing Multi-Tenant Applications for the Cloud - Release Notes</title>
+    <link rel="stylesheet" href="readme_files/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="readme_files/styles/mnp.css" type="text/css" />
+    <style type="text/css">
+
+ p.MsoNormal
+  {margin-bottom:.0001pt;
+  font-size:11.0pt;
+  font-family:"Calibri","sans-serif";
+          margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+    .auto-style1 {
+  color: #1155A8;
+}
+    </style>
+</head>
+<body>
+    <a name="top"></a>
+    <div id="commonWrapper">
+        <div id="pageWrapper">
+            <!--   START HEADER   -->
+            <div class="page_header">
+                <div class="page_header_logo">
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="Readme.htm">
+                                    <div class="page_header_title">
+                                        Developing Multi-Tenant Applications for the Cloud</div>
+                                </a>
+                                <div class="page_header_subtitle">
+                                    Release Notes</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--   END HEADER   -->
+            <div id="Main">
+                <div id="MainMid">
+                    <!-- START NAVIGATION BAR -->
+                    <div id="TopNavigation">
+                        <div class="topnav_item" id="topnav1">
+                            <a tabindex="1" href="Readme.htm"><span class="topnav_item_left"></span><span
+                                class="topnav_item_middle"><span class="topnav_item_text">Readme</span>
+                            </span><span class="topnav_item_right_selected"></span></a>
+                            <a tabindex="1" href="ReleaseNotes.htm"><span class="topnav_item_selected"></span><span
+                                class="topnav_item_middle_selected"><span class="topnav_item_text">Release notes</span>
+                            </span><span class="topnav_item_right"></span></a>
+                        </div>
+                        <div class="topnav_item_divider">
+                        </div>
+                    </div>
+                    <!-- END NAVIGATION BAR -->
+                    <div id="Content">
+                        <div class="content_table_home">
+                            <div class="homePgImgWide">
+                                <div class="homearea">
+                                    <div class="pageTitle">
+                                        <div class="maintitle">
+                                            Release Notes for the Examples</div>
+                                    </div>
+                                    <div class="newpromo">
+                                        <a href="http://msdn.microsoft.com/practices">
+                                            <img src="readme_files/images/pnp_logo.gif" alt="Microsoft Patterns & Practices" />
+                                        </a>
+                                    </div>
+                                    <div class="content_header_text">
+<p><b>System Requirements</b></p>
+<p>&nbsp;</p>
+<ul>
+  <li>Microsoft Windows 8, Windows Server 2012, Windows 7 with Service Pack 1, or Windows Server 2008 R2 with Service Pack 1 (32 bit or 64 bit editions).</li>
+  <li><a href="http://www.microsoft.com/download/en/details.aspx?id=17718" target="_blank">Microsoft .NET Framework version 4.0.</a></li>
+  <li><a href="http://www.microsoft.com/visualstudio/en-us/products/" target="_blank">Microsoft Visual Studio</a> 2010 Ultimate, Premium, or Professional edition with Service Pack 1 installed, or Visual Studio 2012 Ultimate, Premium, or Professional edition.</li>
+  <li><a href="http://www.microsoft.com/sqlserver/en/us/editions/express.aspx" target="_blank">Microsoft SQL Server 2012, SQL Server Express 2012, SQL Server 2008, or SQL Server Express 2008</a>.<br />- see the <a href="#dependencies">notes</a> below for configuration information and compatibility with your operating system.</li>
+  <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=35448" target="_blank">Windows Azure SDK version 1.8 (October2012) for .NET</a> (includes the Visual Studio Tools).<br />- see the <a href="#sdkversion">notes</a> below for more information, or if you do not already have this installed.</li>
+  <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=30683" target="_blank">ASP.NET MVC 4 Framework.</a></li>
+  <li><a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=17331" target="_blank">Windows Identity Foundation</a>. This is required for claims-based authorization.</li>
+  <li><a href="http://www.telerik.com/automated-testing-tools/free-testing-framework.aspx" target="_blank">WebAii</a> testing framework. This is required only if you want to run the functional tests. Place the assembly <b>ArtOfTest.WebAii.dll</b> in the <b>Lib\WebAii</b> folder of the examples.</font> </li>
+  <li>Additional components and frameworks required by the examples are installed using NuGet when you run the solutions. Ensure you have configured NuGet to <a href="#nuget">download missing packages</a>.</li>
+</ul>
+<p><i>This list includes third-party software not provided by Microsoft. The links are designed to help you to obtain the required software from
+the appropriate vendor's website. The licensing terms and conditions for such software will differ from that of the Microsoft software in the list.
+We acknowledge the help provided by third-party vendors where their software is used in this project.</i></p>
+
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<p><b><a name="dependencies"></a>Check for and Install Required Files and Dependencies</b></p>
+<p>&nbsp;</p>
+<p>Before you start, ensure you have a compatible version of SQL Server installed on your computer:</p>
+<ul>
+<li>For <b>Windows 8</b> and <b>Windows Server 2012</b>: SQL Server 2012 or SQL Server Express 2012</li>
+<li>For <b>Windows 7</b> and <b>Windows Server 2008</b>: SQL Server 2012, SQL Server Express 2012, SQL Server 2008, or SQL Server Express 2008</li>
+</ul>
+<p>The Dependency Checker utility requires the instance name of the SQL Server. The default is <b>SQLExpress</b>, and so the Dependency Checker will
+install the sample databases into the local SQL Server Express instance. If you are using SQL Server instead of SQL Server Express, or you want to install
+the database for the samples in a named (non-default) instance, you must edit the configuration file used by the Dependency
+Checker utility. Open the file <b>DependencyChecker.exe.config</b> from the <b>Setup\DependencyChecker</b> folder and edit the value for <b>sqlInstanceName</b>
+shown highlighted here:</p>
+<pre>
+&lt;dependency check="DbSetup"
+  enabled="true"
+  category="Required"
+  title="Database for samples"
+  explanation="...."
+  scriptName="..."
+  settings="sqlInstanceName=<b><font color="red">SQLEXPRESS</font></b>!alias=WAGSqlAlias!db=..."
+/&gt;</pre>
+
+<p>After you have confirmed that SQL Server or SQL Server Express is installed and that the configuration file contains the correct server name, run the
+<b>CheckDependencies.cmd</b> command file that is located in the root folder of the examples to check for software prerequisites required.
+You must run this using an account that has Administrator privileges. The Dependency Checker reports any components missing on your system, and provides
+links to obtain, install, and configure these missing components. You must have the
+<a href="http://www.microsoft.com/download/en/details.aspx?id=17718">.NET Framework version 4.0</a>
+installed to run the Dependency Checker.</p>
+<p>&nbsp;</p>
+<p><b>NOTE</b>: If you want to install the Windows Azure SDK for .NET on Windows Server 2008 R2, you must first ensure that the .NET Framework version 3.5.1
+is installed on your computer.</p>
+
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<p><b><a name="sdkversion"></a>Installing the Correct Version of the Windows Azure SDK</b></p>
+<p>&nbsp;</p>
+<p>The examples require version 1.8 (October 2012) of the Windows Azure SDK. You can install this alongside later versions. The Dependency Checker will check if version 1.8 is installed.
+If not, it will provide a link to install the SDK. After installation is complete, open the <b>About Microsoft Visual Studio</b> dialog from the <b>Help</b> menu and verify
+that the list of installed products includes <b>Windows Azure Tools October 2012</b>.
+<p>&nbsp;</p>
+<p>In some circumstances the Dependency Checker may fail to detect that version 1.8 of the Windows Azure SDK is installed, even after prompting to install it and the
+installation is successful. If you are sure that the version 1.8 SDK is installed you can ignore the warning displayed in the Dependency Checker.</p>
+<p>&nbsp;</p>
+<p>If the Dependency Checker fails to install the version 1.8 SDK you must install it manually. Note that you <b>cannot</b> install this using the Web Platform Installer link on the
+download page because it always defaults to installing the latest version. Instead, use the <b>DOWNLOAD</b> links on the page
+<a href="http://www.microsoft.com/en-us/download/details.aspx?id=35448" target="_blank">Windows Azure SDK for .NET - October 2012</a> to install either the x86 or x64 versions of the Authoring Tools,
+Windows Azure Libraries for .NET, and Windows Azure Tools for Visual Studio (either VS 2010/VS100 or VS 2012/VS110). If you already have a later version installed, you do not need to install the
+version 1.8 Windows Azure Emulator because the solutions will run using the later version of the emulator.</p>
+<p>&nbsp;</p>
+<b>NOTE</b>: If you have a later version of the SDK installed, the Visual Studio properties page for a cloud project will provide a link to upgrade the project to the later version of the SDK.
+<b>Do not upgrade the project</b>. It must run under version 1.8 to avoid inconsistencies between versions.</p>
+
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<p><b><a name="nuget"></a>Allow NuGet to Download Missing Packages</b></p>
+<p>&nbsp;</p>
+<p>You must ensure that Visual Studio is configured to use the latest version of the NuGet package manager and allow it to download missing packages during the build process. To enable this:</p>
+<ol>
+<li>Open the Visual Studio <b>Extension Manager</b> dialog from the <b>Tools</b> menu.</li>
+<li>Check that the NuGet Package Manager is installed. If it is not already installed select <b>Online Gallery</b> and install it. You can use the Search feature to find it in the Gallery.</li>
+<li>If it is already installed select <b>Updates</b> and check if there is an update available. If there is, select <b>Update</b> to install it. If the update fails, uninstall the existing version and try again.</li>
+<li>Open the Visual Studio <b>Options</b> dialog from the <b>Tools</b> menu.</li>
+<li>Expand the section for <b>Package Manager</b> and select <b>General</b>.</li>
+<li>Ensure that <b>Allow NuGet to download missing packages during build</b> and <b>Automatically check for updates</b> are checked.</li>
+</ol>
+
+<hr /><p>&nbsp;</p>
+
+<p><b><a name="knownissues"></a>Known Issues When Running the Examples</b></p>
+<p>&nbsp;</p>
+<p>You must run the projects and solutions under an account that has Administrator privileges.</p>
+
+<p>&nbsp;</p>
+
+<p>When you run the example for the first time in the Compute Emulator you may encounter an error
+because your web browser opens automatically and makes a request to the application. This can occur
+while the start-up tasks that initialize Windows Azure local storage are still running. Simply reload the page
+in your browser to resolve this.</p>
+
+<p>&nbsp;</p>
+
+                  </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footerstrip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</body>
+</html>

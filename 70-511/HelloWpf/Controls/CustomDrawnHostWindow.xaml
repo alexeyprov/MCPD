@@ -1,0 +1,33 @@
+﻿<Window x:Class="HelloWpf.Controls.CustomDrawnHostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:CustomUI;assembly=CustomUI"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="CustomDrawnHostWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
+            <Button Margin="5" Padding="10">Regular Button</Button>
+            <Button Margin="5" Padding="10" Template="{StaticResource ButtonWithMouseTrackerChrome}">Default Background Button</Button>
+            <Button Margin="5" Padding="10" Template="{StaticResource ButtonWithMouseTrackerChrome}" Background="{Binding SelectedValue, ElementName=BackgroundColorCombo}">Custom Background Button</Button>
+        </StackPanel>
+        <TextBlock Margin="5" Grid.Row="1">Color:</TextBlock>
+        <ComboBox Margin="5" Grid.Row="1" Grid.Column="1" Name="BackgroundColorCombo">
+            <!-- 
+            <Color A="255" R="255" B="0" G="0" />
+            <Color A="255" R="0" B="255" G="0" />
+            <Color A="255" R="0" B="0" G="255" />
+            -->
+            <sys:String>Red</sys:String>
+            <sys:String>Green</sys:String>
+            <sys:String>Blue</sys:String>
+        </ComboBox>
+    </Grid>
+</Window>

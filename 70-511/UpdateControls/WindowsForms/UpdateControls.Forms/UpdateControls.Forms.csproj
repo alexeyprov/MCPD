@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A559D316-B196-4469-9B83-83682CB5F55D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UpdateControls.Forms</RootNamespace>
+    <AssemblyName>UpdateControls.Forms</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Common\CommonProperties.cs">
+      <Link>Properties\CommonProperties.cs</Link>
+    </Compile>
+    <Compile Include="Delegates.cs" />
+    <Compile Include="GuiUpdateHelper.cs" />
+    <Compile Include="IEnabledControl.cs" />
+    <Compile Include="IErrorControl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateCheckedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateErrorProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateErrorProvider.Designer.cs">
+      <DependentUpon>UpdateErrorProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateFormMap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateMonthCalendar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UpdateTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Util\CollectionHelper.cs" />
+    <Compile Include="Util\ReadOnlyListDecorator.cs" />
+    <Compile Include="Util\UpdateController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ToolboxImages\UpdateButton.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateCheckBox.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateCheckedListBox.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateComboBox.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateComponent.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateDateTimePicker.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateErrorProvider.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateFormMap.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateGrid.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateLabel.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateListBox.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateListView.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateMonthCalendar.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateRadioButton.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateTextBox.png" />
+    <EmbeddedResource Include="ToolboxImages\UpdateTreeView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UpdateButton.resx">
+      <DependentUpon>UpdateButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateCheckBox.resx">
+      <DependentUpon>UpdateCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateCheckedListBox.resx">
+      <DependentUpon>UpdateCheckedListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateComboBox.resx">
+      <DependentUpon>UpdateComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateComponent.resx">
+      <DependentUpon>UpdateComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateDateTimePicker.resx">
+      <DependentUpon>UpdateDateTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateErrorProvider.resx">
+      <DependentUpon>UpdateErrorProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateFormMap.resx">
+      <DependentUpon>UpdateFormMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateGrid.resx">
+      <DependentUpon>UpdateGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateLabel.resx">
+      <DependentUpon>UpdateLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateListBox.resx">
+      <DependentUpon>UpdateListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateListView.resx">
+      <DependentUpon>UpdateListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateMonthCalendar.resx">
+      <DependentUpon>UpdateMonthCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateRadioButton.resx">
+      <DependentUpon>UpdateRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateTextBox.resx">
+      <DependentUpon>UpdateTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateTreeView.resx">
+      <DependentUpon>UpdateTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Portable\UpdateControls\UpdateControls.csproj">
+      <Project>{0f197cdb-cf38-438b-90ad-1b4f0976061e}</Project>
+      <Name>UpdateControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y $(TargetPath) $(SolutionDir)NuGet\Core\lib\net45\</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

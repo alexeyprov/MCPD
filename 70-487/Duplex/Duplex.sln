@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplexService", "DuplexService\DuplexService.csproj", "{4384ACFD-F0A5-466D-B712-97EC39FD0D52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplexHost", "DuplexHost\DuplexHost.csproj", "{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplexClient", "DuplexClient\DuplexClient.csproj", "{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}"
+	ProjectSection(ProjectDependencies) = postProject
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52} = {91DF00BA-FA40-43E3-B51A-E224B0426A52}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuplexWebHost", "DuplexWebHost\DuplexWebHost.csproj", "{91DF00BA-FA40-43E3-B51A-E224B0426A52}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://hanauma:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DuplexService\\DuplexService.csproj
+		SccProjectName1 = DuplexService
+		SccLocalPath1 = DuplexService
+		SccProjectUniqueName2 = DuplexHost\\DuplexHost.csproj
+		SccProjectName2 = DuplexHost
+		SccLocalPath2 = DuplexHost
+		SccProjectUniqueName3 = DuplexClient\\DuplexClient.csproj
+		SccProjectName3 = DuplexClient
+		SccLocalPath3 = DuplexClient
+		SccProjectUniqueName4 = DuplexWebHost\\DuplexWebHost.csproj
+		SccProjectName4 = DuplexWebHost
+		SccLocalPath4 = DuplexWebHost
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4384ACFD-F0A5-466D-B712-97EC39FD0D52}.Release|x86.ActiveCfg = Release|Any CPU
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Debug|x86.ActiveCfg = Debug|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Debug|x86.Build.0 = Debug|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Release|Any CPU.ActiveCfg = Release|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Release|x86.ActiveCfg = Release|x86
+		{F3CF8DB9-C6A7-41D2-A691-0BE1DB47A17F}.Release|x86.Build.0 = Release|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Debug|x86.ActiveCfg = Debug|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Debug|x86.Build.0 = Debug|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Release|Any CPU.ActiveCfg = Release|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Release|Mixed Platforms.Build.0 = Release|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Release|x86.ActiveCfg = Release|x86
+		{DF6103EF-5AB0-41C5-9D06-C9340DBA3571}.Release|x86.Build.0 = Release|x86
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{91DF00BA-FA40-43E3-B51A-E224B0426A52}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

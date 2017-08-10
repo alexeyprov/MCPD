@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionBlendDemo", "ExpressionBlendDemo\ExpressionBlendDemo.csproj", "{371C5017-E8DB-44BC-9548-24FDE3CBFDB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{371C5017-E8DB-44BC-9548-24FDE3CBFDB2}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{371C5017-E8DB-44BC-9548-24FDE3CBFDB2}.Release|Any CPU.ActiveCfg = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

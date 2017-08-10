@@ -1,0 +1,206 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="overview-of-web-api-backend-from-geekquiz">Overview of Web API backend from GeekQuiz</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>In this demo you will walk through the process of building GeekQuiz backend. It&#39;ll be implemented using ASP.NET Web API to create a controller with two operations; Get, which returns the next question relying on the QuestionService for data access and Post to store the given answer using the AnswerService for data access.</p>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li>Create a new Web API controller</li>
+<li>Implement a Get operation in the Web API controller</li>
+<li>Implement a Post operation in the Web API controller</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ul>
+<li><a href="http://www.asp.net/web-api/readme.htm">ASP.NET Web API</a></li>
+</ul>
+<p><a name="Setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>In order to execute this demo you need to set up your environment.</p>
+<ol>
+<li>Open Visual Studio 2015.</li>
+<li>Open the <strong>GeekQuiz.sln</strong> solution located under <strong>source\begin</strong>.</li>
+<li><p>If you don&#39;t have one, create a user account for the application. To do that, press <strong>F5</strong>, click <strong>Register</strong> and provide the information required. After that, close the browser window.</p>
+<blockquote>
+<p><strong>Note:</strong> Remember the information you provided as you will be using it during the demo.</p>
+</blockquote>
+</li>
+<li><p>In Visual Studio, close all open files.</p>
+</li>
+</ol>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#segment1">Create the TriviaController</a>.</li>
+<li><a href="#segment2">Run the solution</a>.</li>
+</ol>
+<p><a name="segment1"></a></p>
+<h3 id="create-the-triviacontroller">Create the TriviaController</h3>
+<ol>
+<li><p>Right-click the <strong>Controllers</strong> folder, expand the <strong>Add</strong> menu and click <strong>New Item...</strong> in order to create a new <strong>TriviaController</strong>.</p>
+<p> <img class="img-responsive"src="images/creating-a-new-item.png?raw=true" alt="Creating a new item" title="Creating a new item"></p>
+<p> <em>Creating a new item</em></p>
+</li>
+<li><p>In the <strong>Add New Item</strong> dialog box, select <strong>Web API Controller Class</strong> from the list, set the Controller&#39;s name to <strong>TriviaController</strong> and click <strong>Add</strong>.</p>
+<p> <img class="img-responsive"src="images/selecting-the-web-api-controller-class.png?raw=true" alt="Selecting the Web API Controller Class option" title="Selecting the Web API Controller Class option"></p>
+<p> <em>Selecting the Web API Controller Class option</em></p>
+</li>
+<li><p>Implement the controller using the following code.</p>
+ <!-- mark:4-23 -->
+<pre><code class="lang-C#"> [Route(&quot;api/[controller]&quot;)]
+ public class TriviaController : Controller
+ {
+     private TriviaDbContext context;
+     private IQuestionsService questionsService;
+     private IAnswersService answersService;
+
+     public TriviaController(TriviaDbContext context, IQuestionsService questionsService, IAnswersService answersService)
+     {
+         this.context = context;
+         this.questionsService = questionsService;
+         this.answersService = answersService;
+     }
+
+     protected override void Dispose(bool disposing)
+     {
+         if (disposing)
+         {
+             context.Dispose();
+         }
+
+         base.Dispose(disposing);
+     }
+ }
+</code></pre>
+</li>
+<li><p>Add the following using statements.</p>
+ <!-- mark:1-2 -->
+<pre><code class="lang-C#"> using GeekQuiz.Models;
+ using GeekQuiz.Services;
+</code></pre>
+</li>
+<li><p>Add the <code>Produces(&quot;application/json&quot;)</code> attribute to the TriviaController.</p>
+ <!-- mark:3 -->
+<pre><code class="lang-C#"> namespace GeekQuiz.Controllers
+ {
+      [Produces(&quot;application/json&quot;)]
+      [Route(&quot;api/[controller]&quot;)]
+      public class TriviaController : Controller
+      {
+</code></pre>
+</li>
+<li><p>Add the <code>Authorize</code> attribute to the TriviaController.</p>
+ <!-- mark:5 -->
+<pre><code class="lang-C#"> namespace GeekQuiz.Controllers
+ {
+      [Produces(&quot;application/json&quot;)]
+      [Route(&quot;api/[controller]&quot;)]
+      [Authorize]
+      public class TriviaController : Controller
+      {
+</code></pre>
+</li>
+<li><p>Resolve the missing <em>using</em> statements for the <code>Authorize</code> attribute.</p>
+ <!-- mark:1 -->
+<pre><code class="lang-C#"> using Microsoft.AspNet.Authorization;
+</code></pre>
+</li>
+<li><p>Add the following code to create a <strong>Get</strong> action in the <strong>TriviaController</strong>.</p>
+ <!-- mark:1-16 -->
+<pre><code class="lang-C#"> // GET: api/Trivia
+ [HttpGet]
+ public async Task&lt;IActionResult&gt; Get()
+ {
+     var userId = User.Identity.Name;
+
+     TriviaQuestion nextQuestion =
+          await this.questionsService.NextQuestionAsync(userId);
+
+     if (nextQuestion == null)
+     {
+          return HttpNotFound();
+     }
+
+     return Ok(nextQuestion);
+ }
+</code></pre>
+</li>
+<li><p>Add the <strong>Post</strong> method from the following code snippet just after the <strong>Get</strong> method.</p>
+ <!-- mark:1-15 -->
+<pre><code class="lang-C#"> // PUT: api/Trivia
+ [HttpPost]
+ public async Task&lt;IActionResult&gt; Post([FromBody] TriviaAnswer answer)
+ {
+     if (!ModelState.IsValid)
+     {
+          return HttpBadRequest(ModelState);
+     }
+
+     answer.UserId = User.Identity.Name;
+
+     var isCorrect = await this.answersService.StoreAsync(answer);
+
+     return this.CreatedAtAction(&quot;Get&quot;, new {}, isCorrect);
+ }
+</code></pre>
+</li>
+<li><p>Build the solution.</p>
+</li>
+</ol>
+<p><a name="segment2"></a></p>
+<h3 id="run-the-solution">Run the solution</h3>
+<ol>
+<li><p>Set breakpoints on the first line of the <strong>Get</strong> and <strong>Post</strong> methods.</p>
+<p> <img class="img-responsive"src="images/setting-the-debug-breakpoints.png?raw=true" alt="Setting the debug breakpoints to the methods" title="Setting the debug breakpoints to the methods"></p>
+<p> <em>Setting the debug breakpoints to the methods</em></p>
+</li>
+<li><p>Press <strong>F5</strong> to start debugging the application.</p>
+<blockquote>
+<p><strong>Note:</strong> If the Log in page is displayed, provide the credentials you created during the setup steps.</p>
+<p><img class="img-responsive"src="images/logging-in-the-app.png?raw=true" alt="Logging in the site" title="Logging in the site"></p>
+</blockquote>
+</li>
+<li><p>In Visual Studio, the breakpoint on the first line of the <strong>Get</strong> method will be hit. Step over (<strong>F10</strong>) until the method&#39;s last line.</p>
+<p> <img class="img-responsive"src="images/stopping-at-the-first-line-of-get.png?raw=true" alt="Stopping at the first line of the Get method" title="Stopping at the first line of the Get method"></p>
+<p> <em>Stopping at the first line of the Get method</em></p>
+</li>
+<li><p>Once you have reached the end of the method, press <strong>F5</strong> and go back to the browser.</p>
+<p> <img class="img-responsive"src="images/retriving-the-questions.png?raw=true" alt="Retrieving  the question" title="Retrieving the question"></p>
+<p> <em>Retrieving the question</em></p>
+</li>
+<li><p>Click any of the buttons.</p>
+</li>
+<li><p>In Visual Studio, the breakpoint on the first line of the <strong>Post</strong> method will be hit. Step over (<strong>F10</strong>) until the method&#39;s last line.</p>
+<p> <img class="img-responsive"src="images/stopping-at-the-first-line-of-post.png?raw=true" alt="Stopping at the first line of the Post method" title="Stopping at the first line of the Post method"></p>
+<p> <em>Stopping at the first line of the Post method</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this demo you should have:</p>
+<ol>
+<li>Created a new Web API controller named &quot;TriviaController&quot;.</li>
+<li>Implemented the Get method to retrieve the next question and wired it to the database using the QuestionsService.</li>
+<li>Implemented the Post method to store an answer and wired it to the database using the AnswersService.</li>
+<li>Debug the implemented methods and walk through their implementation to better understand what&#39;s going on.</li>
+</ol>
+<hr>
+
+      </div>
+  </body>
+</html>

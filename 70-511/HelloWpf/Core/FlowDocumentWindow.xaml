@@ -1,0 +1,14 @@
+﻿<Window x:Class="HelloWpf.Core.FlowDocumentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FlowDocumentWindow" Height="300" Width="300">
+    <FlowDocumentScrollViewer IsToolBarVisible="True" MinZoom="20" MaxZoom="1000" ZoomIncrement="10">
+        <FlowDocument>
+            <Section FontFamily="../#French Script MT" FontSize="20" Background="LightYellow">
+                <Paragraph>Lorem ipsum dolor sit amet...</Paragraph>
+                <Paragraph>Ut enim ad minim veniam...</Paragraph>
+                <Paragraph>Duis <Run>aute</Run> irure dolor in reprehenderit...</Paragraph>
+            </Section>
+        </FlowDocument>
+    </FlowDocumentScrollViewer>
+</Window>

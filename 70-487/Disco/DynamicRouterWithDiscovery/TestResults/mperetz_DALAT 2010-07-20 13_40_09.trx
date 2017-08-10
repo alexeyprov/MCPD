@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="3d655cb4-9083-4741-b131-0a32b1770680" name="mperetz@DALAT 2010-07-20 13:40:09" runUser="ATRION\mperetz" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="07bedcec-5dff-44b7-b15e-46e5193dd517">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="mperetz_DALAT 2010-07-20 13_40_09">
+      <DeploymentItem filename="c:\work\DynamicRouterWithDiscovery\DynamicRouterWithDiscovery\Service.Api\bin\Debug\Service.Api.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2010-07-20T13:40:09.5097889-04:00" queuing="2010-07-20T13:40:10.4228802-04:00" start="2010-07-20T13:40:10.5818961-04:00" finish="2010-07-20T13:40:28.7087086-04:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestRouter" storage="c:\work\dynamicrouterwithdiscovery\dynamicrouterwithdiscovery\testdynamicrouter.cs\bin\debug\testdynamicrouter.cs.dll" id="20f993fa-ac75-eead-0969-ecdbc193e5c3">
+      <Execution id="798a7e62-be6d-4699-8a7b-6a4c5d66f148" />
+      <TestMethod codeBase="c:/work/DynamicRouterWithDiscovery/DynamicRouterWithDiscovery/TestDynamicRouter.cs/bin/Debug/TestDynamicRouter.cs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestDynamicRouter.cs.TestDynamicRouterUnitTest, TestDynamicRouter.cs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestRouter" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="20f993fa-ac75-eead-0969-ecdbc193e5c3" executionId="798a7e62-be6d-4699-8a7b-6a4c5d66f148" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="798a7e62-be6d-4699-8a7b-6a4c5d66f148" testId="20f993fa-ac75-eead-0969-ecdbc193e5c3" testName="TestRouter" computerName="DALAT" duration="00:00:16.8917801" startTime="2010-07-20T13:40:10.7139093-04:00" endTime="2010-07-20T13:40:28.6287006-04:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="798a7e62-be6d-4699-8a7b-6a4c5d66f148">
+    </UnitTestResult>
+  </Results>
+</TestRun>

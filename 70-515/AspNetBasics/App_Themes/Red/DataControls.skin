@@ -1,0 +1,93 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<asp:DetailsView runat="server" BackColor="#990000" 
+	CellPadding="4" ForeColor="#333333" GridLines="None" >
+	<AlternatingRowStyle BackColor="#FFFFCC" />
+	<EditRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+	<FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<CommandRowStyle BackColor="#990000" Font-Bold="True" />
+	<RowStyle BackColor="#990000" ForeColor="#333333" />
+	<FieldHeaderStyle BackColor="#990000" Font-Bold="True" />	
+	<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" 
+		HorizontalAlign="Center" />
+</asp:DetailsView>
+
+<asp:FormView runat="server" CellPadding="4" ForeColor="#333333">
+	<FooterStyle BackColor="Tan" Font-Bold="True" ForeColor="White" />
+	<RowStyle BackColor="#990000" />
+	<PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+	<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<EditRowStyle BackColor="#2461BF" />
+</asp:FormView>
+
+<asp:GridView runat="server" CellPadding="4" 
+	ForeColor="#333333" GridLines="None">
+	<RowStyle BackColor="#990000" />
+	<FooterStyle BackColor="Tan" />
+	<PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" 
+		HorizontalAlign="Center" />
+	<SelectedRowStyle Font-Bold="True" BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+	<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<AlternatingRowStyle BackColor="#FFFFCC" />
+</asp:GridView>
+
+<asp:DataList BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" 
+	CellPadding="2" ForeColor="Black" runat="server" >
+	<AlternatingItemStyle BackColor="PaleGoldenrod" />
+	<FooterStyle BackColor="Tan" />
+	<HeaderStyle BackColor="Tan" Font-Bold="True" />
+	<SelectedItemStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+</asp:DataList>
+
+<asp:Calendar runat="server" BackColor="White" BorderColor="#33CC66" CellPadding="1" 
+	ForeColor="#009933">
+	<SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+	<SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
+	<WeekendDayStyle BackColor="#CCFFCC" />
+	<TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
+	<OtherMonthDayStyle ForeColor="#999999" />
+	<NextPrevStyle ForeColor="#CCFFCC" />
+	<DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
+	<TitleStyle BackColor="#009933" BorderColor="#33CC66" Font-Bold="True" 
+		BorderWidth="1px" ForeColor="#CCFFCC" />
+</asp:Calendar>
+
+<asp:Button runat="server" BackColor="#EECCCC" />
+
+<asp:Image runat="server" SkinID="LogoImage" ImageUrl="~/App_Themes/Red/img/logo.jpg" AlternateText="ASP.NET Basics logo" />
+
+<asp:TextBox runat="server" BackColor="#EECCCC" />
+
+<asp:DropDownList runat="server" BackColor="#EECCCC" />
+
+<asp:Wizard runat="server" BackColor="#FBEFF3" BorderColor="#DEB5C7" >
+	<NavigationButtonStyle BackColor="White" BorderColor="#D1507C" ForeColor="#98284E" />
+	<SideBarButtonStyle BackColor="#D1507C" ForeColor="White" />
+	<SideBarStyle BackColor="#D1507C" />
+	<StepStyle ForeColor="#333333" />
+	<HeaderStyle BackColor="#98284E" BorderColor="#FBEFF3" ForeColor="White" />
+</asp:Wizard>
+
+<asp:Menu runat="server" BackColor="#DEB5C7"
+	Font-Names="Verdana" Font-Size="0.8em" ForeColor="#98284E" >
+	<DynamicHoverStyle BackColor="#98284E" ForeColor="White" />
+	<DynamicMenuStyle BackColor="#DEB5C7" />
+	<DynamicSelectedStyle BackColor="#D1507C" />
+	<StaticHoverStyle BackColor="#98284E" ForeColor="White" />
+	<StaticSelectedStyle BackColor="#D1507C" />
+</asp:Menu>

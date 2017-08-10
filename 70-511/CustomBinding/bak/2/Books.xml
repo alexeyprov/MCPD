@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BookInfos>
+  <BookInfo>
+    <Author>Bill Bryson</Author>
+    <Title>A short history of nearly everything</Title>
+    <Isbn>076790818X</Isbn>
+    <PageCount>560</PageCount>
+  </BookInfo>
+  <BookInfo>
+    <Author>Philipp Meyer</Author>
+    <Title>American Rust</Title>
+    <Isbn>0385527519</Isbn>
+    <PageCount>384</PageCount>
+  </BookInfo>
+  <BookInfo>
+    <Author>Mark Twain</Author>
+    <Title>The Adventures of Huckleberry Finn</Title>
+    <Isbn>0141321091</Isbn>
+    <PageCount>480</PageCount>
+  </BookInfo>  
+</BookInfos> 

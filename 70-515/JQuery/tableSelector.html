@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<script type="text/javascript" src="scripts/jquery-1.5.js">
+		</script>
+		<script type="text/javascript">
+		<!--
+			$(document).ready(
+				function()
+				{
+					$("#DataGrid1 tr:has(td[align=right]):nth-child(3n+1) td:odd").attr("align", "center"); //css("background-color", "yellow");
+				}
+			);
+		//->
+		</script>
+	</head>
+	<body>
+		<div width="100%">
+			<table id="DataGrid1" border="1">
+			    <tr>
+			       <td>Column1</td>
+			       <td>Column2</td></tr>
+			    <tr>
+			       <td>Val1</td>
+			       <td align="right">Num1</td></tr>
+			    <tr>
+			       <td>Val2</td>
+			       <td align="right">Num2</td></tr>
+			    <tr>
+			       <td>Val3</td>
+			       <td align="right">Num3</td></tr>
+			    <tr>
+			       <td>Val4</td>
+			       <td>Num4</td></tr>
+			    <tr>
+			       <td>Val5</td>
+			       <td>Num5</td></tr>
+			    <tr>
+			       <td>Val6</td>
+			       <td>Num6</td></tr>
+			    <tr>
+			       <td>Val7</td>
+			       <td>Num7</td></tr>
+			</table>
+		</div>
+	</body>
+</html>

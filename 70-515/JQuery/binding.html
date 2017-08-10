@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<script type="text/javascript" src="scripts/jquery-1.7.2.js">
+		</script>
+		<script type="text/javascript">
+		<!--
+		    /// <include file='scripts/jquery-1.7.2.js'/>
+			function onGotLostFocus(e)
+			{
+				var name = "#" + e.target.id;
+				$(name).toggleClass(e.data.cssClass);
+			}
+
+			$(document).ready(
+				function()
+				{
+					$("input").bind("focus blur",
+						{
+							cssClass : "highlighted"
+						},
+						onGotLostFocus);
+				}
+			);
+		//-->
+		</script>
+		<style type="text/css" >
+			input.highlighted
+			{
+				background-color: yellow;
+				border-style: dashed;
+			}
+		</style>
+		<title>JQuery Event Binding Sample</title>
+	</head>
+	<body>
+		<span>Box 1</span>
+		&nbsp;
+		<input id="txtBox1" />
+		<br/>
+		<br/>
+		<span>Box 2</span>
+		&nbsp;
+		<input id="txtBox2" />
+		<br />
+
+	</body>
+</html>

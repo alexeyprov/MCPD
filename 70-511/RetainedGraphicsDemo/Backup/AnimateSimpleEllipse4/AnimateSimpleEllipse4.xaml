@@ -1,0 +1,31 @@
+﻿<Window xmlns="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:rgd="clr-namespace:RetainedGraphicsLib;assembly=RetainedGraphicsLib"
+        Title="Animate SimpleEllipse4">
+    <rgd:SimpleEllipse4>
+        <rgd:SimpleEllipse4.Fill>
+            <LinearGradientBrush>
+                <GradientStop Offset="0" Color="Red" />
+                <GradientStop x:Name="stop" Color="Magenta" />
+                <GradientStop Offset="1" Color="Blue" />
+            </LinearGradientBrush>
+        </rgd:SimpleEllipse4.Fill>
+    </rgd:SimpleEllipse4>
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard TargetName="stop" 
+                            TargetProperty="Offset">
+                    <DoubleAnimation From="0" 
+                                     To="1" 
+                                     Duration="0:0:5"
+                                     AutoReverse="True"
+                                     RepeatBehavior="Forever" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+</Window>
+        
+        

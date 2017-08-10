@@ -1,0 +1,39 @@
+﻿<Window x:Class="HelloWpf.Northwind.CustomerListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:n="clr-namespace:HelloWpf.Northwind"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Customers" Height="300" Width="300"
+        MinHeight="300" MinWidth="300"
+        Style="{StaticResource RoundedWindow}"
+        Tag="Select a customer"
+        Grid.IsSharedSizeScope="True">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" MinHeight="125"/>
+        </Grid.RowDefinitions>
+        <ListBox Name="CustomersList" Margin="5"
+                 Style="{StaticResource RadioButtonList}"
+                 MouseDoubleClick="CustomersList_MouseDoubleClick">
+            <!--
+            <ListBox.DisplayMemberPath>
+                <sys:String>ID</sys:String>
+            </ListBox.DisplayMemberPath>
+            -->
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ID}" Foreground="Green"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Height="5" VerticalAlignment="Center"/>
+        <n:CustomerControl x:Name="CustomerDataControl" Grid.Row="2" DataContext="{Binding SelectedItem, ElementName=CustomersList}"/>
+    </Grid>
+</Window>

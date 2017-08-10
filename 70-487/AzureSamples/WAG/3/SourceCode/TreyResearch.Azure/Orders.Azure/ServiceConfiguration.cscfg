@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Orders.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="1" osVersion="*">
+  <Role name="Orders.Workers">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="acsNamespace" value="{your_acs_namespace}" />
+      <Setting name="acsUsername" value="{your_acs_username}" />
+      <Setting name="acsUserKey" value="{your_acs_password}" />
+      <Setting name="statusUpdateIssuer" value="statusupdatejob" />
+      <Setting name="statusUpdateKey" value="{statusupdatejob_key_value}" />
+      <Setting name="orderStatusUpdateQueue" value="orderStatusUpdateQueue" />
+      <Setting name="serviceBusNamespace" value="{your_service_bus_namespace}" />
+      <Setting name="newOrdersTopicIssuer" value="neworderjob" />
+      <Setting name="newOrdersTopicKey" value="{neworderjob_key_value}" />
+      <Setting name="replyQueueName" value="OrderStatusUpdateQueue" />
+      <Setting name="topicName" value="NewOrdersTopic" />
+      <Setting name="TreyResearchModel" value="metadata=res://*/Stores.Entities.TreyResearchDataModelContainer.csdl|res://*/Stores.Entities.TreyResearchDataModelContainer.ssdl|res://*/Stores.Entities.TreyResearchDataModelContainer.msl;provider=System.Data.SqlClient;provider connection string='Data Source=WAGSQLALIAS;initial catalog=TreyResearch;integrated security=True;multipleactiveresultsets=True;App=EntityFramework'" />
+      <!--  connection strings for SQL Azure. Note: please update the server, user id, and password -->
+      <!--<add name="TreyResearchModel" connectionString="metadata=res://*/Stores.Entities.TreyResearchDataModelContainer.csdl|res://*/Stores.Entities.TreyResearchDataModelContainer.ssdl|res://*/Stores.Entities.TreyResearchDataModelContainer.msl;provider=System.Data.SqlClient;provider connection string=&quot;Server=tcp:d1r6ihniy7.database.windows.net,1433;Database=TreyResearch;User ID=contoso@d1r6ihniy7;Password=Passw0rd!;Trusted_Connection=False;Encrypt=True;multipleactiveresultsets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />-->
+      <Setting name="DiagnosticsConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="TraceEventTypeFilter" value="Information" />
+      <Setting name="NewOrderJobRetryCountCheck" value="3" />
+    </ConfigurationSettings>
+  </Role>
+  <Role name="Orders.Website">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="DiagnosticsConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="TraceEventTypeFilter" value="Information" />
+      <Setting name="TreyResearchDataModelContainer" value="metadata=res://*/DataStores.Entities.TreyResearchDataModelContainer.csdl|res://*/DataStores.Entities.TreyResearchDataModelContainer.ssdl|res://*/DataStores.Entities.TreyResearchDataModelContainer.msl;provider=System.Data.SqlClient;provider connection string='data source=WAGSQLALIAS;initial catalog=TreyResearch;integrated security=True;multipleactiveresultsets=True;App=EntityFramework'" />
+      <!--  connection strings for SQL Azure. Note: please update the server, user id, and password -->
+      <!--
+      <Setting name="TreyResearchDataModelContainer" value="metadata=res://*/DataStores.Entities.TreyResearchDataModelContainer.csdl|res://*/DataStores.Entities.TreyResearchDataModelContainer.ssdl|res://*/DataStores.Entities.TreyResearchDataModelContainer.msl;provider=System.Data.SqlClient;provider connection string=&quot;Server=tcp:d1r6ihniy7.database.windows.net,1433;Database=TreyResearch;User ID=contoso@d1r6ihniy7;Password=Passw0rd!;Trusted_Connection=False;Encrypt=True;multipleactiveresultsets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+      <Setting name="TreyResearchDataModelContainer" value="Server=tcp:d1r6ihniy7.database.windows.net,1433;Database=TreyResearch;User ID=contoso@d1r6ihniy7;Password=Passw0rd!;Trusted_Connection=False;Encrypt=True;multipleactiveresultsets=True;" providerName="System.Data.EntityClient" />
+      -->
+      <Setting name="CacheHost" value="{your_cache_namespace}.cache.windows.net" />
+      <Setting name="CachePort" value="22233" />
+      <Setting name="CacheAcsKey" value="{your_cache_auth_info}" />
+      <Setting name="IsLocalCacheEnabled" value="false" />
+      <Setting name="LocalCacheObjectCount" value="1000" />
+      <Setting name="LocalCacheTtlValue" value="60" />
+      <Setting name="LocalCacheSync" value="TimeoutBased" />
+      <Setting name="acsNamespace" value="{your_acs_namespace}" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="localhost" thumbprint="5A074D678466F59DBD063D1A98B1791474723365" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

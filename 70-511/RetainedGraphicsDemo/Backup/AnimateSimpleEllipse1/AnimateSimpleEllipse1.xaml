@@ -1,0 +1,27 @@
+﻿<Window xmlns="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:rgd="clr-namespace:RetainedGraphicsLib;assembly=RetainedGraphicsLib"
+        Title="Animate SimpleEllipse1">
+    <rgd:SimpleEllipse1>
+        <rgd:SimpleEllipse1.Fill>
+            <SolidColorBrush x:Name="brush" />
+        </rgd:SimpleEllipse1.Fill>
+    </rgd:SimpleEllipse1>
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard TargetName="brush" 
+                            TargetProperty="Color">
+                    <ColorAnimation From="Red" 
+                                    To="Blue" 
+                                    Duration="0:0:5"
+                                    AutoReverse="True"
+                                    RepeatBehavior="Forever" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+</Window>
+        
+        

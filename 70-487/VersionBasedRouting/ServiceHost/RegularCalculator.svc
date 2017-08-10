@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="VersionBasedRouting.ServiceHost.RegularCalculator" CodeBehind="RegularCalculator.svc.cs" %>

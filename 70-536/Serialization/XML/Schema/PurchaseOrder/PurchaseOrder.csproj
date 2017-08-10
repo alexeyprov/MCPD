@@ -1,0 +1,164 @@
+<VisualStudioProject>
+    <CSHARP ProjectType = "Local" >
+        <Build>
+            <Settings
+                ApplicationIcon = ""
+                ApplicationRoot = "true"
+                AssemblyBuildNumber = "0"
+                AssemblyCompany = ""
+                AssemblyCopyright = ""
+                AssemblyDescription = ""
+                AssemblyKeyContainerName = ""
+                AssemblyMajorVersion = "1"
+                AssemblyMinorVersion = "0"
+                AssemblyName = "PurchaseOrder"
+                AssemblyOriginatorKeyFile = ""
+                AssemblyOriginatorKeyMode = "None"
+                AssemblyProduct = ""
+                AssemblyRevisionNumber = "0"
+                AssemblyTitle = ""
+                AssemblyTrademark = ""
+                CLSCompliant = "true"
+                DefaultClientScript = "JScript"
+                DefaultDTCPlatform = "Server"
+                DefaultHTMLPageLayout = "Linear"
+                DefaultTargetSchema = "HTML32"
+                DefaultServerScript = "VBScript"
+                DefaultSessionState = "True"
+                GenerateRevisionNumber = "true"
+                NoStandardLibraries = "false"
+                OutputType = "Library"
+                OptionCompare = "Binary"
+                OptionExplicit = "On"
+                OptionStrict = "On"
+                _RootNamespace = "PurchaseOrder"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "0"
+                    CheckForOverflowUnderflow = "false"
+                    DefineConstants = "DEBUG;TRACE"
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DocumentationFile = ""
+                    DebugSymbols = "true"
+                    IncrementalBuild = "false"
+                    NoLogo = "true"
+                    NoOutput = "false"
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+                <Config
+                    Name = "Release"
+                    AllowUnsafeBlocks = "false"
+                    BaseAddress = "0"
+                    CheckForOverflowUnderflow = "false"
+                    DefineConstants = "TRACE"
+                    DefineDebug = "true"
+                    DefineTrace = "true"
+                    DocumentationFile = ""
+                    DebugSymbols = "false"
+                    IncrementalBuild = "false"
+                    NoLogo = "true"
+                    NoOutput = "false"
+                    Optimize = "true"
+                    OutputPath = "bin\Release\"
+                    RemoveIntegerChecks = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                />
+            </Settings>
+            <References>
+                <Reference Name = "mscorlib" />
+                <Reference Name = "System" />
+                <Reference Name = "System.Diagnostics" />
+                <Reference Name = "System.Configuration" />
+                <Reference Name = "System.XML" />
+                <Reference Name = "System.Xml.Serialization" />
+                <Reference
+                    Name = "MSXML2"
+                    Guid = "{F5078F18-C551-11D3-89B9-0000F81FE221}"
+                    VersionMajor = "4"
+                    VersionMinor = "0"
+                    Lcid = "0"
+                />
+                <Reference
+                    Name = "POValidator"
+                    Guid = "{F4D7CB64-193E-4DE9-96E3-A3554C557E05}"
+                    VersionMajor = "1"
+                    VersionMinor = "0"
+                    Lcid = "0"
+                />
+            </References>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "AddressBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "AssemblyInfo.cs"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BillingInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BriefContact.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "BuyerInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LineItem.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "LineItems.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Payment.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Phone.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PurchaseOrder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ShippingInfo.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "XmlBase.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+            </Include>
+        </Files>
+    </CSHARP>
+</VisualStudioProject>
+

@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProfileGenerator", "WebProfileGenerator\WebProfileGenerator.csproj", "{774EF05F-6812-46F4-86B2-1757F370DA1B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WebProfileGeneratorInstall", "WebProfileGeneratorInstall\WebProfileGeneratorInstall.vdproj", "{DCCACBE2-AFD7-4240-8F08-40E3134D7055}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7B17C45-A0D6-4D43-B421-F870437C7D83}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+		WebProfileGenerator_License.rtf = WebProfileGenerator_License.rtf
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs04.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WebProfileGenerator\\WebProfileGenerator.csproj
+		SccProjectName1 = WebProfileGenerator
+		SccLocalPath1 = WebProfileGenerator
+		SccProjectUniqueName2 = WebProfileGeneratorInstall\\WebProfileGeneratorInstall.vdproj
+		SccProjectName2 = WebProfileGeneratorInstall
+		SccLocalPath2 = WebProfileGeneratorInstall
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{774EF05F-6812-46F4-86B2-1757F370DA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774EF05F-6812-46F4-86B2-1757F370DA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774EF05F-6812-46F4-86B2-1757F370DA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774EF05F-6812-46F4-86B2-1757F370DA1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCCACBE2-AFD7-4240-8F08-40E3134D7055}.Debug|Any CPU.ActiveCfg = Release
+		{DCCACBE2-AFD7-4240-8F08-40E3134D7055}.Release|Any CPU.ActiveCfg = Release
+		{DCCACBE2-AFD7-4240-8F08-40E3134D7055}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

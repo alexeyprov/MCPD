@@ -1,0 +1,22 @@
+﻿@using NorthwindMVC.Models;
+
+@helper CountryGrid(IEnumerable<Country> countries)
+{
+	<table>
+		<thead>
+			<th>Country</th>
+			<th>Capital</th>
+			<th>Continent</th>
+		</thead>
+		<tbody>
+			@foreach (Country country in countries)
+			{
+				<tr>
+					<td>@country.Name</td>
+					<td>@country.Detail.Capital</td>
+					<td>@country.Detail.Continent</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

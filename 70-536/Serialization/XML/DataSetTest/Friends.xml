@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<DataSet>
+  <xs:schema id="Friends" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="Friends" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="People">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="DoB" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+    <Friends>
+      <People diffgr:id="People1" msdata:rowOrder="0" diffgr:hasChanges="inserted">
+        <Name>Andrey Z</Name>
+        <DoB>4/17/1982 12:00:00 AM</DoB>
+      </People>
+      <People diffgr:id="People2" msdata:rowOrder="1" diffgr:hasChanges="inserted">
+        <Name>Alexander Z</Name>
+        <DoB>4/23/1982 12:00:00 AM</DoB>
+      </People>
+    </Friends>
+  </diffgr:diffgram>
+</DataSet>

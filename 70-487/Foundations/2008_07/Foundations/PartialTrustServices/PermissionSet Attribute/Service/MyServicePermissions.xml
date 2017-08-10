@@ -1,0 +1,4 @@
+<PermissionSet class="System.Security.PermissionSet">
+   <IPermission class="System.Security.Permissions.SecurityPermission" Flags = "Execution"/>
+   <IPermission class="System.Security.Permissions.UIPermission" Window = "SafeTopLevelWindows"/>
+</PermissionSet>

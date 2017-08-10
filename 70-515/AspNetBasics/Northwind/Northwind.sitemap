@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="~/Northwind/Default.aspx" title="Northwind DB samples"  description="">
+			<siteMapNode url="~/Northwind/Ado/Default.aspx" title="ADO.NET" description="ObjectDataSource, SqlDataSource and DataSet">
+				<siteMapNode url="~/Northwind/Ado/Customers.aspx" title="ObjectDataSource" />
+				<siteMapNode url="~/Northwind/Ado/DvdList.aspx" title="XmlDataSource and TreeView" />
+				<siteMapNode url="~/Northwind/Ado/Employees.aspx" title="GridView" description="Concurrency Handling"/>
+				<siteMapNode url="~/Northwind/Ado/ProductsByCategory.aspx" title="DataSet" />
+				<siteMapNode url="~/Northwind/Ado/Shippers.aspx" title="DataList" />
+				<siteMapNode url="~/Northwind/Ado/Suppliers.aspx" title="ListView" />
+				<siteMapNode url="~/Northwind/Ado/Territories.aspx" title="SqlDataSource" description="Master/Detail"/>
+				<siteMapNode url="~/Northwind/Ado/Charting.aspx" title="Chart control" />
+				<siteMapNode url="~/Northwind/Ado/TerritoriesByEmployees.aspx" title="Asynchronous Pages" />
+				<siteMapNode url="~/Northwind/Ado/TerritoriesByRegions.aspx" title="Custom Callbacks" />
+			</siteMapNode>
+			<siteMapNode url="~/Northwind/Linq/Default.aspx" title="LINQ to SQL" description="LinqDataSource, LINQ to SQL">
+				<siteMapNode url="~/Northwind/Linq/Customers.aspx" title="LinqDataSource" />
+				<siteMapNode url="~/Northwind/Linq/Employees.aspx" title="GridView" description="Concurrency Handling"/>
+				<siteMapNode url="~/Northwind/Linq/ProductsByCategory.aspx" title="LINQ to SQL" />
+				<siteMapNode url="~/Northwind/Linq/Shippers.aspx" title="DataList" />
+				<siteMapNode url="~/Northwind/Linq/Suppliers.aspx" title="ListView" />
+				<siteMapNode url="~/Northwind/Linq/Territories.aspx" title="LinqDataSource" description="Master/Detail"/>
+				<siteMapNode url="~/Northwind/Linq/Charting.aspx" title="Chart Control" />
+				<siteMapNode url="~/Northwind/Linq/TerritoriesByRegions.aspx" title="AJAX Web Service" />
+			</siteMapNode>
+			<siteMapNode url="~/Northwind/Entities/Default.aspx" title="LINQ to Entities" description="EntityDataSource, LINQ to Entities">
+				<siteMapNode url="~/Northwind/Entities/Customers.aspx" title="QueryExtender" />
+				<siteMapNode url="~/Northwind/Entities/Employees.aspx" title="GridView" description="Concurrency Handling"/>
+				<siteMapNode url="~/Northwind/Entities/ProductsByCategory.aspx" title="LINQ to Entities" />
+				<siteMapNode url="~/Northwind/Entities/Shippers.aspx" title="DataList" />
+				<siteMapNode url="~/Northwind/Entities/Suppliers.aspx" title="ListView" />
+				<siteMapNode url="~/Northwind/Entities/Territories.aspx" title="EntityDataSource" description="Master/Detail"/>
+				<siteMapNode url="~/Northwind/Entities/Charting.aspx" title="Chart Control" />
+				<siteMapNode url="~/Northwind/Entities/TerritoriesByRegions.aspx" title="AJAX WCF Service" />
+			</siteMapNode>
+    </siteMapNode>
+</siteMap>

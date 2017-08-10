@@ -1,0 +1,1 @@
+csc /out:ValueTypeItf.exe Point.cs IChangeBoxedPoint.cs ValueTypeItf.cs 

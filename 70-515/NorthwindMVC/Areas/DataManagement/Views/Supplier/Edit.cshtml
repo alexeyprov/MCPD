@@ -1,0 +1,31 @@
+﻿@model NorthwindMVC.Areas.DataManagement.Models.EditViewModel<Northwind.Data.Entities.Supplier>
+
+@{
+	ViewBag.Title = "Suppliers";
+}
+
+<style>
+	td.padded
+	{
+		padding: 10px;
+		vertical-align: top;
+	}
+</style>
+
+<fieldset>
+	<legend>Suppliers</legend>
+	<table>
+		<tr>
+			<td class="padded">
+				@using (Html.BeginForm("Edit", "Supplier"))
+				{
+					@Html.DropDownList("suppliers", new SelectList(Model.Entities, "SupplierID", "CompanyName", Model.SelectedEntity.SupplierID))
+					<input type="submit" value="Edit"/>
+				}
+			</td>
+			<td class="padded">
+				@Html.Partial("_EditSupplier", Model)
+			</td>
+		</tr>
+	</table>
+</fieldset>

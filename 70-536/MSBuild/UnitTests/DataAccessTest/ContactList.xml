@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Contacts>
+	<Contact Ssn="111-11-1111">
+		<FirstName>Sayed</FirstName>
+		<MiddleName>Ibrahim</MiddleName>
+		<LastName>Hashimi</LastName>
+		<Email>sayed.hashimi@gmail.com</Email>
+		<Website>www.sedodream.com</Website>
+	</Contact>
+	<Contact Ssn="222-22-2222">
+		<FirstName>Sayed</FirstName>
+		<MiddleName>Yahya</MiddleName>
+		<LastName>Hashimi</LastName>
+		<Email>sayed@sayedhashimi.com</Email>
+		<Website>www.sayedhashimi.com</Website>
+	</Contact>
+	<Contact Ssn="333-33-3333">
+		<FirstName>Mike</FirstName>
+		<MiddleName>Ray</MiddleName>
+		<LastName>Murphy</LastName>
+		<Email>magickmike@gmail.com</Email>
+	</Contact>
+</Contacts>

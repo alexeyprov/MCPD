@@ -1,0 +1,129 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<h1><span lang=EN-US>The Trey Research Azure-Hosted &quot;Orders&quot;
+Application</span></h1>
+
+<p>&nbsp;</p>
+
+<p style='margin-left:0cm;text-indent:0cm'><span lang=EN-US>With
+the availability of affordable and reliable cloud hosting services, Trey
+Research decided to investigate the possibility of moving the application to
+Windows Azure. It soon became clear that the management and reporting part of
+the application (which does not need to scale) and the database containing
+sensitive auditing information should remain on premises. This allows Trey
+Research to more closely control the aspects of the application that require
+additional security and which, for legal and logistical reasons, they felt
+would be better kept within their own datacenter.</span></p>
+
+<p style='margin-left:0cm;text-indent:0cm'><span lang=EN-US>However,
+the public section of the application could easily be deployed to the cloud as
+it was already effectively a separate application, and is the part that will be
+required to scale over time to meet elastic demand. This allows Trey Research
+to take full advantage of the cloud in terms of reliability, availability,
+security, lower running costs, reduced requirements for on-premises
+infrastructure, and the capability to scale up and down at short notice to meet
+peaks in demand.</span></p>
+
+<p style='margin-left:0cm;text-indent:0cm'><span lang=EN-US>There
+are other advantages to cloud hosting in Windows Azure that served to make a
+strong case for moving the public parts of the Orders application to the cloud.
+These include the ability to deploy it in multiple datacenters in different
+geographical locations to provide better response times and to maximize
+availability for customers. By using Windows Azure Traffic Manager, Trey
+Research can ensure that requests to the application are automatically routed to
+the instance that will provide the best user experience, and cope with failed
+instances by rerouting requests to other instances.</span></p>
+
+<p style='margin-left:0cm;text-indent:0cm'><span lang=EN-US>In
+addition, Windows Azure provides a range of services that are useful to Trey
+Research in the Order application. They can take advantage of the built-in
+distributed data caching feature for sessions and transient data used by the
+public website, the mechanism for easily implementing federated authentication,
+the connectivity features for secure communication and service access across
+the cloud/on-premises boundary, the capabilities for data synchronization, a
+comprehensive cloud-based reporting system, and the availability of third party
+components and frameworks to simplify development.</span></p>
+
+<p style='margin-left:0cm;text-indent:0cm'><span lang=EN-US>The
+following figure shows a high-level view of the architecture Trey Research
+implemented for their hybrid application, and a view of the technologies that 
+Trey Research uses in the application.</span></p>
+
+<p style='margin-left:0cm;text-indent:0cm'><img width="1000"
+height="532" id="Picture 2" src="/Content/images/image002.png"></p>
+
+<div style='border:solid #999999 1.5pt;padding:1.0pt 4.0pt 1.0pt 4.0pt;
+background:#EAF1DD;margin-left:7.1pt;margin-right:0cm'>
+
+<p style='margin-left:0cm;text-indent:0cm;background:#EAF1DD'><span
+lang=EN-US>Not all of the features shown in the diagram are implemented in this
+version of the example.</span></p>
+
+</div>
+<p>&nbsp;</p>
+
+<p style='margin-left:0cm;text-indent:0cm'><span lang=EN-US>Although
+it may seem complex, the Orders application works in much the same way as when
+it ran entirely on-premises. You will see more details about each part of the
+application in subsequent chapters of this guide. Here is a brief summary of
+the features you see in the figure:</span></p>
+
+<ul>
+<li style="padding-top:8px">Visitor requests all go to Windows Azure
+Traffic Manager, which redirects the visitor to the closest datacenter based on
+response time and availability.</li>
+
+<li style="padding-top:8px">Instead of using ASP.NET Forms authentication,
+visitors to the Orders website authenticate using a social identity provider
+such as Windows Live ID or Google. Windows Azure Access Control Service (ACS)
+manages this process, and returns a token containing a unique user ID to the
+Orders application. It uses this to look up the customer details in the
+Customers and Products database running in a local SQL Azure datacenter. This
+data is kept up to date by synchronizing it from the master Customers and
+Products database located in the head office datacenter.</li>
+
+<li style="padding-top:8px">The Orders application displays a list of
+products stored in the Customers and Products database.</li>
+
+<li style="padding-top:8px">When a visitor places an order, the Orders
+application:</li>
+
+<ul>
+
+<li style="padding-top:8px">Stores the order details in the Orders database in the local SQL
+Azure datacenter. All orders are synchronized across all Windows Azure
+datacenters so that they are available to visitors irrespective of the
+datacenter to which they are routed by Traffic Manager.</li>
+
+<li style="padding-top:8px">Sends an advice message to the appropriate transport partner. The
+transport company chosen depends on the type of product and delivery location.</li>
+
+<li style="padding-top:8px">Stores any required audit information, such as orders over a
+specific total value, in the on-premises Audit Log database located in the head
+office datacenter.</li>
+
+</ul>
+
+<li style="padding-top:8px">The third-party compliance application running
+in a Virtual Machine Role in the cloud continually validates the orders in the
+Orders database for conformance with legal restrictions and sets a flag in the
+database on those that require attention by managers. It also generates a daily
+report in text format on a server located in the head office datacenter.</li>
+
+<li style="padding-top:8px">When a transport partner delivers the order,
+they send a message to the appropriate instance of the Orders application so
+that it can update the Orders database.</li>
+
+<li style="padding-top:8px">To obtain management information, the
+on-premises Reporting application uses the Business Intelligence features of
+the SQL Azure Reporting service running in the cloud to generate reports from
+the Orders database. These reports can be combined with data obtained from the
+Data Market section of Windows Azure Marketplace to compare the results with
+global or local trends. The reports are accessible by specific external users,
+such as remote partners and employees.</li>
+
+</ul>
+

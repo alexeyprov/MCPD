@@ -1,0 +1,47 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<asp:DetailsView runat="server" BackColor="#990000" 
+	CellPadding="4" ForeColor="#333333" GridLines="None" >
+	<AlternatingRowStyle BackColor="#FFFFCC" />
+	<EditRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+	<FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<CommandRowStyle BackColor="#990000" Font-Bold="True" />
+	<RowStyle BackColor="#990000" ForeColor="#333333" />
+	<FieldHeaderStyle BackColor="#990000" Font-Bold="True" />	
+	<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" 
+		HorizontalAlign="Center" />
+</asp:DetailsView>
+
+<asp:FormView runat="server" CellPadding="4" ForeColor="#333333">
+	<FooterStyle BackColor="Tan" Font-Bold="True" ForeColor="White" />
+	<RowStyle BackColor="#990000" />
+	<PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+	<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<EditRowStyle BackColor="#2461BF" />
+</asp:FormView>
+
+<asp:GridView runat="server" CellPadding="4" 
+	ForeColor="#333333" GridLines="None">
+	<RowStyle BackColor="#990000" />
+	<FooterStyle BackColor="Tan" />
+	<PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" 
+		HorizontalAlign="Center" />
+	<SelectedRowStyle Font-Bold="True" BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+	<HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+	<AlternatingRowStyle BackColor="#FFFFCC" />
+</asp:GridView>

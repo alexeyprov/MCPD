@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncSender", "AsyncSender\AsyncSender.csproj", "{5327FE8E-F549-49A1-AE40-E3D6C1519847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncReceiver", "AsyncReceiver\AsyncReceiver.csproj", "{FE51AFE7-7BC5-4BCC-89BC-32D90FD5D371}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5327FE8E-F549-49A1-AE40-E3D6C1519847}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{5327FE8E-F549-49A1-AE40-E3D6C1519847}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{5327FE8E-F549-49A1-AE40-E3D6C1519847}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{FE51AFE7-7BC5-4BCC-89BC-32D90FD5D371}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{FE51AFE7-7BC5-4BCC-89BC-32D90FD5D371}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{FE51AFE7-7BC5-4BCC-89BC-32D90FD5D371}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Building Hybrid Applications in the Cloud on Windows Azure - Release Notes</title>
+    <link rel="stylesheet" href="readme_files/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="readme_files/styles/mnp.css" type="text/css" />
+    <style type="text/css">
+
+ p.MsoNormal
+  {margin-bottom:.0001pt;
+  font-size:11.0pt;
+  font-family:"Calibri","sans-serif";
+          margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+    .auto-style1 {
+  color: #1155A8;
+}
+    </style>
+</head>
+<body>
+    <a name="top"></a>
+    <div id="commonWrapper">
+        <div id="pageWrapper">
+            <!--   START HEADER   -->
+            <div class="page_header">
+                <div class="page_header_logo">
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="http://wag.codeplex.com/">
+                                    <div class="page_header_title">Building Hybrid Applications in the Cloud on Windows Azure</div>
+                                </a>
+                                <div class="page_header_subtitle">
+                                    Release Notes</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--   END HEADER   -->
+            <div id="Main">
+                <div id="MainMid">
+                    <!-- START NAVIGATION BAR -->
+                    <div id="TopNavigation">
+                        <div class="topnav_item" id="topnav1">
+                            <a tabindex="1" href="Readme.htm"><span class="topnav_item_left"></span><span
+                                class="topnav_item_middle"><span class="topnav_item_text">Readme</span>
+                            </span><span class="topnav_item_right_selected"></span></a>
+                            <a tabindex="1" href="ReleaseNotes.htm"><span class="topnav_item_selected"></span><span
+                                class="topnav_item_middle_selected"><span class="topnav_item_text">Release notes</span>
+                            </span><span class="topnav_item_right"></span></a>
+                        </div>
+                        <div class="topnav_item_divider">
+                        </div>
+                    </div>
+                    <!-- END NAVIGATION BAR -->
+                    <div id="Content">
+                        <div class="content_table_home">
+                            <div class="homePgImgWide">
+                                <div class="homearea">
+                                    <div class="pageTitle">
+                                        <div class="maintitle">Release Notes for the Examples</div>
+                                    </div>
+                                    <div class="newpromo">
+                                        <a href="http://msdn.microsoft.com/practices">
+                                            <img src="readme_files/images/pnp_logo.gif" alt="Microsoft Patterns & Practices" />
+                                        </a>
+                                    </div>
+                                    <div class="content_header_text">
+<p><b>System Requirements</b></p>
+<p>&nbsp;</p>
+<ul>
+  <li>Microsoft Windows 7 with Service Pack 1 or later (32 bit or 64 bit edition), or Windows Server 2008 R2 with Service Pack 1 or later</li>
+  <li>Microsoft Internet Information Server (IIS) 7.0</li>
+  <li><a href="http://www.microsoft.com/download/en/details.aspx?id=17718" target="_blank">Microsoft .NET Framework version 4.0</a></li>
+  <li><a href="http://www.asp.net/mvc/mvc3" target="_blank">Microsoft ASP.NET MVC Framework version 3</a></li>
+  <li><a href="http://www.microsoft.com/visualstudio/en-us/products/2010-editions" target="_blank">Microsoft Visual Studio 2010</a> Ultimate, Premium, or Professional edition with Service Pack 1 installed</li>
+  <li><a href="http://www.microsoft.com/web/gallery/install.aspx?appid=WindowsAzureToolsVS2010" target="_blank">Windows Azure SDK for .NET</a> (includes the Visual Studio Tools for Windows Azure)</li>
+  <li><a href="http://www.microsoft.com/sqlserver/en/us/editions/express.aspx" target="_blank">Microsoft SQL Server or SQL Server Express 2008</a></li>
+  <li><a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=17331" target="_blank">Windows Identity Foundation</a></li>
+  <li>Enterprise Library 5 (required assemblies are included in the source code download)</li>
+  <li><a href="http://wappowershell.codeplex.com/releases" target="_blank">Windows Azure Platform Cmdlets</a> (install
+      the Windows Azure Platform Cmdlets as a PowerShell Snap-in, this is required for scripts that use the Azure Management API)</li>
+  <li>TreyResearch and TreyResearch.HeadOffice example databases (SQL scripts are included in the \Source\Setup\DependencyChecker\SqlScripts folder of the example)</li>
+</ul>
+
+</div><div class="content_header_text" style="width:850px">
+
+<p>To check for software prerequisites needed to use the examples, run <b>
+CheckDependencies.cmd</b> in the example scenarios folder using an administrator account. You must have
+<a href="http://www.microsoft.com/download/en/details.aspx?id=17718">.NET Framework version 4.0</a>
+installed to run the Dependency Checker.</p>
+<p>&nbsp;</p>
+<p>For instructions on how to <b>configure</b> and <b>run</b> the example, see the
+<a href="Readme.htm">Readme file</a></b>.
+<p>&nbsp;</p>
+<hr />
+<p><b>Known Issues</b></p>
+<p>&nbsp;</p>
+<p><b><i>Installing the pre-requisite Windows components</i></b></p>
+<ul>
+  <li>Ensure that you have installed all applicable updates for your computer from Windows Update before installing the pre-requisites listed above.</li>
+  <li>If you want to install the Windows Azure SDK for .NET on Windows Server 2008 R2, you must first ensure that the .NET Framework version 3.5.1 is installed on your computer.</li>
+  <li>If installation of the latest version of Windows Azure SDK for .NET fails when using the dependency checker, you can install it directly from the Microsoft download center.</li>
+</ul>
+<p>&nbsp;</p>
+<hr /><a name="install_db"></a>
+<p><b><i>Installing the databases manually</i></b></p>
+<ul>
+  <li>The Dependency Checker automatically installs the databases for the example into SQL Server Express or SQL Server, depending on which you have installed on your machine.
+      If you have more than one version of either SQL Server Express or SQL Server installed, the Dependency Checker may install the databases into an instance of a version earlier
+      than 2008. In this case you must manually install the databases using the SQL scripts provided using the following steps:
+      <ul>
+      	<li>Execute the five scripts in the Setup\DependencyChecker\SqlScripts folder of the examples using SQL Server manager or the <b>osql</b> command line utility
+      	(for example, <b>osql -E -S mycomputerName\SQLExpress -i create_objects_TreyResearch.sql</b>) in the following order:</li>
+      	<ul>
+		<li>TreyResearch-DropDatabase.sql (if the databases already exist in your database server)</li>
+		<li>create_TreyResearch.sql</li>
+		<li>create_TreyResearch.HeadOffice.sql</li>
+		<li>create_objects_TreyResearch.sql</li>
+		<li>create_objects_TreyResearch.HeadOffice.sql</li>
+		</ul>
+		<li>Grant access to the <b>TreyResearch</b> and <b>TreyResearch.HeadOffice</b> databases to your computer's NETWORK SERVICE account.</li>
+      </ul>
+</ul>
+<p>&nbsp;</p>
+<hr /><a name="install_iis"></a>
+<p><b><i>After Installing IIS</i></b></p>
+<ul>
+  <li>Make sure that the <b>Load User Profile</b> option for the ASP.NET v4.0 Application Pool is set to <b>True</b> in IIS:</li>
+  <ul>
+    <li>Open Internet Information Services (IIS) Manager from your Start menu</li>
+    <li>Expand the left-hand list of Connections and select <b>Application Pools</b></li>
+    <li>In the list of application pools, right-click <b>ASP.NET v4.0</b> and click <b>Advanced Settings</b></li>
+    <li>Find the <b>Process Model</b> section and ensure that the setting for <b>Load User Profile</b> is set to <b>True</b></li>
+  </ul>
+  <li>Make sure that port 80 and 443 are available. The Windows Azure Compute Emulator attempts to use the default ports for web applications, such as 80 (http) and 443 (https). If you run the example on a computer that has
+      Internet Information Services (IIS) installed, or another application that uses these ports, the local Compute Environment will automatically use an alternative port.
+      This will cause the application to fail when using the default configuration, which assumes the standard ports. There are three ways that you can resolve this:</li>
+  <ol>
+    <li>1. Remove the existing sites from IIS and remove the existing bindings for port 80 and 443 in IIS Manager.</li>
+    <li>2. Remap the ports that IIS uses in IIS Manager so that ports 80 and 443 are available.</li>
+    <li>3. Change the ports used by the example. This will require you to edit the configuration of the example and your Windows Azure services.</li>
+  </ol>
+</ul>
+<p>&nbsp;</p>
+<hr />
+<p><b><i>Running the example</i></b></p>
+<ul>
+  <li>You must run the projects and solutions under an account that has Administrator privileges.</li>
+  <li>The example code is not designed to be reused as it stands in a production application.</li>
+  <li>The example uses several Windows Azure services (such as Access Control, Service Bus, and Caching) as well as
+  Web Role, Worker Role, and SQL Azure instances. Your Azure account will be charged for the use of these services.
+  <b>Ensure that you stop or remove these after you finish running the example</b>.</li>
+</ul>
+
+                  </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footerstrip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</body>
+</html>

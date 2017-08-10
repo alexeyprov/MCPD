@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "locbaml_sdk", "locbaml_sdk.csproj", "{A0A49376-EEDB-42D2-A6B0-53CBB24CFC66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0A49376-EEDB-42D2-A6B0-53CBB24CFC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A49376-EEDB-42D2-A6B0-53CBB24CFC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

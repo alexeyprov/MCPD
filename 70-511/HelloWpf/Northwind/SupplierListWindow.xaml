@@ -1,0 +1,29 @@
+﻿<Window x:Class="HelloWpf.Northwind.SupplierListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:n="clr-namespace:HelloWpf.Northwind"
+        xmlns:a="clr-namespace:Northwind.Data.ClassicAdo;assembly=NorthwindDataAccessComponents"
+        Title="Suppliers List"
+        Height="300" Width="550"
+        MinHeight="300" MinWidth="400"
+        Style="{StaticResource RoundedWindow}"
+        Tag="Select a supplier">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="DataProvider" ObjectType="{x:Type a:SupplierData}" MethodName="GetAllSuppliers" 
+                            IsAsynchronous="True"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="180"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="2*" MinWidth="250"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Margin="5" Name="SupplierList" MinWidth="180" DisplayMemberPath="CompanyName" 
+                 Style="{StaticResource EvenOddHighlightedList}"
+                 ItemsSource="{Binding Source={StaticResource DataProvider}}">
+        </ListBox>
+        <GridSplitter VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Column="1" Width="5"/>
+        <n:SupplierControl Grid.Column="2" DataContext="{Binding SelectedItem, ElementName=SupplierList}" 
+                           Grid.IsSharedSizeScope="True"/>
+    </Grid>
+</Window>

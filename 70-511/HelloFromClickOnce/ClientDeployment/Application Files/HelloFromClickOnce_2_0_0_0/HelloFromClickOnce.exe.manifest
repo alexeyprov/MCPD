@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly manifestVersion="1.0" xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity version="2.0.0.0" name="HelloFromClickOnce.exe" publicKeyToken="a1aec3099ab56311" language="ru" processorArchitecture="x86" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="HelloFromClickOnce" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="HelloFromClickOnce.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet class="System.Security.PermissionSet" version="1" ID="Custom" SameSite="site" Unrestricted="true" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+            If you want to change the Windows User Account Control level replace the 
+            requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel node will disable file and registry virtualization.
+            If you want to utilize File and Registry Virtualization for backward 
+            compatibility then delete the requestedExecutionLevel node.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HelloFromClickOnce.exe" size="7680">
+      <assemblyIdentity name="HelloFromClickOnce" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>3UwmzXsUyb7NLhnugMSIxInhA/A=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="HelperLibrary.dll" size="4096">
+      <assemblyIdentity name="HelperLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>/E1RMROzrSOa3tHhHjCkW9DPykM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of all Windows versions that this application is designed to work with. Windows will automatically select the most compatible environment.-->
+      <!-- If your application is designed to work with Windows 7, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=PRINCETON\Alexey_Provotorov" issuerKeyHash="dea4f4502ca0a992f14b1aca6cbfc4c029419743" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>lgjks+MPDpsMKod7GoLl/HcDbGg=</DigestValue></Reference></SignedInfo><SignatureValue>vGuo+ls3scVDjBMqOZR2hbYRf/0lXKayz4q0DHz4HwEhvkdXZpNMdN6NNTzrF1br1xfnHzbKreRsxWojlUX/8xMU/PZ/ISStz3E5i0C1ZrH9V0Yzqe5aKtoXZPu5mJ/RkHPGjZKiK73wbeah23tyA+xVdhz1LYajxlsanVBqxbA=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>wPTihG2HzJsOON+JOYWUgoEnuiJqrq7nisDn/XOiMRmX5Jp1XXiOGxDkH1MlLqU5KDMIprtga6F3o7iM8ZgfwrzuX1D9j3KPl9xnjKboJMjj3cA7mhrc48V57z45F3sluuzaoOEvGUwrDKv0gEsNW7OOl5GP9cuDA+X6LjhmXOM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="686c0377fce5821a7b872a0c9b0e0fe3b3e40896" Description="" Url=""><as:assemblyIdentity version="2.0.0.0" name="HelloFromClickOnce.exe" publicKeyToken="a1aec3099ab56311" language="ru" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=PRINCETON\Alexey_Provotorov</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>HMJndXC1OifZXKMkfP9PzvCDckk=</DigestValue></Reference></SignedInfo><SignatureValue>UUpLJakuHrNprBve6Airi27cB3bSSHgrU6440mqTeQAtuhAqesan5nqbv/QYsHh0jUc4351i6kYCwuz1kVIWx5TWe35anFz0YXbu46Cc1b7XUj8bFtO92HlfzdZUonEhN+5UsB/eOXpL/OeempOEIwBcglJKC6Z3KqQQKCWQm9U=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>wPTihG2HzJsOON+JOYWUgoEnuiJqrq7nisDn/XOiMRmX5Jp1XXiOGxDkH1MlLqU5KDMIprtga6F3o7iM8ZgfwrzuX1D9j3KPl9xnjKboJMjj3cA7mhrc48V57z45F3sluuzaoOEvGUwrDKv0gEsNW7OOl5GP9cuDA+X6LjhmXOM=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIICBTCCAW6gAwIBAgIQGlfECAhQ95tH+DJkcRwDczANBgkqhkiG9w0BAQUFADBBMT8wPQYDVQQDHjYAUABSAEkATgBDAEUAVABPAE4AXABBAGwAZQB4AGUAeQBfAFAAcgBvAHYAbwB0AG8AcgBvAHYwHhcNMTAxMDEwMjM0NTMxWhcNMTExMDExMDU0NTMxWjBBMT8wPQYDVQQDHjYAUABSAEkATgBDAEUAVABPAE4AXABBAGwAZQB4AGUAeQBfAFAAcgBvAHYAbwB0AG8AcgBvAHYwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMD04oRth8ybDjjfiTmFlIKBJ7oiaq6u54rA5/1zojEZl+SadV14jhsQ5B9TJS6lOSgzCKa7YGuhd6O4jPGYH8K87l9Q/Y9yj5fcZ4ym6CTI493AO5oa3OPFee8+ORd7Jbrs2qDhLxlMKwyr9IBLDVuzjpeRj/XLgwPl+i44ZlzjAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAdm/32+d4jZtA5ZTkC2lswWNBpJsavRZnDwIYQEWa4LRVTjvaVSSs6Pbe1XD9syvKlD0BfNCj7TI8MLfcVZZLbKrXxYozsC4KTKmix9Br+xrI7b/i1yZC0mgGN81czjdbYV6g1xsn+cBkfAbCtwDkBIzt1BlHevVT1mmF7TI1ZSs=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

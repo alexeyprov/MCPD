@@ -1,0 +1,502 @@
+<H1>Dyanic router with built-in Discovery</H1>
+
+<H2>Introduction</H2>
+<p>
+I ended up writing this acrticle because I was asked to create a service that needs to meet specical scalability requirments. I realized that these set of requirments can help any service, and any service any of you code. So, I decided to take the time and put it all here in this article. So, lets start by specifing the list of specificaitons I needed to meet for my service.
+
+<ul>
+<li>The service needs to scale beyond one machine, I needed to be able to run the same service on multiple machines and provide fault tolerance that if one machine is off, the other machine running the service will handle the request.</li>
+
+<li>The service should load-balance without the use of a load balancer. Normally I would say that a load balancer should be used here, but there is a software solution that I will show. The idea is that if the service is hosted in more then one location, let the diffrent locations balance the load.</li>
+
+<li>If more services are hosted, make sure they are automaticaly added to the load balancer and are also used for fault tolerance without a need to restart anything. If we we add new services clients should be able to send it messages and it should load balance with the other existing services. (all services must share the same contract)</li>
+
+<li>Make sure the client doesn't know of all this, and communicates to one address.</li>
+
+</ul>
+<p>
+For exmaple think that you want to have a service to process query on a database. You know you can have millions of hits on your service from multiple clients. The service just needs to run a query on the DB and return back a collection of results. Suppose we want to support scalability using the requrements listed above. I would host 10 services called CustomerQueryService on 10 machines. I would have a router in front of it that will be smart enough to find the 10 instances of the service. Say for exmaple I bring up machine 11, with the 11th instance of the service, now my super router should detect that a new version of the service is up, and should be able to route to it as well. Having all these instances around without fault tolerance and load balancing is a little usesless. So if we conitnue our exmaple, if machine 3 goes down, or maybe it is too busy to handle more requests. The router should then re-send the message to another instance of the service. Even if everything is running, lets say I just want to spread the load accorss all the machines, then I would say the router should not always send to the first machine on its list, it should try to balance the load by applying a round robine approch.
+</p>
+
+Overall, these are requirmenst that most of you will say can be met by IT. Putting routers / load balancers this can be done. However, I wanted to offer a software only solution to this problem as a backup solution for those who can not afford the complexity of the network setup and cost.
+</p>
+
+<h2>Environment</h2>
+<p>
+All the services coded in this article are hosted using IIS 7.5 using WAS (Windows Activation Service) using Windows 2008 R2. Addtionally, AppFabric was installed to add addtional logging, however this is optional.All the code is compiled using Visual Studio 2011 using .NET 4.0. Testing of the services was done by using diffrent app pools and restting them to simulate a shutdown and re-start of a service.
+</p>
+
+<h2>The service must scale</h2>
+<p>
+For the service to scale we must keep the service stateless, this means it can not hold state between calls. This is a key requirment to make any service scale and therefore I am stating it here, so you can know right away if you service is a candidate for scaling
+
+The best way to do this is by making your srevice service use PerCall and support multiple concurrent calls.
+
+<pre>
+   [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple,
+      InstanceContextMode=InstanceContextMode.PerCall)]
+   public class Service1 : IService
+   {
+      public string DoWork(string value)
+      {
+         Trace.WriteLine("Called From Service1");
+         return string.Format("You entered: {0}", value);
+      }
+   }</pre>
+
+As you can see this is a simple service, that all it does sends back the input that was entered. There is no state being kept between calls and the service create an instance of Service1, calls the method and then gets rid of the instance. This is the best scaling option for any service.
+
+But what if your service has state? what if you are keeping some informaiton between calls. My advice to you would be to store it somewhere elese, not in the service. Good options are the DB, but if that is too slow, you can use AppFabric caching.
+
+
+<h2>Where is my service running?</h2>
+
+<p>
+Considering we got a service that doesn't keep state, and it is using per-call instance activation, we are ready to make it scale by using the new WCF 4.0 router support. But as mentioned above, the router we are about to build must be dynamic, this means it doesn't use a static configuration of the locations of the services. It uses a new feature within WCF 4.0 which is Service Discoery. To make the router fully danamic, we would need to use two types of service disvoery. Managed Disvery and Ad-Hoc discovery, For managed discovery we will use a new Discovery service that will keep track of all the services running and where they are. The managed disvoery service will be used to initialize the router when it is first loaded. Ad-Hoc disvoery will then take over, and will notify the router when new services are added and when services are shut-down. Ad-Hoc discovery gives us "notifications" of new servies coming up and existing service shutting down. Still, due to timing issues, we need to first initialize the router with the list of services that are already running. We can't get notified if the service started before the router, that's the reason we have managed disvoery in the design.
+
+I know this might sound a little complex so we will show how each piece is used and then put an example together to show how it is working.
+
+<h2>First, lets make the service discoverable</h2>
+<p>
+To make the service work with managed discovery we need to have a service that registers all the services starting up and shutting down. This type of service is called a Discovery Proxy. To keep the code simple I have used the msdn sample of a discovery proxy found <a href="http://msdn.microsoft.com/en-us/library/dd456787.aspx">here</a>. I just want to mention that this exmaple should not be used with commerical software the main reason is that the list of found services is kept in memory. Violating our no-state servics. This means that this exmaple of the discovery proxy can not scale beyond one instance. To fix this problem you need to re-code the service to use a database and now you can scale out your discoery proxy if needed.</p>
+
+<pre>
+	// The following are helper methods required by the Proxy implementation
+	void AddOnlineService(EndpointDiscoveryMetadata endpointDiscoveryMetadata)
+	{
+		lock (this.onlineServices)
+		{
+			this.onlineServices[endpointDiscoveryMetadata.Address] = endpointDiscoveryMetadata;
+		}
+
+		PrintDiscoveryMetadata(endpointDiscoveryMetadata, "Adding");
+	}
+
+	void RemoveOnlineService(EndpointDiscoveryMetadata endpointDiscoveryMetadata)
+	{
+		if (endpointDiscoveryMetadata != null)
+		{
+			lock (this.onlineServices)
+			{
+				this.onlineServices.Remove(endpointDiscoveryMetadata.Address);
+			}
+
+			PrintDiscoveryMetadata(endpointDiscoveryMetadata, "Removing");
+		}
+	}</pre>
+
+<p>
+For testing you can put break points in these methods to see when services are added and removed from the disvoery proxy registry. Still there is one more important task to do, we need to configure our service to registr with the Discovery Proxy when they are hosted, or terminiated. This is done by adding the following configuration to the web.config:</p>
+
+<p>&lt;behaviors&gt;<br />&nbsp;&nbsp; &lt;serviceBehaviors&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;behavior&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;serviceMetadata httpGetEnabled=&quot;true&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;serviceDebug includeExceptionDetailInFaults=&quot;false&quot;/&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;serviceDiscovery&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;announcementEndpoints&gt;<br /><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;endpoint kind=&quot;udpAnnouncementEndpoint&quot; /&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;endpoint<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name=&quot;MyAnnouncementEndpoint&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kind=&quot;announcementEndpoint&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; address=&quot;net.tcp://localhost/DiscoveryProxy/DiscoveryProxy.svc&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bindingConfiguration =&quot;NetTcpBindingConfiguration&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binding=&quot;netTcpBinding&quot;/&gt;</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/announcementEndpoints&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/serviceDiscovery&gt;<br />&lt;/behavior&gt;</p>
+
+
+
+<p>The use of managed discovery is only to get an inital list of the services on the network, however to detect when new services come up, we don't want to poll the managed discovery proxy, instread we want to be notified. Therefore our service is also using ad-hoc discovery using UDP. To make the service broadcast when it is going up or down, we add this <code>endpoint kind="udpAnnouncementEndpoint"</code> endpoint to its configuration.</p>
+
+<p>Based on the configuration above we have done the following:</p>
+<ul>
+<li>A default service behavior is added to the configuraiton, by putting a service behavoir without a name, all services use this behavior by default (this is a new feature of WCF 4.0)</li>
+<li>An endpoint pointing to the discovery proxy is added, telling the service to register its address with the discovery proxy running at <i>"net.tcp://localhost/DiscoveryProxy/DiscoveryProxy.svc"</i></li>
+<li>An endpint telling the service to use ad-hoc discovery by including <code>endpoint kind="udpAnnouncementEndpoint"</code>. This endpoint tells the service that it should use udp to broadcast when the service is going up and down. The router will need to listen to these broadcasts to know when new services are added or removed. This will be covered next, when I explain how the router is coded.</li>
+</ul>
+
+At this point we accomplished a few things, we got our service. We configured our service to use discovery. Managed discovery to keep a registry of all running services and ad-hoc discovery for broadcasting when services are up and down. We got a managed discovery proxy running using the msdn smaple code. Overall, we are now ready for coding the dynamic router
+
+<h2>Making a router dynamic</h2>
+When I looked at WCF routers I fell in love with them right away. They solved multiple problems for me right away. First it allowed me to introduce a level of interception before hitting a service. Providing me the chance to log, check security and do other things before the call is sent to the service. The router can also be used a web gateway, a service that is sitting at the DMZ level routing messages to services behind the firewall. The router can listen on http, but route to service running net.tcp making it the perfect web broker. Fault Tolerance is another feature of the router, we can give the router a list of target service endpoints to route to, and if one of them is not avaiable the router will send the message to the next service on the list. The client is not even aware if a back-up service responded.
+
+Overall, the WCF router allows us to make the services scale bynond one machine letting the client communciate to a router and let the router communicate to services running on the network. To make this interesting I wanted the router to find these services without a configuration, and update the configuration if a new service is added, or if an existing service is removed.
+
+<h2>Create the DiscoveryRouterBehavior</h2>
+
+To make it all happen we need to change the way the router is working, so we add a new custom behavior to the router. Lets take a quick look at his new behavior:
+
+<pre>
+   public class DiscoveryRouterBehavior : BehaviorExtensionElement, IServiceBehavior
+   {
+      public DiscoveryRouterBehavior()
+      {
+
+      }
+      void IServiceBehavior.AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, System.Collections.ObjectModel.Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
+      {
+
+      }
+
+      void IServiceBehavior.ApplyDispatchBehavior(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+      {
+         ServiceDiscoveryExtension discoveryExtension = new ServiceDiscoveryExtension();
+         serviceHostBase.Extensions.Add(discoveryExtension);
+      }
+
+      void IServiceBehavior.Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+      {
+
+      }
+
+
+      public override Type BehaviorType
+      {
+         get { return typeof(DiscoveryRouterBehavior); }
+      }
+
+      protected override object CreateBehavior()
+      {
+         return new DiscoveryRouterBehavior();
+      }
+   }</pre>
+
+The reason I chose to use a host extension is because the host is used once, when the service starts hosting. This gives us the chance to add code to the hosting process, and allow the router to configure itself dynamically when it is loaded.
+
+
+
+This behavior doesn't do much, it simply adds a new extension to the host process called <code>ServiceDiscoveryExtension</code>. Lets take a look at the extension class.
+
+<h2>The Service Discovery Extension</h2>
+<pre>
+   internal class ServiceDiscoveryExtension : IExtension<ServiceHostBase>, IDisposable
+   {
+      private ServiceHostBase owner;
+      private RoutingConfiguration mRouterConfiguration = new RoutingConfiguration();
+      private List<ServiceEndpoint>  mEndpoints = null;
+
+
+      public ServiceDiscoveryExtension()
+      {
+         // holds the list of endpoints
+         mEndpoints = new List<ServiceEndpoint>();
+         mRouterConfiguration.FilterTable.Add(new MatchAllMessageFilter(), mEndpoints);
+      }
+      void IExtension<ServiceHostBase>.Attach(ServiceHostBase owner)
+      {
+         this.owner = owner;
+         PopulateFromManagedDiscovery();
+         ListenToAnnouncements();
+      }
+
+      void IExtension<ServiceHostBase>.Detach(ServiceHostBase owner)
+      {
+         this.Dispose();
+      }
+
+      public void Dispose()
+      {
+      }
+
+      /// <summary>
+      /// Initialise the routing table based on managed discovery
+      /// </summary>
+      private void PopulateFromManagedDiscovery()
+      {
+         // Create a DiscoveryEndpoint that points to the DiscoveryProxy
+         Uri probeEndpointAddress = new Uri("net.tcp://localhost/DiscoveryProxy/DiscoveryProxy.svc");
+
+         var binding = new NetTcpBinding(SecurityMode.None);
+
+         DiscoveryEndpoint discoveryEndpoint = new DiscoveryEndpoint(binding, new EndpointAddress(probeEndpointAddress));
+
+         DiscoveryClient discoveryClient = new DiscoveryClient(discoveryEndpoint);
+         var results = discoveryClient.Find(new FindCriteria(typeof(Service.Api.IService)));
+
+         // add these endpoint to the router table.
+         foreach (var endpoint in results.Endpoints)
+         {
+            AddEndpointToRoutingTable(endpoint);
+         }
+      }
+
+      /// <summary>
+      /// Update the routing table based on UDB annoucement
+      /// </summary>
+      private void ListenToAnnouncements()
+      {
+
+         AnnouncementService announcementService = new AnnouncementService();
+
+         // Subscribe to the announcement events
+
+         announcementService.OnlineAnnouncementReceived += new EventHandler<AnnouncementEventArgs>(ServiceOnlineEvent);
+         announcementService.OfflineAnnouncementReceived += new EventHandler<AnnouncementEventArgs>(ServiceOffLineEvent);
+
+         // Host the AnnouncementService
+         ServiceHost announcementServiceHost = new ServiceHost(announcementService);
+
+         try
+         {
+            // Listen for the announcements sent over UDP multicast
+            announcementServiceHost.AddServiceEndpoint(new UdpAnnouncementEndpoint());
+            announcementServiceHost.Open();
+         }
+         catch (CommunicationException communicationException)
+         {
+            throw new FaultException("Can't listen to notification of services " + communicationException.Message);
+         }
+         catch (TimeoutException timeoutException)
+         {
+            throw new FaultException("Timeout trying to open the notification service " + timeoutException.Message);
+         }
+
+      }
+
+      /// <summary>
+      /// Fires when a service is online
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
+      private void ServiceOffLineEvent(object sender, AnnouncementEventArgs e)
+      {
+         // service went offline, remove it from the routing table.
+         Trace("Endpint offline detected: {0}", e.EndpointDiscoveryMetadata.Address);
+         RemoveEndpointFromRoutingTable(e.EndpointDiscoveryMetadata);
+      }
+
+      /// <summary>
+      /// Fires when a service goes offline
+      /// </summary>
+      /// <param name="sender"></param>
+      /// <param name="e"></param>
+      private void ServiceOnlineEvent(object sender, AnnouncementEventArgs e)
+      {
+         // a service is added, add it to the router table.
+         Trace("Endpint online detected: {0}", e.EndpointDiscoveryMetadata.Address);
+         AddEndpointToRoutingTable(e.EndpointDiscoveryMetadata);
+
+      }
+
+      private void AddEndpointToRoutingTable(EndpointDiscoveryMetadata endpointMetadata)
+      {
+
+         // set the address, for now all bindings are wsHttp
+         WSHttpBinding binding = new WSHttpBinding();
+         binding.Security.Mode = SecurityMode.None;
+
+         // set the address
+         EndpointAddress address = endpointMetadata.Address;
+
+         // set the contract
+         var contract = ContractDescription.GetContract(typeof(IRequestReplyRouter));
+
+         ServiceEndpoint endpoint = new ServiceEndpoint(contract, binding, address);
+
+
+         mEndpoints.Add(endpoint);
+
+         mRouterConfiguration.FilterTable.Clear();
+         mRouterConfiguration.FilterTable.Add(new MatchAllMessageFilter(), new RoundRobinList<ServiceEndpoint>(mEndpoints));
+
+         this.owner.Extensions.Find<RoutingExtension>().ApplyConfiguration(mRouterConfiguration);
+
+         Trace("Endpint added: {0}", endpointMetadata.Address);
+      }
+
+      private void RemoveEndpointFromRoutingTable(EndpointDiscoveryMetadata endpointMetadata)
+      {
+         // a service is going offline, take it out of the routing table.
+         var foundEndpoint = mEndpoints.Find(e => e.Address == endpointMetadata.Address);
+         if (foundEndpoint != null)
+         {
+            Trace("Endpint removed: {0}", endpointMetadata.Address);
+            mEndpoints.Remove(foundEndpoint);
+         }
+
+         mRouterConfiguration.FilterTable.Clear();
+         mRouterConfiguration.FilterTable.Add(new MatchAllMessageFilter(), new RoundRobinList<ServiceEndpoint>(mEndpoints));
+
+         this.owner.Extensions.Find<RoutingExtension>().ApplyConfiguration(mRouterConfiguration);
+      }
+
+      private void Trace(string msg, params object[] args)
+      {
+         System.Diagnostics.Trace.WriteLine(String.Format(msg, args));
+      }
+   }<pre>
+
+<p>First of all, there is alot going on in this class, so I will break it into parts and we will review each part in detail. The first thing to notice is that this is a host extension (using the <code>IExtension<ServiceHostBase></code>), which means this code is attached once when the host is started. Therefore lets take a look at the attach method:
+</p>
+
+<pre>
+      void IExtension<ServiceHostBase>.Attach(ServiceHostBase owner)
+      {
+         // set the owner of this service host extension
+         this.owner = owner;
+
+         // populate the routing table from managed discogery
+         PopulateFromManagedDiscovery();
+
+         // listen to notifications of new services coming up or existing services shutting down.
+         ListenToAnnouncements();
+      }<pre>
+
+<p>
+This is the core of the router, here we build the routing table and we do it in the following order:
+
+<ul>
+<li>First, get the list of services to route from using managed discovery</li>
+<li>Listen to new services that come up or to services that are shutdown. This is the part where we will listen to UDP notifications.</li>
+</ul>
+
+<h2>Getting the list of Services From Managed Discovery</h2>
+<p>To get the list of services from managed disvoery we use the code below:</p>
+<pre>
+      private void PopulateFromManagedDiscovery()
+      {
+         // Create a DiscoveryEndpoint that points to the DiscoveryProxy
+         Uri probeEndpointAddress = new Uri("net.tcp://localhost/DiscoveryProxy/DiscoveryProxy.svc");
+
+         var binding = new NetTcpBinding(SecurityMode.None);
+
+         DiscoveryEndpoint discoveryEndpoint = new DiscoveryEndpoint(binding, new EndpointAddress(probeEndpointAddress));
+
+         DiscoveryClient discoveryClient = new DiscoveryClient(discoveryEndpoint);
+         var results = discoveryClient.Find(new FindCriteria(typeof(Service.Api.IService)));
+
+         // add these endpoint to the router table.
+         foreach (var endpoint in results.Endpoints)
+         {
+            AddEndpointToRoutingTable(endpoint);
+         }
+      }</pre>
+
+<p>
+We use the discovery proxy address (<code>net.tcp://localhost/DiscoveryProxy/DiscoveryProxy.svc</code>) to create a discovery client proxy class. We issue a lookup to find all the services that match the contract <code>Service.Api.IService</code>, and we get the results of all the found endpoints (<code>results.Endpoints</code>). There is a few important points to note when using managed discovery. Services are only registered when they are running, when deploying services in WAS, the service might not run until a call to it is made. This is normal for WAS, as it only activate the service when there is a client to it. However, this is an issue for discovery, becasue you can't call the service if you don't know where it is, and it doesn't get registered until someone calls it. To solve this issue I used a new feature within AppFabric, and it is the ability to auto start services. You can learn more about autostarting services in the following article in msdn <a href="http://msdn.microsoft.com/en-us/library/ee677285.aspx">here</a>.
+
+For each found endpoint we call a method to add it to the routing table. We will look at this method in more detail later on.
+
+<h2>Get notificaitons based on UDP discovery</h2>
+Lets take a look at the way the router listens to notificaitons of new services coming up. This code can be found in the following method:</p>
+
+<pre>
+      private void ListenToAnnouncements()
+      {
+
+         AnnouncementService announcementService = new AnnouncementService();
+
+         // Subscribe to the announcement events
+
+         announcementService.OnlineAnnouncementReceived += new EventHandler<AnnouncementEventArgs>(ServiceOnlineEvent);
+         announcementService.OfflineAnnouncementReceived += new EventHandler<AnnouncementEventArgs>(ServiceOffLineEvent);
+
+         // Host the AnnouncementService
+         ServiceHost announcementServiceHost = new ServiceHost(announcementService);
+
+         try
+         {
+            // Listen for the announcements sent over UDP multicast
+            announcementServiceHost.AddServiceEndpoint(new UdpAnnouncementEndpoint());
+            announcementServiceHost.Open();
+         }
+         catch (CommunicationException communicationException)
+         {
+            throw new FaultException("Can't listen to notification of services " + communicationException.Message);
+         }
+         catch (TimeoutException timeoutException)
+         {
+            throw new FaultException("Timeout trying to open the notification service " + timeoutException.Message);
+         }
+
+      }<pre>
+
+ As you remember we setup 2 types of discovery to our services, one was managed discovery and the other was based on UDP notificaitons. Here we are telling the router to listen to notificaitons and setup two event handlers, one for service going online (<code>ServiceOnlineEvent</code>, and one for services going offline <code>ServiceOffLineEvent</code>. To actually listen to the events we need to host a service, the service we want to host is an AnnoucementService which is a service that is part of the Discovery Framework. We just create a regular service host and host it. We make sure that the host has the correct endpoint which is the UdpAnnouncementEndpoint which is also part of the Discovery framework. At the end, this code tells us when a service is up or down based on the event handlers. Here too there is an important note, ad-hoc discovery only works if the services are on the same subnet mask, and UDP needs to be allowed accorss the machines.
+
+<h2>Modifying the Routing table dynamically</h2>
+<p>
+ Now, that we finally got our list of services and the ability to get notifications when the service is up or down, we need to modify the routing table. To do this I have used the following methods: </p>
+
+ <pre>
+       private void AddEndpointToRoutingTable(EndpointDiscoveryMetadata endpointMetadata)
+       {
+          // set the address, for now all bindings are wsHttp
+          WSHttpBinding binding = new WSHttpBinding();
+          binding.Security.Mode = SecurityMode.None;
+
+          // set the address
+          EndpointAddress address = endpointMetadata.Address;
+
+          // set the contract
+          var contract = ContractDescription.GetContract(typeof(IRequestReplyRouter));
+
+          ServiceEndpoint endpoint = new ServiceEndpoint(contract, binding, address);
+
+
+          mEndpoints.Add(endpoint);
+
+          mRouterConfiguration.FilterTable.Clear();
+          mRouterConfiguration.FilterTable.Add(new MatchAllMessageFilter(), new RoundRobinList<ServiceEndpoint>(mEndpoints));
+
+          this.owner.Extensions.Find<RoutingExtension>().ApplyConfiguration(mRouterConfiguration);
+
+          Trace("Endpint added: {0}", endpointMetadata.Address);
+       }
+
+       private void RemoveEndpointFromRoutingTable(EndpointDiscoveryMetadata endpointMetadata)
+       {
+          // a service is going offline, take it out of the routing table.
+          var foundEndpoint = mEndpoints.Find(e => e.Address == endpointMetadata.Address);
+          if (foundEndpoint != null)
+          {
+             Trace("Endpint removed: {0}", endpointMetadata.Address);
+             mEndpoints.Remove(foundEndpoint);
+          }
+
+          mRouterConfiguration.FilterTable.Clear();
+          mRouterConfiguration.FilterTable.Add(new MatchAllMessageFilter(), new RoundRobinList<ServiceEndpoint>(mEndpoints));
+
+          this.owner.Extensions.Find<RoutingExtension>().ApplyConfiguration(mRouterConfiguration);
+       }</pre>
+
+<p>
+There is really alot going on here so let me explain slowly. First, I keep the list of endpoint to route to in a simple list <code>mEndPoints</code>. When we use discovery we get the location of an instance of the service in the <code>EndpointDiscoveryMetadata</code> class. However, using discovery we only get the address and the contact of the endpoint, not the binding. Therefore in this case I hardcoded the binding to be WSHttpBinding in the code below:
+<pre>
+          WSHttpBinding binding = new WSHttpBinding();
+          binding.Security.Mode = SecurityMode.None;</pre>
+
+However, we might not like just hard coding binding, so I wrote an article on how to obtain the binding dynamically, part of the discovery metadata. Still to keep things simple, I decided not to use this technique it in this article. The contact however is modified to a IRequestReplyRouter because this is the type of routing we want, the real contract is in the header of the message, and in this case we are routing all messages by using the pre-defined filter <code>MatchAllMessageFilter</code>. Once we get our endpoint, we add it to the routing table using the code below:
+<pre>
+          mRouterConfiguration.FilterTable.Clear();
+          mRouterConfiguration.FilterTable.Add(new MatchAllMessageFilter(), new RoundRobinList<ServiceEndpoint>(mEndpoints));</pre>
+
+Ignore for a second the RoundRobinList and think of as a regular list. I will explain this later. These 2 lines really reset the routing table to the new entries, however the router still doesn't know about the new configuration, until we call this line:
+
+<code>this.owner.Extensions.Find<RoutingExtension>().ApplyConfiguration(mRouterConfiguration);</pre>
+
+The remove logic is similar except that it looks for the service to remove from the list and then applies the list as the routing table.
+
+<h2>Adding load balancing support</h2>
+<p>
+I must admit this is really not loadbalancing, it more like having the services called in a round robine approch. Still, it allows for distribution of the load accorss machines. Normally when adding the list of services into the routing table, we use a regualr List, however this will end up having the router always call the first service in the list, and then the second one only if the first one is not responding. By changing the List into a RoundRobinList, we keep track of the last item that was returned, and we return the next one. The RoundRobineList concept is not mine, I have found it on the following <a href=
+"http://blogs.msdn.com/b/routingrules/archive/2010/04/14/load-balancing-at-the-routing-service.aspx">link</a>
+
+<h2>Summery</h2>
+<p>Although there are a lot of nice things in this demo there are also restrictions you should know. Udp is somthing IT guys don't usually like to see open in their network. So kind in mind that firewalls can turn off UDP. I have tried to do the same thing using peer to peer communcation using WCF 4.0, but for some reason peer to peer does not work when hosting the services in WAS. The code is also not production quality, I kept the code small and simple but it is lacking error handling and cleanup. So only look at the code to learn how to use the features but don't use it for production reasons.
+
+To test the service I added an MsTest project to the solution
+
+<pre>
+         string routerAddress = @"http://localhost/DynamicRouter/Router.svc";
+         EndpointAddress endpointAddress = new EndpointAddress(routerAddress);
+         WSHttpBinding binding = new WSHttpBinding(SecurityMode.None);
+
+         ServiceProxy proxy = new ServiceProxy(binding, endpointAddress);
+         string results;
+         for (int i = 0; i < 10; i++)
+         {
+            results = proxy.DoWork("Test");
+         }</pre>
+
+ The test only calls the service 10 times and we can see that 2 instances are used in a round robine way.
+ <p>
+ Testing notes:
+ Make sure your service is started using auto-start or manually so it gets registered with managed discovery. If the service is not started (for the first time), then managed discovery doesn't have it in its list and the router will have nothing to route to. To test the simulation of shutting down a service, i have used "Stop Application" on the site hosting the service. However I am sure the service can go down without sending a notification that it is going down, and there you might want to add cleanup code that if a service does not respond to remove it from the routing list. Still, I think there are a lot of nice things in this code that I am sure you can use in your projects, at least a working exmaple of how to configure a router dynamically, make it load-balance and populate its routing table based on WCF discovery.</p>
+
+
+
+
+
+
+
+
+
+

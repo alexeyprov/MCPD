@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xsd:simpleType name="NameType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="State_ProvinceEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="WA"/>
+			<xsd:enumeration value="PA"/>
+			<xsd:enumeration value="CA"/>
+			<xsd:enumeration value="NY"/>
+			<xsd:enumeration value=""/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="AbstractStreetAddressType" abstract="true">
+		<xsd:sequence>
+			<xsd:element name="AddressCode">
+				<xsd:simpleType>
+					<xsd:restriction  base="xsd:string">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+				
+			<xsd:element name="AddressLine" minOccurs="0" maxOccurs="2">
+				<xsd:simpleType>
+					<xsd:restriction  base="xsd:string">
+						<xsd:maxLength value="100"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element name="City">
+				<xsd:simpleType>
+					<xsd:restriction  base="xsd:string">
+						<xsd:maxLength value="75"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element name="State_Province" type="State_ProvinceEnum"/>
+				
+			<xsd:element name="PostalCode">
+				<xsd:simpleType>
+					<xsd:restriction  base="xsd:string">
+						<xsd:pattern value="[0-9]{5}(-[0-9]{4})?"/>					
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:element name="Country" type="xsd:string"/>
+			<xsd:element name="Room" type="xsd:string"/>
+			<xsd:element name="Building" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BillingStreetAddressType">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractStreetAddressType">
+			</xsd:extension >
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ShippingStreetAddressType">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractStreetAddressType">
+				<xsd:sequence>
+					<xsd:element name="HouseColor" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension >
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BillingInformationType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="NameType"/>
+			<xsd:element name="StreetAddress" type="BillingStreetAddressType"/>
+			<xsd:element name="BriefContact" type="BriefContactType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ShippingInformationType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="NameType"/>
+			<xsd:element name="StreetAddress" type="ShippingStreetAddressType"/>
+			<xsd:element name="BriefContact" type="BriefContactType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BriefContactType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="NameType"/>
+			<xsd:element name="Email" type="xsd:string"/>
+			<xsd:element name="Phone" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BuyerInformationType">
+		<xsd:sequence>
+			<xsd:element name="CustomerID" type="xsd:string"/>
+			<xsd:element name="BriefContact" type="BriefContactType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="OrderLineItemType">
+		<xsd:sequence>
+			<xsd:element name="LineNumber" type="xsd:int"/>
+			<xsd:element name="ProductID" type="xsd:string"/>
+			<xsd:element name="Description" type="xsd:string"/>
+			<xsd:element name="QuantityOrdered" type="xsd:float"/>
+			<xsd:element name="ExtendedPrice" type="xsd:float"/>
+			<xsd:element name="QuantityAvailable" type="xsd:float" minOccurs="0"/>
+			<xsd:element name="QuantityBackOrdered" type="xsd:float" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="OrderLineItemsType">
+		<xsd:sequence>
+			<xsd:element name="OrderLineItem" type="OrderLineItemType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="PaymentInformationType">
+		<xsd:sequence>
+			<xsd:element name="CardExpires" type="xsd:string"/>
+			<xsd:element name="CardIssueCode" type="xsd:string"/>
+			<xsd:element name="CardName" type="xsd:string"/>
+			<xsd:element name="CardNumber" type="xsd:string"/>
+			<xsd:element name="CardType" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:element name="PurchaseOrder" type="PurchaseOrderType"/>		
+	
+	<xsd:complexType name="PurchaseOrderType">
+
+		<xsd:sequence>
+			<xsd:element name="Comment" type="xsd:string" />
+			<xsd:element name="PurchaseOrderID" type="xsd:string"/>
+			<xsd:element name="PurchaseOrderDate" type="xsd:date"/>
+			<xsd:element name="BuyerInformation" type="BuyerInformationType"/>
+			<xsd:element name="BillingInformation" type="BillingInformationType"/>
+			<xsd:element name="ShippingInformation" type="ShippingInformationType"/>
+			<xsd:element name="OrderLineItems" type="OrderLineItemsType"/>
+			<xsd:element name="ShipTerms" type="xsd:string"/>
+			<xsd:element name="ShippingCost" type="xsd:float"/>
+			<xsd:element name="SubTotal" type="xsd:float"/>
+			<xsd:element name="TaxesAndFees" type="xsd:float"/>
+			<xsd:element name="Total" type="xsd:float"/>
+			<xsd:element name="PaymentInformation" type="PaymentInformationType"/>
+		</xsd:sequence>
+		<xsd:attribute name="CorrelationID" type="xsd:string"/>
+		<xsd:attribute name="OriginatorID" type="xsd:string"/>
+	</xsd:complexType>
+
+
+</xsd:schema>

@@ -1,0 +1,67 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask
+    AssemblyFile='3rdParty\CodePlex.MSBuildTasks.dll'
+    TaskName='CodePlex.MSBuildTasks.RegexReplace'/>
+  <UsingTask
+    AssemblyFile='3rdParty\CodePlex.MSBuildTasks.dll'
+    TaskName='CodePlex.MSBuildTasks.Zip'/>
+
+  <!-- Settings -->
+
+  <PropertyGroup Condition="'$(ZipStoragePath)' == ''">
+    <ZipStoragePath>D:\Builds\Zips\DependencyInjection</ZipStoragePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ccnetlabel)' == ''">
+    <ccnetlabel>0</ccnetlabel>
+  </PropertyGroup>
+
+  <!-- CruiseControl targets -->
+
+  <Target Name="Cruise" DependsOnTargets="CruiseNoZip;Zip"/>
+  <Target Name="CruiseNoZip" DependsOnTargets="SetVersionNumber;Build;UnitTest"/>
+
+  <!-- Meta-targets -->
+
+  <Target Name="Test" DependsOnTargets="Build;UnitTest"/>
+
+  <!-- Individiual targets -->
+
+  <Target Name="Clean">
+    <MSBuild Projects="CodePlexContainer.sln" Targets="Clean" Properties="Configuration=Release"/>
+    <RemoveDir Directories="Merged"/>
+  </Target>
+
+  <Target Name="Build">
+    <MSBuild Projects="CodePlexContainer.sln" Targets="Build" Properties="Configuration=Release"/>
+  </Target>
+
+  <Target Name="UnitTest">
+    <Exec Command="3rdParty\xunit.console.exe Tests.CodePlex.DependencyInjection\bin\Release\Tests.CodePlex.DependencyInjection.dll /nunit Tests.CodePlex.DependencyInjection.results.xml"/>
+  </Target>
+
+  <Target Name="SetVersionNumber">
+    <RegexReplace
+      Pattern='AssemblyVersion\("(\d+\.\d+\.\d+)\.\d+"\)'
+      Replacement='AssemblyVersion("$1.$(ccnetlabel)")'
+      Files='CodePlex.DependencyInjection\Properties\AssemblyInfo.cs'/>
+  </Target>
+
+  <Target Name="Zip">
+    <CreateItem Include="CodePlex.DependencyInjection\bin\Release\*.*">
+      <Output TaskParameter="Include" ItemName="ZipFileList"/>
+    </CreateItem>
+    <MakeDir Directories="$(ZipStoragePath)"/>
+    <Delete Files="$(ZipStoragePath)\CodePlexContainer-build-$(ccnetlabel).zip"/>
+    <Zip
+      ZipFileName="$(ZipStoragePath)\CodePlexContainer-build-$(ccnetlabel).zip"
+      Files="@(ZipFileList)"
+      StripPath="true"/>
+  </Target>
+
+  <Target Name="Merge" DependsOnTargets="Build">
+    <MakeDir Directories="Merged"/>
+    <Delete Files="Merged\CodePlex.DependencyInjection.dll;Merged\CodePlex.DependencyInjection.pdb"/>
+    <Exec Command="3rdParty\ILMerge /wildcards /out:Merged\CodePlex.DependencyInjection.dll CodePlex.DependencyInjection\bin\Release\*.dll"/>
+  </Target>
+
+</Project>

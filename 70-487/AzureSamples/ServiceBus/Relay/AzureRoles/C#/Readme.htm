@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML dir=ltr XMLNS:MSHelp = "http://msdn.microsoft.com/mshelp" xmlns:ddue = 
+"http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink = 
+"http://www.w3.org/1999/xlink" xmlns:tool = "http://www.microsoft.com/tooltip" 
+XMLNS:[default] http://ddue.schemas.microsoft.com/authoring/2003/5 = 
+"http://ddue.schemas.microsoft.com/authoring/2003/5"><HEAD><TITLE>Windows Azure Scenario</TITLE>
+<META content="text/html; CHARSET=utf-8" http-equiv=Content-Type></META>
+<META name=save content=history></META><LINK rel=stylesheet type=text/css 
+href="../../../CommonFiles/Classic.css"></LINK>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18783"></HEAD>
+<BODY>
+<DIV id=header>
+<TABLE id=topTable width="100%">
+  <TBODY>
+  <TR id=headerTableRow1>
+    <TD align=left><SPAN id=runningHeaderText></SPAN></TD></TR>
+  <TR id=headerTableRow2>
+    <TD align=left><SPAN id=nsrTitle>Windows Azure</SPAN></TD></TR>
+  <TR id=headerTableRow3>
+    <TD></TD></TR></TBODY></TABLE>
+</DIV>
+<DIV id=mainSection>
+<DIV id=mainBody>
+<DIV id=allHistory class=saveHistory onload="loadAll()" 
+onsave="saveAll()"></DIV>
+<P>This sample demonstrates how to run a Windows Azure Service Bus client and service on 
+Windows Azure. </P>
+	<P>This sample configure Service Bus programmatically. 
+	Only environment and security information is stored in the configuration files. 
+	Also, these samples package the Microsoft.ServiceBus.dll (note that <b>Copy Local</b> is set to <b>True</b> for the <b>Assembly Reference</b>
+	setting).</P>
+
+<H2 class=heading>Prerequisites</H2>
+<DIV id=sectionSection2 class=section><content 
+xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<P xmlns="">To run this sample on .Net Framework 4, you must install the Windows Azure SDK 
+    1.5. 
+You would also need the Windows Azure Tools for Visual Studio 1.5 for working with this sample in Visual Studio 2010. This sample works on the local developer fabric (included in the Windows Azure SDK) 
+and also in the Windows Azure cloud service. To run the 
+sample in the cloud service, you must also have a valid Windows Azure account. More 
+information about Windows Azure can be found here:
+<a href="https://windows.azure.com">https://windows.azure.com</a>. Please note 
+that the Windows Azure SDK also has a number of its own pre-requisites (including IIS 
+and SQL Express).</P>
+    </content>
+    </DIV>
+
+<H2 class=heading>Running the Sample</H2>
+<DIV id=sectionSection3 class=section><content 
+xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<P xmlns="">You must start Visual Studio in elevated (administrator) mode. 
+Right-click on Visual Studio and then click <strong>Run as Administrator</strong>. This 
+is required by the Windows Azure simulation environment.</P>
+	<P xmlns="">Configure the Web.config and App.config files for the Web and Worker Roles, 
+respectively. Then run the WindowsAzureEcho project in the Windows Azure local developer 
+fabric or package and deploy the solution to the Windows Azure service. For more 
+information about running Windows Azure applications locally or in the cloud 
+please refer to the Windows Azure documentation at
+<a href="https://windows.azure.com">https://windows.azure.com</a>.</P>
+    </content>
+    </DIV>
+
+	<H2 class=heading>WebRole</H2>
+<DIV id=sectionSection0 class=section>
+<P xmlns="">The WebRole application sends data over the Service Bus to a listener. You can add your service namespace
+information to the Web.config file of the WorkerRole applications:</P>
+	<code><br>
+	&nbsp;&lt;appSettings&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;ServicePath&quot; 
+	value=&quot;samples/echo&quot;/&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;ServiceNamespace&quot; 
+	value=&quot;MY_SERVICE_NAMESPACE&quot;/&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;IssuerName&quot; 
+	value=&quot;owner&quot;/&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;IssuerSecret&quot; 
+	value=&quot;MY_ISSUER_SECRET&quot;/&gt;<br>&lt;/appSettings&gt;<br>
+	</code>
+    </DIV>
+<H2 class=heading>WorkerRole</H2>
+<DIV id=sectionSection1 class=section>
+	The WorkerRole application listens to the Service Bus and writes data to the 
+	Windows Azure log. You can add your service namespace
+information to the WorkerRole App.config file: <br></content>
+	<content 
+xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+	<code><br>&lt;appSettings&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;ServicePath&quot; 
+	value=&quot;samples/echo&quot;/&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;ServiceNamespace&quot; 
+	value=&quot;MY_SERVICE_NAMESPACE&quot;/&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;IssuerName&quot; 
+	value=&quot;owner&quot;/&gt;<br>&nbsp;&nbsp;&nbsp; &lt;add key=&quot;IssuerSecret&quot; 
+	value=&quot;MY_ISSUER_SECRET&quot;/&gt;<br>&lt;/appSettings&gt;<br></code>
+        </DIV>
+    
+    <p>
+        &nbsp;</p>
+    <hr /> 
+    Did you find this information useful?
+    <a href="http://go.microsoft.com/fwlink/?LinkID=155664">
+        Please send your suggestions and comments about the documentation.
+
+    </a></P>
+</DIV></BODY></HTML>

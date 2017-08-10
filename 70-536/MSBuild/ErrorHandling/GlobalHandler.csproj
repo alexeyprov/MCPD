@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ErrorEmailTo>alexey_provotorov@epam.com</ErrorEmailTo>
+    <ErrorHandlerTargets>
+      ProjectErrorHandler;
+      SolutionErrorHandler;
+      LogErrorHandler;
+      EmailErrorHandler;
+    </ErrorHandlerTargets>
+  </PropertyGroup>
+  <Target Name="ProjectErrorHandler" />
+  <Target Name="SolutionErrorHandler" >
+    <Message Text="Solution failed to build." />
+  </Target>
+  <Target Name="LogErrorHandler" >
+    <Message Text="Build failed. Logging error." />
+  </Target>
+  <Target Name="EmailErrorHandler" >
+    <Message Text="Build failed. Sending report to $(ErrorEmailTo)." />
+  </Target>
+</Project>

@@ -1,0 +1,39 @@
+﻿<Window x:Class="HelloWpf.UiTricks.SquaresWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:CustomUI;assembly=CustomUI"
+        Title="SquaresWindow" Height="300" Width="300">
+    <DockPanel>
+        <ToolBarTray Orientation="Vertical">
+            <ToolBar>
+                <RadioButton Name="SelectButton">
+                    <StackPanel>
+                        <Image Source="/Images/Select.png" />
+                        <TextBlock>Select/Move</TextBlock>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Name="AddButton">
+                    <StackPanel>
+                        <Image Source="/Images/Square.png" />
+                        <TextBlock>Add Square</TextBlock>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Name="DeleteButton">
+                    <StackPanel>
+                        <Image Source="/Images/Delete.png" />
+                        <TextBlock>Delete Square</TextBlock>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Name="MultiSelectButton">
+                    <StackPanel>
+                        <Image Source="/Images/Select.png" />
+                        <TextBlock>Select Multiple</TextBlock>
+                    </StackPanel>
+                </RadioButton>
+            </ToolBar>
+        </ToolBarTray>
+        <c:DrawingCanvas Background="White" x:Name="DrawingSurface" ClipToBounds="True" MouseLeftButtonDown="DrawingSurface_MouseLeftButtonDown" MouseLeftButtonUp="DrawingSurface_MouseLeftButtonUp" MouseMove="DrawingSurface_MouseMove">
+            
+        </c:DrawingCanvas>
+    </DockPanel>
+</Window>

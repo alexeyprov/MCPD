@@ -1,0 +1,19 @@
+﻿<parameters>
+  <parameter name="IIS Web Application Name" defaultValue="Default Web Site/AdventureWorks" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ApplicationServices-Deployment Connection String" defaultValue="data source=EPUSPRIW0081;Initial Catalog=AdventureWorksDev;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="ProviderPath" scope="dbFullSql" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Debug\\AutoScripts\\ApplicationServices-Deployment_SchemaAndData\.sql$" />
+  </parameter>
+  <parameter name="AdventureWorks-Deployment Connection String" defaultValue="data source=EPUSPRIW0081;Initial Catalog=AdventureWorksDev;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="ProviderPath" scope="dbFullSql" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\obj\\Debug\\AutoScripts\\AdventureWorks-Deployment_SchemaAndData\.sql$" />
+    <parameterEntry kind="ProviderPath" scope="dbFullSql" match="^C:\\Projects\\MCPD\\70-515\\AdventureWorks\\DB\\AdventureWorksGrant\.sql$" />
+  </parameter>
+  <parameter name="ApplicationServices-Web.config Connection String" description="ApplicationServices Connection String used in web.config by the application to access the database." defaultValue="data source=EPUSPRIW0081;Initial Catalog=AdventureWorksDev;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ApplicationServices']/@connectionString" />
+  </parameter>
+  <parameter name="AdventureWorks-Web.config Connection String" description="AdventureWorks Connection String used in web.config by the application to access the database." defaultValue="data source=EPUSPRIW0081;Initial Catalog=AdventureWorksDev;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='AdventureWorks']/@connectionString" />
+  </parameter>
+</parameters>

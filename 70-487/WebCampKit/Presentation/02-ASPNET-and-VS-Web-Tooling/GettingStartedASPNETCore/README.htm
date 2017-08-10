@@ -1,0 +1,123 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="getting-started-with-asp-net-core">Getting started with ASP.NET Core</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>This demo demonstrates how to create a simple ASP.NET Core project using Visual Studio 2015.</p>
+<p>ASP.NET Core is an open source web framework for building modern web applications that can be developed and run on Windows, Linux and Mac. It includes the MVC 6 framework, which now combines the features of MVC and Web API into a single web programming framework.</p>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li><p>Create and run a simple website using ASP.NET Core.</p>
+</li>
+<li><p>Take advantage of Visual Studio&#39;s support for NPM and Bower.</p>
+</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ul>
+<li><a href="http://docs.asp.net">ASP.NET Core</a></li>
+<li><a href="http://www.asp.net/web-api/readme.htm">ASP.NET Web API</a></li>
+<li><a href="https://www.visualstudio.com/readme.htm">Visual Studio 2015</a></li>
+</ul>
+<p><a name="Setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>Follow these steps to set up your environment for the demo.</p>
+<ol>
+<li>Install <a href="https://www.visualstudio.com/readme.htm">Visual Studio 2015</a>.</li>
+<li>Open Visual Studio 2015.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Inside the source code you will find an <strong>End</strong> folder containing a Visual Studio solution with the code that results from completing the steps in the demo. You can use this solution as guidance if you need additional help as you work through this demo.</p>
+</blockquote>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#segment1">Creating a new web site with Visual Studio 2015</a>.</li>
+</ol>
+<p><a name="segment1"></a></p>
+<h3 id="creating-a-new-web-site-with-visual-studio-2015">Creating a new web site with Visual Studio 2015</h3>
+<ol>
+<li><p>Go to <strong>File | New | Project</strong>.</p>
+</li>
+<li><p>In the <strong>Templates | Visual C# | Web</strong> tab, select the <strong>ASP.NET Web Application</strong> project. Name it <strong>MyWebApplication</strong>.</p>
+<p> <img class="img-responsive"src="images/create-new-web-application.png?raw=true" alt="Creating a new Web Application" title="Creating a new Web Application"></p>
+<p> <em>Creating a new ASP.NET Web Application</em></p>
+</li>
+<li><p>From the <strong>ASP.NET 5 Templates</strong> list, select the <strong>Web Application</strong> template.</p>
+<p> <img class="img-responsive"src="images/selecting-web-site-template.png?raw=true" alt="Selecting the Web Application template" title="Selecting the Web Application template"></p>
+<p> <em>Selecting the ASP.NET 5 Web Application template</em></p>
+</li>
+<li><p>In the <strong>Solution Explorer</strong>, show the dependencies in the <strong>project.json</strong> file.</p>
+<blockquote>
+<p>   <strong>Speaking Point:</strong> In ASP.NET Core, Visual Studio uses the <strong>project.json</strong> file for reference and package dependencies, version definitions, framework configurations, compile options, build events, package creation metadata, and run commands, as well as other details. The advantage of this is that the project can be edited and run in Linux and Mac machines that do not have Visual Studio.</p>
+</blockquote>
+<p> <img class="img-responsive"src="images/project-json-file.png?raw=true" alt="Showing the project.json file" title="Showing the project.json"></p>
+<p> <em>Showing the project.json file</em></p>
+</li>
+<li><p>Show the <strong>package.json</strong> and <strong>bower.json</strong> files.</p>
+<blockquote>
+<p>   <strong>Speaking Point:</strong> Both NPM and Bower are now integrated in Visual Studio, as well as the Grunt and Gulp task runners. The Solution Explorer for ASP.NET Core Web Applications has a Dependencies node showing Bower and NPM dependencies. The Bower dependencies are from <strong>bower.json</strong> in the project folder. The NPM dependencies are from <strong>package.json</strong> in the project folder.</p>
+</blockquote>
+<p> <img class="img-responsive"src="images/Showing-NPM-and-Bower-integrated.png?raw=true" alt="Showing integrated NPM and Bower" title="Showing NPM and Bower integrated"></p>
+<p> <em>Showing integrated NPM and Bower</em></p>
+</li>
+<li><p>In the <strong>Dependencies</strong> node, note that it is possible to uninstall or update a package through the context menu. This will automatically remove or update the package from the corresponding JSON file.</p>
+<p> <img class="img-responsive"src="images/dependencies-context-command.png?raw=true" alt="Showing the Dependencies context menu" title="Showing Dependencies context command"></p>
+<p> <em>Showing the Dependencies context menu</em></p>
+</li>
+<li><p>Click <strong>Manage Bower Packages...</strong> in the Bower dependencies context menu in order to show the Bower Package Manager UI.</p>
+<p> <img class="img-responsive"src="images/showing-bower-package-manager-ui.png?raw=true" alt="Showing the Bower package manager UI" title="Showing the Bower package manager UI"></p>
+<p> <em>Showing the Bower package manager UI</em></p>
+</li>
+<li><p>Show the <strong>ConfigureServices</strong> method in the <strong>Startup.cs</strong> class.</p>
+<blockquote>
+<p>   <strong>Speaking Point:</strong> ASP.NET Core supports Dependency Injection natively, and as such this method is adding services to the DI container.</p>
+</blockquote>
+<p> <img class="img-responsive"src="images/configureservices-method.png?raw=true" alt="Showing ConfigureServices method" title="Showing ConfigureServices method"></p>
+<p> <em>Showing the ConfigureServices method</em></p>
+</li>
+<li><p>Show the <strong>Configure</strong> method in <strong>Startup.cs</strong> class.</p>
+<blockquote>
+<p>   <strong>Speaking Point:</strong> ASP.NET Core assumes that no frameworks are being used unless you explicitly tell it that they are, and that is why the <strong>Configure</strong> method exists. You use this method to tell ASP.NET what frameworks you would like to use for this app. This enables you to have full control over the HTTP pipeline.</p>
+</blockquote>
+<p> <img class="img-responsive"src="images/configure-method.png?raw=true" alt="Showing Configure method" title="Showing Configure method"></p>
+<p> <em>Showing the Configure method</em></p>
+</li>
+<li><p>Show the <strong>HomeController.cs</strong> file in the <strong>Controllers</strong> folder.</p>
+<blockquote>
+<p>   <strong>Speaking Point:</strong> ASP.NET Core supports regular controllers (inheriting from the <strong>Controller</strong> base type) and POCO controllers.</p>
+</blockquote>
+<p> <img class="img-responsive"src="images/homecontroller.png?raw=true" alt="Showing the HomeController" title="Showing the HomeController"></p>
+<p> <em>Showing the HomeController</em></p>
+</li>
+<li><p>Show the Home view <strong>Index.cshtml</strong> in the <strong>Views\Home</strong> folder.</p>
+<p> <img class="img-responsive"src="images/homeview.png?raw=true" alt="Showing the Home View" title="Showing the Home View"></p>
+<p> <em>Showing the Home view</em></p>
+</li>
+<li><p>Press <strong>F5</strong> to build and run the solution.</p>
+<p> <img class="img-responsive"src="images/running-the-web-site.png?raw=true" alt="Running the web site" title="Running the web site"></p>
+<p> <em>Running the web site</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this demo, you have walked through Visual Studio 2015 and ASP.NET Core. You have seen the overall structure of the solution and the use of the <strong>project.json</strong>, <strong>bower.json</strong> and <strong>package.json</strong> files to manage the project dependencies. You have also seen how ASP.NET Core added support for native dependency injection.</p>
+<hr>
+
+      </div>
+  </body>
+</html>

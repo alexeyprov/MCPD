@@ -1,0 +1,35 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CleanEx</RootNamespace>
+    <AssemblyName>CleanEx</AssemblyName>
+    <OutputPath>bin</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CleanEx.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<!-- inject custom target -->
+	<PropertyGroup>
+		<BuildDependsOn>
+			$(BuildDependsOn);
+			WriteCompileFile
+		</BuildDependsOn>
+	</PropertyGroup>
+	<!-- define custom output item -->
+	<ItemGroup>
+		<CompileOutputFile Include="$(OutputPath)\Compile.out" />
+	</ItemGroup>
+	<!-- custom target definition -->
+	<Target Name="WriteCompileFile">
+		<Message Text="Writing the compile file" />
+		<WriteLinesToFile 
+			File="@(CompileOutputFile)"
+			Lines="@(Compile)"
+			Overwrite="false" />
+		<WriteLinesToFile
+			File="$(BaseIntermediateOutputPath)$(CleanFile)"
+			Lines="@(CompileOutputFile, '%0D%0A')" 
+			Overwrite="false" />
+	</Target>
+</Project>

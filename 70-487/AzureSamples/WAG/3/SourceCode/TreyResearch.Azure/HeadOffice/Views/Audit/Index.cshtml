@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@model IEnumerable<HeadOffice.Models.AuditLog>
+
+<h2>Audit Logs</h2>
+
+<h2>This page simulates the execution of the Audit Log Listener.  The Audit Log Listener will subscribe to the NewOrdersTopic, and will receive messages where the order total exceeds a predefined amount.</h2>
+
+<h2 style=" color: #034af3; ">In a real-world scenario this process shouldn't be hosted on a web application, instead you could use a Windows service or similar.</h2>
+
+@if (!(bool)ViewData["processing"])
+{
+        using (Html.BeginForm("DownloadLogs", "Audit"))
+        {
+            <input type="submit" value="Download Audit Logs" />
+        }
+}
+else
+{
+    using (Html.BeginForm("CancelDownload", "Audit"))
+    {
+        <input type="submit" value="Cancel Download" />
+    }
+}
+<br />
+@Html.ActionLink("Refresh table", "Index")
+
+<br />
+<table>
+    <tr>
+        <th>Order Id</th>  
+        <th>Order Date</th>      
+        <th>Amount</th>
+        <th>Customer Name</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>       
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+    </tr>
+}
+</table>

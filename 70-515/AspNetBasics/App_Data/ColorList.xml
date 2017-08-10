@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Colors>
+  <Color value="red" name="Red" />
+  <Color value="blue" name="Blue" />
+  <Color value="green" name="Green" />
+  <Color value="yellow" name="Yellow"/>
+</Colors>

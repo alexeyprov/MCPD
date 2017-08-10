@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Northwind.Data.Entities.Supplier>
+
+@{
+	ViewBag.Title = "Suppliers";
+}
+
+<style>
+	td.padded
+	{
+		padding: 10px;
+		vertical-align: top;
+	}
+</style>
+
+<fieldset>
+	<legend>Suppliers</legend>
+	<table>
+		<tr>
+			<td class="padded">
+				@using (Html.BeginForm("Edit", "Supplier"))
+				{
+					@Html.DropDownList("suppliers", new SelectList(Model, "SupplierID", "CompanyName"))
+					<input type="submit" value="Edit"/>
+				}
+			</td>
+			<td class="padded"></td>
+		</tr>
+	</table>
+</fieldset>

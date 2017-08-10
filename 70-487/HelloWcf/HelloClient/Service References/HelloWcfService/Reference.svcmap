@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f3ddf3d4-5c6d-4451-8888-c4efd670d4b3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8731/Design_Time_Addresses/HelloWcf/GetCostService/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="b9b8c8e3-94f9-4278-8d2f-ee698ad3d79a" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/HelloWcf/GetCostService/?xsd=xsd1" />
+    <MetadataFile FileName="GetCostService.wsdl" MetadataType="Wsdl" ID="833eb856-ec7e-428a-aa51-93ad4886a35e" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/HelloWcf/GetCostService/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="08581e21-b65d-4d7c-85db-26557fd8930d" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/HelloWcf/GetCostService/?disco" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="e044c87d-43e9-4637-810a-459ba41bf622" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/HelloWcf/GetCostService/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="32ba5cf0-f256-4e88-b9f4-0daac4c400fa" SourceId="1" SourceUrl="http://localhost:8731/Design_Time_Addresses/HelloWcf/GetCostService/?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<script type="text/javascript">
+		<!--
+			function Dog(name)
+			{
+				this._name = name;
+			}
+
+			Dog.prototype.respondTo = function(name)
+			{
+				if (this._name == name)
+				{
+					alert("Woof!");
+				}
+			}
+
+			function testScript()
+			{
+				var spot = new Dog("spot");
+
+				// Dog.prototype is the prototype of spot
+				alert(Dog.prototype.isPrototypeOf(spot));
+			
+				// Object.prototype is the prototype of Dog.prototype
+				alert(Object.prototype.isPrototypeOf(Dog.prototype));
+
+
+				// spot inherits the constructor property
+				// from Dog.prototype
+				alert(spot.constructor == Dog.prototype.constructor);
+				alert(spot.constructor == Dog);
+
+				// But constructor property doesn't belong
+				// to spot. The line below displays "false"
+				alert(spot.hasOwnProperty("constructor"));
+
+				// The constructor property belongs to Dog.prototype
+				// The line below displays "true"
+				alert(Dog.prototype.hasOwnProperty("constructor"));
+			}
+		//-->
+		</script>
+	</head>
+	<body>
+		<span>Box 1</span>
+		&nbsp;
+		<input id="txtBox1" onmouseover='alert("mouse over box 1");' />
+		<br/>
+		<br/>
+		<span>Box 2</span>
+		&nbsp;
+		<input id="txtBox2" onmouseover='alert("mouse over box 2");' />
+		<br />
+		<button onclick="testScript();">Test Script</button>
+	</body>
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://alexeypr.com/2015/05/Tasks" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://alexeypr.com/2015/05/Tasks" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://alexeypr.com/2015/05/Tasks/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/TaskService?xsd=xsd0" namespace="http://alexeypr.com/2015/05/Tasks" />
+      <xsd:import schemaLocation="http://localhost:8080/TaskService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/TaskService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TaskService.BusinessEntities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="TaskService_AddTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTask" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_AddTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_GetTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTask" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_GetTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_GetTask_FaultInfoFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/TaskService.BusinessEntities" name="detail" element="q1:FaultInfo" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_AssignTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignTask" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_AssignTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_AssignTask_FaultInfoFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/TaskService.BusinessEntities" name="detail" element="q2:FaultInfo" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_GetTasksByOwner_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksByOwner" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_GetTasksByOwner_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksByOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_IsTaskCompleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsTaskCompleted" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_IsTaskCompleted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsTaskCompletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_IsTaskCompleted_FaultInfoFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/TaskService.BusinessEntities" name="detail" element="q3:FaultInfo" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_MarkTaskCompleted_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarkTaskCompleted" />
+  </wsdl:message>
+  <wsdl:message name="TaskService_DeleteTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTask" />
+  </wsdl:message>
+  <wsdl:portType name="TaskService">
+    <wsdl:operation name="AddTask">
+      <wsdl:input wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/AddTask" message="tns:TaskService_AddTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/AddTaskResponse" message="tns:TaskService_AddTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <wsdl:input wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/GetTask" message="tns:TaskService_GetTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/GetTaskResponse" message="tns:TaskService_GetTask_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/GetTaskFaultInfoFault" name="FaultInfoFault" message="tns:TaskService_GetTask_FaultInfoFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignTask">
+      <wsdl:input wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/AssignTask" message="tns:TaskService_AssignTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/AssignTaskResponse" message="tns:TaskService_AssignTask_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/AssignTaskFaultInfoFault" name="FaultInfoFault" message="tns:TaskService_AssignTask_FaultInfoFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByOwner">
+      <wsdl:input wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/GetTasksByOwner" message="tns:TaskService_GetTasksByOwner_InputMessage" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/GetTasksByOwnerResponse" message="tns:TaskService_GetTasksByOwner_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTaskCompleted">
+      <wsdl:input wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/IsTaskCompleted" message="tns:TaskService_IsTaskCompleted_InputMessage" />
+      <wsdl:output wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/IsTaskCompletedResponse" message="tns:TaskService_IsTaskCompleted_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/IsTaskCompletedFaultInfoFault" name="FaultInfoFault" message="tns:TaskService_IsTaskCompleted_FaultInfoFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkTaskCompleted">
+      <wsdl:input wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/MarkTaskCompleted" message="tns:TaskService_MarkTaskCompleted_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:input wsaw:Action="http://alexeypr.com/2015/05/Tasks/TaskService/DeleteTask" message="tns:TaskService_DeleteTask_InputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

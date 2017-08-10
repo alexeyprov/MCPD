@@ -1,0 +1,6 @@
+70-316 MCSD: DEVELOPING AND IMPLEMENTING WINDOWS-BASED APPLICATIONS WITH MICROSOFT VISUAL C# .NET AND MICROSOFT VISUAL STUDIO .NET 1.0
+70-548 Designing and Developing Windows-Based Applications by Using the Microsoft .NET Framework 2.0
+70-526 TS: Microsoft .NET Framework 2.0, Windows Based Client Development 
+70-505 TS: Microsoft .NET Framework 3.5, Windows Forms Application Development
+70-502 TS: Microsoft .NET Framework 3.5, Windows Presentation Foundation Application Development
+70-563 Pro: Designing and Developing Windows Applications Using Microsoft .NET Framework 3.5

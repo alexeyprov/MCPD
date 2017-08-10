@@ -1,0 +1,1 @@
+Please make sure there is a virtual folder "NDTTest" pointing to .\bin\Debug before running this sample

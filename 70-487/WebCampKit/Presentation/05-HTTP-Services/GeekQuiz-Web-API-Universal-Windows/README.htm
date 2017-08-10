@@ -1,0 +1,322 @@
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>AzureReadiness: WebCamp</title>
+	  <link rel="stylesheet" href="../../../style.css">
+   </head>
+   <body>
+      <div class="container">
+        <p><a name="title"></a></p>
+<div class="jumbotron"><h1 id="building-a-universal-windows-application-front-end">Building a Universal Windows application front end</h1></div>
+<hr>
+<p><a name="Overview"></a></p>
+<h2 id="overview">Overview</h2>
+<p>This demo demonstrates a Universal Windows application frond end (developed with HTML &amp; JS) that allows users to take the quiz. It tours through already existing code that retrieves data from the REST API and shows the quiz running in a Universal Windows  application.</p>
+<p><a id="goals"></a></p>
+<h3 id="goals">Goals</h3>
+<p>In this demo, you will see how to:</p>
+<ol>
+<li>Retrieve data from a REST API from a Universal Windows application.</li>
+<li>Leverage WinJS data-binding capabilities to automatically update the UI.</li>
+</ol>
+<p><a name="technologies"></a></p>
+<h3 id="key-technologies">Key Technologies</h3>
+<ul>
+<li><a href="http://www.w3schools.com/html/readme.htm">HTML</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/windows/apps/br229773.aspx">WinJS</a></li>
+<li><a href="http://docs.asp.net">ASP.NET Core</a></li>
+</ul>
+<p><a name="setup"></a></p>
+<h3 id="setup-and-configuration">Setup and Configuration</h3>
+<p>Follow these steps to setup your environment for the demo.</p>
+<ol>
+<li>Open Visual Studio 2015.</li>
+<li>Open the <strong>GeekQuiz.sln</strong> solution located under <strong>source\end</strong>.</li>
+<li>Collapse the <strong>GeekQuiz.Web</strong> project node in <strong>Solution Explorer</strong>.</li>
+<li>In Visual Studio, close all open files.</li>
+</ol>
+<p><a name="Demo"></a></p>
+<h2 id="demo">Demo</h2>
+<p>This demo is composed of the following segments:</p>
+<ol>
+<li><a href="#segment1">Walkthrough of default.js</a></li>
+<li><a href="#segment2">Walkthrough of viewModel.js</a></li>
+<li><a href="#segment3">Walkthrough of default.html</a></li>
+<li><a href="#segment4">Running the application</a></li>
+</ol>
+<p><a name="segment1"></a></p>
+<h3 id="walkthrough-of-default-js">Walkthrough of default.js</h3>
+<ol>
+<li><p>Open the file <strong>default.js</strong> located inside the <strong>js</strong> folder of the <strong>GeekQuiz</strong> project.</p>
+</li>
+<li><p>Select the code highlighted in the following snippet.</p>
+ <!-- mark:11-16 -->
+<pre><code class="lang-JavaScript"> app.onactivated = function (args) {
+     if (args.detail.kind === activation.ActivationKind.launch) {
+         if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
+             // TODO: This application has been newly launched. Initialize your application here.
+         } else {
+             // TODO: This application was suspended and then terminated.
+             // To create a smooth user experience, restore application state here so that it looks like the app never stopped running.
+         }
+         args.setPromise(WinJS.UI.processAll());
+
+         var root = document.getElementById(&quot;root&quot;);
+         var questionDiv = document.getElementById(&quot;question&quot;);
+         var nextButton = document.getElementById(&quot;next&quot;);
+         var viewModel = new QuizViewModel(root, questionDiv, nextButton);
+
+         viewModel.nextQuestion();
+     }
+ };
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that our logic is going to be in a controller object and that the UI elements are going to be updated through data-binding.  We are basically creating the controller and asking for the next questions immediatly.</p>
+</blockquote>
+</li>
+<li><p>Highlight the following line (line #5 in the file):</p>
+ <!-- mark:1 -->
+<pre><code class="lang-JavaScript"> WinJS.Binding.optimizeBindingReferences = true;
+</code></pre>
+<blockquote>
+<p><strong>Speaking Point:</strong> Explain that this is required for every Universal Windows application that takes advantage of data binding. Source <a href="http://msdn.microsoft.com/en-us/library/windows/apps/jj215606.aspx">here</a>.</p>
+</blockquote>
+</li>
+</ol>
+<p><a name="segment2"></a></p>
+<h3 id="walkthrough-of-viewmodel-js">Walkthrough of viewModel.js</h3>
+<ol>
+<li><p>Open the file <strong>viewModel.js</strong> located inside the <strong>js</strong> folder of the <strong>GeekQuiz</strong> project.</p>
+</li>
+<li><p>Highlight the call to the <code>return WinJS.Class.define</code> function.</p>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that this the way that you can create classes with WinJS. Source <a href="http://msdn.microsoft.com/en-us/library/windows/apps/br229813.aspx">here</a>. The class that we are creating is a ViewModel. The set of properties of a ViewModel instance at a particular point in time represent the state of the view.</p>
+</blockquote>
+</li>
+<li><p>Highlight the <code>this.apiUrl</code> assignment, highlighted in the following code snippet:</p>
+ <!-- mark:6 -->
+<pre><code class="lang-JavaScript"> return WinJS.Class.define(
+     function (root, questionDiv, nextButton) {
+         var self = this;
+
+         var i;
+         this.apiUrl = &quot;http://localhost:50505/api/trivia&quot;;
+
+         this.buttons = questionDiv.getElementsByTagName(&quot;button&quot;);
+
+         this.question = {
+             title: &quot;Empty&quot;,
+             id: 0,
+             option1: {},
+             option2: {},
+             option3: {},
+             option4: {},
+             correct: false,
+         };
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that this is the end point of the REST API.</p>
+</blockquote>
+</li>
+<li><p>Highlight the <code>this.buttons</code> and <code>this.question</code> assignments, highlighted in the following code snippet:</p>
+ <!-- mark:8-18 -->
+<pre><code class="lang-JavaScript"> return WinJS.Class.define(
+     function (root, questionDiv, nextButton) {
+         var self = this;
+
+         var i;
+         this.apiUrl = &quot;http://localhost:50505/api/trivia&quot;;
+
+         this.buttons = questionDiv.getElementsByTagName(&quot;button&quot;);
+
+         this.question = {
+             title: &quot;Empty&quot;,
+             id: 0,
+             option1: {},
+             option2: {},
+             option3: {},
+             option4: {},
+             correct: false,
+         };
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that we are retrieving all the buttons that will be the question options. We are also creating a question with default values. These values will be updated when we retrieve each question from the REST API, and will be automatically updated through data-binding.</p>
+</blockquote>
+</li>
+<li><p>Highlight the code included in the following snippet:</p>
+<pre><code class="lang-JavaScript"> this.state = this.states.loading;
+
+ this.eventListeners = [];
+
+ for (i = 0; i &lt;= 3; i++) {
+      this.eventListeners[i] = function (num) {
+           return function () {
+                 var j;
+                 // we are always the same buttons, need to clear event listeners
+                 for (j = 0; j &lt; self.buttons.length; j++) {
+                      self.buttons[j].removeEventListener(&quot;click&quot;, self.eventListeners[i]);
+                 }
+                 self.sendAnswer(self.question, self.question[&quot;option&quot; + num]);
+           };
+      }(i + 1);
+ }
+
+ nextButton.addEventListener(&quot;click&quot;, function () {
+      self.nextQuestion.apply(self, arguments);
+ });
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that we are using <code>states</code> as an enumerator of the possible view states. We are also creating functions for the event listeners.
+ All event listeners need to be removed once an option is clicked, as we are re-using the buttons for all questions.</p>
+</blockquote>
+</li>
+<li><p>Highlight the code included in the following snippet:</p>
+<pre><code class="lang-JavaScript"> WinJS.Binding.processAll(root, this);
+
+ this.observable = WinJS.Binding.as(this);
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> We are setting the ViewModel instance as the binding source for the <code>root</code> element. After that, we are creating an observable (proxy) for the ViewModel, so changes to properties are automatically reflected in the UI.</p>
+</blockquote>
+</li>
+<li><p>Highlight the <code>nextQuestion</code> method, which is included in the following code snippet:</p>
+<pre><code class="lang-JavaScript"> nextQuestion: function () {
+     var self = this;
+
+     WinJS.xhr({
+         url: this.apiUrl,
+         headers: {
+             &quot;If-Modified-Since&quot;: &quot;Mon, 27 Mar 1972 00:00:00 GMT&quot;
+         }
+     }).then(
+         function (response) {
+             var j, q = JSON.parse(response.responseText);
+             self.observable.question.id = q.id;
+             self.observable.question.title = q.title;
+             self.observable.question.option1 = q.options[0];
+             self.observable.question.option2 = q.options[1];
+             self.observable.question.option3 = q.options[2];
+             self.observable.question.option4 = q.options[3];
+
+             for (j = 0; j &lt; self.buttons.length; j++) {
+                 self.buttons[j].addEventListener(&quot;click&quot;, self.eventListeners[j]);
+             }
+
+             self.observable.state = self.states.showingQuestion;
+         }, function (error) {
+             console.log(error);
+         });
+ },
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that it performs the web request and once it completes successfully the properties in the observable are updated, which automatically updates the UI. The <code>xhr</code> function returns a promise (conceptually similar to a <code>Task</code> in .NET) so it can be returned or chained with other promises. Explain that we are using WinJS facilities, but we could use any library (such as JQuery) for the AJAX calls.</p>
+</blockquote>
+</li>
+<li><p>Highlight the <code>sendAnswer</code> method, which is included in the following code snippet:</p>
+<pre><code class="lang-JavaScript"> sendAnswer: function(question, option) {
+      this.observable.state = this.states.loading;
+      var self = this;
+      console.log(&quot;web request&quot;);
+      WinJS.xhr({
+           url: self.apiUrl,
+           type: &quot;post&quot;,
+           headers: { &quot;Content-type&quot;: &quot;application/json&quot; },
+           data: JSON.stringify({ &quot;questionId&quot;: question.id, &quot;optionId&quot;: option.id })
+      }).then(function (response) {
+           var r = JSON.parse(response.responseText);
+           self.observable.question.correct = r;
+           self.observable.state = self.states.showingAnswer;
+      }, function (error) {
+           console.log(error);
+      })
+ }
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that this is similar to the <code>nextQuestion</code> method, but the main difference is that we are using an HTTP POST instead of a GET.</p>
+</blockquote>
+</li>
+</ol>
+<p><a name="segment3"></a></p>
+<h3 id="walkthrough-of-default-html">Walkthrough of default.html</h3>
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, double-click <strong>default.html</strong> to open it in the editor.</p>
+</li>
+<li><p>Select the code highlighted in the following code snippet.</p>
+ <!-- mark:3-19 -->
+<pre><code class="lang-HTML"> &lt;section aria-label=&quot;Main content&quot; role=&quot;main&quot;&gt;
+      &lt;div id=&quot;root&quot; class=&quot;grid&quot;&gt;
+           &lt;div id=&quot;question&quot; class=&quot;layout&quot; data-win-bind=&quot;style.display: state Converters.showingQuestionToVisibilityConverter&quot;&gt;
+                 &lt;div class=&quot;title col1 row1&quot;&gt;
+                      &lt;span data-win-bind=&quot;innerText: question.title&quot;&gt;&lt;/span&gt;
+                 &lt;/div&gt;
+                 &lt;div class=&quot;option col1 row2&quot;&gt;
+                      &lt;button data-win-bind=&quot;innerText: question.option1.title; disabled: question.answered&quot;&gt;&lt;/button&gt;
+                 &lt;/div&gt;
+                 &lt;div class=&quot;option col2 row2&quot;&gt;
+                      &lt;button data-win-bind=&quot;innerText: question.option2.title; disabled: question.answered&quot;&gt;&lt;/button&gt;
+                 &lt;/div&gt;
+                 &lt;div class=&quot;option col3 row2&quot;&gt;
+                      &lt;button data-win-bind=&quot;innerText: question.option3.title; disabled: question.answered&quot;&gt;&lt;/button&gt;
+                 &lt;/div&gt;
+                 &lt;div class=&quot;option col4 row2&quot;&gt;
+                      &lt;button data-win-bind=&quot;innerText: question.option4.title; disabled: question.answered&quot;&gt;&lt;/button&gt;
+                 &lt;/div&gt;
+           &lt;/div&gt;
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that the ViewModel properties are bound to the different properties through the usage of the <code>data-win-bind</code> attribute. The visibility of these controls is determined by the binding declared in the <code>&lt;div id=&quot;question&quot; class=&quot;layout&quot; data-win-bind=&quot;style.display: state Converters.showingQuestionToVisibilityConverter&quot;&gt;</code> element, which determines the visibility based on the ViewModel&#39;s state.</p>
+</blockquote>
+</li>
+<li><p>Select the code included in the following code snippet:</p>
+<pre><code class="lang-HTML"> &lt;div id=&quot;answer&quot; class=&quot;layout&quot; data-win-bind=&quot;style.display: state Converters.showingAnswerToVisibilityConverter&quot;&gt;
+      &lt;div class=&quot;title col1 row1&quot; data-win-bind=&quot;style.display: question.correct Converters.boolToVisibilityConverter&quot;&gt;
+           &lt;span&gt;Correct&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;title col1 row1&quot; data-win-bind=&quot;style.display: question.correct Converters.inverseBoolToVisibilityConverter&quot;&gt;
+           &lt;span&gt;Incorrect&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;next col1 row2&quot;&gt;
+           &lt;button id=&quot;next&quot;&gt;Next question&lt;/button&gt;
+      &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div id=&quot;loading&quot; class=&quot;layout&quot; data-win-bind=&quot;style.display: state Converters.loadingToVisibilityConverter&quot;&gt;
+      &lt;div class=&quot;title col1 row1&quot;&gt;
+           &lt;span&gt;Loading...&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;progress col1 row2&quot;&gt;
+           &lt;progress&gt;&lt;/progress&gt;
+      &lt;/div&gt;
+ &lt;/div&gt;
+</code></pre>
+<blockquote>
+<p><strong>Speaking point:</strong> Explain that these <code>&lt;div&gt;</code> elements are also bound to the ViewModel&#39;s state (using different converters).</p>
+</blockquote>
+</li>
+</ol>
+<p><a name="segment4"></a></p>
+<h3 id="running-the-application">Running the application</h3>
+<ol>
+<li><p>In <strong>Solution Explorer</strong>, right-click the <strong>GeekQuiz.Web</strong> project, expand the <strong>Start</strong> menu and select <strong>Start new instance</strong>.</p>
+<p> <img class="img-responsive"src="Images/newinstance.png?raw=true" alt="Starting new web instance" title="Starting new web instance"></p>
+<p> <em>Starting new web instance</em></p>
+</li>
+<li><p>Once the site is up and running, repeat the previous step to start the <strong>GeekQuiz</strong> Universal Windows project. The application will be launched, and once the <strong>Loading...</strong> message disappears, the first question will be displayed.</p>
+<p> <img class="img-responsive"src="Images/newinstance-windows.png?raw=true" alt="Starting new instance" title="Starting new instance"></p>
+<p> <em>Starting new instance</em></p>
+</li>
+<li><p>Answer some questions to show how the application works.</p>
+<p> <img class="img-responsive"src="Images/app.png?raw=true" alt="app"></p>
+<p> <em>Showing the App</em></p>
+</li>
+</ol>
+<hr>
+<p><a name="summary"></a></p>
+<h2 id="summary">Summary</h2>
+<p>By completing this demo you should have understood how you can leverage a ASP.NET Core API from a Universal Windows application to quickly build a front end for an existing web application.</p>
+<hr>
+
+      </div>
+  </body>
+</html>

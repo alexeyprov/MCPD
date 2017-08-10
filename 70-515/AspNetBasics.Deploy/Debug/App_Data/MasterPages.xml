@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterPages>
+	<MasterPage Name="(Blank)" Path="~/Master/Default.master" />
+	<MasterPage Name="Blue" Path="~/Master/DefaultBlue.master" />
+	<MasterPage Name="Green" Path="~/Master/DefaultGreen.master" />
+	<MasterPage Name="Red" Path="~/Master/DefaultRed.master" />
+</MasterPages>

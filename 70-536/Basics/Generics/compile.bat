@@ -1,0 +1,1 @@
+csc /out:GenTest.exe GenTest.cs Temperature.cs

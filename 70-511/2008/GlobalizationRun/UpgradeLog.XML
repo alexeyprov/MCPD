@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="rundialog">
+</Property><Property Name="Solution File" Value="D:\Projects\MyStuff\WPF\GlobalizationRun\rundialog.sln">
+</Property><Property Name="Date" Value="Friday, March 14, 2008">
+</Property><Property Name="Time" Value="21:54:21 PM">
+</Property></Properties><Event ErrorLevel="0" Project="rundialog" Source="rundialog.csproj" Description="Project file successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\rundialog.csproj">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="app.xaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\app.xaml.cs">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="Window1.xaml.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\Window1.xaml.cs">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="Properties\Resources.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\Properties\Resources.cs">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="Properties\Settings.cs" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\Properties\Settings.cs">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="Properties\Settings.settings" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="Properties\Resources.resx" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="app.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\app.xaml">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="Window1.xaml" Description="File successfully backed up as D:\Projects\MyStuff\WPF\GlobalizationRun\Backup\Window1.xaml">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="rundialog.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="rundialog" Source="rundialog.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="rundialog" Source="rundialog.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

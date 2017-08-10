@@ -1,0 +1,24 @@
+﻿@model Orders.Website.Models.Product
+@{
+    ViewBag.Title = "Item - " + Model.Description;
+}
+
+<h2>@Model.Description</h2>
+
+<div id="album-details">
+   
+    <p>
+        <img src="@Url.Content(string.Format("~/Content/Images/{0}.png", Model.ProductId))" alt="@Model.Description" />
+    </p>
+    <p>
+        <em>@Model.Description</em>
+    </p>
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}", Model.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add to cart", "AddToCart", 
+        "ShoppingCart", new { id = Model.ProductId }, "")
+    </p>
+</div>

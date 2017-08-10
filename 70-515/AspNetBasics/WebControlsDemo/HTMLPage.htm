@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Controls tree</title>
+</head>
+<body>
+	<form name="frm" method="post" action="ControlList.aspx" 
+		id="frm" enctype="multipart/form-data">
+		<div>
+			<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjQwNjY2NTMPZBYCAgMPFgIeB2VuY3R5cGUFE211bHRpcGFydC9mb3JtLWRhdGFkZAVED1DDIEwOY8V6kwMI8n13feaR" />
+		</div> <!-- viewstate -->
+		<script type="text/javascript">
+		//<![CDATA[
+		var theForm = document.forms['frm'];
+		if (!theForm) {
+			theForm = document.frm;
+		}
+		function __doPostBack(eventTarget, eventArgument) {
+			if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+				theForm.__EVENTTARGET.value = eventTarget;
+				theForm.__EVENTARGUMENT.value = eventArgument;
+				theForm.submit();
+			}
+		}
+		//]]>
+		</script> <!-- event support script -->
+		<div>
+			<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+			<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+			<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBQL/8P7cDgK1qbSRCwL+s7LrCwL+s67rCwKtkuWiCh/txjp1eZAsCwZDwYULoFobR5sa" />
+		</div> <!-- event support fields -->
+		<b>Please enter your password</b>
+		<input name="txtPassword" type="password" id="txtPassword" />
+		<br />
+		<span>File name:</span>
+		<input type="file" name="txtFileName" id="txtFileName" />
+		<br />
+		<span>Select a state:</span>
+		<select size="4" name="lstStates" id="lstStates">
+			<option value="AA">Alaska</option>
+			<option value="AL">Alabama</option>
+		</select>
+		<br />
+		<span id="lblOutput"></span>
+		<br />
+		<input type="submit" name="btnClear" value="Reset Output"
+			id="btnClear" />
+		<script type="text/javascript">
+		//<![CDATA[
+		WebForm_AutoFocus('lstStates');//]]>
+
+		</script> <!-- autofocus -->
+	</form>
+</body>
+</html>
+

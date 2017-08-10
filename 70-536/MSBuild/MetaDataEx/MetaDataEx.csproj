@@ -1,0 +1,63 @@
+<Project DefaultTargets="ShowWellKnownMD" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<CRLF>%0D%0A</CRLF>
+		<TAB>%09</TAB>
+		<Delimiter>$(CRLF)$(TAB)</Delimiter>
+	</PropertyGroup>
+	<ItemGroup>
+		<MyProgram Include="Program.cs">
+			<Name>John Doe</Name>
+			<Email>John.Doe@nosite.nodomain.com</Email>
+		</MyProgram>
+		<MyProgram Include="TestClass.cs">
+			<Name>James Smith</Name>
+			<Email>James.Smith@nosite.nodomain.com</Email>
+		</MyProgram>
+		<OtherProgram Include="..\..\**\TrustedClass\*.cs">
+			<Name>Alexey Provotorov</Name>
+			<Email>Alexey_Provotorov@epam.com</Email>
+		</OtherProgram>
+	</ItemGroup>
+	<Target Name="ShowWellKnownMD" Outputs="%(MyProgram.Identity)">
+		<Message Text="Normal: @(MyProgram)" />
+		<Message Text="FullPath: @(MyProgram->'%(FullPath)')" />
+		<Message Text="FullPath-2: %(MyProgram.FullPath)" />
+		<Message Text="RootDir: @(MyProgram->'%(RootDir)')" />
+		<Message Text="Filename: @(MyProgram->'%(Filename)')" />
+		<Message Text="Extension: @(MyProgram->'%(Extension)')" />
+		<Message Text="RelativeDir: @(MyProgram->'%(RelativeDir)')" />
+		<Message Text="Directory: @(MyProgram->'%(Directory)')" />
+		<Message Text="RecursiveDir: @(MyProgram->'%(RecursiveDir)')" />
+		<Message Text="Identity: @(MyProgram->'%(Identity)')" />
+		<Message Text="ModifiedTime: @(MyProgram->'%(ModifiedTime)')" />
+		<Message Text="CreatedTime: @(MyProgram->'%(CreatedTime)')" />
+		<Message Text="AccessedTime: @(MyProgram->'%(AccessedTime)')" />
+
+		<Message Text="$(CRLF)---------------------" />
+		<Message Text="Recursive dir [OtherProgram]:"/>
+		<Message Text="$(TAB)@(OtherProgram->'%(Filename)$(TAB)%(RecursiveDir)', '$(Delimiter)')" />
+		<Message Text="Relative dir [OtherProgram]:"/>
+		<Message Text="$(TAB)@(OtherProgram->'%(Filename)$(TAB)%(RelativeDir)', '$(Delimiter)')" />
+		<Message Text="Common info, space-delimited [OtherProgram]:"/>
+		<Message Text="$(TAB)@(OtherProgram, ' ')" />
+	</Target>
+	<Target Name="PrintAuthors">
+		<Message Text="@(MyProgram->'%(Filename)%(Extension)')" />
+		<Message Text="$(TAB)Name:$(TAB)@(MyProgram->'%(Name)')" />
+		<Message Text="$(TAB)E-Mail:$(TAB)@(MyProgram->'%(Email)')" />
+
+		<Message Text="$(CRLF)" />
+
+		<Message Text="@(OtherProgram->'%(Filename)%(Extension)', '  ')" />
+		<Message Text="$(TAB)Name:$(TAB)%(OtherProgram.Name)" />
+		<Message Text="$(TAB)E-Mail:$(TAB)%(OtherProgram.Email)" />
+
+		<!-- Don't use vectors, since this metadata is the same for all items in OtherProgram
+		<Message Text="$(TAB)Name:$(TAB)@(OtherProgram->'%(Name)')" />
+		<Message Text="$(TAB)E-Mail:$(TAB)@(OtherProgram->'%(Email)')" />
+		 -->
+	</Target>
+	<Target Name="PrintEnvVariables">
+		<Message Text="%25TEMP%25 = $(Temp)" />
+	</Target>
+</Project>
