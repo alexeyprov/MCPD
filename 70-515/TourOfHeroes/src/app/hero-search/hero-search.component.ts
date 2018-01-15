@@ -1,52 +1,38 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/distinctUntilChanged";
-import "rxjs/add/operator/switchMap";
-import { Observable } from "rxjs/Observable";
-import { Subject } from "rxjs/Subject";
+import { Observable, Subject } from "rxjs";
+import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
 
-import { Hero } from "./hero";
-import { HeroSearchService } from "./hero-search.service";
+import { Hero } from "../Hero";
+import { HeroService } from "../hero.service";
 
-@Component ({
-    moduleId: module.id,
-    selector: "my-hero-search",
-    templateUrl: "hero-search.component.html",
-    styleUrls: [ "hero-search.component.css" ],
-    providers: [ HeroSearchService ]
+@Component({
+  selector: "app-hero-search",
+  templateUrl: "./hero-search.component.html",
+  styleUrls: ["./hero-search.component.css"]
 })
 export class HeroSearchComponent implements OnInit {
-    private searchTerms: Subject<string>;
+  private searchTerms: Subject<string>;
 
-    constructor(
-        private service: HeroSearchService,
-        private router: Router) {
-        this.searchTerms = new Subject<string>();
-    }
+  constructor(private service: HeroService) { 
+    this.searchTerms = new Subject<string>();
+  }
 
-    public Heroes: Observable<Hero[]>;
+  public Heroes$: Observable<Hero[]>;
 
-    public ngOnInit(): void {
-        this.Heroes = this.searchTerms
-            .debounceTime(300) // wait for 300ms pause in events
-            .distinctUntilChanged() // ignore if next search term is same as previous
-            .switchMap((term: string) => term ? // switch to new observable each time
-                this.service.Search(term) :
-                Observable.of<Hero[]>([]))
-            .catch(e => {
-                console.error("Error while executing hero search", e);
-                return Observable.of<Hero[]>([]);
-            });
-    }
+  public ngOnInit(): void {
+    this.Heroes$ = this.searchTerms.pipe(
+        // wait 300ms after each keystroke before considering the term
+        debounceTime(300),
 
-    private OnSearchBoxKeyUp(searchTerm: string): void {
-        this.searchTerms.next(searchTerm);
-    }
+        // ignore new term if same as previous term
+        distinctUntilChanged(),
 
-    private OnHeroClicked(hero: Hero): void {
-        this.router.navigate(["/detail", hero.id]);
-    }
+        // switch to new search observable each time the term changes
+        switchMap(t => this.service.Search(t))
+    );
+  }
+
+  private OnSearchBoxKeyUp(searchTerm: string): void {
+    this.searchTerms.next(searchTerm);
+  }
 }

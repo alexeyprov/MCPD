@@ -1,15 +1,13 @@
 <h2>My Heroes</h2>
 <ul class="heroes">
-    <li *ngFor="let hero of Heroes" (click)="OnHeroClicked(hero)" [class.selected]="hero === SelectedHero">
-        <span class="badge">{{hero.id}}</span>
-        <span>{{hero.Name}}</span>
+    <li *ngFor="let hero of Heroes">
+        <a routerLink="/detail/{{hero.id}}"> 
+            <span class="badge">{{hero.id}}</span>
+            <span>{{hero.Name}}</span>
+        </a>
         <button class="delete" (click)="OnDeleteHeroClicked(hero); $event.stopPropagation();">x</button>
     </li>
 </ul>
-<div *ngIf="SelectedHero">
-    <span>{{ SelectedHero.Name | uppercase }} is my hero</span>
-    <button (click)="OnViewDetailsClicked()">View Details</button>
-</div>
 <div>
     <label>Hero Name:</label>
     <input #heroName />

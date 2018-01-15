@@ -1,9 +1,11 @@
 <h3>Top Heroes</h3>
 <div class="grid grid-pad">
-  <div *ngFor="let hero of Heroes" (click)="GetHeroDetails(hero)" class="col-1-4">
-    <div class="module hero">
-      <h4>{{hero.Name}}</h4>
-    </div>
-  </div>
+    <a *ngFor="let hero of Heroes"
+        routerLink="/detail/{{hero.id}}"
+        class="col-1-4">
+        <div class="module hero">
+            <h4>{{hero.Name}}</h4>
+        </div>
+    </a>
 </div>
-<my-hero-search></my-hero-search>
+<app-hero-search></app-hero-search>
