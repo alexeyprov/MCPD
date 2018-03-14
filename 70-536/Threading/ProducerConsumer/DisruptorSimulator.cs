@@ -1,14 +1,13 @@
 using System.Collections.Generic;
-using System.Linq;
 
 using Disruptor;
 
 namespace ProducerConsumer
 {
-    internal sealed class DisruptorSimulator : SimulatorBase
+    internal abstract class DisruptorSimulatorBase : SimulatorBase
     {
         private RingBuffer<EventData> _ringBuffer;
-        private IReadOnlyList<Consumer> _consumers;
+        private IReadOnlyList<IDisruptorConsumer> _consumers;
 
         public override PerformanceStats Run(
             int producerCount, 
@@ -16,25 +15,17 @@ namespace ProducerConsumer
             int boundedCapacity, 
             int itemCount)
         {
-            _ringBuffer = producerCount == 1 ? 
+            _ringBuffer = producerCount == 1 ?
                 RingBuffer<EventData>.CreateSingleProducer(
                     () => new EventData(),
-                    boundedCapacity) :
+                    boundedCapacity,
+                    new SpinWaitWaitStrategy()) :
                 RingBuffer<EventData>.CreateMultiProducer(
                     () => new EventData(),
-                    boundedCapacity);
-            ISequenceBarrier barrier = _ringBuffer.NewBarrier();
-            long cursor = _ringBuffer.Cursor;
-            ISequence workSequence = new Sequence(cursor);
+                    boundedCapacity,
+                    new SpinWaitWaitStrategy());
 
-            _consumers = Enumerable.Range(0, consumerCount)
-                .Select(i => new Consumer(i, _ringBuffer, barrier, workSequence))
-                .ToArray();
-            ISequence[] gatingSequences = _consumers
-                .Select(c => c.EventProcessor.Sequence)
-                .Concat(new[] { workSequence })
-                .ToArray();
-            _ringBuffer.AddGatingSequences(gatingSequences);
+            _consumers = CreateConsumers(_ringBuffer, consumerCount);
 
             return base.Run(producerCount, consumerCount, boundedCapacity, itemCount);
         }
@@ -58,7 +49,7 @@ namespace ProducerConsumer
 
         protected override void OnProductionCompleted()
         {
-            foreach (Consumer consumer in _consumers)
+            foreach (IDisruptorConsumer consumer in _consumers)
             {
                 consumer.Halt();
             }
@@ -67,49 +58,13 @@ namespace ProducerConsumer
         protected override int ConsumeItems(int consumerIndex) =>
             _consumers[consumerIndex].Run();
 
-        private sealed class EventData
+        protected abstract IReadOnlyList<IDisruptorConsumer> CreateConsumers(
+            RingBuffer<EventData> ringBuffer,
+            int consumerCount);
+
+        protected sealed class EventData
         {
             public int Data;
-        }
-
-        private sealed class Consumer : IWorkHandler<EventData>
-        {
-            private readonly int _index;
-            private int _consumedCount;
-
-            public Consumer(
-                int index,
-                RingBuffer<EventData> ringBuffer,
-                ISequenceBarrier barrier,
-                ISequence workSequence)
-            {
-                _index = index;
-                _consumedCount = 0;
-
-                EventProcessor = new WorkProcessor<EventData>(
-                    ringBuffer,
-                    barrier,
-                    this,
-                    new FatalExceptionHandler(),
-                    workSequence);
-                EventProcessor.Sequence.SetValue(workSequence.Value);
-            }
-
-            public IEventProcessor EventProcessor { get; }
-
-            public int Run()
-            {
-                EventProcessor.Run();
-                return _consumedCount;
-            }
-
-            public void Halt() => EventProcessor.Halt();
-
-            void IWorkHandler<EventData>.OnEvent(EventData data)
-            {
-                ConsumeItem(_index, data.Data);
-                _consumedCount++;
-            }
         }
     }
 }
