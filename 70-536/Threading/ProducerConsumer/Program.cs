@@ -1,69 +1,32 @@
 using System;
 using System.Collections.Concurrent;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Linq;
 
-internal static class Program
+namespace ProducerConsumer
 {
-    private static readonly BlockingCollection<int> _data;
-    private static readonly CancellationTokenSource _cts;
-
-    static Program()
+    internal static class Program
     {
-        _data = new BlockingCollection<int>(new ConcurrentQueue<int>());
-        _cts = new CancellationTokenSource();
-    }
-
-    private static void Main()
-    {
-        Console.WriteLine("Press <ENTER> to exit");
-
-        Task p = Task.Run(() => ProduceItems(), _cts.Token);
-        Task c = Task.Run(() => ConsumeItems(), _cts.Token);
-
-        Console.ReadLine();
-        _cts.Cancel();
-
-        try
+        private static void Main(string[] args)
         {
-            Task.WaitAll(p, c);
-        }
-        catch (AggregateException ae)
-        {
-            ae.Handle(e => e is OperationCanceledException);
-            Console.WriteLine("Cancelled");
-        }
-    }
-
-    private static void ProduceItems()
-    {
-        CancellationToken ct = _cts.Token;
-        for (int i = 0; i < 50; ++i)
-        {
-            _data.Add(i, ct);
-            Console.WriteLine($"Produced item {i}");
-
-            if (i % 3 == 0)
+            if (args.FirstOrDefault() == "-d")
             {
-                Thread.Sleep(1000);
+                SimulatorBase.ShouldLogDetails = true;
             }
 
-#if FORCE_ERROR
-            if (i == 40)
-            {
-                throw new InvalidOperationException();
-            }
-#endif
+            TestSimulator(new VanillaSimulator());
+            TestSimulator(new BlockingCollectionSimulator<ConcurrentQueue<int>>());
+            TestSimulator(new DataflowSimulator());
+            TestSimulator(new DisruptorSimulator());
         }
-        _data.CompleteAdding();            
-    }
 
-    private static void ConsumeItems()
-    {
-        foreach (int item in _data.GetConsumingEnumerable(_cts.Token))
+        private static void TestSimulator(ISimulator simulator)
         {
-            Console.WriteLine($"   Consumed item {item}");
+            Console.WriteLine($"{Environment.NewLine}{simulator.GetType()}: starting...");
+
+            PerformanceStats stats = simulator.Run(2, 2, 0x100, 10000);
+
+            Console.WriteLine(
+                $"{simulator.GetType()}: processed {stats.ConsumedCount} items in {stats.Elapsed}. Speed: {stats.Speed} items/ms");
         }
-        Console.WriteLine("All data consumed");
     }
 }
